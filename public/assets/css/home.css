@@ -1,0 +1,216 @@
+/* =====================================================================
+   SAINT-CYPRIEN · "LA NOUVELLE GÉNÉRATION" — home.css (the showroom at night)
+   The dark room, and LIGHT as the object: beams sweep from above, chrome
+   catches on the type, the white-hot CTA is the brightest thing on screen.
+   Loaded on EVERY page (shared component layer: .media/.essai/.tarif/.config/
+   .coachcard/.gong…). Home architecture = hero · manifesto · CONFIGURATEUR ·
+   teaser coachs · carte essai 10€ · quartier/accès · gong. NO planning grid,
+   NO tarifs grid, NO SEO pavé on the home (client law).
+   ===================================================================== */
+
+/* media — showroom grade: photos lit like objects under a spot */
+.media { position: relative; overflow: hidden; background: var(--paper-2); border-radius: var(--radius); }
+.media img, .media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: contrast(1.08) brightness(.92) saturate(.92); }
+.media::after { content: attr(data-label); position: absolute; left: .9rem; bottom: .8rem; z-index: 2; font: 600 .66rem/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink); background: rgba(6,7,11,.7); padding: .5em .85em; border-radius: 100px; backdrop-filter: blur(4px); border: 1px solid var(--line); }
+.media[data-label=""]::after { display: none; }
+
+/* ==================== HERO — l'ouverture sous les spots =========== */
+.hero { position: relative; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding-top: clamp(6rem,12vh,8rem); padding-bottom: clamp(2.5rem,5vh,4rem); overflow: hidden; background: var(--void); }
+/* the beams — two crossed spotlights + a top wash, slowly breathing */
+.hero::before { content: ""; position: absolute; inset: -10% -20%; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(58% 85% at 50% -12%, rgba(246,248,252,.17), transparent 62%),
+    linear-gradient(112deg, transparent 42%, rgba(246,248,252,.07) 49%, transparent 56%),
+    linear-gradient(68deg, transparent 55%, rgba(246,248,252,.05) 62%, transparent 69%);
+  animation: beams 9s var(--ease) infinite alternate; }
+@keyframes beams { from { transform: translateX(-1.5%); opacity: .85; } to { transform: translateX(1.5%); opacity: 1; } }
+@media (prefers-reduced-motion: reduce){ .hero::before { animation: none; } }
+.hero::after { content: ""; position: absolute; inset: auto 0 0 0; height: 30%; z-index: 0; background: linear-gradient(180deg, transparent, var(--paper)); pointer-events: none; }
+/* THE SPOTLIGHT — light is a thing you move. Follows the cursor over the
+   hero, brightening whatever it passes. The concept, made literal. */
+.hero__spot { position: absolute; inset: 0; z-index: 1; pointer-events: none; mix-blend-mode: screen; opacity: 0; transition: opacity .55s var(--ease);
+  background: radial-gradient(300px circle at var(--sx,50%) var(--sy,32%), rgba(246,248,252,.14), rgba(246,248,252,.05) 34%, transparent 66%); }
+.hero.is-lit .hero__spot { opacity: 1; }
+@media (hover: none) { .hero__spot { display: none; } }
+
+.hero__grid { position: relative; z-index: 2; display: grid; gap: clamp(2rem,4vw,4rem); grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 980px){ .hero__grid { grid-template-columns: 1.05fr .95fr; } }
+.hero__title { font-size: clamp(3.2rem, 2rem + 7vw, 7.6rem); }
+.hero__sub { margin-top: clamp(1.1rem,2.4vw,1.6rem); max-width: 44ch; }
+.hero__sub b { color: var(--spark); font-weight: 650; }
+.hero__badges { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: clamp(1.2rem,2.6vw,1.7rem); }
+.hero__badges span { display: inline-flex; align-items: center; gap: .6ch; font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .05em; color: var(--ink); background: rgba(18,21,31,.7); border: 1px solid var(--line); border-radius: 100px; padding: .55em .95em; backdrop-filter: blur(6px); }
+.hero__badges span::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--spark); box-shadow: 0 0 10px rgba(246,248,252,.8); }
+.hero__cta { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: clamp(1.5rem,3.4vw,2.2rem); }
+.hero__media { position: relative; }
+/* the hero photo is a wide room pano (~2:1) — a less-portrait card shows more of the
+   room width (cropRatio 2.28→~2.0) instead of squeezing over half the room out of frame */
+.hero__photo { aspect-ratio: 4/4.1; border-radius: calc(var(--radius) + 6px); box-shadow: var(--shadow), 0 0 0 1px var(--line); }
+/* the object under its spot */
+.hero__photo::before { content: ""; position: absolute; inset: 0; z-index: 1; background: radial-gradient(85% 60% at 50% 0%, rgba(246,248,252,.14), transparent 65%), linear-gradient(180deg, transparent 55%, rgba(6,7,11,.66)); pointer-events: none; }
+.hero__card { position: absolute; left: clamp(-1.2rem,-2vw,-1.8rem); bottom: clamp(1.2rem,3vw,2rem); z-index: 2; background: rgba(18,21,31,.9); backdrop-filter: blur(8px); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1rem 1.2rem; display: flex; flex-direction: column; gap: .2rem; }
+.hero__card b { font-family: var(--f-display); font-weight: 700; font-size: 1.5rem; letter-spacing: -.02em; background: var(--chrome); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero__card i { font-style: normal; font: 600 .64rem/1.4 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+/* stats fold INTO the hero — a light strip, not a separate section */
+.hero__stats { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: var(--line-soft); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-top: clamp(2.2rem,5vh,3.4rem); }
+@media (min-width: 820px){ .hero__stats { grid-template-columns: repeat(4,1fr); } }
+.stat { background: rgba(18,21,31,.65); backdrop-filter: blur(6px); padding: clamp(1rem,2vw,1.5rem); }
+.stat__v { font-family: var(--f-display); font-weight: 700; letter-spacing: -.03em; font-size: clamp(1.7rem,3.6vw,2.6rem); color: var(--ink); display: flex; align-items: baseline; }
+/* unit sits on the baseline as a UNIT, never as an exponent ("4 min", not "4^min") */
+.stat__u { font-size: .5em; margin-left: .18em; font-weight: 700; letter-spacing: -.01em; align-self: baseline; background: var(--chrome); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.stat__l { margin-top: .35rem; font-size: .78rem; color: var(--muted); line-height: 1.4; }
+
+/* ==================== MANIFESTO — one hard line ================== */
+.manifesto { padding-block: clamp(4rem,9vw,7.5rem); text-align: center; }
+.manifesto p { font-family: var(--f-display); font-weight: 700; letter-spacing: -.02em; line-height: 1.12; font-size: clamp(1.6rem,1rem+2.6vw,3.2rem); color: var(--ink); max-width: 26ch; margin-inline: auto; }
+.manifesto p .tint { white-space: nowrap; }
+
+/* ================= LE CONFIGURATEUR — the instrument ============== *
+   The core of the site: full-width dark stage, the active discipline's
+   photo fills the stage behind; the list is BIG (you play it). */
+.config { position: relative; background: var(--void); border-block: 1px solid var(--line); overflow: hidden; }
+/* full-bleed backdrop: active discipline photo, dimmed to keep text law */
+.config__bg { position: absolute; inset: 0; z-index: 0; }
+.config__bg .media { position: absolute; inset: 0; border-radius: 0; opacity: 0; transition: opacity .8s var(--ease); }
+.config__bg .media img { filter: contrast(1.05) brightness(.38) saturate(.85); }
+.config__bg .media.is-active { opacity: 1; }
+.config__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(6,7,11,.94) 0%, rgba(6,7,11,.72) 46%, rgba(6,7,11,.35) 100%); }
+.config .wrap { position: relative; z-index: 1; }
+.config__grid { display: grid; gap: clamp(1.6rem,4vw,3.6rem); grid-template-columns: 1fr; padding-block: var(--sec); }
+@media (min-width: 960px){ .config__grid { grid-template-columns: 1.05fr .95fr; align-items: center; } }
+.config__list { display: flex; flex-direction: column; margin-top: clamp(1.4rem,3vw,2rem); border-top: 1px solid var(--line); }
+.cfg { display: grid; grid-template-columns: auto 1fr auto; align-items: baseline; gap: 1.1rem; text-align: left; padding: clamp(.75rem,1.6vw,1.05rem) .3rem; border-bottom: 1px solid var(--line); background: none; transition: padding-left .35s var(--ease); }
+.cfg__n { font: 600 .66rem/1 var(--f-mono); color: var(--muted); transition: color .3s; }
+.cfg__name { font-family: var(--f-display); font-weight: 700; letter-spacing: -.02em; font-size: clamp(1.35rem,1rem+1.7vw,2.3rem); line-height: 1.05; color: var(--muted); transition: color .3s; }
+.cfg__tag { font: 600 .62rem/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.cfg:hover { padding-left: .7rem; }
+.cfg:hover .cfg__name { color: var(--ink-soft); }
+.cfg:active { padding-left: .95rem; }
+.cfg:active .cfg__name { color: var(--ink); }
+.cfg.is-active { padding-left: .7rem; }
+.cfg.is-active .cfg__n { color: var(--spark); }
+.cfg.is-active .cfg__name { background: var(--chrome); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.cfg.is-active .cfg__tag { color: var(--spark); opacity: 1; }
+.cfg:focus-visible { outline: 2px solid var(--spark); outline-offset: 2px; border-radius: 6px; }
+/* the sheet — a lit glass card */
+.config__panel { position: relative; background: rgba(18,21,31,.72); backdrop-filter: blur(12px); border: 1px solid var(--line); border-radius: calc(var(--radius) + 6px); overflow: hidden; box-shadow: var(--shadow); }
+.config__media { position: relative; aspect-ratio: 16/8.6; }
+.config__media .media { position: absolute; inset: 0; border-radius: 0; opacity: 0; transition: opacity .55s var(--ease); }
+.config__media .media.is-active { opacity: 1; }
+.config__body { padding: clamp(1.2rem,2.4vw,1.7rem); }
+.config__facts { display: flex; flex-wrap: wrap; gap: .45rem; margin-bottom: .9rem; }
+.config__facts span { display: inline-flex; align-items: baseline; gap: .55ch; font: 600 .66rem/1.35 var(--f-mono); letter-spacing: .04em; color: var(--ink); background: rgba(6,7,11,.55); border: 1px solid var(--line); border-radius: 100px; padding: .5em .85em; }
+.config__facts b { color: var(--spark-2); font-weight: 600; text-transform: uppercase; font-size: .56rem; letter-spacing: .12em; }
+.config__desc { color: var(--ink-soft); transition: opacity .3s var(--ease); font-size: var(--step--1); line-height: 1.6; }
+.config__cta { margin-top: 1.1rem; display: flex; gap: .7rem; flex-wrap: wrap; }
+.config__body.is-swapping .config__facts, .config__body.is-swapping .config__desc { opacity: 0; }
+
+/* ========================== TARIFS =============================== *
+ * Primitives partagées, rendues sur /tarifs/ (renderMore). Le plan « allumé »
+ * de /tarifs/ est la carte .promo--duo (tarifs.css) — pas une variante .tarif. */
+.tarifs { display: grid; gap: .7rem; grid-template-columns: 1fr; }
+@media (min-width: 880px){ .tarifs { grid-template-columns: repeat(3,1fr); } }
+.tarif { border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(1.6rem,2.8vw,2.2rem); display: flex; flex-direction: column; gap: 1rem; position: relative; background: var(--paper-2); transition: transform .35s var(--ease-spring), box-shadow .35s, border-color .3s; }
+.tarif:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: rgba(233,236,244,.3); }
+.tarif__name { font-family: var(--f-display); font-weight: 700; font-size: var(--step-1); letter-spacing: -.01em; color: var(--ink); }
+.tarif__price { font-family: var(--f-display); font-weight: 700; letter-spacing: -.02em; font-size: clamp(2.1rem,4.6vw,3rem); color: var(--ink); }
+.tarif__price small { font-family: var(--f-mono); font-size: .3em; letter-spacing: .06em; opacity: .6; text-transform: uppercase; }
+.tarif__feature { color: var(--spark-2); font-size: var(--step--1); font-weight: 600; }
+.tarif__items { display: grid; gap: .55rem; margin-top: auto; }
+/* ce que l'offre contient = le texte le plus décisif de /tarifs/ → --ink-soft */
+.tarif__items li { display: flex; gap: .8ch; align-items: flex-start; font-size: var(--step--1); color: var(--ink-soft); }
+.tarif__items li::before { content: ""; flex: 0 0 6px; height: 6px; border-radius: 50%; margin-top: .5em; background: var(--spark); }
+
+/* ========================= FINAL CTA ============================= */
+.gong { position: relative; text-align: center; padding-block: clamp(4.5rem,10vw,8rem); overflow: hidden; background: var(--void); }
+.gong::before { content: ""; position: absolute; inset: -10% -20%; pointer-events: none; background: radial-gradient(50% 70% at 50% -10%, rgba(246,248,252,.14), transparent 60%); }
+.gong__inner { position: relative; width: min(92vw, 62ch); margin-inline: auto; }
+.gong h2 { margin-block: 1rem 1.2rem; }
+.gong .lead { margin-inline: auto; max-width: 46ch; }
+.gong__cta { margin-top: 1.8rem; display: inline-flex; gap: .8rem; flex-wrap: wrap; justify-content: center; }
+
+/* configurateur : le 3e lien (détail) reste discret */
+.config__link { background: transparent; border-color: var(--line-soft); color: var(--muted); }
+.config__link:hover { color: var(--ink); border-color: var(--spark); }
+
+/* ==================== TEASER COACHS =============================== *
+   4 visages → /coachs/. Dadi = photo réelle sous son spot ; les autres =
+   tuile-initiale chrome (jamais de stock). */
+.coachrow__head { max-width: 60ch; }
+.coachrow__title { margin-top: 1rem; font-size: clamp(1.9rem,1rem+2.6vw,3.2rem); }
+.coachrow__lead { margin-top: .9rem; max-width: 46ch; color: var(--ink-soft); }
+.coachrow__grid { display: grid; grid-template-columns: repeat(2,1fr); gap: .7rem; margin-top: clamp(1.8rem,4vw,2.6rem); }
+@media (min-width: 780px){ .coachrow__grid { grid-template-columns: repeat(4,1fr); } }
+.coachcard { position: relative; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--paper-2); transition: transform .35s var(--ease-spring), box-shadow .35s, border-color .3s; }
+.coachcard:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: rgba(233,236,244,.3); }
+.coachcard__media { position: relative; aspect-ratio: 4/4.5; }
+/* the tile fallback: a chrome initial, lit like an object under a spot */
+.coachcard__media--tile { display: grid; place-items: center; background:
+  radial-gradient(120% 90% at 50% 0%, rgba(246,248,252,.12), transparent 60%),
+  linear-gradient(160deg, var(--paper-3), var(--void)); }
+.coachcard__media--tile span { font-family: var(--f-display); font-weight: 700; font-size: clamp(3rem,7vw,4.6rem); line-height: 1; background: var(--chrome); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.coachcard__media--tile::after { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 40% at 50% 120%, rgba(6,7,11,.7), transparent 70%); }
+.coachcard__body { padding: .95rem 1rem 1.1rem; }
+.coachcard__tag { font: 600 .58rem/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--spark); }
+.coachcard__name { font-family: var(--f-display); font-weight: 700; font-size: var(--step-1); letter-spacing: -.01em; color: var(--ink); margin-top: .5rem; }
+.coachcard__role { font-size: .78rem; color: var(--muted); margin-top: .25rem; line-height: 1.4; }
+.coachrow__more { margin-top: clamp(1.6rem,3vw,2.2rem); }
+
+/* ==================== CARTE ESSAI — 10€ seule ==================== */
+.essai { position: relative; overflow: hidden; border: 1px solid var(--line); border-radius: calc(var(--radius) + 6px); background:
+  radial-gradient(120% 140% at 100% 0%, rgba(246,248,252,.08), transparent 55%),
+  var(--paper-2);
+  box-shadow: var(--shadow); display: grid; gap: 1.6rem; grid-template-columns: 1fr; align-items: center; padding: clamp(1.8rem,4vw,3rem); }
+@media (min-width: 860px){ .essai { grid-template-columns: 1.4fr auto; gap: 2.4rem; } }
+.essai__spot { position: absolute; inset: 0; z-index: 0; pointer-events: none; mix-blend-mode: screen; opacity: 0; transition: opacity .55s var(--ease);
+  background: radial-gradient(280px circle at var(--sx,80%) var(--sy,10%), rgba(246,248,252,.16), rgba(246,248,252,.05) 36%, transparent 68%); }
+.essai.is-lit .essai__spot { opacity: 1; }
+@media (hover: none){ .essai__spot { display: none; } }
+.essai__body, .essai__cta { position: relative; z-index: 1; }
+.essai__title { margin-top: 1rem; font-size: clamp(1.9rem,1rem+3vw,3.4rem); }
+.essai__lead { margin-top: 1rem; max-width: 44ch; font-size: var(--step-0); }
+.essai__cta { display: flex; flex-direction: column; gap: .7rem; }
+@media (max-width: 520px){ .essai__cta { flex-direction: row; flex-wrap: wrap; } }
+
+/* ==================== QUARTIER / ACCÈS =========================== */
+.quartier { border-top: 1px solid var(--line); background: var(--void); }
+.quartier__grid { display: grid; gap: clamp(1.8rem,4vw,3.4rem); grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 900px){ .quartier__grid { grid-template-columns: 1fr .9fr; } }
+.quartier__title { margin-top: 1rem; font-size: clamp(2rem,1rem+3vw,3.4rem); }
+.quartier__lead { margin-top: 1rem; max-width: 42ch; }
+.quartier__cta { margin-top: 1.4rem; }
+.quartier__facts { display: grid; gap: 1px; background: var(--line-soft); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.quartier__facts li { background: var(--paper-2); padding: clamp(.9rem,1.8vw,1.2rem) clamp(1rem,2vw,1.3rem); display: flex; flex-direction: column; gap: .3rem; transition: background .3s; }
+.quartier__facts li:hover { background: var(--paper-3); }
+.qk { font: 600 .6rem/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--spark); }
+.qv { font-size: var(--step-0); color: var(--ink); font-weight: 500; }
+
+/* ==================== TOUCH LIFE (hover: none) =================== *
+ * BC.touchLife (site.js) bascule .is-inview quand une carte traverse le cadre
+ * sur mobile (pas de hover). De la vie sur TOUTE la page, pas que le héros —
+ * chaque famille reprend son geste de survol. Loaded partout (home.css). */
+@media (hover: none) {
+  .promo.is-inview, .codecard.is-inview, .level.is-inview, .pnote.is-inview,
+  .rostercard.is-inview, .coachcard.is-inview, .tarif.is-inview, .review.is-inview {
+    transform: translateY(-4px); box-shadow: var(--shadow); border-color: rgba(233,236,244,.3);
+  }
+  .sister.is-inview { transform: translateX(6px); border-color: rgba(233,236,244,.3); }
+  .slot.is-inview { background: var(--paper-3); box-shadow: inset 3px 0 0 var(--spark); }
+  .coords li.is-inview { background: var(--paper-3); }
+  .cfg.is-inview .cfg__name { color: var(--ink-soft); }
+  .cfg.is-inview .cfg__n { color: var(--spark); }
+  /* .act (activités) : on allume le faisceau au lieu de soulever tout l'écran */
+  .act.is-inview .act__glow { opacity: 1; }
+  .act.is-inview .act__media img { filter: contrast(1.08) brightness(.92) saturate(.95); transform: scale(1.012); }
+}
+
+/* ================ MOBILE PASS (≤820px, desktop untouched) ========= */
+@media (max-width: 820px) {
+  .hero { min-height: auto; }
+  .hero__photo { aspect-ratio: 4/3.2; }
+  .hero__card { left: .8rem; }
+  .config__grid { padding-block: clamp(3.5rem,8vw,5rem); }
+  .cfg__tag { display: none; }
+  .cfg__name { font-size: clamp(1.2rem,5.6vw,1.7rem); }
+  .manifesto p { font-size: clamp(1.35rem,6vw,1.9rem); }
+}

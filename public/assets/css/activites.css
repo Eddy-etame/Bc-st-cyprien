@@ -1,0 +1,68 @@
+/* =====================================================================
+   SAINT-CYPRIEN · "LA NOUVELLE GÉNÉRATION" — activites.css
+   Le catalogue : un écran par discipline, groupé par public (adultes ·
+   Lady Punch · l'école). Chaque entrée = photo lit-under-spot + fiche +
+   2 liens réels. Réutilise base.css + home.css (.phero, .media, .gong).
+   ===================================================================== */
+
+/* ==================== SOMMAIRE (héros) ========================= */
+.act-jump { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: clamp(1.4rem,3vw,2rem); }
+.act-chip { display: inline-flex; align-items: center; min-height: 44px; font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .04em; color: var(--ink-soft); background: rgba(18,21,31,.7); border: 1px solid var(--line); border-radius: 100px; padding: .55em 1em; transition: color .3s, border-color .3s, transform .2s var(--ease-spring), background .3s; }
+.act-chip:hover { color: var(--void); background: var(--spark); border-color: var(--spark); transform: translateY(-2px); }
+.act-chip:active { color: var(--void); background: var(--spark); border-color: var(--spark); transform: scale(.94); }
+
+/* ==================== GROUPES (adultes…) ======================= */
+.act-group { padding-block: clamp(3.5rem,7vw,6.5rem); }
+.act-group + .act-group { border-top: 1px solid var(--line-soft); }
+.act-group__title { margin-top: 1rem; font-size: clamp(1.9rem,1rem+2.6vw,3.2rem); }
+.act-group__lead { margin-top: .9rem; max-width: 52ch; color: var(--ink-soft); }
+.act-list { display: flex; flex-direction: column; gap: clamp(2.4rem,6vw,4.6rem); margin-top: clamp(2.4rem,5vw,3.6rem); }
+
+/* ==================== UNE ENTRÉE = UN ÉCRAN ==================== */
+.act { display: grid; gap: clamp(1.4rem,4vw,3rem); grid-template-columns: 1fr; align-items: center; scroll-margin-top: 6rem; border-radius: calc(var(--radius) + 6px); transition: box-shadow .5s var(--ease); }
+@media (min-width: 880px){
+  .act { grid-template-columns: 1fr 1fr; }
+  .act:nth-child(even) .act__media { order: 2; }
+}
+/* deep-link target flash — the beam lands hard, briefly */
+.act.is-target { box-shadow: 0 0 0 1px var(--spark), var(--glow); }
+.act.is-target .act__glow { opacity: 1; }
+
+.act__media { position: relative; aspect-ratio: 16/11; border-radius: calc(var(--radius) + 4px); box-shadow: var(--shadow), 0 0 0 1px var(--line); }
+.act__media img { filter: contrast(1.05) brightness(.62) saturate(.85); transition: filter .7s var(--ease), transform .9s var(--ease); }
+.act:hover .act__media img { filter: contrast(1.08) brightness(.92) saturate(.95); transform: scale(1.015); }
+.act__glow { position: absolute; inset: 0; z-index: 2; pointer-events: none; mix-blend-mode: screen; opacity: 0; transition: opacity .7s var(--ease);
+  background: radial-gradient(78% 60% at 50% -6%, rgba(246,248,252,.26), rgba(246,248,252,.05) 44%, transparent 68%); }
+.act:hover .act__glow { opacity: 1; }
+.act__media::after { z-index: 3; }
+
+.act__body { max-width: 48ch; }
+.act__tag { font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--spark); }
+.act__name { font-family: var(--f-display); font-weight: 700; letter-spacing: -.02em; font-size: clamp(1.8rem,1rem+2.4vw,2.9rem); color: var(--ink); margin-top: .6rem; }
+.act__desc { margin-top: .9rem; color: var(--ink-soft); font-size: var(--step-0); line-height: 1.66; }
+.act__facts { display: grid; grid-template-columns: 1fr; gap: 1px; margin-top: 1.3rem; background: var(--line-soft); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+@media (min-width: 520px){ .act__facts { grid-template-columns: repeat(3,1fr); } }
+.act__facts > div { background: var(--paper-2); padding: .85rem 1rem; display: flex; flex-direction: column; gap: .3rem; }
+.act__facts dt { font: 600 .58rem/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--spark); }
+.act__facts dd { font-size: var(--step--1); color: var(--ink); font-weight: 500; line-height: 1.4; }
+.act__cta { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.4rem; }
+
+/* ==================== L'ÉCOLE — les paliers ==================== */
+.levels { display: grid; gap: .7rem; grid-template-columns: 1fr; margin-top: clamp(2rem,4vw,3rem); }
+@media (min-width: 640px){ .levels { grid-template-columns: repeat(2,1fr); } }
+@media (min-width: 1040px){ .levels { grid-template-columns: repeat(4,1fr); } }
+.level { border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper-2); padding: clamp(1.2rem,2.2vw,1.6rem); display: flex; flex-direction: column; gap: .55rem; min-height: 11rem; transition: transform .35s var(--ease-spring), box-shadow .35s, border-color .3s; }
+.level:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: rgba(233,236,244,.3); }
+.level__age { font: 600 .6rem/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--spark); }
+.level__name { font-family: var(--f-display); font-weight: 700; font-size: var(--step-1); letter-spacing: -.01em; color: var(--ink); }
+/* vraie prose de carte → --ink-soft (~11:1) ; --muted reste aux labels/meta */
+.level__d { color: var(--ink-soft); font-size: var(--step--1); line-height: 1.55; margin-top: auto; }
+
+/* ==================== TOUCH LIFE + MOBILE ===================== */
+@media (hover: none){
+  .act .act__media img { filter: contrast(1.07) brightness(.82) saturate(.92); }
+}
+@media (max-width: 820px){
+  .act__media { aspect-ratio: 16/10; }
+  .act-group__title { font-size: clamp(1.6rem,6.5vw,2.1rem); }
+}

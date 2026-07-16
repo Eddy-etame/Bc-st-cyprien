@@ -1,0 +1,45 @@
+/* =====================================================================
+   SAINT-CYPRIEN · "LA NOUVELLE GÉNÉRATION" — galerie.css
+   Regardée, pas lue : une grille par zone, captions mono "spec", et chaque
+   photo qui "se développe" (du sombre au net) à l'entrée. Réutilise
+   base.css + home.css (.phero, .gong). Aspect-ratios posés → CLS 0.
+   ===================================================================== */
+
+/* ==================== INTERTITRE DE ZONE ======================= */
+.gzone { padding-block: clamp(2.6rem,5vw,4.2rem); }
+.gzone + .gzone { padding-top: 0; }
+.gzone__head { display: flex; flex-wrap: wrap; align-items: baseline; gap: .8rem 1.2rem; margin-bottom: clamp(1rem,2.4vw,1.6rem); padding-bottom: .9rem; border-bottom: 1px solid var(--line); }
+.gzone__zone { font-family: var(--f-display); font-weight: 700; letter-spacing: -.02em; font-size: clamp(1.4rem,1rem+1.8vw,2.2rem); color: var(--ink); }
+.gzone__spec { font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--spark); }
+
+/* ==================== LA GRILLE PAR ZONE ======================= */
+.ggrid { display: grid; grid-template-columns: repeat(2,1fr); gap: .6rem; grid-auto-flow: dense; }
+@media (min-width: 760px){ .ggrid { grid-template-columns: repeat(3,1fr); gap: .8rem; } }
+
+.gitem { position: relative; overflow: hidden; border-radius: var(--radius); border: 1px solid var(--line); background: var(--paper-2); aspect-ratio: 4/3.4; box-shadow: var(--shadow); }
+.gitem--wide { grid-column: span 2; aspect-ratio: 16/9; }
+.gitem img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+/* "développer" : atténué + léger flou au repos (jamais illisible — loi n°1),
+   net et lumineux quand la photo entre dans le cadre. */
+.gitem img { filter: brightness(.52) saturate(.72) contrast(1.06) blur(3px); transform: scale(1.035); opacity: .6; transition: filter 1s var(--ease), transform 1.1s var(--ease), opacity .9s var(--ease); }
+.gitem.is-in img { filter: brightness(.95) saturate(.95) contrast(1.08) blur(0); transform: scale(1); opacity: 1; }
+.gitem:hover img { transform: scale(1.04); filter: brightness(1.02) saturate(1) contrast(1.08); }
+/* the beam that lands as it develops */
+.gitem__glow { position: absolute; inset: 0; z-index: 1; pointer-events: none; mix-blend-mode: screen; opacity: 0; transition: opacity 1s var(--ease);
+  background: radial-gradient(70% 55% at 50% -6%, rgba(246,248,252,.22), rgba(246,248,252,.04) 46%, transparent 72%); }
+.gitem.is-in .gitem__glow { opacity: 1; }
+/* the floor fade keeps the caption legible */
+.gitem::after { content: ""; position: absolute; inset: auto 0 0 0; height: 46%; z-index: 1; pointer-events: none; background: linear-gradient(180deg, transparent, rgba(6,7,11,.72)); }
+.gitem__cap { position: absolute; left: .8rem; bottom: .75rem; z-index: 2; font: 600 .64rem/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink); background: rgba(6,7,11,.6); border: 1px solid var(--line); border-radius: 100px; padding: .5em .85em; backdrop-filter: blur(4px); transform: translateY(6px); opacity: 0; transition: opacity .6s var(--ease) .1s, transform .6s var(--ease) .1s; }
+.gitem.is-in .gitem__cap { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce){
+  .gitem img { filter: brightness(.95) saturate(.95) contrast(1.08); transform: none; opacity: 1; }
+  .gitem__cap { opacity: 1; transform: none; }
+}
+
+/* ==================== MOBILE PASS ============================== */
+@media (max-width: 560px){
+  .gitem { aspect-ratio: 4/3.2; }
+  .gitem--wide { aspect-ratio: 16/10; }
+}

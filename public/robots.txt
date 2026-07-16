@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Bienvenue aux crawlers de recherche ET aux moteurs génératifs.
+Sitemap: https://st-cyprien.boxingcenter.fr/sitemap.xml

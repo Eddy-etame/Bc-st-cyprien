@@ -1,0 +1,55 @@
+/* =====================================================================
+   SAINT-CYPRIEN · contact.css — zéro friction.
+   Coordonnées à gauche, carte à droite. La carte Google est ramenée dans
+   le noir (invert + hue-rotate) pour ne pas casser le fond sombre (loi §3).
+   ===================================================================== */
+
+.phero-cta { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: clamp(1.4rem,3vw,2rem); }
+
+.contact-sec { padding-block: clamp(3rem,7vw,5.5rem); }
+.contact-grid { display: grid; gap: clamp(1.8rem,4vw,3rem); grid-template-columns: 1fr; align-items: start; }
+@media (min-width: 900px){ .contact-grid { grid-template-columns: 1fr 1.05fr; } }
+
+/* -------------------------- COORDONNÉES --------------------------- */
+.coords { display: grid; gap: 1px; background: var(--line-soft); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-top: clamp(1.4rem,3vw,2rem); }
+.coords li { background: var(--paper-2); padding: clamp(.9rem,1.8vw,1.15rem) clamp(1rem,2vw,1.3rem); display: flex; flex-direction: column; gap: .3rem; transition: background .3s; }
+.coords li:hover { background: var(--paper-3); }
+.ck { font: 600 .6rem/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--spark); }
+.cv { font-size: var(--step-0); color: var(--ink); font-weight: 500; }
+/* tél / e-mail : ≥44px de cible tactile sans casser le rythme de la ligne
+   (marge négative compensatoire) — c'étaient des cibles de 20px de haut. */
+.cv a { display: inline-flex; align-items: center; min-height: 44px; margin-block: -.7rem; transition: color .3s; }
+.cv a:hover { color: var(--spark); }
+.cv a:active { color: var(--ink-soft); }
+
+/* ---------------------------- HORAIRES ---------------------------- */
+.hours { margin-top: clamp(1.4rem,3vw,2rem); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.hours__k { display: block; font: 600 .6rem/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--spark); padding: 1rem 1.2rem .2rem; }
+.hours__list { display: grid; }
+.hours__list li { display: flex; justify-content: space-between; gap: 1rem; padding: .7rem 1.2rem; border-top: 1px solid var(--line-soft); }
+.hours__list li:first-child { border-top: 0; }
+.hk { color: var(--ink-soft); font-size: var(--step--1); }
+.hv { color: var(--ink); font-weight: 600; font-size: var(--step--1); font-family: var(--f-mono); }
+
+.rating { margin-top: clamp(1.2rem,2.6vw,1.6rem); display: inline-flex; align-items: baseline; gap: .8ch; }
+
+/* ----------------------------- CARTE ------------------------------ */
+.cmap-wrap { position: relative; }
+.cmap { width: 100%; height: 100%; min-height: clamp(320px, 46vh, 520px); border: 1px solid var(--line); border-radius: var(--radius); display: block;
+  /* Ramène la carte claire dans le noir de la salle. L'invert + hue-rotate seuls
+     laissaient traîner du cyan/vert (eau, parcs) : hors palette Boxing Center.
+     saturate(.3) tire tout ce qui reste vers le gris/silver de la marque — la
+     seule couleur de la carte est alors le repère spark posé par-dessus. */
+  filter: invert(0.92) hue-rotate(180deg) saturate(.3) brightness(.95) contrast(.9); }
+/* le vrai « tu es ici » : un pin spark reposé au centre (= l'adresse interrogée par l'embed),
+   NON filtré (frère de l'iframe) donc de la bonne couleur. Pointe au centre exact. */
+.cmap-pin { position: absolute; left: 50%; top: 50%; width: 30px; height: 40px; z-index: 2; pointer-events: none;
+  transform: translate(-50%, -100%);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 32'%3E%3Cpath d='M12 0C5.4 0 0 5.3 0 11.9 0 21 12 32 12 32s12-11 12-20.1C24 5.3 18.6 0 12 0z' fill='%23f6f8fc'/%3E%3Ccircle cx='12' cy='12' r='4.4' fill='%230b0d14'/%3E%3C/svg%3E") center/contain no-repeat;
+  filter: drop-shadow(0 3px 5px rgba(0,0,0,.65)) drop-shadow(0 0 7px rgba(246,248,252,.45)); }
+/* le halo au sol, sous la pointe */
+.cmap-pin::after { content: ""; position: absolute; left: 50%; bottom: -5px; width: 12px; height: 5px; transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgba(246,248,252,.5), transparent); }
+.cmap-link { position: absolute; right: .8rem; bottom: .8rem; display: inline-flex; align-items: center; min-height: 44px; font: 600 .66rem/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--void); background: var(--spark); padding: .6em 1.1em; border-radius: 100px; box-shadow: var(--shadow); transition: transform .3s var(--ease-spring); }
+.cmap-link:hover { transform: translateY(-2px); }
+.cmap-link:active { transform: scale(.96); }
