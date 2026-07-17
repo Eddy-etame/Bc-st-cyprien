@@ -1,0 +1,95 @@
+# Boxing Center Saint-Cyprien — contenu factuel complet
+
+> Version longue de llms.txt : les faits de chaque page du site, sans marketing.
+> Source : st-cyprien.boxingcenter.fr — salle du réseau Boxing Center (Toulouse).
+
+## Établissement
+
+- Nom : Boxing Center Saint-Cyprien
+- Adresse : 11 rue Sainte-Lucie, 31300 Toulouse (quartier Saint-Cyprien, rive gauche)
+- Téléphone : 05 62 24 46 82 (international : +33562244682)
+- E-mail : boxingcenter31@gmail.com
+- Horaires : lundi–samedi 10h00–21h15 ; dimanche fermé. Dernier cours 20h–21h15 selon les jours.
+- Accès : métro ligne A, station Saint-Cyprien République, à 4 minutes à pied ; rive gauche, à 10 min du centre-ville ; parking Saint-Cyprien à proximité.
+- Surface : 1 200 m² sur un seul niveau.
+- Fédérations : FFBoxe, FFKMDA, FMMAF.
+- Position dans le réseau : dernière-née des 5 salles Boxing Center (Minimes, Portet-sur-Garonne, États-Unis, Ramonville, Saint-Cyprien) ; premier Boxing Center rive gauche de Toulouse.
+- Itinéraire : https://maps.google.com/?q=11+rue+Sainte-Lucie+31300+Toulouse
+
+## Accueil (https://st-cyprien.boxingcenter.fr/)
+
+- La salle en chiffres : 1 200 m² de plateau rive gauche ; 4 minutes du métro A (Saint-Cyprien République) ; plus de 10 disciplines à une seule adresse ; 4 coachs spécialisés au planning.
+- Le configurateur de la page d'accueil présente chaque discipline avec son coach, ses jours et son niveau (données du planning officiel).
+- Séance d'essai : 10 €, toutes disciplines, gants et matériel prêtés, sans engagement. Réservation : https://box-plus.vercel.app/seance-essai
+
+## La salle (https://st-cyprien.boxingcenter.fr/la-salle/)
+
+Six postes sur un seul niveau :
+1. Le plateau — 1 200 m², un seul niveau, rive gauche ; le ring visible depuis l'entrée.
+2. L'anglaise — ring de boxe anglaise ; poste de Dadi ; 6 créneaux par semaine.
+3. Le pieds-poings — surface thaï/K1 ; Tawee et Victor G ; 5 créneaux par semaine.
+4. La zone cross & muscu — machines, charges, sacs ; Hyrox, cross-training et HIIT avec Hicham.
+5. L'école — Baby Boxe 3/6 le samedi, éducative 7/11, ados 12/16, compétiteurs ; encadrée par Dadi.
+6. Le collectif — Lady Punch mardi et jeudi, boxing camp 3 créneaux par semaine.
+
+La lignée du réseau (ordre d'arrivée) : Minimes (le berceau, la salle historique, 3 rings, l'école), Portet-sur-Garonne (le vaisseau amiral, ring olympique, cage MMA — https://www.boxing-center-portet.fr/), États-Unis (le colosse, 1 200 m², 3 zones, 2 rings, cage MMA), Ramonville (le ciel ouvert, octogone 7 m, ring olympique, 300 m² extérieur), puis Saint-Cyprien.
+
+## Activités (https://st-cyprien.boxingcenter.fr/activites/)
+
+- Boxe anglaise — coach Dadi ; midi lun./mer./ven. et soirs lun./mer./ven. 20h ; débutant à confirmé.
+- Boxe thaï · K1 — coachs Tawee et Victor G ; midi mar. et jeu., soirs mar./jeu. 20h, ven. 19h ; tous niveaux.
+- Grappling — coach à confirmer ; mardi et jeudi 19h–20h ; tous niveaux.
+- Hyrox & cross — coach Hicham ; Hyrox mer. 18h20, cross lun. et mer. 19h.
+- Lady Punch — 100 % féminin ; coach Dadi ; mardi et jeudi 18h20–19h ; zéro prérequis.
+- Boxe éducative — dès 3 ans ; coach Dadi ; Baby 3/6 le samedi, 7/11 et 12/16 mercredi + samedi, compétiteurs mercredi/samedi.
+- Boxing camp — coachs Dadi et Hicham ; lun. et ven. 18h20, sam. 11h ; technique + cardio + sacs, tous niveaux.
+
+## Coachs (https://st-cyprien.boxingcenter.fr/coachs/)
+
+- Dadi — le pilier : boxe anglaise, Lady Punch et toute l'école enfants, du Baby Boxe aux compétiteurs (photo réelle sur la page).
+- Tawee — boxe thaï / K1.
+- Hicham — Hyrox, cross-training et boxing camp.
+- Victor G — boxe thaï / K1, créneaux du soir.
+Les noms viennent du planning officiel de la salle.
+
+## Galerie (https://st-cyprien.boxingcenter.fr/galerie/)
+
+Photos réelles de la salle, par zone : le plateau (vue depuis l'entrée : sacs, ring et cage au fond), l'anglaise (le ring), le pieds-poings (surface thaï/K1), le sol (grappling), le moteur (muscu, cross-training, Hyrox, boxing camp), Lady Punch, l'école (boxe éducative, 7–16 ans, tous niveaux).
+
+## Planning (https://st-cyprien.boxingcenter.fr/plannings/)
+
+Grille hebdomadaire (le poster officiel de la saison, affiché sur la page, fait foi) :
+- Lundi : 12h40 Boxe Anglaise (Dadi) ; 18h20 Boxing Camp (Hicham) ; 19h00 Cross-Training (Hicham) ; 20h00 Boxe Anglaise (Dadi).
+- Mardi : 12h40 Boxe Thaï · K1 (Tawee) ; 18h20 Lady Punch (Dadi) ; 19h00 Grappling (coach à confirmer) ; 20h00 Boxe Thaï · K1 (Victor G).
+- Mercredi : 12h40 Boxe Anglaise (Dadi) ; 15h00 Éducative 7/11 · 12/16 · compétiteurs (Dadi) ; 18h20 Hyrox (Hicham) ; 19h00 Cross-Training (Hicham) ; 20h00 Boxe Anglaise (Dadi).
+- Jeudi : 12h40 Boxe Thaï · K1 (Tawee) ; 18h20 Lady Punch (Dadi) ; 19h00 Grappling (coach à confirmer) ; 20h00 Boxe Thaï · K1 (Victor G).
+- Vendredi : 12h40 Boxe Anglaise (Dadi) ; 18h20 Boxing Camp (Dadi) ; 19h00 Boxe Thaï · K1 (Victor G) ; 20h00 Boxe Anglaise (Dadi).
+- Samedi : 11h00 Boxing Camp (Hicham) ; 14h15 Baby Boxe 3/6 (Dadi) ; 15h00 Éducative 7/11 · 12/16 · compétiteurs (Dadi).
+- Dimanche : fermé.
+Conseils pratiques : arriver 10 minutes avant ; gants et protections prêtés pour la première séance ; en cas de doute sur un créneau, appeler le 05 62 24 46 82.
+
+## Tarifs (https://st-cyprien.boxingcenter.fr/tarifs/)
+
+- Séance d'essai : 10 € la séance — accès à toutes les disciplines, gants et matériel prêtés, sans engagement.
+- Offre Duo : 29 € par personne (au lieu de 44 €) — 4 semaines, cours illimités, sans engagement. Toujours « 29 € par personne », jamais « 29 € pour deux ».
+- Offre Saison : 259 € les 12 mois (au lieu de 400 €) — boxe anglaise, MMA, boxe pieds-poings, Lady Punch, Boxing Fitness ; payable en 4× sans frais ; accès libre aux 5 clubs du réseau.
+- École & Baby Boxe : dès 280 €/an — Baby 3/6, 7/11, ados 12/16, matériel fourni, compétiteurs encadrés par Dadi.
+- Bonus : t-shirt Boxing Center offert aux 100 premiers inscrits de la saison.
+- Coaching privé : sur rendez-vous, avec un coach de la salle (détail sur https://box-plus.vercel.app/coachings).
+- L'inscription, les prélèvements et le détail des formules se finalisent sur box-plus : https://box-plus.vercel.app/abonnements#promotions
+- Avis Google affichés sur la page : 4,2/5, 59 avis. Citations réelles : « Une petite salle au top, des coachs au top, nichée au cœur de Saint Cyp'. » (Ronan L.) ; « Super salle, tous les mois Dadi améliore la salle avec des nouveaux équipements. » (Kayon M.) ; « Bonne salle, propre avec de bons équipements. Cours complet. » (Omar T.) ; « Les cours de boxing lady sont top ! Il y a une bonne ambiance. » (Alyssia P.)
+
+## Contact (https://st-cyprien.boxingcenter.fr/contact/)
+
+- Adresse : 11 rue Sainte-Lucie, 31300 Toulouse.
+- Téléphone : 05 62 24 46 82.
+- E-mail : boxingcenter31@gmail.com
+- Horaires : lundi–vendredi 10h00–21h15 ; samedi 10h00–21h15 ; dimanche fermé.
+- Questions fréquentes :
+  - Où se trouve la salle ? Au 11 rue Sainte-Lucie, 31300 Toulouse, quartier Saint-Cyprien rive gauche, à 4 minutes à pied du métro ligne A (Saint-Cyprien République).
+  - Comment se passe la première séance ? Arriver 10 minutes avant, en tenue de sport ; gants et matériel prêtés ; la séance d'essai coûte 10 €, toutes disciplines.
+  - Peut-on venir sans avoir jamais boxé ? Oui — la plupart des créneaux sont tous niveaux ; le Boxing Camp est le meilleur point d'entrée.
+  - Quelles disciplines ? Boxe anglaise, boxe thaï/K1, grappling, Hyrox, cross-training, Lady Punch, boxing camp et l'école enfants du Baby Boxe (3/6 ans) aux compétiteurs.
+  - Des cours pour enfants ? Oui, dès 3 ans : Baby Boxe le samedi, éducative 7/11 et ados 12/16 le mercredi et le samedi, un créneau compétiteurs encadré par Dadi.
+  - Faut-il un abonnement pour commencer ? Non — la séance d'essai à 10 € suffit ; l'abonnement vient ensuite, sans engagement ou à la saison.
+  - Quels horaires ? Lundi–samedi 10h00–21h15 (dernier cours 20h–21h15 selon les jours) ; fermé le dimanche.

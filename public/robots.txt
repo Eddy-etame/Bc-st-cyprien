@@ -1,5 +1,34 @@
+# Boxing Center Saint-Cyprien — st-cyprien.boxingcenter.fr
+# Bienvenue aux crawlers de recherche ET aux moteurs génératifs.
+
+# --- Moteurs de recherche ---
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# --- Moteurs génératifs / assistants IA ---
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# --- Tous les autres ---
 User-agent: *
 Allow: /
 
-# Bienvenue aux crawlers de recherche ET aux moteurs génératifs.
 Sitemap: https://st-cyprien.boxingcenter.fr/sitemap.xml

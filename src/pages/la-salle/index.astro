@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>La salle — Boxing Center Saint-Cyprien, 1 200 m² rive gauche (Toulouse 31300)</title>
   <meta name="description" content="La visite de Boxing Center Saint-Cyprien : 1 200 m² sur un seul niveau, ring d'anglaise, surface pieds-poings thaï/K1, zone cross & Hyrox, école dès 3 ans. Le premier Boxing Center rive gauche de Toulouse, à 4 min du métro A." />
+  <!-- Préconnexion (libs jsdelivr en fin de body) + polices auto-hébergées
+       (mêmes familles/graisses que la maquette — woff2 latin, cf. /assets/css/fonts.css) -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/space-grotesk-latin.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=9" />
   <meta name="keywords" content="salle de boxe Saint-Cyprien, boxe rive gauche Toulouse, salle boxe 1200 m2 Toulouse, ring boxe anglaise Toulouse, salle boxe thaï Toulouse, 11 rue Sainte-Lucie, Boxing Center rive gauche" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Saint-Cyprien" />
@@ -24,6 +30,9 @@
   <meta property="og:description" content="La visite privée : un seul niveau, 1 200 m², le ring, le pieds-poings, la zone moteur et l'école. Premier Boxing Center rive gauche, Toulouse." />
   <meta property="og:url" content="https://st-cyprien.boxingcenter.fr/la-salle/" />
   <meta property="og:image" content="https://st-cyprien.boxingcenter.fr/assets/img/sc/salle-1.webp" />
+  <meta property="og:image:type" content="image/webp" />
+  <meta property="og:image:width" content="768" />
+  <meta property="og:image:height" content="512" />
   <meta property="og:image:alt" content="La salle Boxing Center Saint-Cyprien — 1 200 m² rive gauche, Toulouse" />
 
   <!-- Twitter -->
@@ -32,23 +41,218 @@
   <meta name="twitter:description" content="1 200 m² sur un seul niveau, ring, pieds-poings, zone moteur, école dès 3 ans. Rive gauche, Toulouse." />
   <meta name="twitter:image" content="https://st-cyprien.boxingcenter.fr/assets/img/sc/salle-1.webp" />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;450;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet" />
-
   <link rel="stylesheet" href="/assets/css/base.css?v=9" />
   <link rel="stylesheet" href="/assets/css/home.css?v=9" />
   <link rel="stylesheet" href="/assets/css/la-salle.css?v=9" />
 
-  <!-- BreadcrumbList -->
+  <!-- SEO/GEO — graphe JSON-LD unifié (organisation · salle · site · page · image ·
+       fil d'Ariane). Faits réels uniquement — miroir de data.js. -->
   <script is:inline type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type":"ListItem", "position":1, "name":"Accueil", "item":"https://st-cyprien.boxingcenter.fr/" },
-      { "@type":"ListItem", "position":2, "name":"La salle", "item":"https://st-cyprien.boxingcenter.fr/la-salle/" }
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://boxingcenter.fr/#organization",
+        "name": "Boxing Center",
+        "url": "https://boxingcenter.fr/",
+        "sameAs": [
+          "https://www.instagram.com/boxingcentertoulouse/",
+          "https://www.facebook.com/BoxingCenterToulouse/"
+        ]
+      },
+      {
+        "@type": [
+          "SportsActivityLocation",
+          "HealthClub",
+          "LocalBusiness"
+        ],
+        "@id": "https://st-cyprien.boxingcenter.fr/#salle",
+        "name": "Boxing Center Saint-Cyprien",
+        "url": "https://st-cyprien.boxingcenter.fr/",
+        "telephone": "+33562244682",
+        "email": "boxingcenter31@gmail.com",
+        "priceRange": "€€",
+        "image": "https://st-cyprien.boxingcenter.fr/assets/img/sc/salle-1.webp",
+        "logo": "https://st-cyprien.boxingcenter.fr/assets/img/logo-white.png",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "11 rue Sainte-Lucie",
+          "postalCode": "31300",
+          "addressLocality": "Toulouse",
+          "addressRegion": "Occitanie",
+          "addressCountry": "FR"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 43.598,
+          "longitude": 1.427
+        },
+        "hasMap": "https://maps.google.com/?q=11+rue+Sainte-Lucie+31300+Toulouse",
+        "areaServed": [
+          {
+            "@type": "Place",
+            "name": "Saint-Cyprien"
+          },
+          {
+            "@type": "City",
+            "name": "Toulouse"
+          },
+          {
+            "@type": "Place",
+            "name": "Rive gauche"
+          }
+        ],
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday"
+            ],
+            "opens": "10:00",
+            "closes": "21:15"
+          }
+        ],
+        "sport": [
+          "Boxing",
+          "Muay Thai",
+          "Kickboxing",
+          "Grappling",
+          "Cross Training"
+        ],
+        "foundingDate": "2025-08",
+        "sameAs": [
+          "https://www.instagram.com/boxingcentertoulouse/",
+          "https://www.facebook.com/BoxingCenterToulouse/",
+          "https://boxingcenter.fr/"
+        ],
+        "parentOrganization": {
+          "@id": "https://boxingcenter.fr/#organization"
+        },
+        "amenityFeature": [
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "1 200 m² sur un seul niveau",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Ring de boxe anglaise",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Surface pieds-poings (thaï / K1)",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Zone cross-training & Hyrox",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "École enfants dès 3 ans",
+            "value": true
+          }
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Offres Boxing Center Saint-Cyprien",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "name": "Séance d'essai",
+              "price": "10",
+              "priceCurrency": "EUR",
+              "description": "Séance d'essai toutes disciplines, matériel prêté.",
+              "url": "https://box-plus.vercel.app/seance-essai"
+            },
+            {
+              "@type": "Offer",
+              "name": "Offre Duo",
+              "price": "29",
+              "priceCurrency": "EUR",
+              "description": "29€ par personne, 4 semaines, cours illimités, sans engagement.",
+              "url": "https://box-plus.vercel.app/abonnements#promotions"
+            },
+            {
+              "@type": "Offer",
+              "name": "Offre Saison",
+              "price": "259",
+              "priceCurrency": "EUR",
+              "description": "259€ les 12 mois, payable en 4× sans frais, accès libre aux 5 clubs.",
+              "url": "https://box-plus.vercel.app/abonnements#promotions"
+            }
+          ]
+        },
+        "description": "Boxing Center Saint-Cyprien : la nouvelle génération du réseau, 1 200 m² rive gauche, le premier Boxing Center rive gauche de Toulouse. Boxe anglaise, thaï/K1, grappling, Hyrox, cross-training, Lady Punch et école enfants dès 3 ans, à 4 minutes du métro A (Saint-Cyprien République). Séance d'essai 10€."
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://st-cyprien.boxingcenter.fr/#website",
+        "url": "https://st-cyprien.boxingcenter.fr/",
+        "name": "Boxing Center Saint-Cyprien",
+        "inLanguage": "fr-FR",
+        "publisher": {
+          "@id": "https://st-cyprien.boxingcenter.fr/#salle"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://st-cyprien.boxingcenter.fr/la-salle/#webpage",
+        "url": "https://st-cyprien.boxingcenter.fr/la-salle/",
+        "name": "La salle — Boxing Center Saint-Cyprien, 1 200 m² rive gauche (Toulouse 31300)",
+        "description": "La visite de Boxing Center Saint-Cyprien : 1 200 m² sur un seul niveau, ring d'anglaise, surface pieds-poings thaï/K1, zone cross & Hyrox, école dès 3 ans. Le premier Boxing Center rive gauche de Toulouse, à 4 min du métro A.",
+        "isPartOf": {
+          "@id": "https://st-cyprien.boxingcenter.fr/#website"
+        },
+        "about": {
+          "@id": "https://st-cyprien.boxingcenter.fr/#salle"
+        },
+        "inLanguage": "fr-FR",
+        "primaryImageOfPage": {
+          "@id": "https://st-cyprien.boxingcenter.fr/la-salle/#primaryimage"
+        },
+        "datePublished": "2026-07-17",
+        "dateModified": "2026-07-17",
+        "breadcrumb": {
+          "@id": "https://st-cyprien.boxingcenter.fr/la-salle/#breadcrumb"
+        }
+      },
+      {
+        "@type": "ImageObject",
+        "@id": "https://st-cyprien.boxingcenter.fr/la-salle/#primaryimage",
+        "url": "https://st-cyprien.boxingcenter.fr/assets/img/sc/salle-1.webp",
+        "contentUrl": "https://st-cyprien.boxingcenter.fr/assets/img/sc/salle-1.webp",
+        "width": 768,
+        "height": 512,
+        "caption": "La salle Boxing Center Saint-Cyprien — 1 200 m² rive gauche, Toulouse",
+        "inLanguage": "fr-FR"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://st-cyprien.boxingcenter.fr/la-salle/#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Accueil",
+            "item": "https://st-cyprien.boxingcenter.fr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "La salle",
+            "item": "https://st-cyprien.boxingcenter.fr/la-salle/"
+          }
+        ]
+      }
     ]
   }
   </script>
@@ -161,9 +365,9 @@
   </a>
 
   <!-- Libs (CDN — la team remplace par des imports npm en Astro/Next) -->
-  <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script is:inline src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
   <script is:inline type="module" src="/assets/js/site.js?v=9"></script>
   <script is:inline type="module" src="/assets/js/la-salle.js?v=9"></script>
 </body>

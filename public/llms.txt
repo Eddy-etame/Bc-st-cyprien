@@ -1,57 +1,39 @@
 # Boxing Center Saint-Cyprien
 
-> La nouvelle génération Boxing Center, rive gauche. La salle que le réseau a
-> dessinée en dernier : 1 200 m² sur un seul niveau, le premier Boxing Center
-> rive gauche de Toulouse. Tout ce qui marche dans les quatre autres salles,
-> condensé ici, réglé au cordeau.
+> Salle de boxe de 1 200 m² sur un seul niveau au 11 rue Sainte-Lucie, 31300 Toulouse (quartier Saint-Cyprien, rive gauche), à 4 minutes à pied du métro ligne A (Saint-Cyprien République). Premier Boxing Center rive gauche et dernière-née des 5 salles du réseau Boxing Center. Boxe anglaise, boxe thaï/K1, grappling, Hyrox & cross-training, Lady Punch, boxing camp et école enfants dès 3 ans. Ouvert lundi–samedi 10h00–21h15, séance d'essai 10 €.
 
-## Établissement
+Le détail factuel page par page est dans [llms-full.txt](https://st-cyprien.boxingcenter.fr/llms-full.txt).
+
+## Pages
+
+- [Accueil](https://st-cyprien.boxingcenter.fr/): présentation de la salle — 1 200 m² rive gauche, plus de dix disciplines, 4 coachs au planning, métro A à 4 min, séance d'essai 10 €.
+- [La salle](https://st-cyprien.boxingcenter.fr/la-salle/): la visite en six postes (plateau, ring d'anglaise, surface pieds-poings thaï/K1, zone cross & muscu, école, collectif) et la lignée des 5 clubs du réseau.
+- [Activités](https://st-cyprien.boxingcenter.fr/activites/): catalogue des disciplines avec coach, niveau et créneaux — boxe anglaise, thaï/K1, grappling, Hyrox & cross, Lady Punch, boxe éducative dès 3 ans, boxing camp.
+- [Coachs](https://st-cyprien.boxingcenter.fr/coachs/): l'encadrement — Dadi (anglaise, Lady Punch, école), Tawee (thaï/K1), Hicham (Hyrox, cross, camp), Victor G (thaï/K1).
+- [Galerie](https://st-cyprien.boxingcenter.fr/galerie/): photos réelles de la salle zone par zone (plateau, ring, pieds-poings, sol, moteur, Lady Punch, école).
+- [Planning](https://st-cyprien.boxingcenter.fr/plannings/): la grille hebdomadaire filtrable (jour, discipline, coach) et le poster officiel de la saison qui fait foi.
+- [Tarifs](https://st-cyprien.boxingcenter.fr/tarifs/): essai 10 €, offre Duo 29 € par personne, offre Saison 259 € les 12 mois, école & Baby Boxe dès 280 €/an, conditions en clair et avis Google (4,2/5, 59 avis).
+- [Contact](https://st-cyprien.boxingcenter.fr/contact/): adresse, horaires, téléphone, carte, itinéraire métro et questions fréquentes.
+
+## Faits
+
 - Nom : Boxing Center Saint-Cyprien
 - Adresse : 11 rue Sainte-Lucie, 31300 Toulouse (Saint-Cyprien, rive gauche)
 - Accès métro : ligne A — Saint-Cyprien République, à 4 minutes à pied
 - Stationnement : parking Saint-Cyprien à proximité
 - Téléphone : 05 62 24 46 82 (+33562244682)
 - E-mail : boxingcenter31@gmail.com
-- Horaires : lundi–samedi 10h00–21h15 ; dimanche fermé (dernier cours 20h–21h15)
+- Horaires : lundi–samedi 10h00–21h15 ; dimanche fermé (dernier cours 20h–21h15 selon les jours)
 - Surface : 1 200 m² sur un seul niveau
 - Fédérations : FFBoxe, FFKMDA, FMMAF
-- Réseau : 5 clubs — Portet, Minimes, États-Unis, Saint-Cyprien, Ramonville
-
-## Disciplines
-- Boxe anglaise — coach Dadi (débutant à confirmé)
-- Boxe thaï / K1 — coachs Tawee et Victor G (tous niveaux)
-- Grappling — tous niveaux
-- Hyrox & cross-training — coach Hicham
-- Lady Punch — 100 % féminin, coach Dadi
-- Boxe éducative & Baby Boxe — dès 3 ans (Baby 3/6, éducative 7/11, ados 12/16, compétiteurs), coach Dadi
-- Boxing Camp — coachs Dadi et Hicham (technique + cardio + sacs)
-
-## Coachs (noms vérifiés — planning officiel rentrée 2026)
-- Dadi : boxe anglaise, Lady Punch, toute l'école enfants (le pilier, fil rouge de la semaine)
-- Tawee : boxe thaï / K1
-- Hicham : Hyrox, cross-training, boxing camp
-- Victor G : boxe thaï / K1
-
-## Offres (saison 2026-2027)
-- Séance d'essai : 10 € — toutes disciplines, matériel prêté, sans engagement — https://box-plus.vercel.app/seance-essai
-- Offre Duo : 29 € par personne — 4 semaines, cours illimités, sans engagement (jamais « 29 € pour deux »)
+- Réseau : 5 clubs — Portet, Minimes, États-Unis, Saint-Cyprien, Ramonville (accès libre aux 5 clubs avec l'offre Saison)
+- Disciplines : boxe anglaise (coach Dadi) ; boxe thaï/K1 (coachs Tawee et Victor G) ; grappling ; Hyrox & cross-training (coach Hicham) ; Lady Punch 100 % féminin (coach Dadi) ; boxe éducative & Baby Boxe dès 3 ans — Baby 3/6, éducative 7/11, ados 12/16, compétiteurs (coach Dadi) ; boxing camp (coachs Dadi et Hicham)
+- Coachs : Dadi (anglaise, Lady Punch, école — le pilier), Tawee (thaï/K1), Hicham (Hyrox, cross, camp), Victor G (thaï/K1)
+- Séance d'essai : 10 € — toutes disciplines, gants et matériel prêtés, sans engagement — réservation https://box-plus.vercel.app/seance-essai
+- Offre Duo : 29 € par personne (jamais « 29 € pour deux ») — 4 semaines, cours illimités, sans engagement
 - Offre Saison : 259 € les 12 mois — payable en 4× sans frais, accès libre aux 5 clubs du réseau
-- Bonus : t-shirt Boxing Center offert aux 100 premiers inscrits de la saison
 - École & Baby Boxe : dès 280 €/an
-- Toutes les inscriptions et promotions : https://box-plus.vercel.app/abonnements#promotions
-
-## Positionnement
-Premier Boxing Center rive gauche de Toulouse. La dernière-née du réseau : on ne
-vend pas une salle « neuve » (ça périme), on vend une position dans une lignée —
-Minimes a ouvert la voie, Portet a vu grand, États-Unis a bâti le colosse,
-Ramonville a ouvert le ciel, Saint-Cyprien a tout retenu.
-
-## Pages
-- Accueil : https://st-cyprien.boxingcenter.fr/
-- La salle : https://st-cyprien.boxingcenter.fr/la-salle/
-- Activités : https://st-cyprien.boxingcenter.fr/activites/
-- Coachs : https://st-cyprien.boxingcenter.fr/coachs/
-- Galerie : https://st-cyprien.boxingcenter.fr/galerie/
-- Planning : https://st-cyprien.boxingcenter.fr/plannings/
-- Tarifs : https://st-cyprien.boxingcenter.fr/tarifs/
-- Contact : https://st-cyprien.boxingcenter.fr/contact/
+- Bonus : t-shirt Boxing Center offert aux 100 premiers inscrits de la saison
+- Inscriptions et promotions : https://box-plus.vercel.app/abonnements#promotions
+- Avis Google : 4,2/5 sur 59 avis (affichés sur la page Tarifs)
+- Réseaux : https://www.instagram.com/boxingcentertoulouse/ · https://www.facebook.com/BoxingCenterToulouse/ · https://boxingcenter.fr/

@@ -248,6 +248,7 @@ function hydrateMedia(scope = document) {
     img.src = el.dataset.img;
     // alt: prefer an explicit data-alt (real image described) over the mono pill label (data-label)
     img.alt = el.dataset.alt || el.dataset.label || ""; img.loading = el.hasAttribute("data-eager") ? "eager" : "lazy"; img.decoding = "async";
+    if (el.hasAttribute("data-eager")) img.fetchPriority = "high"; // LCP (le préload du head porte déjà fetchpriority=high)
     el.prepend(img);
   });
 }

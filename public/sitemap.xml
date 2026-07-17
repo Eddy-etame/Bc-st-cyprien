@@ -1,51 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://st-cyprien.boxingcenter.fr/</loc>
-    <lastmod>2026-07-13</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://st-cyprien.boxingcenter.fr/assets/img/sc/salle-1.webp</image:loc>
+      <image:title>La salle Boxing Center Saint-Cyprien — 1 200 m² rive gauche, Toulouse</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://st-cyprien.boxingcenter.fr/la-salle/</loc>
-    <lastmod>2026-07-13</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://st-cyprien.boxingcenter.fr/assets/img/sc/salle-1.webp</image:loc>
+      <image:title>Le plateau de 1 200 m² sur un seul niveau — Boxing Center Saint-Cyprien</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://st-cyprien.boxingcenter.fr/activites/</loc>
-    <lastmod>2026-07-13</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://st-cyprien.boxingcenter.fr/assets/img/sc/anglaise-header.webp</image:loc>
+      <image:title>Boxe Anglaise à Boxing Center Saint-Cyprien — Le noble art</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://st-cyprien.boxingcenter.fr/coachs/</loc>
-    <lastmod>2026-07-13</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://st-cyprien.boxingcenter.fr/assets/img/sc/coach-dadi.webp</image:loc>
+      <image:title>Coach Dadi — Boxing Center Saint-Cyprien, rive gauche</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://st-cyprien.boxingcenter.fr/galerie/</loc>
-    <lastmod>2026-07-13</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://st-cyprien.boxingcenter.fr/assets/img/sc/salle-1.webp</image:loc>
+      <image:title>Le plateau vu depuis la porte : sacs, ring et cage au fond — Boxing Center Saint-Cyprien</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://st-cyprien.boxingcenter.fr/plannings/</loc>
-    <lastmod>2026-07-13</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://st-cyprien.boxingcenter.fr/assets/img/sc/planning-2026-1600.jpg</image:loc>
+      <image:title>Planning officiel des cours — Boxing Center Saint-Cyprien</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://st-cyprien.boxingcenter.fr/tarifs/</loc>
-    <lastmod>2026-07-13</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://st-cyprien.boxingcenter.fr/assets/img/sc/salle-1.webp</image:loc>
+      <image:title>La salle Boxing Center Saint-Cyprien — 1 200 m² rive gauche, Toulouse</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://st-cyprien.boxingcenter.fr/contact/</loc>
-    <lastmod>2026-07-13</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://st-cyprien.boxingcenter.fr/assets/img/sc/salle-1.webp</image:loc>
+      <image:title>La salle Boxing Center Saint-Cyprien — 11 rue Sainte-Lucie, Toulouse</image:title>
+    </image:image>
   </url>
 </urlset>

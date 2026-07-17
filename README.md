@@ -15,7 +15,8 @@ npm run preview  # prévisualiser le build
 
 - `src/pages/` — les pages du site (accueil, activités, coachs, contact, galerie, la salle, plannings, tarifs, 404)
 - `public/assets/` — CSS, JavaScript et images, copiés au byte près depuis la maquette
-- `public/robots.txt`, `public/sitemap.xml`, `public/llms.txt` — fichiers SEO
+- `public/fonts/` + `public/assets/css/fonts.css` — polices auto-hébergées (woff2 latin, mêmes familles/graisses que la maquette : Space Grotesk, Inter, IBM Plex Mono)
+- `public/robots.txt`, `public/sitemap.xml` (avec entrées images), `public/llms.txt`, `public/llms-full.txt` — fichiers SEO/GEO
 
 ## Déploiement
 
