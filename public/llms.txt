@@ -7,11 +7,11 @@ Le détail factuel page par page est dans [llms-full.txt](https://st-cyprien.box
 ## Pages
 
 - [Accueil](https://st-cyprien.boxingcenter.fr/): présentation de la salle — 1 200 m² rive gauche, plus de dix disciplines, 4 coachs au planning, métro A à 4 min, séance d'essai 10 €.
-- [La salle](https://st-cyprien.boxingcenter.fr/la-salle/): la visite en six postes (plateau, ring d'anglaise, surface pieds-poings thaï/K1, zone cross & muscu, école, collectif) et la lignée des 5 clubs du réseau.
-- [Activités](https://st-cyprien.boxingcenter.fr/activites/): catalogue des disciplines avec coach, niveau et créneaux — boxe anglaise, thaï/K1, grappling, Hyrox & cross, Lady Punch, boxe éducative dès 3 ans, boxing camp.
-- [Coachs](https://st-cyprien.boxingcenter.fr/coachs/): l'encadrement — Dadi (anglaise, Lady Punch, école), Tawee (thaï/K1), Hicham (Hyrox, cross, camp), Victor G (thaï/K1).
-- [Galerie](https://st-cyprien.boxingcenter.fr/galerie/): photos réelles de la salle zone par zone (plateau, ring, pieds-poings, sol, moteur, Lady Punch, école).
-- [Planning](https://st-cyprien.boxingcenter.fr/plannings/): la grille hebdomadaire filtrable (jour, discipline, coach) et le poster officiel de la saison qui fait foi.
+- [La salle](https://st-cyprien.boxingcenter.fr/la-salle/): la visite en six postes (plateau, ring d'anglaise, surface pieds-poings thaï/K1, zone cross & muscu, école, collectif), le déroulé d'une séance de la porte au tapis, et la lignée des 5 clubs du réseau.
+- [Activités](https://st-cyprien.boxingcenter.fr/activites/): catalogue des disciplines avec coach, niveau et créneaux — boxe anglaise, thaï/K1, grappling, Hyrox & cross, Lady Punch, boxe éducative dès 3 ans, boxing camp ; plus un aiguillage « par où commencer » (cinq intentions → une discipline) et trois semaines-types montées avec de vrais créneaux du planning.
+- [Coachs](https://st-cyprien.boxingcenter.fr/coachs/): l'encadrement — Dadi (anglaise, Lady Punch, école, 12 créneaux/semaine), Tawee (thaï/K1, 2), Hicham (Hyrox, cross, camp, 5), Victor G (thaï/K1, 3) ; la semaine réelle de chaque coach, la méthode d'encadrement, et l'état assumé du grappling (aucun encadrant nommé à ce jour).
+- [Galerie](https://st-cyprien.boxingcenter.fr/galerie/): 16 photos réelles de la salle en 7 zones (plateau, ring, pieds-poings, sol, moteur, Lady Punch, école), consultables en grand dans une visionneuse.
+- [Planning](https://st-cyprien.boxingcenter.fr/plannings/): 24 cours par semaine sur 6 jours (9 en journée, 15 dès 18h, 7 disciplines) ; la grille hebdomadaire filtrable (jour, discipline, coach) et le poster officiel de la saison qui fait foi.
 - [Tarifs](https://st-cyprien.boxingcenter.fr/tarifs/): essai 10 €, offre Duo 29 € par personne, offre Saison 259 € les 12 mois, école & Baby Boxe dès 280 €/an, conditions en clair et avis Google (4,2/5, 59 avis).
 - [Contact](https://st-cyprien.boxingcenter.fr/contact/): adresse, horaires, téléphone, carte, itinéraire métro et questions fréquentes.
 
@@ -35,5 +35,6 @@ Le détail factuel page par page est dans [llms-full.txt](https://st-cyprien.box
 - École & Baby Boxe : dès 280 €/an
 - Bonus : t-shirt Boxing Center offert aux 100 premiers inscrits de la saison
 - Inscriptions et promotions : https://box-plus.vercel.app/abonnements#promotions
+- Grappling : créneau actif (mardi & jeudi 19h–20h) SANS encadrant nommé — le poster officiel n'en porte pas, le site n'en invente pas. Ne pas attribuer ce cours à un coach.
 - Avis Google : 4,2/5 sur 59 avis (affichés sur la page Tarifs)
 - Réseaux : https://www.instagram.com/boxingcentertoulouse/ · https://www.facebook.com/BoxingCenterToulouse/ · https://boxingcenter.fr/

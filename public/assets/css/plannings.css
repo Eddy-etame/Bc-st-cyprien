@@ -49,3 +49,26 @@
 .pnote:hover { transform: translateY(-3px); border-color: rgba(233,236,244,.3); }
 .pnote b { display: block; font-family: var(--f-display); font-weight: 700; color: var(--ink); font-size: var(--step-0); margin-bottom: .4rem; }
 .pnote span { font-size: .82rem; color: var(--ink-soft); line-height: 1.5; }
+
+/* --------- Le créneau sans encadrant nommé : marqué, pas caché ------ */
+.slot--tbd { background: linear-gradient(90deg, rgba(174,183,204,.06), transparent 60%); }
+.slot--tbd .slot__meta { display: inline-flex; align-items: center; gap: .7ch; flex-wrap: wrap; }
+
+/* ------------------- LA SEMAINE EN CHIFFRES ----------------------- *
+   Cinq nombres comptés sur la grille (jamais saisis). Ils donnent le poids
+   de la semaine avant qu'on ne filtre quoi que ce soit. */
+.pl-pulse { display: grid; gap: 1px; grid-template-columns: repeat(2,1fr); background: var(--line-soft); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-bottom: clamp(1.6rem,3.5vw,2.4rem); }
+@media (min-width: 720px){ .pl-pulse { grid-template-columns: repeat(5,1fr); } }
+.pulse { background: var(--paper-2); padding: clamp(.95rem,2vw,1.3rem) 1.1rem; display: flex; flex-direction: column; gap: .35rem; transition: background .35s; }
+.pulse:hover { background: var(--paper-3); }
+.pulse__v { font-family: var(--f-display); font-weight: 700; font-size: clamp(1.7rem,4.5vw,2.5rem); line-height: 1; background: var(--chrome); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.pulse__l { font: 600 .62rem/1.45 var(--f-mono); letter-spacing: .09em; text-transform: uppercase; color: var(--ink-soft); }
+
+/* ------------------- COMPTEUR + REMISE À ZÉRO --------------------- */
+.pl-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .8rem; margin-bottom: clamp(1rem,2.4vw,1.6rem); }
+.pl-count { font: 600 .7rem/1.4 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--spark); }
+.pl-reset, .pl-empty__reset { display: inline-flex; align-items: center; min-height: 44px; font: 600 var(--step--1)/1 var(--f-ui); padding: .55em 1.05em; border-radius: 100px; border: 1.5px solid var(--line); background: transparent; color: var(--ink-soft); cursor: pointer; transition: border-color .3s, color .3s, transform .2s var(--ease-spring); }
+.pl-reset:hover, .pl-empty__reset:hover { border-color: var(--spark); color: var(--ink); transform: translateY(-1px); }
+.pl-reset:active, .pl-empty__reset:active { transform: scale(.94); }
+.pl-reset:focus-visible, .pl-empty__reset:focus-visible { outline: 2px solid var(--spark); outline-offset: 2px; }
+.pl-empty__reset { margin-top: .9rem; }

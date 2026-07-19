@@ -1,83 +1,34 @@
 /* =====================================================================
    SAINT-CYPRIEN · galerie.js — regardée, pas lue.
    Grille par zone (le plateau · l'anglaise · le pieds-poings · le sol · le
-   moteur · Lady Punch · l'école). Captions mono "spec", lazy, et l'entrée
-   "développe" chaque photo (du sombre au net) via IntersectionObserver —
-   donc insensible au ticker gelé.
+   moteur · Lady Punch · l'école). Le manifeste photo vit désormais dans
+   data.js (GALLERY — TODO levé) : zones, édito, captions mono et VRAIS alt.
+   L'entrée "développe" chaque photo (du sombre au net) via IntersectionObserver
+   — donc insensible au ticker gelé.
+
+   Deux prises en main : l'INDEX des zones (on saute où on veut) et la
+   VISIONNEUSE (on regarde une photo en grand, on avance au clavier). Une
+   galerie où l'on ne peut pas agrandir une photo n'est pas une galerie.
    ===================================================================== */
+import { GALLERY } from "./data.js?v=11";
 
 const $ = (s, r = document) => r.querySelector(s);
 const IMG = "/assets/img/sc/";
+const esc = (s = "") => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-/* ------------------------------------------------------------------ *
- * PAGE-LOCAL — la galerie par zone. data.js ne porte pas de manifeste
- * photo ; il vit ici, câblé aux vrais clichés BC déjà présents dans
- * /assets/img/sc/. Alt descriptif ≠ caption mono "spec".
- * TODO(data.js): lever GALLERY dans data.js (zones + fichiers + captions).
- * ------------------------------------------------------------------ */
-const GALLERY = [
-  {
-    zone: "Le plateau", spec: "1 200 m² · un seul niveau",
-    shots: [
-      // Une seule vue du plateau, et elle est VRAIE. L'ancienne "Vue d'ensemble"
-      // (salle-2.webp) était une photo de banque — deux modèles en studio, zéro
-      // signalétique BC : intenable sous un H1 qui dit « Pas de retouche. La
-      // salle, telle quelle. » Mieux vaut un cliché honnête que deux dont un ment.
-      { f: "salle-1.webp",  feat: "wide", cap: "Depuis l'entrée", alt: "Le plateau vu depuis la porte : sacs, ring et cage au fond — Boxing Center Saint-Cyprien" },
-    ],
-  },
-  {
-    zone: "L'anglaise", spec: "Le noble art · le ring",
-    shots: [
-      { f: "anglaise-header.webp", feat: "wide", cap: "Le ring", alt: "Le ring de boxe anglaise, cordes tendues — Boxing Center Saint-Cyprien" },
-      { f: "anglaise.webp", cap: "Au travail", alt: "Séance de boxe anglaise sur le ring — Boxing Center Saint-Cyprien" },
-    ],
-  },
-  {
-    zone: "Le pieds-poings", spec: "Thaï · K1",
-    shots: [
-      { f: "thai-2.webp", feat: "wide", cap: "La surface thaï", alt: "La surface pieds-poings thaï et K1 — Boxing Center Saint-Cyprien" },
-      { f: "thai.webp",   cap: "Tibias, genoux", alt: "Travail de boxe thaï aux sacs — Boxing Center Saint-Cyprien" },
-      { f: "thai-1.webp", cap: "K1", alt: "Séance de K1 pieds-poings — Boxing Center Saint-Cyprien" },
-    ],
-  },
-  {
-    zone: "Le sol", spec: "Grappling",
-    shots: [
-      { f: "grappling.webp", feat: "wide", cap: "Contrôle & soumissions", alt: "Travail de grappling au sol — Boxing Center Saint-Cyprien" },
-    ],
-  },
-  {
-    zone: "Le moteur", spec: "Hyrox · cross · muscu",
-    shots: [
-      { f: "muscu.webp",    feat: "wide", cap: "Charges & sacs", alt: "La zone muscu, machines et charges — Boxing Center Saint-Cyprien" },
-      { f: "cross.webp",    cap: "Cross-training", alt: "Circuit de cross-training — Boxing Center Saint-Cyprien" },
-      { f: "hyrox.webp",    cap: "Hyrox", alt: "Circuit Hyrox, cardio et force — Boxing Center Saint-Cyprien" },
-      { f: "training.webp", cap: "Boxing camp", alt: "Séance de boxing camp, technique et cardio — Boxing Center Saint-Cyprien" },
-    ],
-  },
-  {
-    zone: "Lady Punch", spec: "100 % féminin",
-    shots: [
-      { f: "lady-2.webp", feat: "wide", cap: "100 % féminin", alt: "Cours de Lady Punch, boxe 100 % féminin — Boxing Center Saint-Cyprien" },
-      { f: "lady.webp",   cap: "Cardio & confiance", alt: "Lady Punch, cardio et confiance — Boxing Center Saint-Cyprien" },
-    ],
-  },
-  {
-    zone: "L'école", spec: "Dès 3 ans → compétiteurs",
-    shots: [
-      { f: "educative.webp",     feat: "wide", cap: "Boxe éducative", alt: "Cours de boxe éducative pour enfants — Boxing Center Saint-Cyprien" },
-      { f: "educative-1.webp",   cap: "7 → 16 ans", alt: "Jeunes en boxe éducative — Boxing Center Saint-Cyprien" },
-      { f: "tous-niveaux.webp",  cap: "Tous niveaux", alt: "Groupe tous niveaux à l'entraînement — Boxing Center Saint-Cyprien" },
-    ],
-  },
-];
+/* Toutes les photos à plat, dans l'ordre de lecture — c'est la liste que
+   la visionneuse parcourt (elle traverse les zones sans buter dessus). */
+const FLAT = GALLERY.flatMap((z) => z.shots.map((s) => ({ ...s, zone: z.zone })));
 
-/* Une zone = un intertitre + une grille de figures (photo lit + caption spec). */
-function figure(s) {
+/* Une zone = un intertitre + une ligne d'édito + une grille de figures. */
+function figure(s, i) {
   return `<figure class="gitem${s.feat === "wide" ? " gitem--wide" : ""}">
-    <img src="${IMG}${s.f}" alt="${s.alt}" loading="lazy" decoding="async" />
-    <span class="gitem__glow" aria-hidden="true"></span>
+    <button class="gitem__btn" type="button" data-i="${i}" aria-label="Agrandir : ${esc(s.alt)}">
+      <img src="${IMG}${s.f}" alt="${esc(s.alt)}" loading="lazy" decoding="async" />
+      <span class="gitem__glow" aria-hidden="true"></span>
+      <span class="gitem__zoom" aria-hidden="true">Agrandir</span>
+    </button>
     <figcaption class="gitem__cap">${s.cap}</figcaption>
   </figure>`;
 }
@@ -85,24 +36,165 @@ function figure(s) {
 function renderGallery() {
   const root = $("#galerie");
   if (!root) return;
+  let n = -1;
   root.innerHTML = GALLERY.map(
-    (z) => `<section class="section gzone" aria-label="${z.zone}">
+    (z) => `<section class="section gzone" id="zone-${z.id}" aria-label="${z.zone}">
       <div class="wrap">
         <header class="gzone__head" data-reveal>
           <h2 class="gzone__zone">${z.zone}</h2>
           <span class="gzone__spec">${z.spec}</span>
         </header>
-        <div class="ggrid">${z.shots.map(figure).join("")}</div>
+        <p class="gzone__lede" data-reveal>${z.lede}</p>
+        <div class="ggrid">${z.shots.map((s) => figure(s, ++n)).join("")}</div>
       </div>
     </section>`
   ).join("");
+}
+
+/* L'INDEX — une puce par zone, elle emmène à la zone et se surligne quand
+   on y est. Même grammaire que les filtres du planning et le plan de la
+   visite : sur ce site, une liste de sections se pilote toujours pareil. */
+function renderIndex() {
+  const el = $("#gindex");
+  if (!el) return;
+  el.innerHTML = GALLERY.map(
+    (z, i) => `<button class="gchip${i === 0 ? " is-on" : ""}" type="button" data-id="${z.id}" aria-current="${i === 0}">
+      ${z.zone}<span class="gchip__n">${z.shots.length}</span>
+    </button>`
+  ).join("");
+
+  const btns = [...el.querySelectorAll(".gchip")];
+  /* même règle que le plan de /la-salle/ : on ne bouge que la bande, jamais
+     le document (scrollIntoView remonte aux ancêtres et vole le scroll). */
+  const keepInStrip = (b) => {
+    const br = b.getBoundingClientRect(), pr = el.getBoundingClientRect();
+    if (br.left < pr.left) el.scrollLeft += br.left - pr.left - 12;
+    else if (br.right > pr.right) el.scrollLeft += br.right - pr.right + 12;
+  };
+  const mark = (id) => btns.forEach((b) => {
+    const on = b.dataset.id === id;
+    b.classList.toggle("is-on", on);
+    b.setAttribute("aria-current", String(on));
+    if (on) keepInStrip(b);
+  });
+
+  el.addEventListener("click", (e) => {
+    const b = e.target.closest(".gchip");
+    if (!b) return;
+    const t = document.getElementById(`zone-${b.dataset.id}`);
+    if (!t) return;
+    mark(b.dataset.id);
+    window.BC.scrollToEl(t, { offset: -96, block: "start" });
+  });
+
+  if (!("IntersectionObserver" in window)) return;
+  const io = new IntersectionObserver(
+    (entries) => {
+      const hit = entries.filter((e) => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (hit) mark(hit.target.id.replace("zone-", ""));
+    },
+    { threshold: [0.15, 0.4], rootMargin: "-20% 0px -55% 0px" }
+  );
+  GALLERY.forEach((z) => { const s = document.getElementById(`zone-${z.id}`); if (s) io.observe(s); });
+}
+
+/* ------------------------------------------------------------------ *
+ * LA VISIONNEUSE — une photo, en grand, sur le noir. Flèches / clic pour
+ * naviguer, Échap ou clic hors cadre pour sortir, focus rendu au bouton
+ * d'origine. Le focus reste piégé dans la boîte tant qu'elle est ouverte.
+ * La légende porte la zone + la caption ; le texte alternatif reste sur
+ * l'image (il décrit, il ne décore pas).
+ * ------------------------------------------------------------------ */
+function lightbox() {
+  const box = $("#glight");
+  if (!box || !FLAT.length) return;
+
+  box.innerHTML = `
+    <div class="glight__scrim" data-close></div>
+    <div class="glight__inner" role="dialog" aria-modal="true" aria-label="Visionneuse photo" aria-describedby="glight-cap">
+      <figure class="glight__fig">
+        <!-- pas de src="" ici : un src vide fait re-télécharger la PAGE elle-même
+             comme si c'était une image (requête inutile + image cassée au DOM).
+             La source n'est posée qu'à la première ouverture, dans paint(). -->
+        <img id="glight-img" alt="" decoding="async" />
+        <figcaption class="glight__cap" id="glight-cap">
+          <span class="glight__zone"></span>
+          <span class="glight__label"></span>
+          <span class="glight__count"></span>
+        </figcaption>
+      </figure>
+      <button class="glight__nav glight__nav--prev" type="button" data-step="-1" aria-label="Photo précédente">‹</button>
+      <button class="glight__nav glight__nav--next" type="button" data-step="1" aria-label="Photo suivante">›</button>
+      <button class="glight__close" type="button" data-close aria-label="Fermer la visionneuse">Fermer <span aria-hidden="true">✕</span></button>
+    </div>`;
+
+  const img = $("#glight-img", box);
+  const zone = $(".glight__zone", box);
+  const label = $(".glight__label", box);
+  const count = $(".glight__count", box);
+  const focusables = () => [...box.querySelectorAll("button")].filter((b) => b.offsetParent !== null);
+  let i = 0, opener = null;
+
+  const paint = (n) => {
+    i = (n + FLAT.length) % FLAT.length;
+    const s = FLAT[i];
+    img.src = IMG + s.f;
+    img.alt = s.alt;
+    zone.textContent = s.zone;
+    label.textContent = s.cap;
+    count.textContent = `${i + 1} / ${FLAT.length}`;
+  };
+
+  const open = (n, from) => {
+    opener = from || null;
+    paint(n);
+    box.classList.add("is-open");
+    box.removeAttribute("hidden");
+    document.documentElement.classList.add("is-locked");
+    window.BC?.lenis?.stop?.();
+    $(".glight__close", box).focus();
+  };
+
+  const close = () => {
+    box.classList.remove("is-open");
+    box.setAttribute("hidden", "");
+    document.documentElement.classList.remove("is-locked");
+    window.BC?.lenis?.start?.();
+    opener?.focus();
+    opener = null;
+  };
+
+  document.addEventListener("click", (e) => {
+    const trigger = e.target.closest(".gitem__btn");
+    if (trigger) { open(+trigger.dataset.i, trigger); return; }
+  });
+
+  box.addEventListener("click", (e) => {
+    if (e.target.closest("[data-close]")) { close(); return; }
+    const nav = e.target.closest(".glight__nav");
+    if (nav) paint(i + +nav.dataset.step);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (!box.classList.contains("is-open")) return;
+    if (e.key === "Escape") { e.preventDefault(); close(); }
+    else if (e.key === "ArrowRight") { e.preventDefault(); paint(i + 1); }
+    else if (e.key === "ArrowLeft") { e.preventDefault(); paint(i - 1); }
+    else if (e.key === "Tab") {
+      // piège à focus : la visionneuse est modale, on ne s'en échappe pas au clavier
+      const f = focusables();
+      if (!f.length) return;
+      const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
 }
 
 /* "Développer" — chaque photo passe du sombre au net quand elle entre dans
    le cadre. Pur IO ; en reduced-motion ou sans IO, tout est net d'emblée. */
 function develop() {
   const items = [...document.querySelectorAll(".gitem")];
-  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const revealAll = () => items.forEach((it) => it.classList.add("is-in"));
   if (reduce || !("IntersectionObserver" in window)) { revealAll(); return; }
   const io = new IntersectionObserver(
@@ -120,10 +212,19 @@ function develop() {
   else { setTimeout(revealAll, 3500); }
 }
 
+/* Le compteur du héros — le nombre de clichés, calculé, jamais saisi. */
+function stampCount() {
+  const el = $("#gcount");
+  if (el) el.textContent = `${FLAT.length} clichés · ${GALLERY.length} zones`;
+}
+
 /* ------------------------------ BOOT ------------------------------ */
 function boot() {
   renderGallery();
   develop(); // rend les photos visibles en premier — indépendant de BC/gsap
+  renderIndex();
+  stampCount();
+  lightbox();
 
   window.BC.reveal(document);
   window.BC.magnetic(document);

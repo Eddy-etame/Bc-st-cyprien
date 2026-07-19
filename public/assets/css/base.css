@@ -408,3 +408,32 @@ body[data-page="contact"] .phero::before { background:
 .scroll-cue .line { width: 54px; height: 1.5px; background: var(--line); position: relative; overflow: hidden; }
 .scroll-cue .line::after { content: ""; position: absolute; inset: 0; background: var(--spark); transform: translateX(-100%); animation: cue 2s var(--ease) infinite; }
 @keyframes cue { 0%{transform:translateX(-100%)} 60%,100%{transform:translateX(100%)} }
+
+/* ---------------- L'ÉTAT « PAS ENCORE NOMMÉ » --------------------- *
+   Le grappling tourne sans encadrant nommé au poster. Ce n'est pas un
+   trou de données : c'est une décision, et elle doit se LIRE comme
+   telle. Le token porte donc une vraie forme — cadre pointillé, mono,
+   chrome — au lieu de se fondre dans le texte comme un oubli.
+   Aucune teinte nouvelle : chrome (--spark-2) sur le noir de la salle. */
+.tbd {
+  display: inline-flex; align-items: center; gap: .6ch;
+  font: 600 .68rem/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase;
+  color: var(--spark-2); font-style: normal;
+  border: 1px dashed rgba(174,183,204,.5); border-radius: 100px;
+  padding: .42em .8em; background: rgba(6,7,11,.5);
+  white-space: nowrap;
+}
+.tbd::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--spark-2); opacity: .85; }
+
+/* Le cartouche long : le token + la raison + le téléphone. Posé sous une
+   fiche discipline (activités) ; le bord gauche chrome le sépare du corps
+   sans crier plus fort que le contenu réel. */
+.tbd-note {
+  margin-top: 1.1rem; padding: .95rem 1.15rem;
+  border: 1px solid var(--line); border-left: 2px solid var(--spark-2);
+  border-radius: var(--radius); background: rgba(18,21,31,.62);
+}
+.tbd-note__k { display: inline-block; font: 600 .64rem/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--spark-2); }
+.tbd-note__d { margin-top: .5rem; color: var(--ink-soft); font-size: var(--step--1); line-height: 1.6; }
+.tbd-note__tel { display: inline-flex; align-items: center; min-height: 44px; margin-top: .35rem; font: 600 var(--step--1)/1 var(--f-ui); color: var(--ink); border-bottom: 1px solid var(--spark-2); transition: color .3s, border-color .3s; }
+.tbd-note__tel:hover { color: var(--spark); border-color: var(--spark); }

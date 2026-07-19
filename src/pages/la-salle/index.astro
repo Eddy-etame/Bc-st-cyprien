@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/space-grotesk-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=9" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=11" />
   <meta name="keywords" content="salle de boxe Saint-Cyprien, boxe rive gauche Toulouse, salle boxe 1200 m2 Toulouse, ring boxe anglaise Toulouse, salle boxe thaï Toulouse, 11 rue Sainte-Lucie, Boxing Center rive gauche" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Saint-Cyprien" />
@@ -41,9 +41,9 @@
   <meta name="twitter:description" content="1 200 m² sur un seul niveau, ring, pieds-poings, zone moteur, école dès 3 ans. Rive gauche, Toulouse." />
   <meta name="twitter:image" content="https://st-cyprien.boxingcenter.fr/assets/img/sc/salle-1.webp" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=9" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=9" />
-  <link rel="stylesheet" href="/assets/css/la-salle.css?v=9" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=11" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=11" />
+  <link rel="stylesheet" href="/assets/css/la-salle.css?v=11" />
 
   <!-- SEO/GEO — graphe JSON-LD unifié (organisation · salle · site · page · image ·
        fil d'Ariane). Faits réels uniquement — miroir de data.js. -->
@@ -220,7 +220,7 @@
           "@id": "https://st-cyprien.boxingcenter.fr/la-salle/#primaryimage"
         },
         "datePublished": "2026-07-17",
-        "dateModified": "2026-07-17",
+        "dateModified": "2026-07-19",
         "breadcrumb": {
           "@id": "https://st-cyprien.boxingcenter.fr/la-salle/#breadcrumb"
         }
@@ -299,9 +299,44 @@
         <div class="visite-sec__head" data-reveal>
           <span class="eyebrow">La visite</span>
           <h2 class="display visite-sec__title">Six postes. La lumière fait le tour.</h2>
-          <p class="visite-sec__lead">Chaque poste s'allume quand tu l'atteins — le plateau, l'anglaise, le pieds-poings, le moteur, l'école, le collectif.</p>
+          <p class="visite-sec__lead">Chaque poste s'allume quand tu l'atteins — le plateau, l'anglaise, le pieds-poings, le moteur, l'école, le collectif. Prends-les dans l'ordre, ou saute directement au tien.</p>
         </div>
+        <nav class="plan" id="plan" data-reveal aria-label="Aller à un poste de la visite"></nav>
         <div class="visite" id="visite"></div>
+      </div>
+    </section>
+
+    <!-- ============ UNE SÉANCE, DE LA PORTE AU TAPIS ============== -->
+    <section class="section deroule-sec" aria-label="Le déroulé d'une séance">
+      <div class="wrap">
+        <div class="deroule-sec__head" data-reveal>
+          <span class="eyebrow">Le déroulé</span>
+          <h2 class="display deroule-sec__title"><span class="reveal-mask"><span>De la porte</span></span><span class="reveal-mask"><span class="tint">au tapis.</span></span></h2>
+          <p class="deroule-sec__lead">Personne ne t'explique jamais ce qui se passe entre le moment où tu pousses la porte et celui où tu frappes. Voilà l'heure et quart, dans l'ordre.</p>
+        </div>
+        <ol class="deroule" data-reveal-group>
+          <li class="dstep">
+            <span class="dstep__k">Avant</span>
+            <h3 class="dstep__t">Tu passes la porte</h3>
+            <p class="dstep__d">Le ring est en face, la zone moteur à droite : un seul niveau, tu ne cherches personne. Le coach du créneau se présente, tu dis ce que tu as déjà fait — ou que tu n'as jamais rien fait, ça se dit très bien aussi.</p>
+          </li>
+          <li class="dstep">
+            <span class="dstep__k">Les 15 premières minutes</span>
+            <h3 class="dstep__t">L'échauffement, en groupe</h3>
+            <p class="dstep__d">Corde, déplacements, mobilité. C'est là qu'on voit tes appuis et que le coach cale la suite sur ce que tu sais tenir. Personne n'est mis au fond de la salle.</p>
+          </li>
+          <li class="dstep">
+            <span class="dstep__k">Le cœur</span>
+            <h3 class="dstep__t">Une chose à la fois</h3>
+            <p class="dstep__d">C'est le principe de la maison : chaque cours éclaire un point — ta garde, ton souffle, tes appuis — et on le travaille jusqu'à ce qu'il tienne. Technique au ring ou au tapis, puis application aux sacs ou aux pattes.</p>
+          </li>
+          <li class="dstep">
+            <span class="dstep__k">La fin</span>
+            <h3 class="dstep__t">Le retour au calme</h3>
+            <p class="dstep__d">Gainage, étirements, et le point du coach : ce qui a bougé, ce qui ne bouge pas encore. Tu repars en sachant sur quoi tu reviens la fois d'après.</p>
+          </li>
+        </ol>
+        <p class="deroule__note" data-reveal>Les gants et les protections sont prêtés pour la première séance : viens en tenue de sport, le reste attend sur place.</p>
       </div>
     </section>
 
@@ -368,7 +403,7 @@
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=9"></script>
-  <script is:inline type="module" src="/assets/js/la-salle.js?v=9"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=11"></script>
+  <script is:inline type="module" src="/assets/js/la-salle.js?v=11"></script>
 </body>
 </html>

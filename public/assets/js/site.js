@@ -4,7 +4,7 @@
    Same proven engine as the other salles, with the showroom's restraint:
    no custom cursor, no grain — precision instead of texture.
    ===================================================================== */
-import { NAV, LINKS, SALLE } from "./data.js?v=9";
+import { NAV, LINKS, SALLE } from "./data.js?v=11";
 
 const gsap = window.gsap;
 const ScrollTrigger = window.ScrollTrigger;
@@ -226,6 +226,11 @@ function reveal(scope = document) {
       if (gsap.ticker.frame !== f0) return;
       document.documentElement.classList.remove("fx");
       document.querySelectorAll(".reveal-mask > span, [data-reveal], [data-reveal-group] > *").forEach((el) => {
+        // transition coupée AVANT de repeindre : si le ticker est gelé, le
+        // compositeur l'est aussi, et une transition d'opacité déclenchée ici
+        // reste bloquée à sa valeur de départ — l'élément affiche opacity 1 en
+        // inline mais calcule 0, donc reste invisible (constaté sur .wsheet).
+        el.style.transition = "none";
         el.style.opacity = "1"; el.style.transform = "none";
       });
       // …and if the count-up never fired (ScrollTrigger present but the ticker froze),
@@ -272,7 +277,73 @@ function initKinetics() {
   });
 }
 
-const refresh = () => ScrollTrigger?.refresh();
+/* Toutes les pages rendent leur contenu en JS APRÈS le boot de Lenis :
+   Lenis garde donc une hauteur périmée (mesuré sur /la-salle/ : limite
+   5 626 pour un document de 9 438). Conséquence, tout scrollTo au-delà de
+   l'ancienne limite se faisait écrêter et s'arrêtait en chemin. On
+   remesure Lenis en même temps que ScrollTrigger — chaque page appelle
+   déjà BC.refresh() au load et à +500 ms. */
+const refresh = () => { lenis?.resize(); ScrollTrigger?.refresh(); };
+
+/* ------------------------- SCROLL TO ELEMENT ---------------------- *
+ * Lenis pilote le scroll via son propre rAF : un scrollIntoView natif en
+ * "smooth" se fait écraser à chaque frame et s'arrête en chemin (mesuré :
+ * 1 099 px parcourus pour une cible à 2 648). Tout saut d'ancre passe donc
+ * par ICI — Lenis quand il est là, natif sinon, et instantané en
+ * reduced-motion. `offset` compense les barres collantes (plan, index). */
+function scrollToEl(target, { offset = 0, block = "center" } = {}) {
+  const el = typeof target === "string" ? document.querySelector(target) : target;
+  if (!el) return;
+  const y = () => Math.round(el.getBoundingClientRect().top + window.scrollY + offset);
+
+  // Sans Lenis (ou en reduced-motion) : chemin natif, point.
+  if (!lenis || reduce) {
+    if (reduce) { window.scrollTo(0, y()); return; }
+    if (offset) window.scrollTo({ top: y(), behavior: "smooth" });
+    else el.scrollIntoView({ behavior: "smooth", block });
+    return;
+  }
+
+  // Avec Lenis : on remesure (le contenu est rendu en JS après son boot),
+  // puis on vise.
+  lenis.resize();
+  const from = window.scrollY;
+  lenis.scrollTo(el, { offset, duration: 1.05 });
+
+  // Dead-man net (loi n°3, appliquée au DÉPLACEMENT) : Lenis n'avance que
+  // si le ticker gsap tourne. Ticker gelé = onglet en arrière-plan, rAF
+  // suspendu, lib CDN à moitié chargée… et l'utilisateur clique un index
+  // qui ne l'emmène nulle part. Si rien n'a bougé au bout de 260 ms, on
+  // reprend la main en natif. Un index qui ne scrolle pas est un bouton
+  // mort — ça ne peut jamais dépendre d'une lib.
+  setTimeout(() => {
+    if (Math.abs(window.scrollY - from) > 4) return; // Lenis a démarré, on le laisse finir
+    const dest = y();
+    if (Math.abs(window.scrollY - dest) < 8) return; // déjà à destination
+    // SEC, pas "smooth" : si le ticker est gelé, l'animation de scroll natif
+    // l'est en général aussi (mesuré : elle s'arrête à mi-course). Arriver
+    // d'un coup est moche une demi-seconde ; ne pas arriver est cassé.
+    window.scrollTo(0, dest);
+  }, 260);
+}
+
+/* ------------------------- ANCRES INTERNES ------------------------ *
+ * Tout lien #ancre passe par le même chemin de scroll que les index de
+ * page. Sinon la home saute sec sur "Choisir ma discipline" pendant que
+ * le plan de la visite glisse : deux gestes pour la même intention. */
+function wireAnchors() {
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const id = a.getAttribute("href").slice(1);
+    if (!id) return;
+    const target = document.getElementById(id);
+    if (!target) return;
+    e.preventDefault();
+    scrollToEl(target, { offset: -90, block: "start" });
+    history.replaceState(null, "", `#${id}`);
+  });
+}
 
 /* --------------------------- SPOTLIGHT ---------------------------- *
  * THE concept made literal : a soft light that follows the cursor across a
@@ -307,7 +378,7 @@ function spotlight(heroSel = ".hero", spotSel = ".hero__spot") {
  * (Le curseur-spotlight se désactive en hover:none — ceci le remplace.) */
 /* .station (visite) + .gitem (galerie) s'animent déjà via leur propre IO sur
    tous les appareils → hors liste pour ne pas doubler l'observateur. */
-const TOUCH_LIFE_SEL = ".promo, .sister, .codecard, .level, .pnote, .rostercard, .coachcard, .tarif, .review, .slot, .act, .coords li, .cfg";
+const TOUCH_LIFE_SEL = ".promo, .sister, .codecard, .level, .pnote, .rostercard, .coachcard, .tarif, .review, .slot, .act, .coords li, .cfg, .route, .week, .pulse";
 function touchLife(scope = document) {
   if (!window.matchMedia("(hover: none)").matches || !("IntersectionObserver" in window)) return;
   const els = scope.querySelectorAll(TOUCH_LIFE_SEL);
@@ -320,11 +391,12 @@ function touchLife(scope = document) {
 }
 
 /* ------------------------------ BOOT ------------------------------ */
-window.BC = { reveal, magnetic, refresh, media: hydrateMedia, split, scramble, spotlight, touchLife, initKinetics, get lenis() { return lenis; }, get velocity() { return velocity; } };
+window.BC = { reveal, magnetic, refresh, media: hydrateMedia, split, scramble, spotlight, touchLife, initKinetics, scrollToEl, get lenis() { return lenis; }, get velocity() { return velocity; } };
 mountNav();
 mountFooter();
 initSmooth();
 hydrateMedia(document);
 magnetic(document);
+wireAnchors();
 
 export const BC = window.BC;

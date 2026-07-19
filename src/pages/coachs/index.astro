@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/space-grotesk-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=9" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=11" />
   <meta name="keywords" content="coach boxe Toulouse, coach boxe Saint-Cyprien, Dadi boxing center, coach boxe thaï Toulouse, coach Hyrox Toulouse, entraîneur boxe rive gauche" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Saint-Cyprien" />
@@ -45,9 +45,9 @@
        donc invisible au preload scanner — on le précharge explicitement. -->
   <link rel="preload" as="image" href="/assets/img/sc/coach-dadi.webp" fetchpriority="high" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=9" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=9" />
-  <link rel="stylesheet" href="/assets/css/coachs.css?v=9" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=11" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=11" />
+  <link rel="stylesheet" href="/assets/css/coachs.css?v=11" />
 
   <!-- SEO/GEO — graphe JSON-LD unifié (organisation · salle · site · page · image ·
        fil d'Ariane · coachs). Faits réels uniquement — miroir de data.js. -->
@@ -224,7 +224,7 @@
           "@id": "https://st-cyprien.boxingcenter.fr/coachs/#primaryimage"
         },
         "datePublished": "2026-07-17",
-        "dateModified": "2026-07-17",
+        "dateModified": "2026-07-19",
         "breadcrumb": {
           "@id": "https://st-cyprien.boxingcenter.fr/coachs/#breadcrumb"
         }
@@ -340,6 +340,42 @@
       </div>
     </section>
 
+    <!-- ============ LA SEMAINE, COACH PAR COACH (dérivée) ========= -->
+    <section class="section semaine-sec" aria-label="La semaine coach par coach">
+      <div class="wrap">
+        <div class="semaine-sec__head" data-reveal>
+          <span class="eyebrow">Qui tu auras en face</span>
+          <h2 class="display semaine-sec__title"><span class="reveal-mask"><span>Ouvre un nom.</span></span><span class="reveal-mask"><span class="tint">Tu vois sa semaine.</span></span></h2>
+          <p class="semaine-sec__lead">Les créneaux ci-dessous sortent du même planning que la page Planning — pas d'une deuxième liste tenue à la main. Si le poster change, ceci change.</p>
+        </div>
+        <div class="wtabs" id="semaine-tabs" role="tablist" aria-label="Choisir un coach"></div>
+        <div class="wsheet" id="semaine-panel" role="tabpanel" aria-live="polite" data-reveal></div>
+      </div>
+    </section>
+
+    <!-- =========== LE TAPIS SANS NOM — l'état assumé ============== -->
+    <section class="section tbd-sec" aria-label="Le créneau dont l'encadrant n'est pas encore nommé">
+      <div class="wrap">
+        <div class="tbd-sec__head" data-reveal>
+          <span class="eyebrow">La case qu'on laisse vide</span>
+          <h2 class="display tbd-sec__title">Ce qu'on n'écrit pas encore.</h2>
+        </div>
+        <div class="tbdcard" id="tbd" data-reveal></div>
+      </div>
+    </section>
+
+    <!-- ==================== LA MÉTHODE — 3 règles ================= -->
+    <section class="section methode-sec" aria-label="La méthode d'encadrement">
+      <div class="wrap">
+        <div class="methode-sec__head" data-reveal>
+          <span class="eyebrow">La méthode</span>
+          <h2 class="display methode-sec__title">Trois règles. Vérifiables.</h2>
+          <p class="methode-sec__lead">Pas de palmarès recopié, pas de diplôme brandi : trois principes qu'on peut contrôler ligne à ligne sur le planning et sur ce site.</p>
+        </div>
+        <div class="methode" id="methode" data-reveal-group></div>
+      </div>
+    </section>
+
     <!-- ========================= FINAL CTA ======================== -->
     <section class="gong" aria-label="Réserver une séance">
       <div class="gong__inner">
@@ -367,7 +403,7 @@
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=9"></script>
-  <script is:inline type="module" src="/assets/js/coachs.js?v=9"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=11"></script>
+  <script is:inline type="module" src="/assets/js/coachs.js?v=11"></script>
 </body>
 </html>

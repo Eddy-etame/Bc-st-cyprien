@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/space-grotesk-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=9" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=11" />
   <meta name="keywords" content="planning boxe Saint-Cyprien, horaires salle de boxe Toulouse rive gauche, planning boxe thaï Toulouse, cours boxe enfants Toulouse, Lady Punch horaires, Boxing Center Saint-Cyprien planning" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Saint-Cyprien" />
@@ -45,9 +45,9 @@
   <meta name="twitter:description" content="Filtre par jour, discipline ou coach. Le poster officiel de la saison fait foi." />
   <meta name="twitter:image" content="https://st-cyprien.boxingcenter.fr/assets/img/sc/salle-1.webp" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=9" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=9" />
-  <link rel="stylesheet" href="/assets/css/plannings.css?v=9" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=11" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=11" />
+  <link rel="stylesheet" href="/assets/css/plannings.css?v=11" />
 
   <!-- SEO/GEO — graphe JSON-LD unifié (organisation · salle · site · page · image ·
        fil d'Ariane). Faits réels uniquement — miroir de data.js. -->
@@ -224,7 +224,7 @@
           "@id": "https://st-cyprien.boxingcenter.fr/plannings/#primaryimage"
         },
         "datePublished": "2026-07-17",
-        "dateModified": "2026-07-17",
+        "dateModified": "2026-07-19",
         "breadcrumb": {
           "@id": "https://st-cyprien.boxingcenter.fr/plannings/#breadcrumb"
         }
@@ -286,9 +286,18 @@
     <!-- ==================== FILTRES + GRILLE ====================== -->
     <section class="section pl-wrap" aria-label="La grille des cours">
       <div class="wrap">
+        <div data-reveal style="margin-bottom:clamp(1.4rem,3vw,2rem)">
+          <span class="eyebrow">La grille</span>
+          <h2 class="display" style="margin-top:1rem;font-size:clamp(1.8rem,4vw,2.8rem)">Ta semaine, réglée.</h2>
+        </div>
+        <div class="pl-pulse" id="pl-pulse" data-reveal-group aria-label="La semaine en chiffres"></div>
         <div class="filters" id="filters" role="group" aria-label="Filtrer le planning"></div>
+        <div class="pl-bar">
+          <p class="pl-count" id="pl-count" role="status" aria-live="polite"></p>
+          <button class="pl-reset" id="pl-reset" type="button" hidden>Tout réafficher</button>
+        </div>
         <div class="pgrid" id="grid"></div>
-        <p class="pl-empty" id="pl-empty" hidden>Aucun cours ne correspond à ce filtre. Enlève-en un.</p>
+        <p class="pl-empty" id="pl-empty" hidden>Aucun cours ne correspond à ces trois filtres réunis. <button class="pl-empty__reset" type="button">Repars de la semaine entière</button></p>
       </div>
     </section>
 
@@ -314,6 +323,7 @@
       <div class="wrap">
         <div data-reveal style="margin-bottom:clamp(1.2rem,2.6vw,1.8rem)">
           <span class="eyebrow">Avant de venir</span>
+          <h2 class="display" style="margin-top:1rem;font-size:clamp(1.8rem,4vw,2.8rem)">Quatre choses à savoir.</h2>
         </div>
         <div class="pnotes" data-reveal-group>
           <div class="pnote"><b>Arrive 10 min avant</b><span>Le temps de te changer, de dire bonjour au coach et de te préparer sans stress.</span></div>
@@ -351,7 +361,7 @@
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=9"></script>
-  <script is:inline type="module" src="/assets/js/plannings.js?v=9"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=11"></script>
+  <script is:inline type="module" src="/assets/js/plannings.js?v=11"></script>
 </body>
 </html>

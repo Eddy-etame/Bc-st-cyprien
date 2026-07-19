@@ -5,13 +5,16 @@
    La home positionne + route : configurateur → /plannings/ · /activites/ ·
    box-plus. Tout est rendu depuis data.js (planning réel rentrée 2026).
    ===================================================================== */
-import { STATS, DISCIPLINES, COACHES, LINKS } from "./data.js?v=9";
+import { STATS, DISCIPLINES, COACHES, LINKS, COACH_TBD_SHORT, COACH_TBD_WHY } from "./data.js?v=11";
 
 const gsap = window.gsap;
 const ScrollTrigger = window.ScrollTrigger;
 const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const $ = (s, r = document) => r.querySelector(s);
 const nf = new Intl.NumberFormat("fr-FR");
+/* les alt sont de vraies phrases (apostrophes, guillemets possibles) : on
+   les échappe avant de les poser dans un attribut HTML. */
+const esc = (s = "") => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 /* --------------------------- RENDER ------------------------------- */
 function renderStats() {
@@ -35,21 +38,26 @@ function renderConfig() {
   const list = $("#config-list"), mediaBox = $("#config-media"), body = $("#config-body");
   const bg = $("#config-bg");
   if (!list) return;
-  if (bg) bg.innerHTML = DISCIPLINES.map((d, i) => `<div class="media ${i === 0 ? "is-active" : ""}" data-img="${d.img}" data-label=""></div>`).join("");
+  // Le backdrop plein cadre est DÉCORATIF (le panneau porte déjà la photo
+  // décrite) → alt="" explicite, jamais le libellé de la pastille.
+  if (bg) bg.innerHTML = DISCIPLINES.map((d, i) => `<div class="media ${i === 0 ? "is-active" : ""}" data-img="${d.img}" data-alt="" data-label=""></div>`).join("");
   list.innerHTML = DISCIPLINES.map((d, i) => `
     <button class="cfg ${i === 0 ? "is-active" : ""}" type="button" role="tab" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}" aria-controls="config-panel" id="cfg-${d.key}" data-i="${i}">
       <span class="cfg__n">${String(i + 1).padStart(2, "0")}</span>
       <span class="cfg__name">${d.name}</span>
       <span class="cfg__tag">${d.tag}</span>
     </button>`).join("");
-  mediaBox.innerHTML = DISCIPLINES.map((d, i) => `<div class="media ${i === 0 ? "is-active" : ""}" data-img="${d.img}" data-label="${d.name}"></div>`).join("");
+  // data-label = la pastille mono (le NOM). data-alt = le vrai texte
+  // alternatif, écrit d'après le cliché. Les deux ne se confondent plus.
+  mediaBox.innerHTML = DISCIPLINES.map((d, i) => `<div class="media ${i === 0 ? "is-active" : ""}" data-img="${d.img}" data-alt="${esc(d.alt)}" data-label="${d.name}"></div>`).join("");
   const sheet = (d) => `
     <div class="config__facts">
-      <span><b>Coach</b> ${d.coach}</span>
+      <span${d.coachTbd ? ' class="is-tbd"' : ""}><b>Coach</b> ${d.coachTbd ? `<i class="tbd">${COACH_TBD_SHORT}</i>` : d.coach}</span>
       <span><b>Jours</b> ${d.jours}</span>
       <span><b>Niveau</b> ${d.niveau}</span>
     </div>
     <p class="config__desc">${d.desc}</p>
+    ${d.coachTbd ? `<p class="config__tbd">${COACH_TBD_WHY}</p>` : ""}
     <div class="config__cta">
       <a class="btn btn--primary" data-magnetic href="${LINKS.essai}"><span>Essayer · 10€</span></a>
       <a class="btn" data-magnetic href="/plannings/#${d.key}"><span>Voir les créneaux</span></a>
@@ -95,8 +103,10 @@ function renderCoaches() {
   if (!row) return;
   row.innerHTML = COACHES.map((c) => {
     const initial = c.name.trim().charAt(0).toUpperCase();
+    // photo seulement si roster.json prouve nom↔visage ; l'alt décrit le
+    // cliché (data.js), il ne recopie plus le nom ni le rôle.
     const face = c.img
-      ? `<div class="media coachcard__media" data-img="${c.img}" data-label="" data-alt="${c.name}, coach à Boxing Center Saint-Cyprien — rive gauche"></div>`
+      ? `<div class="media coachcard__media" data-img="${c.img}" data-label="" data-alt="${esc(c.alt || "")}"></div>`
       : `<div class="coachcard__media coachcard__media--tile" aria-hidden="true"><span>${initial}</span></div>`;
     return `<article class="coachcard">
       ${face}

@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/space-grotesk-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=9" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=11" />
   <meta name="keywords" content="photos salle de boxe Toulouse, salle boxe Saint-Cyprien images, boxe rive gauche Toulouse photos, ring boxe Toulouse, salle boxe thaï Toulouse photos" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Saint-Cyprien" />
@@ -41,9 +41,9 @@
   <meta name="twitter:description" content="Le plateau, le ring, le pieds-poings, la zone moteur, la Lady Punch et l'école. Rive gauche, Toulouse." />
   <meta name="twitter:image" content="https://st-cyprien.boxingcenter.fr/assets/img/sc/salle-1.webp" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=9" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=9" />
-  <link rel="stylesheet" href="/assets/css/galerie.css?v=9" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=11" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=11" />
+  <link rel="stylesheet" href="/assets/css/galerie.css?v=11" />
 
   <!-- SEO/GEO — graphe JSON-LD unifié (organisation · salle · site · page · image ·
        fil d'Ariane). Faits réels uniquement — miroir de data.js. -->
@@ -220,7 +220,7 @@
           "@id": "https://st-cyprien.boxingcenter.fr/galerie/#primaryimage"
         },
         "datePublished": "2026-07-17",
-        "dateModified": "2026-07-17",
+        "dateModified": "2026-07-19",
         "breadcrumb": {
           "@id": "https://st-cyprien.boxingcenter.fr/galerie/#breadcrumb"
         }
@@ -234,6 +234,56 @@
         "height": 512,
         "caption": "Le plateau vu depuis la porte : sacs, ring et cage au fond — Boxing Center Saint-Cyprien",
         "inLanguage": "fr-FR"
+      },
+      {
+        "@type": "ImageGallery",
+        "@id": "https://st-cyprien.boxingcenter.fr/galerie/#gallery",
+        "name": "La salle Boxing Center Saint-Cyprien, zone par zone",
+        "description": "16 photos réelles de la salle réparties en 7 zones : le plateau, l'anglaise, le pieds-poings, le sol, le moteur, la Lady Punch et l'école. Aucune image de banque.",
+        "inLanguage": "fr-FR",
+        "isPartOf": {
+          "@id": "https://st-cyprien.boxingcenter.fr/galerie/#webpage"
+        },
+        "about": {
+          "@id": "https://st-cyprien.boxingcenter.fr/#salle"
+        },
+        "hasPart": [
+          {
+            "@type": "ImageObject",
+            "contentUrl": "https://st-cyprien.boxingcenter.fr/assets/img/sc/salle-1.webp",
+            "caption": "Le plateau vu depuis la porte : la ligne de sacs suspendus à la charpente, le tapis bleu, le ring au fond et la cage grillagée sur la droite"
+          },
+          {
+            "@type": "ImageObject",
+            "contentUrl": "https://st-cyprien.boxingcenter.fr/assets/img/sc/anglaise-header.webp",
+            "caption": "Un boxeur en casque et gants, garde haute et appui avant marqué, au milieu d'un cours d'anglaise sur le ring"
+          },
+          {
+            "@type": "ImageObject",
+            "contentUrl": "https://st-cyprien.boxingcenter.fr/assets/img/sc/thai-2.webp",
+            "caption": "Un pratiquant lance un genou face à un coach qui tient la patte d'ours, sur le tapis bleu au pied du ring"
+          },
+          {
+            "@type": "ImageObject",
+            "contentUrl": "https://st-cyprien.boxingcenter.fr/assets/img/sc/grappling.webp",
+            "caption": "Vue plongeante sur la cage : plusieurs binômes travaillent au sol, contrôles et sorties, pendant qu'un pratiquant debout observe la position"
+          },
+          {
+            "@type": "ImageObject",
+            "contentUrl": "https://st-cyprien.boxingcenter.fr/assets/img/sc/muscu.webp",
+            "caption": "La zone moteur : rameurs au premier plan, cage à squat, bancs inclinés et machines de charge sur sol caoutchouc"
+          },
+          {
+            "@type": "ImageObject",
+            "contentUrl": "https://st-cyprien.boxingcenter.fr/assets/img/sc/lady-2.webp",
+            "caption": "Une boxeuse en gants, garde serrée, frappe un sac de frappe pendant un cours Lady Punch"
+          },
+          {
+            "@type": "ImageObject",
+            "contentUrl": "https://st-cyprien.boxingcenter.fr/assets/img/sc/educative.webp",
+            "caption": "Un jeune boxeur en casque frappe un sac sous la charpente métallique, vu depuis le coin du ring"
+          }
+        ]
       },
       {
         "@type": "BreadcrumbList",
@@ -272,15 +322,33 @@
       <div class="phero__spot" aria-hidden="true"></div>
       <div class="wrap">
         <nav class="crumbs" aria-label="Fil d'Ariane"><a href="/">Accueil</a> <span aria-hidden="true">/</span> <span aria-current="page">Galerie</span></nav>
-        <p class="eyebrow" data-reveal style="margin-top:1.1rem">En images · zone par zone</p>
+        <p class="eyebrow" data-reveal style="margin-top:1.1rem">En images · <span id="gcount">zone par zone</span></p>
         <h1 class="display"><span class="reveal-mask"><span>Pas de retouche.</span></span><span class="reveal-mask"><span class="tint">La salle, telle quelle.</span></span></h1>
-        <p class="lead" data-reveal>Zone par zone, sous la lumière. Ce que tu vois là, c'est ce que tu trouves en passant la porte.</p>
+        <p class="lead" data-reveal>Zone par zone, sous la lumière. Ce que tu vois là, c'est ce que tu trouves en passant la porte : les mêmes sacs, le même ring, le même tapis un peu marqué. Clique une photo pour la voir en grand.</p>
+        <nav class="gindex" id="gindex" data-reveal aria-label="Aller à une zone"></nav>
         <div class="phero__mark" aria-hidden="true"></div>
       </div>
     </header>
 
     <!-- ==================== LA GALERIE PAR ZONE =================== -->
     <div id="galerie"></div>
+
+    <!-- ================= CE QUE LA PHOTO NE DIT PAS =============== -->
+    <section class="section gnote-sec" aria-label="Ce qu'une photo ne montre pas">
+      <div class="wrap gnote__grid">
+        <div>
+          <span class="eyebrow" data-reveal>Hors cadre</span>
+          <h2 class="display gnote__title" data-reveal>Ce qu'une photo ne montre pas.</h2>
+        </div>
+        <div class="gnote__prose" data-reveal>
+          <p>Aucune de ces images n'est achetée. Ce sont les clichés du club, pris pendant des cours qui ont vraiment eu lieu — c'est pour ça qu'on y voit des murs marqués, des sacs usés et des gens qui ne posent pas.</p>
+          <p>Ce qu'elles ne rendent pas : le bruit. Un plateau de 1 200 m² sur un seul niveau, ça veut dire que le cross du lundi soir s'entend depuis le ring, et que l'école du samedi couvre tout le reste. On ne s'entraîne pas dans une bulle, on s'entraîne dans une salle.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== LA VISIONNEUSE ======================= -->
+    <div class="glight" id="glight" hidden></div>
 
     <!-- ========================= FINAL CTA ======================== -->
     <section class="gong" aria-label="Réserver une séance">
@@ -309,7 +377,7 @@
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=9"></script>
-  <script is:inline type="module" src="/assets/js/galerie.js?v=9"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=11"></script>
+  <script is:inline type="module" src="/assets/js/galerie.js?v=11"></script>
 </body>
 </html>

@@ -66,3 +66,59 @@
   .act__media { aspect-ratio: 16/10; }
   .act-group__title { font-size: clamp(1.6rem,6.5vw,2.1rem); }
 }
+
+/* -------- La fiche dont l'encadrant n'est pas encore nommé --------- */
+.act__tbd-val { display: flex; }
+/* le jour du palier école — la donnée manquait, la carte se lisait creuse */
+.level__jours { font: 600 .64rem/1.4 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--spark-2); border-top: 1px solid var(--line-soft); padding-top: .6rem; margin-top: .6rem; }
+
+/* ==================== L'AIGUILLAGE — par où commencer ==========
+   Une intention = un bouton plein. Le faisceau descend du haut de la carte
+   quand on la touche : la lumière indique la porte, elle ne décore pas. */
+.parcours-sec__title { margin-top: 1rem; font-size: clamp(1.9rem,1rem+2.6vw,3.2rem); }
+.parcours-sec__lead { margin-top: .9rem; max-width: 54ch; color: var(--ink-soft); }
+.parcours { display: grid; gap: .7rem; grid-template-columns: 1fr; margin-top: clamp(2rem,4vw,3rem); }
+@media (min-width: 700px){ .parcours { grid-template-columns: repeat(2,1fr); } }
+@media (min-width: 1100px){ .parcours { grid-template-columns: repeat(3,1fr); } }
+
+.route { position: relative; overflow: hidden; text-align: left; display: flex; flex-direction: column; gap: .5rem; min-height: 13rem; padding: clamp(1.2rem,2.4vw,1.7rem); border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper-2); color: var(--ink); cursor: pointer; transition: transform .35s var(--ease-spring), box-shadow .35s, border-color .3s; }
+.route::before { content: ""; position: absolute; inset: -40% -20% auto; height: 70%; pointer-events: none; opacity: 0; transition: opacity .5s var(--ease);
+  background: radial-gradient(60% 100% at 50% 0%, rgba(246,248,252,.20), transparent 70%); }
+.route:hover, .route:focus-visible { transform: translateY(-5px); box-shadow: var(--shadow); border-color: rgba(233,236,244,.32); }
+.route:hover::before, .route:focus-visible::before, .route.is-inview::before { opacity: 1; }
+.route:active { transform: scale(.985); }
+.route__want { position: relative; font-family: var(--f-display); font-weight: 700; letter-spacing: -.01em; font-size: var(--step-1); line-height: 1.2; color: var(--ink); }
+.route__arrow { position: relative; font: 600 .7rem/1 var(--f-mono); color: var(--spark-2); transition: transform .4s var(--ease-spring); }
+.route:hover .route__arrow { transform: translateY(3px); }
+.route__pick { position: relative; font: 600 .66rem/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--spark); }
+.route__why { position: relative; color: var(--ink-soft); font-size: var(--step--1); line-height: 1.6; }
+/* créneaux + nom du coach = de l'INFORMATION, pas un label décoratif :
+   --ink-soft (~11:1) et non --muted, sinon la seule donnée dure de la carte
+   est aussi la moins lisible. */
+.route__meta { position: relative; margin-top: auto; padding-top: .7rem; border-top: 1px solid var(--line-soft); font: 600 .68rem/1.45 var(--f-mono); letter-spacing: .07em; text-transform: uppercase; color: var(--ink-soft); }
+.parcours__note { margin-top: clamp(1.2rem,2.4vw,1.7rem); max-width: 66ch; color: var(--muted); font-size: var(--step--1); line-height: 1.6; }
+
+/* ==================== LES SEMAINES-TYPES ======================= */
+.semaines-sec { border-top: 1px solid var(--line-soft); }
+.semaines-sec__title { margin-top: 1rem; font-size: clamp(1.9rem,1rem+2.6vw,3.2rem); }
+.semaines-sec__lead { margin-top: .9rem; max-width: 58ch; color: var(--ink-soft); }
+.semaines { display: grid; gap: .8rem; grid-template-columns: 1fr; margin-top: clamp(2rem,4vw,3rem); }
+@media (min-width: 780px){ .semaines { grid-template-columns: repeat(3,1fr); } }
+.week { display: flex; flex-direction: column; gap: .6rem; padding: clamp(1.2rem,2.4vw,1.7rem); border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper-2); transition: transform .35s var(--ease-spring), box-shadow .35s, border-color .3s; }
+.week:hover, .week.is-inview { transform: translateY(-5px); box-shadow: var(--shadow); border-color: rgba(233,236,244,.3); }
+.week__n { font-family: var(--f-display); font-weight: 700; font-size: clamp(1.6rem,4vw,2.2rem); line-height: 1; background: var(--chrome); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.week__t { font-family: var(--f-display); font-weight: 700; font-size: var(--step-1); letter-spacing: -.01em; color: var(--ink); }
+.week__d { color: var(--ink-soft); font-size: var(--step--1); line-height: 1.6; }
+.week__list { display: flex; flex-direction: column; gap: 1px; margin-top: .5rem; background: var(--line-soft); border: 1px solid var(--line); border-radius: calc(var(--radius) - 4px); overflow: hidden; }
+.wrow { display: grid; grid-template-columns: auto auto 1fr; gap: .2rem .7rem; align-items: baseline; background: var(--paper); padding: .7rem .85rem; }
+.wrow__day { font: 600 .62rem/1.4 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--spark); }
+.wrow__time { font: 600 .68rem/1.4 var(--f-mono); color: var(--ink); }
+.wrow__name { grid-column: 1 / -1; font-size: var(--step--1); font-weight: 600; color: var(--ink); }
+.wrow__coach { grid-column: 1 / -1; font: 500 .68rem/1.45 var(--f-mono); letter-spacing: .05em; text-transform: uppercase; color: var(--ink-soft); }
+.week__link { margin-top: auto; padding-top: .8rem; font: 600 .66rem/1.4 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--spark); border-bottom: 0; }
+.week__link:hover { text-decoration: underline; text-underline-offset: .35em; }
+
+@media (max-width: 820px){
+  .parcours-sec__title, .semaines-sec__title { font-size: clamp(1.6rem,6.5vw,2.1rem); }
+  .route { min-height: 0; }
+}

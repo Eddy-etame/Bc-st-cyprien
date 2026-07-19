@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/space-grotesk-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=9" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=11" />
   <meta name="keywords" content="cours de boxe Toulouse rive gauche, boxe anglaise Saint-Cyprien, boxe thaï K1 Toulouse, grappling Toulouse, Hyrox cross training Toulouse, Lady Punch Toulouse, baby boxe dès 3 ans, boxe éducative enfants Toulouse" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Saint-Cyprien" />
@@ -41,9 +41,9 @@
   <meta name="twitter:description" content="Anglaise, thaï/K1, grappling, Hyrox, camp, Lady Punch, école dès 3 ans. Rive gauche, Toulouse." />
   <meta name="twitter:image" content="https://st-cyprien.boxingcenter.fr/assets/img/sc/salle-1.webp" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=9" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=9" />
-  <link rel="stylesheet" href="/assets/css/activites.css?v=9" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=11" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=11" />
+  <link rel="stylesheet" href="/assets/css/activites.css?v=11" />
 
   <!-- SEO/GEO — graphe JSON-LD unifié (organisation · salle · site · page · image ·
        fil d'Ariane · disciplines). Faits réels uniquement — miroir de data.js. -->
@@ -220,7 +220,7 @@
           "@id": "https://st-cyprien.boxingcenter.fr/activites/#primaryimage"
         },
         "datePublished": "2026-07-17",
-        "dateModified": "2026-07-17",
+        "dateModified": "2026-07-19",
         "breadcrumb": {
           "@id": "https://st-cyprien.boxingcenter.fr/activites/#breadcrumb"
         }
@@ -358,8 +358,33 @@
       </div>
     </header>
 
+    <!-- ============ L'AIGUILLAGE — je veux quoi, au juste ========= -->
+    <section class="section parcours-sec" aria-label="Par où commencer">
+      <div class="wrap">
+        <div class="parcours-sec__head" data-reveal>
+          <span class="eyebrow">Par où commencer</span>
+          <h2 class="display parcours-sec__title"><span class="reveal-mask"><span>Sept portes.</span></span><span class="reveal-mask"><span class="tint">On te dit laquelle pousser.</span></span></h2>
+          <p class="parcours-sec__lead">Un catalogue qui te laisse choisir seul ne sert à rien. Dis ce que tu viens chercher — on t'envoie au bon créneau, et tu liras la fiche après.</p>
+        </div>
+        <div class="parcours" id="parcours" data-reveal-group></div>
+        <p class="parcours__note" id="parcours-note" data-reveal></p>
+      </div>
+    </section>
+
     <!-- ==================== LE CATALOGUE =========================== -->
     <div id="catalogue"></div>
+
+    <!-- ============= LES SEMAINES-TYPES (dérivées du poster) ====== -->
+    <section class="section semaines-sec" aria-label="À quoi ressemble une semaine">
+      <div class="wrap">
+        <div class="semaines-sec__head" data-reveal>
+          <span class="eyebrow">Une semaine, concrètement</span>
+          <h2 class="display semaines-sec__title"><span class="reveal-mask"><span>Deux fois, trois fois,</span></span><span class="reveal-mask"><span class="tint">quatre fois.</span></span></h2>
+          <p class="semaines-sec__lead">Trois façons d'occuper la semaine, montées avec de vrais créneaux du planning — pas des formules à acheter. Personne ne te vendra un rythme : tu prends celui que tu tiendras jusqu'en juin.</p>
+        </div>
+        <div class="semaines" id="semaines" data-reveal-group></div>
+      </div>
+    </section>
 
     <!-- ========================= FINAL CTA ======================== -->
     <section class="gong" aria-label="Réserver une séance">
@@ -388,7 +413,7 @@
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=9"></script>
-  <script is:inline type="module" src="/assets/js/activites.js?v=9"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=11"></script>
+  <script is:inline type="module" src="/assets/js/activites.js?v=11"></script>
 </body>
 </html>

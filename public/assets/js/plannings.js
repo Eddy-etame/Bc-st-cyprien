@@ -5,14 +5,40 @@
    couleur, plus bas dans la page, reste la source de vérité.
    Deep-link : /plannings/#<discipline> pré-sélectionne la discipline.
    ===================================================================== */
-import { SCHEDULE, DAYS, DISCIPLINES, SEASON_LABEL } from "./data.js?v=9";
+import { SCHEDULE, DAYS, DISCIPLINES, SEASON_LABEL, COACH_TBD, COACH_TBD_SHORT } from "./data.js?v=11";
 
 const $ = (s, r = document) => r.querySelector(s);
 const byKey = Object.fromEntries(DISCIPLINES.map((d) => [d.key, d]));
 const state = { day: "", key: "", coach: "" };
 /* pas un vrai nom de coach → jamais une puce de filtre (le grappling n'a pas
    encore son encadrant nommé ; roster.json fait foi). */
-const NON_COACH = new Set(["Coach à confirmer"]);
+const NON_COACH = new Set([COACH_TBD]);
+
+/* ------------------------------------------------------------------ *
+ * LA SEMAINE EN CHIFFRES — la page affichait une grille sans jamais dire
+ * ce qu'elle pèse. Tout est COMPTÉ sur SCHEDULE au chargement : aucun de
+ * ces nombres n'est saisi, donc aucun ne peut vieillir. L'heure sert de
+ * frontière midi/soir (12h40 vs ≥18h) — c'est la lecture du poster.
+ * ------------------------------------------------------------------ */
+const hourOf = (t) => parseInt(t, 10);
+function renderPulse() {
+  const el = $("#pl-pulse");
+  if (!el) return;
+  const midi = SCHEDULE.filter((s) => hourOf(s.time) >= 11 && hourOf(s.time) < 16).length;
+  const soir = SCHEDULE.filter((s) => hourOf(s.time) >= 18).length;
+  const jours = new Set(SCHEDULE.map((s) => s.day)).size;
+  const disc = new Set(SCHEDULE.map((s) => s.key)).size;
+  const cells = [
+    { v: SCHEDULE.length, l: "cours dans la semaine" },
+    { v: jours, l: "jours ouverts · dimanche fermé" },
+    { v: midi, l: "cours en journée" },
+    { v: soir, l: "cours du soir, dès 18h" },
+    { v: disc, l: "disciplines au planning" },
+  ];
+  el.innerHTML = cells
+    .map((c) => `<div class="pulse"><span class="pulse__v">${c.v}</span><span class="pulse__l">${c.l}</span></div>`)
+    .join("");
+}
 
 /* --------------------------- RENDER ------------------------------- */
 function renderFilters() {
@@ -54,26 +80,36 @@ function renderGrid() {
       <h3 class="pday__h">${day.long}</h3>
       <ul class="pday__list" data-reveal-group>
         ${rows
-          .map(
-            (s) => `<li class="slot" data-day="${s.day}" data-key="${s.key}" data-coach="${s.coach}">
+          .map((s) => {
+            // le créneau sans encadrant nommé porte sa marque : c'est un état
+            // assumé, pas une ligne oubliée (cf. COACH_TBD dans data.js).
+            const tbd = s.coach === COACH_TBD;
+            const meta = tbd ? `<i class="tbd">${COACH_TBD_SHORT}</i> · ${s.lvl}` : `${s.coach} · ${s.lvl}`;
+            return `<li class="slot${tbd ? " slot--tbd" : ""}" data-day="${s.day}" data-key="${s.key}" data-coach="${s.coach}">
           <span class="slot__t">${s.time}</span>
-          <span class="slot__body"><b class="slot__name">${s.name}</b><span class="slot__meta">${s.coach} · ${s.lvl}</span></span>
-        </li>`
-          )
+          <span class="slot__body"><b class="slot__name">${s.name}</b><span class="slot__meta">${meta}</span></span>
+        </li>`;
+          })
           .join("")}
       </ul>
     </section>`;
   }).join("");
 }
 
-/* --------------------------- FILTER ------------------------------- */
+/* --------------------------- FILTER ------------------------------- *
+ * Un filtre qui ne dit pas combien il a gardé est un bouton muet : on
+ * comptait les créneaux visibles sans jamais l'écrire. Le compteur annonce
+ * le résultat (et le lit à voix haute — aria-live), et la remise à zéro
+ * n'apparaît QUE lorsqu'il y a quelque chose à remettre à zéro. */
 function apply() {
+  let shown = 0;
   document.querySelectorAll(".slot").forEach((sl) => {
     const ok =
       (!state.day || sl.dataset.day === state.day) &&
       (!state.key || sl.dataset.key === state.key) &&
       (!state.coach || sl.dataset.coach === state.coach);
     sl.hidden = !ok;
+    if (ok) shown++;
   });
   let anyVisible = false;
   document.querySelectorAll(".pday").forEach((d) => {
@@ -83,6 +119,24 @@ function apply() {
   });
   const empty = $("#pl-empty");
   if (empty) empty.hidden = anyVisible;
+
+  const filtered = !!(state.day || state.key || state.coach);
+  const count = $("#pl-count");
+  if (count) {
+    count.textContent = filtered
+      ? `${shown} créneau${shown > 1 ? "x" : ""} sur ${SCHEDULE.length}`
+      : `Les ${SCHEDULE.length} cours de la semaine`;
+  }
+  const reset = $("#pl-reset");
+  if (reset) reset.hidden = !filtered;
+}
+
+/* Remise à zéro — remet les trois familles sur "Tous/Toutes". */
+function resetAll() {
+  setActive("day", "");
+  setActive("key", "");
+  setActive("coach", "");
+  apply();
 }
 
 function setActive(f, v) {
@@ -101,6 +155,9 @@ function wire() {
     setActive(b.dataset.f, b.dataset.v);
     apply();
   });
+  document.addEventListener("click", (e) => {
+    if (e.target.closest("#pl-reset, .pl-empty__reset")) resetAll();
+  });
 }
 
 function fromHash() {
@@ -114,10 +171,12 @@ function boot() {
   const seasonEl = document.getElementById("pl-season");
   if (seasonEl) seasonEl.textContent = `${SEASON_LABEL} · Rive gauche`;
 
+  renderPulse();
   renderFilters();
   renderGrid();
   wire();
   fromHash();
+  apply();   // le compteur affiche l'état réel dès l'arrivée, filtre ou pas
 
   window.BC.reveal(document);
   window.BC.magnetic(document);

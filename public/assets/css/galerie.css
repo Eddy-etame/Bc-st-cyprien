@@ -43,3 +43,68 @@
   .gitem { aspect-ratio: 4/3.2; }
   .gitem--wide { aspect-ratio: 16/10; }
 }
+
+/* ==================== L'INDEX DES ZONES ======================== */
+.gindex { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: clamp(1.4rem,3vw,2rem); }
+.gchip { display: inline-flex; align-items: center; gap: .75ch; min-height: 44px; padding: .55em 1em; border-radius: 100px;
+  border: 1px solid var(--line); background: rgba(18,21,31,.7); color: var(--ink-soft);
+  font: 600 var(--step--1)/1 var(--f-ui); transition: color .3s, background .3s, border-color .3s, transform .2s var(--ease-spring); }
+.gchip:hover { color: var(--ink); border-color: var(--spark); transform: translateY(-2px); }
+.gchip:active { transform: scale(.94); }
+.gchip.is-on { background: var(--spark); border-color: var(--spark); color: var(--void); }
+.gchip:focus-visible { outline: 2px solid var(--spark); outline-offset: 2px; }
+.gchip__n { font: 600 .62rem/1 var(--f-mono); opacity: .75; border-left: 1px solid currentColor; padding-left: .75ch; }
+
+/* ==================== L'ÉDITO DE ZONE ========================== */
+.gzone { scroll-margin-top: 6rem; }
+.gzone__lede { max-width: 62ch; color: var(--ink-soft); font-size: var(--step--1); line-height: 1.66; margin: -.4rem 0 clamp(1rem,2.4vw,1.5rem); }
+
+/* ============ LA PHOTO DEVIENT UN BOUTON (visionneuse) ========= */
+.gitem__btn { display: block; position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+.gitem__btn:focus-visible { outline: 2px solid var(--spark); outline-offset: -3px; }
+.gitem__zoom { position: absolute; right: .8rem; top: .75rem; z-index: 3; font: 600 .6rem/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase;
+  color: var(--void); background: var(--spark); border-radius: 100px; padding: .5em .85em; opacity: 0; transform: translateY(-6px);
+  transition: opacity .35s var(--ease), transform .35s var(--ease); pointer-events: none; }
+.gitem:hover .gitem__zoom, .gitem__btn:focus-visible .gitem__zoom { opacity: 1; transform: none; }
+/* tactile : pas de survol → la pastille se montre quand la photo est développée */
+@media (hover: none){ .gitem.is-in .gitem__zoom { opacity: .92; transform: none; } }
+
+/* ==================== LA VISIONNEUSE =========================== */
+.glight { position: fixed; inset: 0; z-index: 9500; display: grid; place-items: center; padding: clamp(.8rem,3vw,2rem); }
+.glight[hidden] { display: none; }
+.glight__scrim { position: absolute; inset: 0; background: rgba(6,7,11,.94); backdrop-filter: blur(10px); cursor: zoom-out; }
+.glight__inner { position: relative; z-index: 1; width: min(96vw, 1180px); max-height: 92vh; display: flex; flex-direction: column; align-items: center; }
+.glight__fig { display: flex; flex-direction: column; gap: .9rem; align-items: center; max-height: 92vh; }
+.glight__fig img { max-width: 100%; max-height: 74vh; width: auto; height: auto; object-fit: contain; border-radius: var(--radius);
+  border: 1px solid var(--line); box-shadow: var(--shadow), var(--glow); background: var(--paper-2); }
+.glight__cap { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: center; gap: .7rem 1.1rem; text-align: center; }
+.glight__zone { font: 600 .64rem/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--spark); }
+.glight__label { font-size: var(--step-0); color: var(--ink); }
+.glight__count { font: 600 .64rem/1 var(--f-mono); letter-spacing: .1em; color: var(--muted); }
+.glight__nav { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; width: 52px; height: 52px; display: grid; place-items: center;
+  font-size: 2rem; line-height: 0; color: var(--ink); border: 1px solid var(--line); border-radius: 50%; background: rgba(18,21,31,.86);
+  transition: background .3s, border-color .3s, color .3s; }
+.glight__nav:hover { background: var(--spark); color: var(--void); border-color: var(--spark); }
+.glight__nav:focus-visible { outline: 2px solid var(--spark); outline-offset: 3px; }
+.glight__nav--prev { left: max(-6px, -3vw); }
+.glight__nav--next { right: max(-6px, -3vw); }
+.glight__close { position: absolute; top: -.2rem; right: 0; z-index: 2; display: inline-flex; align-items: center; gap: .7ch; min-height: 44px; padding: .5em 1em;
+  font: 600 var(--step--1)/1 var(--f-ui); color: var(--ink); border: 1px solid var(--line); border-radius: 100px; background: rgba(18,21,31,.86); transition: border-color .3s, color .3s; }
+.glight__close:hover { border-color: var(--spark); color: var(--spark); }
+.glight__close:focus-visible { outline: 2px solid var(--spark); outline-offset: 2px; }
+@media (max-width: 700px){
+  .glight__inner { width: 100%; }
+  .glight__fig img { max-height: 62vh; }
+  .glight__nav { top: auto; bottom: -2px; transform: none; width: 46px; height: 46px; }
+  .glight__nav--prev { left: 4px; }
+  .glight__nav--next { right: 4px; }
+  .glight__close { position: static; margin-top: .9rem; }
+  .glight__fig { padding-bottom: 3.2rem; }
+}
+
+/* ============== HORS CADRE — ce qu'une photo ne dit pas ========= */
+.gnote__grid { display: grid; gap: clamp(1.4rem,4vw,3.4rem); grid-template-columns: 1fr; align-items: start; }
+@media (min-width: 900px){ .gnote__grid { grid-template-columns: .85fr 1.15fr; } }
+.gnote__title { margin-top: 1rem; font-size: clamp(1.6rem,1rem+2.2vw,2.6rem); }
+.gnote__prose { display: flex; flex-direction: column; gap: 1rem; max-width: 64ch; }
+.gnote__prose p { color: var(--ink-soft); font-size: var(--step-0); line-height: 1.72; }
