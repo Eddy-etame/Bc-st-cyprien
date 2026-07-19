@@ -14,6 +14,8 @@
    Staff & créneaux = le planning officiel rentrée 2026 (poster du club).
    ===================================================================== */
 
+import { OVERRIDES } from "./content-overrides.js";
+
 /* Constantes anti-péremption — tout libellé de saison passe par ici. */
 export const SEASON = "2026-2027";
 export const SEASON_LABEL = "Saison 2026 — 2027";
@@ -60,7 +62,8 @@ export const LINKS = {
   enfants: "https://box-plus.vercel.app/abonnements#enfants",
   coachings: "https://box-plus.vercel.app/coachings",
   materiel: "https://box-plus.vercel.app/materiel",
-  boutique: "https://boxingcenter.fr/",
+  // maillage de marque : la boutique du réseau a son propre domaine
+  boutique: "https://boutique.boxingcenter.fr/",
   groupe: "https://boxingcenter.fr/",
   facebook: "https://www.facebook.com/BoxingCenterToulouse/",
   instagram: "https://www.instagram.com/boxingcentertoulouse/",
@@ -622,3 +625,52 @@ export const ENCADREMENT = [
     d: "Une photo n'apparaît sous un nom que si la source officielle du réseau associe les deux. Pour les autres, une tuile — jamais un visage emprunté, jamais une banque d'images. Un coach n'est pas un décor.",
   },
 ];
+
+/* ------------------------------------------------------------------ *
+ *  LE CONTENU DU VESTIAIRE — la dernière opération de ce fichier.
+ *
+ *  Le backoffice publie public/content.json ; le pré-build le transforme
+ *  en content-overrides.js (module statique, coût d'exécution nul). On
+ *  fusionne ICI, à la fin : tout ce qui précède reste la valeur de repli,
+ *  et une surcharge partielle ne peut jamais VIDER un bloc.
+ *
+ *  Les exports sont des objets/tableaux : on les MUTE (les liaisons de
+ *  module sont vivantes) plutôt que de les réassigner — les huit modules
+ *  du site lisent donc tous la même instance, déjà à jour.
+ * ------------------------------------------------------------------ */
+function mergeInto(target, patch) {
+  if (!patch || typeof patch !== "object") return;
+  for (const [k, v] of Object.entries(patch)) {
+    if (v == null || v === "") continue;                       // jamais d'effacement par omission
+    if (Array.isArray(v)) { if (Array.isArray(target[k])) target[k].splice(0, target[k].length, ...v); else target[k] = v; }
+    else if (typeof v === "object" && target[k] && typeof target[k] === "object") mergeInto(target[k], v);
+    else target[k] = v;
+  }
+}
+function replaceList(list, patch) {
+  if (Array.isArray(patch) && patch.length) list.splice(0, list.length, ...patch);
+}
+
+mergeInto(SALLE, OVERRIDES.salle);
+mergeInto(PROMOS, OVERRIDES.promos);
+replaceList(TARIFS, OVERRIDES.tarifs);
+replaceList(COACHES, OVERRIDES.coaches);
+replaceList(SCHEDULE, OVERRIDES.schedule);
+replaceList(FAQ, OVERRIDES.faq);
+
+/* L'adresse complète est un champ dérivé : si le vestiaire a changé la rue
+   ou la ville sans retoucher `full`, on la recompose — sinon la fiche de
+   pied de page afficherait l'ancienne adresse à côté de la nouvelle. */
+if (OVERRIDES.salle?.address && !OVERRIDES.salle.address.full) {
+  SALLE.address.full = `${SALLE.address.street}, ${SALLE.address.zip} ${SALLE.address.city}`;
+}
+
+/* Même piège pour le téléphone : le vestiaire change le numéro AFFICHÉ, oublie
+   le champ « lien », et tous les boutons d'appel du site composent encore
+   l'ancien numéro. Mesuré : fiche « 05 62 24 46 99 », href « +33562244682 ».
+   On recompose donc le lien à partir du numéro français saisi (00 → +33). */
+if (OVERRIDES.salle?.phone && !OVERRIDES.salle.phoneHref) {
+  const chiffres = SALLE.phone.replace(/\D/g, "");
+  if (/^0\d{9}$/.test(chiffres)) SALLE.phoneHref = "+33" + chiffres.slice(1);
+  else if (/^33\d{9}$/.test(chiffres)) SALLE.phoneHref = "+" + chiffres;
+}

@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/space-grotesk-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=11" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=13" />
   <meta name="keywords" content="salle de boxe Saint-Cyprien, boxe Toulouse rive gauche, boxe thaï Toulouse, MMA grappling Toulouse, Hyrox Toulouse, baby boxe Toulouse dès 3 ans, Lady Punch, Boxing Center Saint-Cyprien, 31300" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Saint-Cyprien" />
@@ -44,8 +44,8 @@
   <!-- LCP: la photo du héros -->
   <link rel="preload" as="image" href="/assets/img/sc/salle-1.webp" fetchpriority="high" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=12" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=11" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=13" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=13" />
 
   <!-- SEO/GEO — graphe JSON-LD unifié (organisation · salle · site · page · image). Faits réels uniquement — miroir de data.js. -->
   <script is:inline type="application/ld+json">
@@ -57,6 +57,28 @@
         "@id": "https://boxingcenter.fr/#organization",
         "name": "Boxing Center",
         "url": "https://boxingcenter.fr/",
+        "subOrganization": [
+          {
+            "@type": "SportsActivityLocation",
+            "name": "Boxing Center Minimes",
+            "url": "https://boxingcenter.fr/"
+          },
+          {
+            "@type": "SportsActivityLocation",
+            "name": "Boxing Center Portet-sur-Garonne",
+            "url": "https://www.boxing-center-portet.fr/"
+          },
+          {
+            "@type": "SportsActivityLocation",
+            "name": "Boxing Center États-Unis",
+            "url": "https://boxingcenter.fr/"
+          },
+          {
+            "@type": "SportsActivityLocation",
+            "name": "Boxing Center Ramonville",
+            "url": "https://boxingcenter.fr/"
+          }
+        ],
         "sameAs": [
           "https://www.instagram.com/boxingcentertoulouse/",
           "https://www.facebook.com/BoxingCenterToulouse/"
@@ -133,6 +155,9 @@
           "https://boxingcenter.fr/"
         ],
         "parentOrganization": {
+          "@id": "https://boxingcenter.fr/#organization"
+        },
+        "isPartOf": {
           "@id": "https://boxingcenter.fr/#organization"
         },
         "amenityFeature": [
@@ -384,7 +409,9 @@
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=11"></script>
-  <script is:inline type="module" src="/assets/js/home.js?v=11"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=13"></script>
+  <script is:inline type="module" src="/assets/js/home.js?v=13"></script>
+  <!-- l'assistant : module autonome, il remplace la pastille par un vrai dialogue -->
+  <script is:inline type="module" src="/assets/js/chatbot.js?v=13"></script>
 </body>
 </html>

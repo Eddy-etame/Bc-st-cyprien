@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Le vestiaire — Boxing Center Saint-Cyprien</title>
+<link rel="preload" href="/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/admin/admin.css?v=1" />
+</head>
+<body>
+
+<!-- L'ENTRÉE — une porte au noir, un seul faisceau -->
+<div class="login" id="login">
+  <div class="beams" aria-hidden="true"><i></i><i></i></div>
+  <form id="loginForm" autocomplete="on">
+    <span class="lg-kicker">Boxing Center · Saint-Cyprien</span>
+    <h1>Le vestiaire</h1>
+    <p>Tout ce que les visiteurs lisent sur le site se règle d'ici. Entre le mot de passe du staff.</p>
+    <div class="field">
+      <label for="token">Mot de passe</label>
+      <input type="password" id="token" autocomplete="current-password" autofocus required />
+    </div>
+    <p class="status bad" id="loginErr" role="alert"></p>
+    <button class="btn btn--light lg-btn" type="submit" id="loginBtn">Entrer</button>
+    <span class="lg-foot">Accès staff uniquement · <a href="/">← Retour au site</a></span>
+  </form>
+</div>
+
+<!-- LE PLATEAU -->
+<div class="shell hidden" id="app">
+  <aside class="side">
+    <div class="brand">
+      <span class="brand__k">Boxing Center</span>
+      <b>Le vestiaire</b>
+      <span class="brand__s">Saint-Cyprien · rive gauche</span>
+    </div>
+    <span class="beamline" aria-hidden="true"></span>
+    <nav id="nav" aria-label="Sections du vestiaire"></nav>
+    <div class="side__foot">
+      <a class="navbtn" href="/" target="_blank" rel="noopener">Voir le site ↗</a>
+      <button class="navbtn" type="button" id="tourBtn">Revoir le guide</button>
+      <button class="navbtn" type="button" id="logout">Se déconnecter</button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="ptitle">
+        <span class="kicker">Section</span>
+        <h2 id="paneTitle">Accueil</h2>
+      </div>
+      <div class="right">
+        <span class="status" id="status" role="status"></span>
+        <button class="btn ghost" type="button" id="reload" title="Jeter tes modifications et revenir à ce qui est en ligne">Annuler tout</button>
+        <button class="btn btn--light" type="button" id="publish">Publier</button>
+      </div>
+    </div>
+    <div class="content" id="pane"></div>
+  </div>
+</div>
+
+<script src="/admin/tour.js?v=1"></script>
+<script src="/admin/app.js?v=1"></script>
+</body>
+</html>

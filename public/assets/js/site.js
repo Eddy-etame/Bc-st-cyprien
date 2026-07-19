@@ -4,7 +4,17 @@
    Same proven engine as the other salles, with the showroom's restraint:
    no custom cursor, no grain — precision instead of texture.
    ===================================================================== */
-import { NAV, LINKS, SALLE } from "./data.js?v=11";
+import { NAV, LINKS, SALLE, NETWORK } from "./data.js?v=11";
+
+/* ------------------------- MAILLAGE DE MARQUE ---------------------- *
+ * Le réseau propriétaire est un maillage VOULU : les liens sortants vers
+ * boxingcenter.fr, la boutique et les salles sœurs partent en target=_blank
+ * + rel="noopener" — et SURTOUT PAS en nofollow (c'est du jus de marque
+ * qu'on donne exprès). L'icône dit au lecteur qu'il change de site.
+ * Un seul endroit produit ces liens : nav, menu et pied s'y branchent. */
+const svgExt = `<svg class="ext" width="10" height="10" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 11L11 5M11 5H6M11 5V10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const ext = (href, label, title) =>
+  `<a href="${href}" target="_blank" rel="noopener"${title ? ` title="${title}"` : ""}>${label} ${svgExt}</a>`;
 
 const gsap = window.gsap;
 const ScrollTrigger = window.ScrollTrigger;
@@ -34,6 +44,10 @@ function mountNav() {
       </a>
       <div class="nav__links">${links}</div>
       <div class="nav__right">
+        <div class="nav__ext">
+          ${ext(LINKS.groupe, "Le réseau", "Boxing Center — le site du groupe")}
+          ${ext(LINKS.boutique, "Boutique", "La boutique Boxing Center")}
+        </div>
         <a class="btn btn--primary nav__cta" data-magnetic href="${LINKS.essai}"><span>Essai · 10€</span></a>
         <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
@@ -54,9 +68,10 @@ function mountNav() {
       <nav class="menu__nav" aria-label="Menu">${menuLinks}</nav>
       <div class="menu__foot">
         <a class="btn btn--primary" data-magnetic href="${LINKS.essai}"><span>Réserver l'essai · 10€</span></a>
-        <div style="display:flex;gap:1.4rem;flex-wrap:wrap">
-          <a href="${LINKS.boutique}" target="_blank" rel="noopener">Boutique ↗</a>
-          <a href="${LINKS.instagram}" target="_blank" rel="noopener">Instagram ↗</a>
+        <div class="menu__ext">
+          ${ext(LINKS.groupe, "Le réseau Boxing Center")}
+          ${ext(LINKS.boutique, "Boutique")}
+          ${ext(LINKS.instagram, "Instagram")}
           <a href="tel:${SALLE.phoneHref}">${SALLE.phone}</a>
         </div>
       </div>
@@ -97,10 +112,7 @@ function mountNav() {
 
 /* --------------------- FOOTER — la fiche technique ----------------- */
 function mountFooter() {
-  const cols = [
-    { h: "La salle", links: NAV.slice(1, 6) },
-    { h: "Le réseau", links: [{ href: LINKS.groupe, label: "Boxing Center ↗" }, { href: "https://www.boxing-center-portet.fr/", label: "Portet ↗" }, { href: LINKS.instagram, label: "Instagram ↗" }, { href: LINKS.facebook, label: "Facebook ↗" }] },
-  ];
+  const cols = [{ h: "La salle", links: NAV.slice(1, 6) }];
   const fields = [
     { k: "Établissement", v: "Boxing Center — Saint-Cyprien", wide: true },
     { k: "Génération", v: "La dernière-née du réseau" },
@@ -127,12 +139,27 @@ function mountFooter() {
         <div class="footer__links">
           ${cols.map((c) => `<div class="footer__col"><h4>${c.h}</h4>${c.links.map((l) => `<a href="${l.href}">${l.label}</a>`).join("")}</div>`).join("")}
           <div class="footer__col">
+            <h4>Le réseau</h4>
+            ${ext(LINKS.groupe, "Boxing Center — le groupe")}
+            ${ext(LINKS.boutique, "Boutique")}
+          </div>
+          <div class="footer__col">
             <h4>Suivre</h4>
-            <a href="${LINKS.instagram}" target="_blank" rel="noopener">Instagram ↗</a>
-            <a href="${LINKS.facebook}" target="_blank" rel="noopener">Facebook ↗</a>
-            <a href="${LINKS.boutique}" target="_blank" rel="noopener">Boutique ↗</a>
+            ${ext(LINKS.instagram, "Instagram")}
+            ${ext(LINKS.facebook, "Facebook")}
           </div>
         </div>
+
+        <!-- LE MAILLAGE INTER-SALLES — rendu depuis NETWORK (données réelles),
+             sur les 8 pages. Volontairement une simple ligne de liens : la
+             vitrine des salles sœurs vit sur /la-salle/ et n'a pas à être
+             rejouée ici. Ce qui compte en pied de page, c'est le lien. -->
+        <nav class="netmesh" aria-label="Les autres salles du réseau Boxing Center">
+          <span class="netmesh__k">Ton abonnement ouvre aussi</span>
+          <ul class="netmesh__list">
+            ${NETWORK.map((s) => `<li>${ext(s.url, s.name, `${s.name} — ${s.feat}`)}</li>`).join("")}
+          </ul>
+        </nav>
         <div class="footer__bottom">
           <span>© ${new Date().getFullYear()} Boxing Center — Maquette Saint-Cyprien</span>
           <span class="footer__stamp">Rive gauche · garde haute</span>
@@ -283,7 +310,29 @@ function initKinetics() {
    l'ancienne limite se faisait écrêter et s'arrêtait en chemin. On
    remesure Lenis en même temps que ScrollTrigger — chaque page appelle
    déjà BC.refresh() au load et à +500 ms. */
-const refresh = () => { lenis?.resize(); ScrollTrigger?.refresh(); };
+/* ------------------------- UN SEUL NUMÉRO ------------------------- *
+ * Plusieurs pages portent le téléphone EN DUR dans leur markup (héros,
+ * gong final, cartes tarifs). Tant que le numéro ne bougeait pas, c'était
+ * invisible. Depuis que le vestiaire peut le changer, ça ne l'est plus :
+ * mesuré après une modification, la fiche affichait « 05 62 24 46 99 »
+ * pendant que deux boutons composaient encore tel:+33562244682. Un bouton
+ * d'appel qui compose l'ancien numéro est pire qu'un bouton mort.
+ * On réaligne donc TOUS les liens tel: et leurs libellés sur SALLE — en un
+ * seul endroit, rejoué à chaque refresh (donc après les rendus tardifs). */
+function syncPhone(scope = document) {
+  const href = `tel:${SALLE.phoneHref}`;
+  scope.querySelectorAll('a[href^="tel:"]').forEach((a) => {
+    if (a.getAttribute("href") !== href) a.setAttribute("href", href);
+    // le libellé n'est réécrit QUE s'il est lui-même un numéro : on ne touche
+    // pas à « Savoir qui encadre · … » ni à aucune phrase.
+    const cible = a.querySelector("span") || a;
+    if (/^[\d\s.+-]{10,}$/.test(cible.textContent.trim()) && cible.textContent.trim() !== SALLE.phone) {
+      cible.textContent = SALLE.phone;
+    }
+  });
+}
+
+const refresh = () => { lenis?.resize(); ScrollTrigger?.refresh(); syncPhone(); };
 
 /* ------------------------- SCROLL TO ELEMENT ---------------------- *
  * Lenis pilote le scroll via son propre rAF : un scrollIntoView natif en
@@ -391,12 +440,13 @@ function touchLife(scope = document) {
 }
 
 /* ------------------------------ BOOT ------------------------------ */
-window.BC = { reveal, magnetic, refresh, media: hydrateMedia, split, scramble, spotlight, touchLife, initKinetics, scrollToEl, get lenis() { return lenis; }, get velocity() { return velocity; } };
+window.BC = { reveal, magnetic, refresh, syncPhone, media: hydrateMedia, split, scramble, spotlight, touchLife, initKinetics, scrollToEl, get lenis() { return lenis; }, get velocity() { return velocity; } };
 mountNav();
 mountFooter();
 initSmooth();
 hydrateMedia(document);
 magnetic(document);
 wireAnchors();
+syncPhone();
 
 export const BC = window.BC;

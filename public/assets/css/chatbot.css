@@ -1,0 +1,209 @@
+/* =====================================================================
+   L'ASSISTANT — Saint-Cyprien. Le showroom au noir, en petit : la salle
+   est sombre, la LUMIÈRE est l'objet. Le faisceau court en haut du
+   panneau, la bulle du visiteur est en lumière blanche, celle du club en
+   panneau relevé. Aucune teinte hors charte : tout sort des tokens de
+   base.css (--paper / --spark / --line / --ink), rien n'est inventé ici.
+
+   LISIBILITÉ (loi n°1) : le corps des bulles reste #e9ecf4 sur #12151f
+   (≈14:1) ; la bulle claire écrit #06070b sur #f6f8fc (≈18:1). Aucun
+   texte ne dépend d'une animation pour être lu — les transitions ne
+   portent que l'entrée du panneau.
+   ===================================================================== */
+
+.scchat {
+  position: fixed;
+  right: clamp(1rem, 2.5vw, 2rem);
+  bottom: calc(54px + clamp(1rem, 2.5vw, 2rem) + 14px);
+  z-index: 8600;
+  font-family: var(--f-ui, Inter, system-ui, sans-serif);
+  pointer-events: none;
+}
+.scchat.is-open { pointer-events: auto; }
+
+/* ------------------------------ le panneau ------------------------------ */
+.scchat__panel {
+  display: flex;
+  flex-direction: column;
+  width: min(384px, calc(100vw - 2rem));
+  height: min(560px, calc(100vh - 8.5rem));
+  overflow: hidden;
+  border: 1px solid var(--line, rgba(233, 236, 244, 0.13));
+  border-radius: var(--radius, 14px);
+  background: var(--paper-2, #12151f);
+  box-shadow: var(--shadow, 0 22px 60px -20px rgba(0, 0, 0, 0.75)), 0 0 60px rgba(246, 248, 252, 0.06);
+  transform-origin: bottom right;
+  animation: scchat-in 0.42s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes scchat-in {
+  from { opacity: 0; transform: translateY(14px) scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ------------------------------- l'en-tête ------------------------------ */
+.scchat__head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1rem 1rem 0.95rem;
+  border-bottom: 1px solid var(--line-soft, rgba(233, 236, 244, 0.06));
+  background: var(--paper-3, #1a1e2c);
+}
+/* le faisceau : la signature de la salle, réduite à un filet de lumière */
+.scchat__beam {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--spark, #f6f8fc) 45%, transparent);
+  opacity: 0.55;
+}
+.scchat__ident { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
+.scchat__kicker {
+  font: 600 0.6rem/1 var(--f-mono, ui-monospace, monospace);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--spark, #f6f8fc);
+}
+.scchat__ident strong {
+  font: 600 0.98rem/1.2 var(--f-display, "Space Grotesk", sans-serif);
+  letter-spacing: -0.01em;
+  color: var(--ink, #e9ecf4);
+}
+.scchat__close {
+  margin-left: auto;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: var(--muted, #8b93a8);
+  border: 1px solid var(--line, rgba(233, 236, 244, 0.13));
+  transition: color 0.25s, border-color 0.25s, background 0.25s;
+}
+.scchat__close:hover { color: var(--ink, #e9ecf4); border-color: var(--spark, #f6f8fc); }
+.scchat__close:focus-visible { outline: 2px solid var(--spark, #f6f8fc); outline-offset: 2px; }
+
+/* ------------------------------- le fil ------------------------------- */
+.scchat__body { flex: 1; min-height: 0; display: flex; }
+.scchat__messages {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.1rem 1rem;
+  scrollbar-width: thin;
+}
+.scchat__msg { display: flex; max-width: 100%; }
+.scchat__msg--user { justify-content: flex-end; }
+.scchat__bubble {
+  max-width: 85%;
+  padding: 0.68rem 0.9rem;
+  border-radius: 13px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--ink, #e9ecf4);
+  background: var(--paper-3, #1a1e2c);
+  border: 1px solid var(--line-soft, rgba(233, 236, 244, 0.06));
+  overflow-wrap: anywhere;
+}
+.scchat__msg--bot .scchat__bubble { border-bottom-left-radius: 4px; }
+/* le visiteur parle EN LUMIÈRE — c'est lui que le faisceau isole */
+.scchat__msg--user .scchat__bubble {
+  color: var(--void, #06070b);
+  background: var(--spark, #f6f8fc);
+  border-color: var(--spark, #f6f8fc);
+  border-bottom-right-radius: 4px;
+  font-weight: 500;
+}
+.scchat__dots { display: inline-flex; gap: 4px; padding: 0.15rem 0; }
+.scchat__dots i {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--muted, #8b93a8);
+  animation: scchat-dot 1.25s ease-in-out infinite;
+}
+.scchat__dots i:nth-child(2) { animation-delay: 0.16s; }
+.scchat__dots i:nth-child(3) { animation-delay: 0.32s; }
+@keyframes scchat-dot {
+  0%, 60%, 100% { opacity: 0.32; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-3px); }
+}
+
+/* ------------------------------ le pied ------------------------------ */
+.scchat__foot {
+  border-top: 1px solid var(--line-soft, rgba(233, 236, 244, 0.06));
+  padding: 0.75rem 0.85rem 0.85rem;
+  background: var(--paper, #0b0d14);
+}
+.scchat__chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.65rem; }
+.scchat__chips button {
+  padding: 0.45rem 0.75rem;
+  border-radius: 100px;
+  font: 500 0.76rem/1 var(--f-ui, Inter, sans-serif);
+  color: var(--ink-soft, #c3c9d8);
+  background: var(--paper-2, #12151f);
+  border: 1px solid var(--line, rgba(233, 236, 244, 0.13));
+  transition: color 0.22s, border-color 0.22s, transform 0.22s;
+}
+.scchat__chips button:hover { color: var(--ink, #e9ecf4); border-color: var(--spark, #f6f8fc); transform: translateY(-1px); }
+.scchat__chips button:focus-visible { outline: 2px solid var(--spark, #f6f8fc); outline-offset: 2px; }
+.scchat__chips .scchat__chip--cta { color: var(--spark, #f6f8fc); border-color: rgba(246, 248, 252, 0.34); }
+
+.scchat__form { display: flex; align-items: center; gap: 0.5rem; }
+.scchat__input {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0.6rem 0.9rem;
+  border-radius: 100px;
+  font: 400 0.9rem/1.3 var(--f-ui, Inter, sans-serif);
+  color: var(--ink, #e9ecf4);
+  background: var(--paper-2, #12151f);
+  border: 1px solid var(--line, rgba(233, 236, 244, 0.13));
+  transition: border-color 0.25s;
+}
+.scchat__input::placeholder { color: var(--muted, #8b93a8); }
+.scchat__input:focus { outline: none; border-color: var(--spark, #f6f8fc); }
+.scchat__send {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: var(--void, #06070b);
+  background: var(--spark, #f6f8fc);
+  transition: transform 0.25s cubic-bezier(0.34, 1.4, 0.4, 1), box-shadow 0.3s;
+}
+.scchat__send:hover { transform: translateY(-2px); box-shadow: var(--glow, 0 0 34px rgba(246, 248, 252, 0.16)); }
+.scchat__send:active { transform: translateY(1px) scale(0.97); }
+.scchat__send:focus-visible { outline: 2px solid var(--spark, #f6f8fc); outline-offset: 3px; }
+
+.scchat__tel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  margin-top: 0.5rem;
+  font: 600 0.68rem/1 var(--f-mono, ui-monospace, monospace);
+  letter-spacing: 0.1em;
+  color: var(--muted, #8b93a8);
+  transition: color 0.25s;
+}
+.scchat__tel:hover { color: var(--spark, #f6f8fc); }
+
+/* --------------------------- petits écrans --------------------------- */
+@media (max-width: 480px) {
+  .scchat { left: clamp(1rem, 2.5vw, 2rem); }
+  .scchat__panel { width: 100%; height: min(72vh, calc(100vh - 8.5rem)); }
+}
+
+/* ------------------------- mouvement réduit ------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .scchat__panel { animation: none; }
+  .scchat__dots i { animation: none; opacity: 0.6; }
+  .scchat__chips button, .scchat__send, .scchat__close { transition: none; }
+}

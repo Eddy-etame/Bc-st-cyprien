@@ -30,5 +30,8 @@ Allow: /
 # --- Tous les autres ---
 User-agent: *
 Allow: /
+# Le backoffice et les fonctions n'ont rien à faire dans un index.
+Disallow: /admin/
+Disallow: /api/
 
 Sitemap: https://st-cyprien.boxingcenter.fr/sitemap.xml

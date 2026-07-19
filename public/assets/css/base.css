@@ -444,3 +444,31 @@ body[data-page="contact"] .phero::before { background:
 .tbd-note__d { margin-top: .5rem; color: var(--ink-soft); font-size: var(--step--1); line-height: 1.6; }
 .tbd-note__tel { display: inline-flex; align-items: center; min-height: 44px; margin-top: .35rem; font: 600 var(--step--1)/1 var(--f-ui); color: var(--ink); border-bottom: 1px solid var(--spark-2); transition: color .3s, border-color .3s; }
 .tbd-note__tel:hover { color: var(--spark); border-color: var(--spark); }
+
+/* ============== MAILLAGE DE MARQUE — liens sortants du réseau ============ *
+ * Le réseau propriétaire (groupe, boutique, salles sœurs) est lié depuis la
+ * nav, le menu et le pied de CHAQUE page. L'icône ↗ prévient qu'on change de
+ * site ; le contraste reste au niveau des autres liens de la barre — un lien
+ * SEO qu'on n'ose pas afficher ne vaut rien.
+ * `.ext` est l'icône inline partagée par les trois emplacements. */
+.ext { display: inline-block; vertical-align: baseline; opacity: .7; transition: opacity .3s, transform .3s var(--ease-spring); }
+a:hover > .ext, a:hover .ext { opacity: 1; transform: translate(1px, -1px); }
+
+/* nav (desktop large seulement : sous 1180px, le menu porte les mêmes liens) */
+.nav__ext { display: none; align-items: center; gap: 1.2rem; margin-right: .4rem; }
+@media (min-width: 1180px) { .nav__ext { display: flex; } }
+.nav__ext a { display: inline-flex; align-items: center; gap: .45ch; min-height: 44px; font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); transition: color .3s; }
+.nav__ext a:hover { color: var(--spark); }
+.nav__ext a:active { color: var(--ink); }
+
+/* menu plein écran */
+.menu__ext { display: flex; gap: 1.4rem; flex-wrap: wrap; }
+.menu__ext a { display: inline-flex; align-items: center; gap: .45ch; }
+
+/* pied de page — la ligne des salles sœurs */
+.netmesh { display: flex; flex-wrap: wrap; align-items: baseline; gap: .7rem 1.4rem; margin-top: clamp(2rem,4vw,3rem); padding-top: 1.5rem; border-top: 1px solid var(--line-soft); }
+.netmesh__k { font: 600 .62rem/1 var(--f-mono); letter-spacing: .18em; text-transform: uppercase; color: var(--spark); }
+.netmesh__list { display: flex; flex-wrap: wrap; gap: .4rem 1.4rem; }
+.netmesh__list a { display: inline-flex; align-items: center; gap: .45ch; min-height: 44px; font-size: var(--step--1); color: var(--muted); transition: color .3s; }
+.netmesh__list a:hover { color: var(--ink); }
+.netmesh__list a:active { color: var(--spark); }

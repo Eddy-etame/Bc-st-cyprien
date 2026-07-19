@@ -4,3 +4,6 @@ dist/
 .vercel/
 *.log
 _dist_before/
+
+# outil de vérification local (non versionné)
+.claude/
