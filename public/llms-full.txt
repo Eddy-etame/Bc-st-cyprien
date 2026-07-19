@@ -15,7 +15,7 @@
 - Fédérations : FFBoxe, FFKMDA, FMMAF.
 - Position dans le réseau : dernière-née des 5 salles Boxing Center (Minimes, Portet-sur-Garonne, États-Unis, Ramonville, Saint-Cyprien) ; premier Boxing Center rive gauche de Toulouse.
 - Itinéraire : https://maps.google.com/?q=11+rue+Sainte-Lucie+31300+Toulouse
-- Sites du réseau : site mère https://boxingcenter.fr/ · Portet-sur-Garonne https://www.boxing-center-portet.fr/ · boutique https://boutique.boxingcenter.fr/ · inscriptions, abonnements et séance d'essai https://box-plus.vercel.app/
+- Sites du réseau : site mère https://boxingcenter.fr/ · Portet-sur-Garonne https://www.boxing-center-portet.fr/ · Minimes https://minimes.boxingcenter.fr/ · Ramonville https://ramonville.boxingcenter.fr/ · boutique https://boutique.boxingcenter.fr/ · inscriptions, abonnements et séance d'essai https://box-plus.vercel.app/
 - Réseaux sociaux : https://www.instagram.com/boxingcentertoulouse/ · https://www.facebook.com/BoxingCenterToulouse/
 
 ## L'assistant du site

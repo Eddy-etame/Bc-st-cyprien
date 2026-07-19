@@ -10,7 +10,8 @@
    VISIONNEUSE (on regarde une photo en grand, on avance au clavier). Une
    galerie où l'on ne peut pas agrandir une photo n'est pas une galerie.
    ===================================================================== */
-import { GALLERY } from "./data.js?v=11";
+import { picture } from "./data.js?v=15";
+import { GALLERY } from "./data-galerie.js?v=15";
 
 const $ = (s, r = document) => r.querySelector(s);
 const IMG = "/assets/img/sc/";
@@ -25,7 +26,7 @@ const FLAT = GALLERY.flatMap((z) => z.shots.map((s) => ({ ...s, zone: z.zone }))
 function figure(s, i) {
   return `<figure class="gitem${s.feat === "wide" ? " gitem--wide" : ""}">
     <button class="gitem__btn" type="button" data-i="${i}" aria-label="Agrandir : ${esc(s.alt)}">
-      <img src="${IMG}${s.f}" alt="${esc(s.alt)}" loading="lazy" decoding="async" />
+      ${picture(IMG + s.f, `alt="${esc(s.alt)}" loading="lazy" decoding="async"`)}
       <span class="gitem__glow" aria-hidden="true"></span>
       <span class="gitem__zoom" aria-hidden="true">Agrandir</span>
     </button>

@@ -9,11 +9,8 @@
        vérité : data.js. -->
   <title>Planning des cours — Boxing Center Saint-Cyprien, Toulouse</title>
   <meta name="description" content="24 cours par semaine sur 6 jours : anglaise, thaï/K1, grappling, Hyrox, Lady Punch, camp et école dès 3 ans. Filtre par jour, discipline ou coach." />
-  <!-- Polices auto-hébergées : mêmes familles et graisses que la maquette
-       (woff2 latin, cf. /assets/css/fonts.css). -->
   <link rel="preload" as="font" type="font/woff2" href="/fonts/space-grotesk-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=14" />
   <meta name="keywords" content="planning boxe Saint-Cyprien, horaires salle de boxe Toulouse rive gauche, planning boxe thaï Toulouse, cours boxe enfants Toulouse, Lady Punch horaires, Boxing Center Saint-Cyprien planning" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Saint-Cyprien" />
@@ -44,9 +41,9 @@
   <meta name="twitter:description" content="Filtre par jour, discipline ou coach. Le poster officiel de la saison fait foi." />
   <meta name="twitter:image" content="https://st-cyprien.boxingcenter.fr/assets/img/sc/salle-1.webp" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=14" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=14" />
-  <link rel="stylesheet" href="/assets/css/plannings.css?v=14" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=15" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=15" />
+  <link rel="stylesheet" href="/assets/css/plannings.css?v=15" />
 
   <!-- SEO/GEO — graphe JSON-LD unifié (organisation · salle · site · page · image ·
        fil d'Ariane). Faits réels uniquement — miroir de data.js. -->
@@ -65,11 +62,13 @@
           },
           {
             "@type": "SportsActivityLocation",
+            "@id": "https://minimes.boxingcenter.fr/#salle",
             "name": "Boxing Center Minimes",
-            "url": "https://boxingcenter.fr/"
+            "url": "https://minimes.boxingcenter.fr/"
           },
           {
             "@type": "SportsActivityLocation",
+            "@id": "https://www.boxing-center-portet.fr/#salle",
             "name": "Boxing Center Portet-sur-Garonne",
             "url": "https://www.boxing-center-portet.fr/"
           },
@@ -80,8 +79,9 @@
           },
           {
             "@type": "SportsActivityLocation",
+            "@id": "https://ramonville.boxingcenter.fr/#salle",
             "name": "Boxing Center Ramonville",
-            "url": "https://boxingcenter.fr/"
+            "url": "https://ramonville.boxingcenter.fr/"
           }
         ],
         "sameAs": [
@@ -276,6 +276,9 @@
         "breadcrumb": {
           "@id": "https://st-cyprien.boxingcenter.fr/plannings/#breadcrumb"
         },
+        "mainEntity": {
+          "@id": "https://st-cyprien.boxingcenter.fr/plannings/#cours"
+        },
         "speakable": {
           "@type": "SpeakableSpecification",
           "cssSelector": [
@@ -312,6 +315,8 @@
           }
         ]
       }
+    ,
+      {"@type":"ItemList","@id":"https://st-cyprien.boxingcenter.fr/plannings/#cours","name":"Les cours de la semaine — Boxing Center Saint-Cyprien","numberOfItems":7,"itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Course","@id":"https://st-cyprien.boxingcenter.fr/plannings/#cours-anglaise","name":"Boxe Anglaise","url":"https://st-cyprien.boxingcenter.fr/activites/#anglaise","inLanguage":"fr-FR","provider":{"@id":"https://st-cyprien.boxingcenter.fr/#salle"},"hasCourseInstance":[{"@type":"CourseInstance","name":"Boxe Anglaise","courseMode":"Onsite","location":{"@id":"https://st-cyprien.boxingcenter.fr/#salle"},"instructor":{"@type":"Person","name":"Dadi"},"courseSchedule":{"@type":"Schedule","repeatFrequency":"P1W","byDay":["https://schema.org/Monday","https://schema.org/Wednesday","https://schema.org/Friday"],"startTime":"12:40","scheduleTimezone":"Europe/Paris"}},{"@type":"CourseInstance","name":"Boxe Anglaise","courseMode":"Onsite","location":{"@id":"https://st-cyprien.boxingcenter.fr/#salle"},"instructor":{"@type":"Person","name":"Dadi"},"courseSchedule":{"@type":"Schedule","repeatFrequency":"P1W","byDay":["https://schema.org/Monday","https://schema.org/Wednesday","https://schema.org/Friday"],"startTime":"20:00","scheduleTimezone":"Europe/Paris"}}]}},{"@type":"ListItem","position":2,"item":{"@type":"Course","@id":"https://st-cyprien.boxingcenter.fr/plannings/#cours-camp","name":"Boxing Camp","url":"https://st-cyprien.boxingcenter.fr/activites/#camp","inLanguage":"fr-FR","provider":{"@id":"https://st-cyprien.boxingcenter.fr/#salle"},"hasCourseInstance":[{"@type":"CourseInstance","name":"Boxing Camp","courseMode":"Onsite","location":{"@id":"https://st-cyprien.boxingcenter.fr/#salle"},"instructor":{"@type":"Person","name":"Hicham"},"courseSchedule":{"@type":"Schedule","repeatFrequency":"P1W","byDay":"https://schema.org/Monday","startTime":"18:20","scheduleTimezone":"Europe/Paris"}},{"@type":"CourseInstance","name":"Boxing Camp","courseMode":"Onsite","location":{"@id":"https://st-cyprien.boxingcenter.fr/#salle"},"instructor":{"@type":"Person","name":"Dadi"},"courseSchedule":{"@type":"Schedule","repeatFrequency":"P1W","byDay":"https://schema.org/Friday","startTime":"18:20","scheduleTimezone":"Europe/Paris"}},{"@type":"CourseInstance","name":"Boxing Camp","courseMode":"Onsite","location":{"@id":"https://st-cyprien.boxingcenter.fr/#salle"},"instructor":{"@type":"Person","name":"Hicham"},"courseSchedule":{"@type":"Schedule","repeatFrequency":"P1W","byDay":"https://schema.org/Saturday","startTime":"11:00","scheduleTimezone":"Europe/Paris"}}]}},{"@type":"ListItem","position":3,"item":{"@type":"Course","@id":"https://st-cyprien.boxingcenter.fr/plannings/#cours-hyrox","name":"Hyrox & Cross","url":"https://st-cyprien.boxingcenter.fr/activites/#hyrox","inLanguage":"fr-FR","provider":{"@id":"https://st-cyprien.boxingcenter.fr/#salle"},"hasCourseInstance":[{"@type":"CourseInstance","name":"Cross-Training","courseMode":"Onsite","location":{"@id":"https://st-cyprien.boxingcenter.fr/#salle"},"instructor":{"@type":"Person","name":"Hicham"},"courseSchedule":{"@type":"Schedule","repeatFrequency":"P1W","byDay":["https://schema.org/Monday","https://schema.org/Wednesday"],"startTime":"19:00","scheduleTimezone":"Europe/Paris"}},{"@type":"CourseInstance","name":"Hyrox","courseMode":"Onsite","location":{"@id":"https://st-cyprien.boxingcenter.fr/#salle"},"instructor":{"@type":"Person","name":"Hicham"},"courseSchedule":{"@type":"Schedule","repeatFrequency":"P1W","byDay":"https://schema.org/Wednesday","startTime":"18:20","scheduleTimezone":"Europe/Paris"}}]}},{"@type":"ListItem","position":4,"item":{"@type":"Course","@id":"https://st-cyprien.boxingcenter.fr/plannings/#cours-thai","name":"Boxe Thaï · K1","url":"https://st-cyprien.boxingcenter.fr/activites/#thai","inLanguage":"fr-FR","provider":{"@id":"https://st-cyprien.boxingcenter.fr/#salle"},"hasCourseInstance":[{"@type":"CourseInstance","name":"Boxe Thaï · K1","courseMode":"Onsite","location":{"@id":"https://st-cyprien.boxingcenter.fr/#salle"},"instructor":{"@type":"Person","name":"Tawee"},"courseSchedule":{"@type":"Schedule","repeatFrequency":"P1W","byDay":["https://schema.org/Tuesday","https://schema.org/Thursday"],"startTime":"12:40","scheduleTimezone":"Europe/Paris"}},{"@type":"CourseInstance","name":"Boxe Thaï · K1","courseMode":"Onsite","location":{"@id":"https://st-cyprien.boxingcenter.fr/#salle"},"instructor":{"@type":"Person","name":"Victor G"},"courseSchedule":{"@type":"Schedule","repeatFrequency":"P1W","byDay":["https://schema.org/Tuesday","https://schema.org/Thursday"],"startTime":"20:00","scheduleTimezone":"Europe/Paris"}},{"@type":"CourseInstance","name":"Boxe Thaï · K1","courseMode":"Onsite","location":{"@id":"https://st-cyprien.boxingcenter.fr/#salle"},"instructor":{"@type":"Person","name":"Victor G"},"courseSchedule":{"@type":"Schedule","repeatFrequency":"P1W","byDay":"https://schema.org/Friday","startTime":"19:00","scheduleTimezone":"Europe/Paris"}}]}},{"@type":"ListItem","position":5,"item":{"@type":"Course","@id":"https://st-cyprien.boxingcenter.fr/plannings/#cours-lady","name":"Lady Punch","url":"https://st-cyprien.boxingcenter.fr/activites/#lady","inLanguage":"fr-FR","provider":{"@id":"https://st-cyprien.boxingcenter.fr/#salle"},"hasCourseInstance":[{"@type":"CourseInstance","name":"Lady Punch","courseMode":"Onsite","location":{"@id":"https://st-cyprien.boxingcenter.fr/#salle"},"instructor":{"@type":"Person","name":"Dadi"},"courseSchedule":{"@type":"Schedule","repeatFrequency":"P1W","byDay":["https://schema.org/Tuesday","https://schema.org/Thursday"],"startTime":"18:20","scheduleTimezone":"Europe/Paris"}}]}},{"@type":"ListItem","position":6,"item":{"@type":"Course","@id":"https://st-cyprien.boxingcenter.fr/plannings/#cours-grappling","name":"Grappling","url":"https://st-cyprien.boxingcenter.fr/activites/#grappling","inLanguage":"fr-FR","provider":{"@id":"https://st-cyprien.boxingcenter.fr/#salle"},"hasCourseInstance":[{"@type":"CourseInstance","name":"Grappling","courseMode":"Onsite","location":{"@id":"https://st-cyprien.boxingcenter.fr/#salle"},"courseSchedule":{"@type":"Schedule","repeatFrequency":"P1W","byDay":["https://schema.org/Tuesday","https://schema.org/Thursday"],"startTime":"19:00","scheduleTimezone":"Europe/Paris"}}]}},{"@type":"ListItem","position":7,"item":{"@type":"Course","@id":"https://st-cyprien.boxingcenter.fr/plannings/#cours-kids","name":"Boxe Éducative","url":"https://st-cyprien.boxingcenter.fr/activites/#kids","inLanguage":"fr-FR","provider":{"@id":"https://st-cyprien.boxingcenter.fr/#salle"},"hasCourseInstance":[{"@type":"CourseInstance","name":"Éducative 7/11 · 12/16 · compétiteurs","courseMode":"Onsite","location":{"@id":"https://st-cyprien.boxingcenter.fr/#salle"},"instructor":{"@type":"Person","name":"Dadi"},"courseSchedule":{"@type":"Schedule","repeatFrequency":"P1W","byDay":["https://schema.org/Wednesday","https://schema.org/Saturday"],"startTime":"15:00","scheduleTimezone":"Europe/Paris"}},{"@type":"CourseInstance","name":"Baby Boxe","courseMode":"Onsite","location":{"@id":"https://st-cyprien.boxingcenter.fr/#salle"},"instructor":{"@type":"Person","name":"Dadi"},"courseSchedule":{"@type":"Schedule","repeatFrequency":"P1W","byDay":"https://schema.org/Saturday","startTime":"14:15","scheduleTimezone":"Europe/Paris"}}]}}]}
     ]
   }
   </script>
@@ -365,10 +370,19 @@
         </div>
         <!-- Aperçu léger (WebP 800/1600) EN COULEUR ; le poster pleine résolution (source de vérité) reste cliquable via le lien. -->
         <a class="pl-poster" data-reveal href="/assets/img/sc/planning-2026.webp" target="_blank" rel="noopener" aria-label="Ouvrir le planning officiel en pleine résolution, dans un nouvel onglet">
+          <!-- Le poster est une grille de texte : c'est le seul cliché du site où
+               l'AVIF écrase vraiment le WebP (mesuré : 193 Ko -> 112 Ko à qualité
+               identique). Le WebP reste dessous, filet pour qui ne lit pas l'AVIF.
+               scripts/build-avif.mjs casse le build si ces .avif manquent. -->
+          <picture>
+          <source type="image/avif"
+                  srcset="/assets/img/sc/planning-2026-800.avif 800w, /assets/img/sc/planning-2026-1600.avif 1600w"
+                  sizes="(max-width: 820px) 92vw, min(92vw, 1280px)" />
           <img src="/assets/img/sc/planning-2026-1600.webp"
                srcset="/assets/img/sc/planning-2026-800.webp 800w, /assets/img/sc/planning-2026-1600.webp 1600w"
                sizes="(max-width: 820px) 92vw, min(92vw, 1280px)"
                width="2400" height="1996" alt="Planning des cours saison 2026-2027 de Boxing Center Saint-Cyprien : boxe anglaise, boxe thaï/K1, grappling, Hyrox, cross-training, Lady Punch, boxing camp et école enfants dès 3 ans (Baby Boxe 3/6, éducative 7/11, ados 12/16, compétiteurs), du lundi au samedi." loading="lazy" decoding="async" />
+          </picture>
         </a>
       </div>
     </section>
@@ -414,8 +428,8 @@
 
   <!-- Libs d'animation, auto-hébergées et regroupées (gsap + ScrollTrigger + Lenis) :
        une seule requête same-origin au lieu de trois vers un CDN tiers. -->
-  <script is:inline defer src="/assets/js/vendor.min.js?v=14"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=14"></script>
-  <script is:inline type="module" src="/assets/js/plannings.js?v=14"></script>
+  <script is:inline defer src="/assets/js/vendor.min.js?v=15"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=15"></script>
+  <script is:inline type="module" src="/assets/js/plannings.js?v=15"></script>
 </body>
 </html>

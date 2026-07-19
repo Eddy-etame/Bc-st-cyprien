@@ -4,7 +4,7 @@
    Same proven engine as the other salles, with the showroom's restraint:
    no custom cursor, no grain — precision instead of texture.
    ===================================================================== */
-import { NAV, LINKS, SALLE, NETWORK } from "./data.js?v=11";
+import { NAV, LINKS, SALLE, NETWORK, picture, pictureEl } from "./data.js?v=15";
 
 /* ------------------------- MAILLAGE DE MARQUE ---------------------- *
  * Le réseau propriétaire est un maillage VOULU : les liens sortants vers
@@ -39,7 +39,7 @@ function mountNav() {
   document.getElementById("nav").innerHTML = `
     <nav class="nav" id="site-nav" aria-label="Navigation principale">
       <a class="nav__brand" href="/" aria-label="Boxing Center Saint-Cyprien — accueil">
-        <img class="nav__logo" src="/assets/img/logo-white.webp" alt="Boxing Center" width="384" height="179" />
+        ${picture("/assets/img/logo-white.webp", `class="nav__logo" alt="Boxing Center" width="384" height="179"`)}
         <span class="nav__salle">Saint-Cyprien</span>
       </a>
       <div class="nav__links">${links}</div>
@@ -60,7 +60,7 @@ function mountNav() {
     <div class="menu" id="menu" aria-hidden="true">
       <div class="menu__top">
         <a class="nav__brand" href="/" aria-label="Boxing Center Saint-Cyprien — accueil">
-          <img class="nav__logo" src="/assets/img/logo-white.webp" alt="Boxing Center" width="384" height="179" />
+          ${picture("/assets/img/logo-white.webp", `class="nav__logo" alt="Boxing Center" width="384" height="179"`)}
           <span class="nav__salle">Saint-Cyprien</span>
         </a>
         <button class="menu__close" id="menu-close">Fermer <span aria-hidden="true">✕</span></button>
@@ -281,7 +281,9 @@ function hydrateMedia(scope = document) {
     // alt: prefer an explicit data-alt (real image described) over the mono pill label (data-label)
     img.alt = el.dataset.alt || el.dataset.label || ""; img.loading = el.hasAttribute("data-eager") ? "eager" : "lazy"; img.decoding = "async";
     if (el.hasAttribute("data-eager")) img.fetchPriority = "high"; // LCP (le préload du head porte déjà fetchpriority=high)
-    el.prepend(img);
+    // pictureEl n'enveloppe que les clichés dont l'AVIF est MESURÉ plus léger ;
+    // partout ailleurs il rend le <img> tel quel, sans nœud en plus.
+    el.prepend(pictureEl(img));
   });
 }
 
@@ -333,6 +335,28 @@ function syncPhone(scope = document) {
 }
 
 const refresh = () => { lenis?.resize(); ScrollTrigger?.refresh(); syncPhone(); };
+
+/* Le rattrapage ci-dessus dépendait d'un CALENDRIER : syncPhone tournait au
+ * boot, au load et à +500 ms, et chaque page rend son contenu en JS quelque
+ * part là-dedans. Mesuré sur /tarifs/ après un changement de numéro au
+ * vestiaire : un bouton d'appel bien visible affichait encore « 05 62 24 46 82 »
+ * et le composait, parce que tarifs.js l'avait posé APRÈS le dernier passage.
+ * Un BC.refresh() à la main le corrigeait — donc ce n'était pas la logique, mais
+ * l'instant. On ne parie plus sur l'horloge : tout lien tel: ajouté au document,
+ * quand que ce soit, est réaligné à la frame suivante. */
+function watchPhone() {
+  if (!("MutationObserver" in window)) return;
+  let prevu = false;
+  new MutationObserver((lots) => {
+    if (prevu) return;
+    if (!lots.some((l) => [...l.addedNodes].some((n) => n.nodeType === 1))) return;
+    prevu = true;
+    // surtout PAS requestAnimationFrame : mesuré, l'onglet en arrière-plan ne
+    // rend plus de frame, la relance restait en attente et le drapeau bloquait
+    // l'observateur pour de bon. setTimeout tourne, lui, onglet caché compris.
+    setTimeout(() => { prevu = false; syncPhone(); }, 0);
+  }).observe(document.body, { childList: true, subtree: true });
+}
 
 /* ------------------------- SCROLL TO ELEMENT ---------------------- *
  * Lenis pilote le scroll via son propre rAF : un scrollIntoView natif en
@@ -454,7 +478,7 @@ function armChatbot() {
   const pill = document.querySelector("a.chatbot");
   if (!pill) return;
   let load = null;
-  const warm = () => (load ||= import("./chatbot.js?v=14"));
+  const warm = () => (load ||= import("./chatbot.js?v=15"));
   ["pointerenter", "focus", "touchstart"].forEach((ev) =>
     pill.addEventListener(ev, warm, { once: true, passive: true })
   );
@@ -484,6 +508,7 @@ hydrateMedia(document);
 magnetic(document);
 wireAnchors();
 syncPhone();
+watchPhone();
 armChatbot();
 
 export const BC = window.BC;

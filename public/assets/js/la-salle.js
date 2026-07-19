@@ -5,7 +5,8 @@
    Puis LE CODE (4 valeurs durables), LE RÉSEAU (les 4 sœurs + sa place, la
    preuve du titre) et les infos pratiques. Tout depuis data.js.
    ===================================================================== */
-import { VISITE, VALUES, NETWORK, SALLE, LINKS } from "./data.js?v=11";
+import { NETWORK, SALLE, LINKS, picture } from "./data.js?v=15";
+import { VISITE, VALUES } from "./data-la-salle.js?v=15";
 
 const $ = (s, r = document) => r.querySelector(s);
 const esc = (s = "") => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -19,7 +20,7 @@ function renderVisite() {
     (v, i) => `<article class="station" id="poste-${v.n}" data-i="${i}" data-reveal>
       <div class="station__media media" data-label="${v.tag}">
         <span class="station__glow" aria-hidden="true"></span>
-        <img src="${v.img}" alt="${esc(v.alt)}" loading="lazy" decoding="async" />
+        ${picture(v.img, `alt="${esc(v.alt)}" loading="lazy" decoding="async"`)}
       </div>
       <div class="station__body">
         <span class="station__n">${v.n}</span>

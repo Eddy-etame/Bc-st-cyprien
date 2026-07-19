@@ -4,7 +4,8 @@
    compléments → conditions → avis Google RÉELS → FAQ argent. Tout depuis
    data.js (PROMOS daté, jamais de prix en dur), tous les CTA → box-plus.
    ===================================================================== */
-import { TARIFS, PROMOS, REVIEWS, PRICING_FAQ, LINKS } from "./data.js?v=11";
+import { TARIFS, PROMOS, REVIEWS, LINKS, SALLE } from "./data.js?v=15";
+import { PRICING_FAQ } from "./data-tarifs.js?v=15";
 
 const $ = (s, r = document) => r.querySelector(s);
 
@@ -22,7 +23,7 @@ function renderEssai() {
     </div>
     <div class="essai__cta">
       <a class="btn btn--primary" data-magnetic href="${e.href}"><span>${e.cta} · ${e.price}</span></a>
-      <a class="btn" data-magnetic href="tel:+33562244682"><span>05 62 24 46 82</span></a>
+      <a class="btn" data-magnetic href="tel:${SALLE.phoneHref}"><span>${SALLE.phone}</span></a>
     </div>`;
 }
 

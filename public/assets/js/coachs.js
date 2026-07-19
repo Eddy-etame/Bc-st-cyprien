@@ -11,7 +11,8 @@
    TAPIS SANS NOM (l'état voulu du grappling, écrit et daté par personne) et
    LA MÉTHODE (trois règles vérifiables, pas de biographie inventée).
    ===================================================================== */
-import { COACHES, SCHEDULE, DAYS, LINKS, SALLE, COACH_TBD, COACH_TBD_SHORT, COACH_TBD_WHY, ENCADREMENT } from "./data.js?v=11";
+import { COACHES, SCHEDULE, DAYS, LINKS, SALLE, COACH_TBD, COACH_TBD_SHORT, COACH_TBD_WHY, picture } from "./data.js?v=15";
+import { ENCADREMENT } from "./data-coachs.js?v=15";
 
 const $ = (s, r = document) => r.querySelector(s);
 const esc = (s = "") => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -38,7 +39,7 @@ function renderLead() {
   el.innerHTML = `
     <div class="coachlead__spot" aria-hidden="true"></div>
     <div class="coachlead__media">
-      <img src="${c.img}" alt="${esc(c.alt || "")}" loading="eager" fetchpriority="high" decoding="async" />
+      ${picture(c.img, `alt="${esc(c.alt || "")}" loading="eager" fetchpriority="high" decoding="async"`)}
     </div>
     <div class="coachlead__body">
       <span class="coachlead__tag">${c.tag}</span>

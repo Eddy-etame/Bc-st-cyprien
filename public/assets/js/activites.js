@@ -6,7 +6,8 @@
    Tout depuis DISCIPLINES (data.js). Deep-link : /activites/#<key> défile
    jusqu'à la discipline et l'allume.
    ===================================================================== */
-import { DISCIPLINES, ECOLE_LEVELS, LINKS, COACH_TBD, COACH_TBD_SHORT, COACH_TBD_WHY, SALLE, PARCOURS, PARCOURS_NOTE, SEMAINES, SCHEDULE, DAYS } from "./data.js?v=11";
+import { DISCIPLINES, LINKS, COACH_TBD, COACH_TBD_SHORT, COACH_TBD_WHY_SHORT, SALLE, SCHEDULE, DAYS, picture } from "./data.js?v=15";
+import { ECOLE_LEVELS, PARCOURS, PARCOURS_NOTE, SEMAINES } from "./data-activites.js?v=15";
 
 const $ = (s, r = document) => r.querySelector(s);
 const esc = (s = "") => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -110,7 +111,7 @@ function entry(d) {
   return `<article class="act${d.coachTbd ? " act--tbd" : ""}" id="${d.key}" data-reveal>
     <div class="act__media media" data-label="${d.tag}">
       <span class="act__glow" aria-hidden="true"></span>
-      <img src="${d.img}" alt="${esc(d.alt)}" loading="lazy" decoding="async" />
+      ${picture(d.img, `alt="${esc(d.alt)}" loading="lazy" decoding="async"`)}
     </div>
     <div class="act__body">
       <span class="act__tag">${d.tag}</span>
@@ -136,7 +137,7 @@ function entry(d) {
 function tbdNote() {
   return `<aside class="tbd-note" aria-label="Encadrement à confirmer">
     <span class="tbd-note__k">${COACH_TBD_SHORT}</span>
-    <p class="tbd-note__d">${COACH_TBD_WHY}</p>
+    <p class="tbd-note__d">${COACH_TBD_WHY_SHORT}</p>
     <a class="tbd-note__tel" href="tel:${SALLE.phoneHref}">Demander qui encadre · ${SALLE.phone}</a>
   </aside>`;
 }

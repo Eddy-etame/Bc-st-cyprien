@@ -5,7 +5,8 @@
    La home positionne + route : configurateur → /plannings/ · /activites/ ·
    box-plus. Tout est rendu depuis data.js (planning réel rentrée 2026).
    ===================================================================== */
-import { STATS, DISCIPLINES, COACHES, LINKS, COACH_TBD_SHORT, COACH_TBD_WHY } from "./data.js?v=11";
+import { DISCIPLINES, COACHES, LINKS, COACH_TBD_SHORT, COACH_TBD_WHY_SHORT } from "./data.js?v=15";
+import { STATS } from "./data-home.js?v=15";
 
 const gsap = window.gsap;
 const ScrollTrigger = window.ScrollTrigger;
@@ -56,15 +57,21 @@ function renderConfig() {
       <span><b>Jours</b> ${d.jours}</span>
       <span><b>Niveau</b> ${d.niveau}</span>
     </div>
-    <p class="config__desc">${d.desc}</p>
-    ${d.coachTbd ? `<p class="config__tbd">${COACH_TBD_WHY}</p>` : ""}
+    <p class="config__desc">${d.teaser}</p>
+    ${d.coachTbd ? `<p class="config__tbd">${COACH_TBD_WHY_SHORT}</p>` : ""}
     <div class="config__cta">
       <a class="btn btn--primary" data-magnetic href="${LINKS.essai}"><span>Essayer · 10€</span></a>
       <a class="btn" data-magnetic href="/plannings/#${d.key}"><span>Voir les créneaux</span></a>
       <a class="btn config__link" data-magnetic href="/activites/#${d.key}"><span>En détail</span></a>
     </div>`;
   body.innerHTML = sheet(DISCIPLINES[0]);
-  DISCIPLINES.forEach((d) => { const im = new Image(); im.src = d.img; }); // warm cache
+  /* Il y avait ici un préchauffage `new Image(); im.src = d.img` pour que le
+     changement d'onglet soit instantané. Depuis que certains clichés sont
+     servis en AVIF, ce raccourci téléchargeait le WebP pendant que le <picture>
+     du rendu prenait l'AVIF : mesuré, DEUX fichiers pour la même photo et
+     +50 Ko sur l'accueil. Les sept médias sont de toute façon montés juste en
+     dessous par BC.media() — la même image, une seule fois, dans le format que
+     le navigateur a choisi. On laisse donc le navigateur décider seul. */
 
   let curr = 0;
   const select = (i) => {

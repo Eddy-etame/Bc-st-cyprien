@@ -22,7 +22,7 @@ const MIME = {
   ".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8",
   ".mjs": "text/javascript; charset=utf-8", ".css": "text/css; charset=utf-8",
   ".json": "application/json; charset=utf-8", ".svg": "image/svg+xml",
-  ".webp": "image/webp", ".png": "image/png", ".jpg": "image/jpeg",
+  ".webp": "image/webp", ".avif": "image/avif", ".png": "image/png", ".jpg": "image/jpeg",
   ".woff2": "font/woff2", ".txt": "text/plain; charset=utf-8", ".xml": "application/xml",
 };
 
@@ -114,6 +114,8 @@ const server = http.createServer(async (req, res) => {
     }
   }
   res.setHeader("Content-Type", MIME[path.extname(file)] || "application/octet-stream");
+  // serveur de VÉRIFICATION : jamais de cache, sinon on mesure la version d avant
+  res.setHeader("Cache-Control", "no-store");
   res.end(fs.readFileSync(file));
 });
 

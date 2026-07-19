@@ -16,6 +16,44 @@
 
 import { OVERRIDES } from "./content-overrides.js";
 
+/* ------------------------- LES CLICHÉS EN AVIF ---------------------- *
+ * Liste écrite par scripts/build-avif.mjs — NE PAS ÉDITER À LA MAIN.
+ * N'y figurent que les images où l'AVIF est réellement plus léger que le
+ * WebP à qualité visuellement identique (mesuré, PSNR >= 42 dB). Sur les
+ * photos déjà bien serrées, l'AVIF est plus lourd : elles n'y sont pas.
+ * Tout ce qui n'est pas listé reste servi en WebP, point. */
+const AVIF = new Set([
+  /* AVIF:DEBUT */
+  "/assets/img/logo-white.webp",
+  "/assets/img/sc/anglaise-header.webp",
+  "/assets/img/sc/lady.webp",
+  "/assets/img/sc/planning-2026-1600.webp",
+  "/assets/img/sc/planning-2026-800.webp",
+  /* AVIF:FIN */
+]);
+
+/** Le <img> reste la vérité (alt, lazy, dimensions) ; le <source> AVIF ne
+ *  s'ajoute que si le fichier existe vraiment — sinon un navigateur qui
+ *  comprend l'AVIF téléchargerait un 404 et n'afficherait rien. */
+export function picture(src, attrs = "") {
+  const img = `<img src="${src}" ${attrs} />`;
+  if (!AVIF.has(src)) return img;
+  return `<picture><source srcset="${src.replace(/\.webp$/, ".avif")}" type="image/avif" />${img}</picture>`;
+}
+
+/** Même décision, pour le code qui construit ses nœuds au lieu de coller
+ *  du HTML : renvoie l'élément à insérer (un <img>, ou un <picture> qui
+ *  le contient). Le <img> reste accessible à l'appelant. */
+export function pictureEl(img) {
+  if (!AVIF.has(img.getAttribute("src"))) return img;
+  const p = document.createElement("picture");
+  const s = document.createElement("source");
+  s.type = "image/avif";
+  s.srcset = img.getAttribute("src").replace(/\.webp$/, ".avif");
+  p.append(s, img);
+  return p;
+}
+
 /* Constantes anti-péremption — tout libellé de saison passe par ici. */
 export const SEASON = "2026-2027";
 export const SEASON_LABEL = "Saison 2026 — 2027";
@@ -80,25 +118,17 @@ export const NAV = [
   { href: "/contact/", label: "Contact" },
 ];
 
-/* Les preuves du titre — chiffres inusables (aucune date, aucun "neuf") */
-export const STATS = [
-  { v: 1200, suffix: " m²", l: "de plateau, rive gauche" },
-  { v: 4, suffix: " min", l: "du métro A · Saint-Cyprien République" },
-  { v: 10, suffix: "+", l: "disciplines, une seule adresse" },
-  { v: 4, suffix: "", l: "coachs spécialisés au planning" },
-];
-
-/* ------------------------------------------------------------------ *
- *  L'ÉTAT « PAS ENCORE NOMMÉ » — le grappling tourne au planning officiel
- *  mais le poster ne porte AUCUN nom d'encadrant (roster.json : aucune
- *  entrée, confidence nulle). On n'invente pas : on affiche un état voulu,
- *  identifié partout par le même token, avec la raison écrite en clair.
- *  Toute la chaîne (configurateur, activités, planning, coachs) lit ceci.
- * ------------------------------------------------------------------ */
 export const COACH_TBD = "Coach à confirmer";
 export const COACH_TBD_SHORT = "Nom à venir";
 export const COACH_TBD_WHY =
   "Le créneau tourne, la salle est ouverte, le tapis est là. Le nom de l'encadrant s'affichera ici le jour où il est acté au planning officiel — pas avant. On préfère une case vide à un nom qu'on ne peut pas tenir.";
+
+/* La version courte : sur /activites/ et dans le configurateur, la case vide
+   n'est pas le sujet de la page — elle se justifie en deux lignes. La version
+   longue reste sur /coachs/, dont l'encadrement EST le sujet. Une bonne
+   formule ne sert qu'une fois. */
+export const COACH_TBD_WHY_SHORT =
+  "Le cours a lieu, le tapis est prêt — mais aucun encadrant n'est acté au planning officiel. Tant que ce n'est pas signé, on n'écrit pas de nom.";
 
 /* ------------------------------------------------------------------ *
  *  LE CONFIGURATEUR — la signature. Tu choisis ta discipline comme on
@@ -120,6 +150,7 @@ export const DISCIPLINES = [
     jours: "Midi lun./mer./ven. · soirs lun./mer./ven. 20h",
     niveau: "Débutant → confirmé",
     desc: "Jab, esquive, jeu de jambes : le noble art enseigné proprement, du premier gant aux gants qui piquent. Les cours du midi pour la pause active, les soirs pour le vrai travail.",
+    teaser: "Le pied avant, le jab, la sortie d'axe. Tout part de là.",
     img: "/assets/img/sc/anglaise-header.webp",
     alt: "Un boxeur en casque et gants, garde haute et appui avant marqué, au milieu d'un cours d'anglaise sur le ring ; d'autres binômes travaillent derrière les cordes",
   },
@@ -132,6 +163,7 @@ export const DISCIPLINES = [
     jours: "Midi mar. & jeu. · soirs mar./jeu. 20h · ven. 19h",
     niveau: "Tous niveaux",
     desc: "Tibias, genoux, coudes — la boxe la plus complète, avec un enseignement dans les règles de l'art. Deux coachs, cinq créneaux par semaine.",
+    teaser: "Poings, tibias, genoux, coudes. Rien ne reste dehors.",
     img: "/assets/img/sc/thai-1.webp",
     alt: "Deux pratiquants de boxe thaï face à face au bord du ring : l'un tient les pattes d'ours, mains bandées de rouge, l'autre s'apprête à frapper",
   },
@@ -145,6 +177,7 @@ export const DISCIPLINES = [
     jours: "Mardi & jeudi · 19h – 20h",
     niveau: "Tous niveaux",
     desc: "Projections, contrôle, soumissions. Le complément sol qui transforme un boxeur en combattant complet.",
+    teaser: "Là où la boxe s'arrête, le sol commence.",
     img: "/assets/img/sc/grappling.webp",
     alt: "Vue plongeante sur la cage : plusieurs binômes travaillent au sol, contrôles et sorties, pendant qu'un pratiquant debout observe la position",
   },
@@ -157,6 +190,7 @@ export const DISCIPLINES = [
     jours: "Hyrox mer. 18h20 · cross lun. & mer. 19h",
     niveau: "Ça pique — pour tous",
     desc: "Circuits Hyrox et cross-training : le cardio et la force qui portent tes gants. La zone moteur tourne toute la semaine.",
+    teaser: "Le moteur d'abord : le souffle qui tient les trois dernières reprises.",
     img: "/assets/img/sc/hyrox.webp",
     alt: "Un groupe de pratiquants court en peloton sur une route de campagne, foulée soutenue — le travail de caisse derrière l'Hyrox et le cross",
   },
@@ -169,6 +203,7 @@ export const DISCIPLINES = [
     jours: "Mardi & jeudi · 18h20 – 19h",
     niveau: "Zéro prérequis",
     desc: "Un créneau à elles : la boxe pour la forme, la confiance et le cardio — pas de cliché, pas de galerie qui te regarde.",
+    teaser: "Un créneau à elles, du premier gant au sac qui claque.",
     img: "/assets/img/sc/lady-2.webp",
     alt: "Une boxeuse en gants, garde serrée, frappe un sac de frappe pendant un cours Lady Punch ; d'autres pratiquantes travaillent aux sacs derrière elle",
   },
@@ -181,6 +216,7 @@ export const DISCIPLINES = [
     jours: "Baby 3/6 sam. · 7/11 & 12/16 mer. + sam. · compétiteurs mer./sam.",
     niveau: "Baby → compétition",
     desc: "Du Baby Boxe aux compétiteurs : coordination, respect, cadre. L'école complète, du premier déplacement au premier combat.",
+    teaser: "De 3 ans au premier combat, une seule école et une seule ligne.",
     img: "/assets/img/sc/educative-1.webp",
     alt: "Deux jeunes boxeurs en casque et gants s'échangent des touches en assaut encadré, devant un mur peint de la salle",
   },
@@ -193,6 +229,7 @@ export const DISCIPLINES = [
     jours: "Lun. & ven. 18h20 · sam. 11h",
     niveau: "Tous niveaux",
     desc: "Le format signature Boxing Center : technique + cardio + sacs en une séance dense. Le meilleur point d'entrée si tu hésites.",
+    teaser: "Le format maison : rien à choisir, tout y passe.",
     img: "/assets/img/sc/training.webp",
     alt: "Sur le tapis, un pratiquant lance un coup de pied haut pendant que le groupe travaille en binômes, gants et protège-tibias aux jambes",
   },
@@ -247,80 +284,6 @@ export const DAYS = [
   { k: "Sam", long: "Samedi" },
 ];
 
-/* ------------------------------------------------------------------ *
- *  LA VISITE — la signature de /la-salle/. La visite du showroom, au noir :
- *  six postes, chacun allumé quand tu l'atteins. La lumière isole le geste,
- *  pas le neuf. Photos = vrais clichés BC ; specs factuelles (rien d'inventé).
- * ------------------------------------------------------------------ */
-export const VISITE = [
-  {
-    n: "01",
-    t: "Le plateau",
-    tag: "1 200 m² · rive gauche",
-    d: "Un seul niveau, mille deux cents mètres carrés, rive gauche. Tu entres et tu vois déjà où tu vas travailler : le ring au fond, les sacs à droite, rien de planqué.",
-    img: "/assets/img/sc/salle-1.webp",
-    alt: "Le plateau vu depuis l'entrée : la ligne de sacs suspendus à la charpente, le tapis bleu, le ring au fond et la cage grillagée sur la droite",
-    specs: ["1 200 m²", "Un seul niveau"],
-  },
-  {
-    n: "02",
-    t: "L'anglaise",
-    tag: "Le noble art",
-    d: "Ring, cordes tendues, coin bleu, coin rouge. C'est le poste de Dadi : le jab, la garde, le déplacement, six fois par semaine.",
-    img: "/assets/img/sc/anglaise.webp",
-    alt: "Un cours d'anglaise en plein travail : jeunes et adultes gantés de part et d'autre des cordes, sacs et poires de vitesse en arrière-plan",
-    specs: ["Coach · Dadi", "6 créneaux / sem."],
-  },
-  {
-    n: "03",
-    t: "Le pieds-poings",
-    tag: "Thaï · K1",
-    d: "Le tapis pieds-poings, sous son propre faisceau. Tawee et Victor G y passent cinq fois par semaine.",
-    img: "/assets/img/sc/thai-2.webp",
-    alt: "Un pratiquant lance un genou face à un coach qui tient la patte d'ours, sur le tapis bleu au pied du ring",
-    specs: ["Coachs · Tawee, Victor G", "5 créneaux / sem."],
-  },
-  {
-    n: "04",
-    t: "La zone cross & muscu",
-    tag: "Le moteur",
-    d: "Machines, charges, sacs : la salle des moteurs. Hyrox le mercredi, cross lundi et mercredi avec Hicham — la caisse derrière chaque discipline.",
-    img: "/assets/img/sc/muscu.webp",
-    alt: "La zone moteur : rameurs au premier plan, cage à squat, bancs inclinés et machines de charge sur sol caoutchouc",
-    specs: ["Coach · Hicham", "Hyrox · Cross · HIIT"],
-  },
-  {
-    n: "05",
-    t: "L'école",
-    tag: "Dès 3 ans",
-    d: "Baby Boxe le samedi, éducative 7/11, ados 12/16, compétiteurs : l'école complète tient son propre créneau, encadrée par Dadi du plus petit au ring.",
-    img: "/assets/img/sc/educative.webp",
-    alt: "Un jeune boxeur en casque frappe un sac sous la charpente métallique, vu depuis le coin du ring",
-    specs: ["Baby 3/6 · 7/11 · 12/16", "Coach · Dadi"],
-  },
-  {
-    n: "06",
-    t: "Le collectif",
-    tag: "Tous niveaux",
-    d: "Lady Punch le mardi et le jeudi, boxing camp trois fois par semaine : les créneaux où l'on transpire ensemble, tous niveaux confondus.",
-    img: "/assets/img/sc/tous-niveaux.webp",
-    alt: "Un pratiquant, gants aux poings, attend son tour au bord du ring pendant que le groupe s'échauffe derrière les cordes",
-    specs: ["Lady Punch · 100 % féminin", "Camp · 3 créneaux"],
-  },
-];
-
-/* Le code de la salle — quatre valeurs DURABLES (le geste / l'école /
-   le quartier / le choix). Aucune n'expire. */
-export const VALUES = [
-  { n: "01", t: "Le geste", d: "Chaque cours éclaire une chose : ta garde, ton souffle, tes appuis. Le reste attend son tour." },
-  { n: "02", t: "L'école", d: "Du Baby Boxe 3/6 aux compétiteurs : une lignée complète, tenue par le même coach d'un âge à l'autre." },
-  { n: "03", t: "Le quartier", d: "Tu vois le ring depuis la porte. Premier Boxing Center rive gauche, à 4 minutes du métro A." },
-  { n: "04", t: "Le choix", d: "Plus de dix disciplines, un seul plancher : tu règles ta semaine comme TU la veux." },
-];
-
-/* L'encadrement — noms = le planning officiel rentrée 2026. Photo seulement
-   quand la source prouve le nom↔visage (Dadi) ; les autres = tuile stylée
-   (roster.json fait foi — jamais de stock, jamais de nom croisé). */
 export const COACHES = [
   { name: "Dadi", role: "Anglaise · Lady Punch · École", tag: "Le pilier",
     note: "Anglaise, Lady Punch et toute l'école, du Baby Boxe aux compétiteurs : Dadi tient la semaine d'un bout à l'autre.",
@@ -434,196 +397,6 @@ export const FAQ = [
   { q: "Y a-t-il des cours pour les enfants ?", a: "Oui, dès 3 ans : Baby Boxe le samedi, boxe éducative 7/11 ans et ados 12/16 ans le mercredi et le samedi, et un créneau compétiteurs encadré par Dadi." },
   { q: "Faut-il un abonnement pour commencer ?", a: "Non. La séance d'essai à 10€ donne accès à toutes les disciplines, matériel prêté. Tu t'abonnes ensuite si tu veux continuer — sans engagement, ou à la saison." },
   { q: "Quels sont les horaires ?", a: "Du lundi au samedi, de 10h00 à 21h15 (dernier cours 20h–21h15 selon les jours). Fermé le dimanche." },
-];
-
-/* FAQ argent — servie sur /tarifs/. Désamorce les malentendus prix. */
-export const PRICING_FAQ = [
-  { q: "L'offre Duo, c'est 29€ pour deux ?", a: "Non : 29€ par personne. Tu viens avec ton binôme, vous payez 29€ chacun pour 4 semaines de cours illimités, sans engagement." },
-  { q: "Y a-t-il un engagement ?", a: "La séance d'essai et l'offre Duo sont sans engagement. La saison se règle en une fois ou en 4× sans frais, sur douze mois." },
-  { q: "Le t-shirt offert, c'est pour qui ?", a: "Pour les 100 premiers inscrits de la saison : un t-shirt Boxing Center offert dès l'inscription." },
-  { q: "Je peux m'entraîner dans les autres salles ?", a: "Oui. La saison donne accès libre aux 5 clubs du réseau : Portet, Minimes, États-Unis, Saint-Cyprien et Ramonville." },
-];
-
-/* ------------------------------------------------------------------ *
- *  LA GALERIE, ZONE PAR ZONE — remontée ici depuis galerie.js (le module
- *  la portait en local avec un TODO). Une zone = un intertitre, une SPEC
- *  mono, une ligne d'édito (ce qu'on y fait vraiment) et ses clichés.
- *  `alt` décrit la photo ; `cap` est la pastille mono — les deux ne se
- *  confondent jamais. Aucune photo de banque : le seul fichier de stock qui
- *  traînait encore (salle-2.webp — deux modèles en studio, gants rouges,
- *  zéro signalétique BC) a été SUPPRIMÉ du dépôt, pas seulement décâblé :
- *  un visuel qui ne montre pas cette salle n'a rien à faire dans le build.
- * ------------------------------------------------------------------ */
-export const GALLERY = [
-  {
-    id: "plateau", zone: "Le plateau", spec: "1 200 m² · un seul niveau",
-    lede: "Un seul niveau : depuis la porte tu vois déjà les sacs, le ring et la cage. Rien n'est planqué derrière une cloison, aucune mezzanine à monter — c'est tout l'argument.",
-    shots: [
-      { f: "salle-1.webp", feat: "wide", cap: "Depuis l'entrée", alt: "Le plateau vu depuis la porte : la ligne de sacs suspendus à la charpente, le tapis bleu, le ring au fond et la cage grillagée sur la droite" },
-    ],
-  },
-  {
-    id: "anglaise", zone: "L'anglaise", spec: "Le noble art · le ring",
-    lede: "Six créneaux par semaine sur le même ring : trois midis, trois soirs. C'est le poste de Dadi, du premier jab au sparring encadré.",
-    shots: [
-      { f: "anglaise-header.webp", feat: "wide", cap: "Le ring", alt: "Un boxeur en casque et gants, garde haute et appui avant marqué, au milieu d'un cours d'anglaise sur le ring" },
-      { f: "anglaise.webp", cap: "Au travail", alt: "Un cours d'anglaise en plein travail : jeunes et adultes gantés de part et d'autre des cordes, sacs et poires de vitesse en arrière-plan" },
-    ],
-  },
-  {
-    id: "pieds-poings", zone: "Le pieds-poings", spec: "Thaï · K1",
-    lede: "Cinq créneaux tenus à deux : Tawee le midi, Victor G le soir. Les tibias et les genoux entrent dans le jeu, la technique ne baisse pas d'un cran.",
-    shots: [
-      { f: "thai-2.webp", feat: "wide", cap: "La surface thaï", alt: "Un pratiquant lance un genou face à un coach qui tient la patte d'ours, sur le tapis bleu au pied du ring" },
-      { f: "thai.webp", cap: "Tibias, genoux", alt: "Travail de boxe thaï aux sacs, protège-tibias aux jambes, sous la lumière de la salle" },
-      { f: "thai-1.webp", cap: "K1", alt: "Deux pratiquants face à face au bord du ring : l'un tient les pattes d'ours, mains bandées de rouge, l'autre s'apprête à frapper" },
-    ],
-  },
-  {
-    id: "sol", zone: "Le sol", spec: "Grappling · mardi & jeudi",
-    lede: "Une heure au sol, deux soirs par semaine, dans la cage : projections, contrôle, soumissions. Le complément qui manque à la plupart des boxeurs.",
-    shots: [
-      { f: "grappling.webp", feat: "wide", cap: "Contrôle & soumissions", alt: "Vue plongeante sur la cage : plusieurs binômes travaillent au sol, contrôles et sorties, pendant qu'un pratiquant debout observe la position" },
-    ],
-  },
-  {
-    id: "moteur", zone: "Le moteur", spec: "Hyrox · cross · muscu",
-    lede: "La zone qui porte tout le reste : charges, rameurs, circuits. Hicham y tient l'Hyrox le mercredi et le cross deux fois par semaine — la caisse se construit ici, pas sur le ring.",
-    shots: [
-      { f: "muscu.webp", feat: "wide", cap: "Charges & sacs", alt: "La zone moteur : rameurs au premier plan, cage à squat, bancs inclinés et machines de charge sur sol caoutchouc" },
-      { f: "cross.webp", cap: "Cross-training", alt: "Circuit de cross-training en cours, matériel de conditionnement disposé au sol" },
-      { f: "hyrox.webp", cap: "Hyrox", alt: "Un groupe de pratiquants court en peloton sur une route de campagne, foulée soutenue — le travail de caisse derrière l'Hyrox" },
-      { f: "training.webp", cap: "Boxing camp", alt: "Sur le tapis, un pratiquant lance un coup de pied haut pendant que le groupe travaille en binômes, gants et protège-tibias aux jambes" },
-    ],
-  },
-  {
-    id: "lady", zone: "Lady Punch", spec: "100 % féminin · mar. & jeu.",
-    lede: "Mardi et jeudi à 18h20, le créneau est à elles. Zéro prérequis, zéro galerie qui regarde : la boxe pour la forme, le cardio et la confiance.",
-    shots: [
-      { f: "lady-2.webp", feat: "wide", cap: "100 % féminin", alt: "Une boxeuse en gants, garde serrée, frappe un sac de frappe pendant un cours Lady Punch ; d'autres pratiquantes travaillent aux sacs derrière elle" },
-      { f: "lady.webp", cap: "Cardio & confiance", alt: "Cours de Lady Punch aux sacs, plusieurs pratiquantes gantées en travail de cardio" },
-    ],
-  },
-  {
-    id: "ecole", zone: "L'école", spec: "Dès 3 ans → compétiteurs",
-    lede: "Baby Boxe le samedi, éducative 7/11 et ados 12/16 le mercredi et le samedi, compétiteurs dans la foulée. Le même coach du bac à sable au premier combat.",
-    shots: [
-      { f: "educative.webp", feat: "wide", cap: "Boxe éducative", alt: "Un jeune boxeur en casque frappe un sac sous la charpente métallique, vu depuis le coin du ring" },
-      { f: "educative-1.webp", cap: "7 → 16 ans", alt: "Deux jeunes boxeurs en casque et gants s'échangent des touches en assaut encadré, devant un mur peint de la salle" },
-      { f: "tous-niveaux.webp", cap: "Tous niveaux", alt: "Un pratiquant, gants aux poings, attend son tour au bord du ring pendant que le groupe s'échauffe derrière les cordes" },
-    ],
-  },
-];
-
-/* Les paliers de l'école — remontés ici depuis activites.js (TODO levé).
-   Sous-niveaux de la discipline `kids` ; jours = poster officiel. */
-export const ECOLE_LEVELS = [
-  { age: "3 → 6 ans",   name: "Baby Boxe",         jours: "Samedi 14h15",          d: "Le samedi : coordination, jeu, premiers déplacements. On apprend à bouger avant d'apprendre à frapper." },
-  { age: "7 → 11 ans",  name: "Éducative enfants", jours: "Mercredi & samedi 15h", d: "La technique par le jeu, le cadre par le respect. La vraie boxe, à leur échelle." },
-  { age: "12 → 16 ans", name: "Éducative ados",    jours: "Mercredi & samedi 15h", d: "Gestuelle propre, intensité qui monte, premiers assauts encadrés." },
-  { age: "Compétition", name: "Compétiteurs",      jours: "Mercredi & samedi",     d: "Le créneau de ceux qui montent sur le ring : préparation, sparring, corner. Encadré par Dadi." },
-];
-
-/* ------------------------------------------------------------------ *
- *  L'AIGUILLAGE — /activites/ listait sept disciplines et laissait le
- *  visiteur choisir tout seul : un catalogue, pas un conseil. Ici on prend
- *  position. Cinq intentions réelles → une discipline réelle (`key` mappe
- *  DISCIPLINES, donc l'ancre existe forcément). On n'aiguille PAS vers la
- *  thaï ni le grappling : qui les cherche sait déjà pourquoi — le dire vaut
- *  mieux que fabriquer une raison.
- * ------------------------------------------------------------------ */
-export const PARCOURS = [
-  {
-    want: "Je n'ai jamais mis de gants",
-    key: "camp",
-    why: "Le camp ne demande aucun acquis : on t'apprend à te tenir, à respirer, à frapper un sac sans te faire mal au poignet. Trois créneaux dans la semaine, personne ne regarde le nouveau.",
-  },
-  {
-    want: "Je veux une technique, pas une séance de fitness",
-    key: "anglaise",
-    why: "Six passages par semaine sur le même ring, le même œil au bord des cordes. Le jab avant la sueur : c'est le poste où l'on te corrige un détail jusqu'à ce qu'il tienne.",
-  },
-  {
-    want: "Je veux que ça pique",
-    key: "hyrox",
-    why: "Hyrox et cross : la zone moteur, charges et circuits. Tu n'y apprends pas à boxer, tu y construis la caisse qui te permet de boxer une troisième reprise.",
-  },
-  {
-    want: "Je préfère commencer sans galerie derrière moi",
-    key: "lady",
-    why: "Mardi et jeudi à 18h20, le créneau ne s'ouvre qu'aux femmes. Aucun prérequis, aucun public — juste les sacs et le cardio.",
-  },
-  {
-    want: "C'est pour mon enfant",
-    key: "kids",
-    why: "Dès trois ans au Baby Boxe du samedi, puis 7/11, 12/16, compétiteurs. Le même coach à chaque palier : il n'y a personne à qui réexpliquer ton gamin.",
-  },
-];
-
-/* La ligne qui assume ce qu'on n'aiguille pas (affichée sous l'aiguillage). */
-export const PARCOURS_NOTE =
-  "La thaï et le grappling ne sont pas dans cette liste : on n'a jamais vu quelqu'un arriver au grappling par hasard. Si tu les cherches, ils t'attendent plus bas, aux mêmes conditions.";
-
-/* ------------------------------------------------------------------ *
- *  LES SEMAINES-TYPES — la question qui reste après le catalogue : « ça
- *  ressemble à quoi, concrètement, une semaine ici ? » Chaque ligne est un
- *  POINTEUR {day,time} vers SCHEDULE : rien n'est recopié, donc rien ne peut
- *  diverger du poster. Un pointeur qui ne retrouve pas son créneau est
- *  simplement omis à l'affichage — jamais rendu en dur.
- *  Ce sont des exemples, pas des formules vendues : le rendu le dit.
- * ------------------------------------------------------------------ */
-export const SEMAINES = [
-  {
-    n: "2×",
-    t: "Deux fois, sans se mentir",
-    d: "Le minimum qui produit quelque chose. En dessous, on ne progresse pas, on entretient.",
-    slots: [
-      { day: "Lun", time: "18h20" },
-      { day: "Mer", time: "20h00" },
-    ],
-  },
-  {
-    n: "3×",
-    t: "Trois fois, debout puis au sol",
-    d: "Les poings, les tibias, le tapis. La semaine de qui veut être complet plutôt que spécialiste.",
-    slots: [
-      { day: "Lun", time: "20h00" },
-      { day: "Mar", time: "20h00" },
-      { day: "Jeu", time: "19h00" },
-    ],
-  },
-  {
-    n: "4×",
-    t: "Quatre fois, moteur compris",
-    d: "Deux séances qui construisent le souffle, deux qui construisent le geste. C'est là que la caisse commence à se voir.",
-    slots: [
-      { day: "Lun", time: "19h00" },
-      { day: "Mar", time: "20h00" },
-      { day: "Mer", time: "18h20" },
-      { day: "Ven", time: "18h20" },
-    ],
-  },
-];
-
-/* ------------------------------------------------------------------ *
- *  LA MÉTHODE D'ENCADREMENT — trois règles VÉRIFIABLES, chacune adossée
- *  à un fait du poster officiel ou à la politique photo du site. Aucune
- *  biographie, aucun palmarès, aucun diplôme : rien qu'on ne puisse
- *  prouver ligne à ligne.
- * ------------------------------------------------------------------ */
-export const ENCADREMENT = [
-  {
-    n: "01", t: "Un fil rouge, pas un roulement",
-    d: "Dadi tient l'anglaise, la Lady Punch et l'école entière — Baby Boxe, 7/11, 12/16, compétiteurs. Ton enfant garde le même coach du premier déplacement au premier combat, et toi le même œil du midi au créneau de 20h.",
-  },
-  {
-    n: "02", t: "Une surface, un spécialiste",
-    d: "Le pieds-poings à Tawee et Victor G, le moteur à Hicham. Personne ne fait semblant de couvrir une discipline qui n'est pas la sienne : quatre noms qui tiennent leur poste valent mieux que dix qui tournent.",
-  },
-  {
-    n: "03", t: "Un visage seulement s'il est prouvé",
-    d: "Une photo n'apparaît sous un nom que si la source officielle du réseau associe les deux. Pour les autres, une tuile — jamais un visage emprunté, jamais une banque d'images. Un coach n'est pas un décor.",
-  },
 ];
 
 /* ------------------------------------------------------------------ *

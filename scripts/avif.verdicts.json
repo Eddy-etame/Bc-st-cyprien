@@ -1,0 +1,87 @@
+{
+  "logo-white.webp": {
+    "octets": 13676,
+    "verdict": "avif",
+    "q": 40
+  },
+  "sc/anglaise-header.webp": {
+    "octets": 106784,
+    "verdict": "avif",
+    "q": 55
+  },
+  "sc/anglaise.webp": {
+    "octets": 81242,
+    "verdict": "webp"
+  },
+  "sc/coach-dadi.webp": {
+    "octets": 32122,
+    "verdict": "webp"
+  },
+  "sc/cross.webp": {
+    "octets": 51256,
+    "verdict": "webp"
+  },
+  "sc/educative-1.webp": {
+    "octets": 38602,
+    "verdict": "webp"
+  },
+  "sc/educative.webp": {
+    "octets": 82144,
+    "verdict": "webp"
+  },
+  "sc/grappling.webp": {
+    "octets": 70268,
+    "verdict": "webp"
+  },
+  "sc/hyrox.webp": {
+    "octets": 98804,
+    "verdict": "webp"
+  },
+  "sc/lady-2.webp": {
+    "octets": 30154,
+    "verdict": "webp"
+  },
+  "sc/lady.webp": {
+    "octets": 58756,
+    "verdict": "avif",
+    "q": 60
+  },
+  "sc/muscu.webp": {
+    "octets": 47260,
+    "verdict": "webp"
+  },
+  "sc/planning-2026-1600.webp": {
+    "octets": 134550,
+    "verdict": "avif",
+    "q": 55
+  },
+  "sc/planning-2026-800.webp": {
+    "octets": 58496,
+    "verdict": "avif",
+    "q": 65
+  },
+  "sc/salle-1.webp": {
+    "octets": 62124,
+    "verdict": "webp"
+  },
+  "sc/thai-1.webp": {
+    "octets": 30342,
+    "verdict": "webp"
+  },
+  "sc/thai-2.webp": {
+    "octets": 26386,
+    "verdict": "webp"
+  },
+  "sc/thai.webp": {
+    "octets": 97636,
+    "verdict": "webp"
+  },
+  "sc/tous-niveaux.webp": {
+    "octets": 34544,
+    "verdict": "webp"
+  },
+  "sc/training.webp": {
+    "octets": 39206,
+    "verdict": "webp"
+  }
+}
