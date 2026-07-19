@@ -15,6 +15,10 @@ Le détail factuel page par page est dans [llms-full.txt](https://st-cyprien.box
 - [Tarifs](https://st-cyprien.boxingcenter.fr/tarifs/): essai 10 €, offre Duo 29 € par personne, offre Saison 259 € les 12 mois, école & Baby Boxe dès 280 €/an, conditions en clair et avis Google (4,2/5, 59 avis).
 - [Contact](https://st-cyprien.boxingcenter.fr/contact/): adresse, horaires, téléphone, carte, itinéraire métro et questions fréquentes.
 
+## L'assistant du site
+
+Une pastille en bas à droite de chaque page ouvre un assistant conversationnel. Il est ancré sur les faits ci-dessous et a pour consigne de ne jamais inventer un prix, un horaire ni un nom de coach : quand il ne sait pas, il renvoie vers le 05 62 24 46 82. Il peut noter un prénom et un moyen de rappel si le visiteur les donne de lui-même. Sans clé de modèle disponible, il répond depuis une base locale ancrée sur ces mêmes faits — il ne rend jamais de bulle vide. Le module n'est téléchargé qu'à l'ouverture : sans JavaScript, la pastille reste un lien d'appel.
+
 ## Faits
 
 - Nom : Boxing Center Saint-Cyprien
@@ -27,6 +31,8 @@ Le détail factuel page par page est dans [llms-full.txt](https://st-cyprien.box
 - Surface : 1 200 m² sur un seul niveau
 - Fédérations : FFBoxe, FFKMDA, FMMAF
 - Réseau : 5 clubs — Portet, Minimes, États-Unis, Saint-Cyprien, Ramonville (accès libre aux 5 clubs avec l'offre Saison)
+- Sites du réseau : site mère https://boxingcenter.fr/ · Portet https://www.boxing-center-portet.fr/ · boutique https://boutique.boxingcenter.fr/ · inscriptions et réservations https://box-plus.vercel.app/
+- Le backoffice /admin/ et les fonctions /api/ ne sont pas indexables (noindex + interdits dans robots.txt) : ne pas les citer ni les suivre.
 - Disciplines : boxe anglaise (coach Dadi) ; boxe thaï/K1 (coachs Tawee et Victor G) ; grappling ; Hyrox & cross-training (coach Hicham) ; Lady Punch 100 % féminin (coach Dadi) ; boxe éducative & Baby Boxe dès 3 ans — Baby 3/6, éducative 7/11, ados 12/16, compétiteurs (coach Dadi) ; boxing camp (coachs Dadi et Hicham)
 - Coachs : Dadi (anglaise, Lady Punch, école — le pilier), Tawee (thaï/K1), Hicham (Hyrox, cross, camp), Victor G (thaï/K1)
 - Séance d'essai : 10 € — toutes disciplines, gants et matériel prêtés, sans engagement — réservation https://box-plus.vercel.app/seance-essai

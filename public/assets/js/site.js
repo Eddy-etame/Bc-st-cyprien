@@ -39,7 +39,7 @@ function mountNav() {
   document.getElementById("nav").innerHTML = `
     <nav class="nav" id="site-nav" aria-label="Navigation principale">
       <a class="nav__brand" href="/" aria-label="Boxing Center Saint-Cyprien — accueil">
-        <img class="nav__logo" src="/assets/img/logo-white.png" alt="Boxing Center" width="3542" height="1655" />
+        <img class="nav__logo" src="/assets/img/logo-white.webp" alt="Boxing Center" width="384" height="179" />
         <span class="nav__salle">Saint-Cyprien</span>
       </a>
       <div class="nav__links">${links}</div>
@@ -60,7 +60,7 @@ function mountNav() {
     <div class="menu" id="menu" aria-hidden="true">
       <div class="menu__top">
         <a class="nav__brand" href="/" aria-label="Boxing Center Saint-Cyprien — accueil">
-          <img class="nav__logo" src="/assets/img/logo-white.png" alt="Boxing Center" width="3542" height="1655" />
+          <img class="nav__logo" src="/assets/img/logo-white.webp" alt="Boxing Center" width="384" height="179" />
           <span class="nav__salle">Saint-Cyprien</span>
         </a>
         <button class="menu__close" id="menu-close">Fermer <span aria-hidden="true">✕</span></button>
@@ -439,6 +439,42 @@ function touchLife(scope = document) {
   els.forEach((el) => { if (!el.dataset.tlBound) { el.dataset.tlBound = "1"; io.observe(el); } });
 }
 
+/* -------------------------- L'ASSISTANT (paresseux) ---------------- *
+ * Le dialogue pèse ~21 Ko (chatbot.js + sa base locale) pour un visiteur sur
+ * dix qui l'ouvre : il ne part donc PLUS au premier rendu. La pastille reste
+ * le lien tel: du HTML ; on l'arme ici, et le module n'est téléchargé qu'au
+ * moment où le visiteur montre son intention.
+ *
+ * Trois étages, du plus tôt au plus tard — aucun ne dégrade le précédent :
+ *   1. survol / focus / doigt posé  -> on précharge (le clic paraît instantané) ;
+ *   2. clic                          -> on attend le module puis on ouvre ;
+ *   3. module injoignable            -> on suit le href, la salle sonne.
+ * Sans JS du tout, l'étage 3 est le comportement natif du lien. */
+function armChatbot() {
+  const pill = document.querySelector("a.chatbot");
+  if (!pill) return;
+  let load = null;
+  const warm = () => (load ||= import("./chatbot.js?v=14"));
+  ["pointerenter", "focus", "touchstart"].forEach((ev) =>
+    pill.addEventListener(ev, warm, { once: true, passive: true })
+  );
+  pill.addEventListener("click", async (e) => {
+    // clic milieu / modificateur : on laisse le navigateur faire son travail
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+    e.preventDefault();
+    pill.dataset.loading = "1"; // la pastille respire tant que le module descend
+    try {
+      await warm();
+      // le module a remplacé la pastille par son lanceur et publié __scchat
+      window.__scchat?.open();
+    } catch {
+      window.location.href = pill.href; // filet dead-man : la salle décroche
+    } finally {
+      delete pill.dataset.loading;
+    }
+  });
+}
+
 /* ------------------------------ BOOT ------------------------------ */
 window.BC = { reveal, magnetic, refresh, syncPhone, media: hydrateMedia, split, scramble, spotlight, touchLife, initKinetics, scrollToEl, get lenis() { return lenis; }, get velocity() { return velocity; } };
 mountNav();
@@ -448,5 +484,6 @@ hydrateMedia(document);
 magnetic(document);
 wireAnchors();
 syncPhone();
+armChatbot();
 
 export const BC = window.BC;

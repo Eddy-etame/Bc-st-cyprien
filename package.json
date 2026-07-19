@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "prebuild": "node scripts/apply-content.mjs",
+    "prebuild": "node scripts/apply-content.mjs && node scripts/build-sitemap.mjs",
     "build": "astro build",
     "preview": "astro preview"
   },

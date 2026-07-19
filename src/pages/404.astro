@@ -5,12 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Page introuvable (404) — Boxing Center Saint-Cyprien</title>
   <meta name="description" content="Cette page n'existe pas. Retrouve le planning, les tarifs et le contact de Boxing Center Saint-Cyprien, rive gauche à Toulouse." />
-  <!-- Préconnexion (libs jsdelivr en fin de body) + polices auto-hébergées
-       (mêmes familles/graisses que la maquette — woff2 latin, cf. /assets/css/fonts.css) -->
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <!-- Polices auto-hébergées : mêmes familles et graisses que la maquette
+       (woff2 latin, cf. /assets/css/fonts.css). -->
   <link rel="preload" as="font" type="font/woff2" href="/fonts/space-grotesk-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=13" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=14" />
   <meta name="robots" content="noindex, follow" />
   <meta name="theme-color" content="#0b0d14" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0d14'/%3E%3Ccircle cx='32' cy='30' r='9' fill='%23f6f8fc'/%3E%3Ccircle cx='32' cy='30' r='16' fill='none' stroke='%23f6f8fc' stroke-opacity='.28' stroke-width='2.5'/%3E%3Crect x='18' y='50' width='28' height='3.5' rx='1.75' fill='%23aeb7cc'/%3E%3C/svg%3E" />
@@ -31,8 +30,8 @@
   <meta name="twitter:description" content="Cette page n'existe pas. Retrouve le planning, les tarifs et le contact de Boxing Center Saint-Cyprien, rive gauche à Toulouse." />
   <meta name="twitter:image" content="https://st-cyprien.boxingcenter.fr/assets/img/sc/salle-1.webp" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=13" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=13" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=14" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=14" />
 
   <style is:inline>
     .e404 { min-height: 78vh; display: grid; place-items: center; text-align: center; position: relative; overflow: hidden; background: var(--void); }
@@ -73,11 +72,8 @@
     <span class="chatbot__label">Une question&nbsp;? Appelle la salle</span>
   </a>
 
-  <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=13"></script>
-  <!-- l'assistant : module autonome, il remplace la pastille par un vrai dialogue -->
-  <script is:inline type="module" src="/assets/js/chatbot.js?v=13"></script>
+  <!-- Libs d'animation, auto-hébergées et regroupées (gsap + ScrollTrigger + Lenis). -->
+  <script is:inline defer src="/assets/js/vendor.min.js?v=14"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=14"></script>
 </body>
 </html>

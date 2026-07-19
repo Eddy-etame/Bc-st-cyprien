@@ -15,6 +15,17 @@
 - Fédérations : FFBoxe, FFKMDA, FMMAF.
 - Position dans le réseau : dernière-née des 5 salles Boxing Center (Minimes, Portet-sur-Garonne, États-Unis, Ramonville, Saint-Cyprien) ; premier Boxing Center rive gauche de Toulouse.
 - Itinéraire : https://maps.google.com/?q=11+rue+Sainte-Lucie+31300+Toulouse
+- Sites du réseau : site mère https://boxingcenter.fr/ · Portet-sur-Garonne https://www.boxing-center-portet.fr/ · boutique https://boutique.boxingcenter.fr/ · inscriptions, abonnements et séance d'essai https://box-plus.vercel.app/
+- Réseaux sociaux : https://www.instagram.com/boxingcentertoulouse/ · https://www.facebook.com/BoxingCenterToulouse/
+
+## L'assistant du site
+
+- Chaque page porte, en bas à droite, un assistant conversationnel ancré sur les faits de ce document.
+- Consigne stricte : il n'invente jamais un prix, un horaire, un nom de coach ni une date. Quand il ne sait pas, il renvoie au 05 62 24 46 82.
+- Il peut enregistrer un prénom et un moyen de rappel lorsque le visiteur les donne spontanément ; il ne les réclame jamais de force.
+- Sans clé de modèle disponible, il répond depuis une base locale bâtie sur ces mêmes faits — il ne rend jamais de réponse vide.
+- Son module n'est téléchargé qu'au moment où on ouvre le dialogue. Sans JavaScript, la pastille reste un simple lien d'appel vers la salle.
+- Zones non indexables, à ne pas citer ni suivre : /admin/ (le vestiaire, le backoffice éditorial) et /api/ (les fonctions). Elles sont en noindex et interdites dans robots.txt.
 
 ## Accueil (https://st-cyprien.boxingcenter.fr/)
 

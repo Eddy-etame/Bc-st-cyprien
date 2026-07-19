@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Généré par scripts/build-sitemap.mjs — ne pas éditer à la main.
+     <lastmod> vient du dernier commit qui a touché les sources de chaque page. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
@@ -28,7 +30,7 @@
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://st-cyprien.boxingcenter.fr/assets/img/sc/anglaise-header.webp</image:loc>
-      <image:title>Boxe Anglaise à Boxing Center Saint-Cyprien — Le noble art</image:title>
+      <image:title>Boxe anglaise à Boxing Center Saint-Cyprien — le noble art</image:title>
     </image:image>
   </url>
   <url>
@@ -57,7 +59,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://st-cyprien.boxingcenter.fr/assets/img/sc/planning-2026-1600.jpg</image:loc>
+      <image:loc>https://st-cyprien.boxingcenter.fr/assets/img/sc/planning-2026-1600.webp</image:loc>
       <image:title>Planning officiel des cours — Boxing Center Saint-Cyprien</image:title>
     </image:image>
   </url>
@@ -68,7 +70,7 @@
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://st-cyprien.boxingcenter.fr/assets/img/sc/salle-1.webp</image:loc>
-      <image:title>La salle Boxing Center Saint-Cyprien — 1 200 m² rive gauche, Toulouse</image:title>
+      <image:title>Les offres de Boxing Center Saint-Cyprien — essai, duo, saison</image:title>
     </image:image>
   </url>
   <url>
@@ -78,7 +80,7 @@
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://st-cyprien.boxingcenter.fr/assets/img/sc/salle-1.webp</image:loc>
-      <image:title>La salle Boxing Center Saint-Cyprien — 11 rue Sainte-Lucie, Toulouse</image:title>
+      <image:title>Boxing Center Saint-Cyprien — 11 rue Sainte-Lucie, Toulouse rive gauche</image:title>
     </image:image>
   </url>
 </urlset>

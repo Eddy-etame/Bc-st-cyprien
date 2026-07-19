@@ -1,36 +1,53 @@
 # Boxing Center Saint-Cyprien — st-cyprien.boxingcenter.fr
 # Bienvenue aux crawlers de recherche ET aux moteurs génératifs.
+#
+# ATTENTION à la structure : un robot n'obéit QU'AU groupe le plus
+# spécifique qui le nomme. Nommer un agent puis lui donner « Allow: / »
+# tout seul lui fait perdre les Disallow du groupe « * » — c'est ainsi
+# que le vestiaire s'était retrouvé ouvert à Googlebot. Chaque groupe
+# répète donc ses interdictions. Des User-agent consécutifs partagent
+# un même jeu de règles.
 
 # --- Moteurs de recherche ---
 User-agent: Googlebot
-Allow: /
-
+User-agent: Googlebot-Image
 User-agent: Bingbot
+User-agent: DuckDuckBot
+User-agent: Qwantify
 Allow: /
+Disallow: /admin/
+Disallow: /api/
 
 # --- Moteurs génératifs / assistants IA ---
+# On VEUT être cité par les assistants : le contenu reste ouvert, et
+# /llms.txt + /llms-full.txt leur servent les faits déjà mâchés.
 User-agent: GPTBot
-Allow: /
-
+User-agent: ChatGPT-User
+User-agent: OAI-SearchBot
 User-agent: ClaudeBot
-Allow: /
-
 User-agent: Claude-Web
-Allow: /
-
+User-agent: Claude-SearchBot
+User-agent: anthropic-ai
 User-agent: PerplexityBot
-Allow: /
-
+User-agent: Perplexity-User
 User-agent: Google-Extended
-Allow: /
-
+User-agent: Applebot
+User-agent: Applebot-Extended
+User-agent: Amazonbot
+User-agent: meta-externalagent
+User-agent: MistralAI-User
+User-agent: DuckAssistBot
+User-agent: cohere-ai
+User-agent: YouBot
 User-agent: CCBot
 Allow: /
+Disallow: /admin/
+Disallow: /api/
 
 # --- Tous les autres ---
 User-agent: *
 Allow: /
-# Le backoffice et les fonctions n'ont rien à faire dans un index.
+# Le vestiaire et les fonctions n'ont rien à faire dans un index.
 Disallow: /admin/
 Disallow: /api/
 

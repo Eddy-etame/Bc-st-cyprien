@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tarifs & offres — Boxing Center Saint-Cyprien, Toulouse (essai 10€)</title>
-  <meta name="description" content="Les tarifs de Boxing Center Saint-Cyprien, rive gauche : séance d'essai 10€, offre Duo 29€ par personne, saison à 259€ (4× sans frais, accès aux 5 clubs), école & Baby Boxe dès 280€/an. Avis Google réels." />
-  <!-- Préconnexion (libs jsdelivr en fin de body) + polices auto-hébergées
-       (mêmes familles/graisses que la maquette — woff2 latin, cf. /assets/css/fonts.css) -->
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <title>Tarifs & offres — essai 10€ | Boxing Center Saint-Cyprien</title>
+  <meta name="description" content="Séance d'essai 10€, offre Duo 29€ par personne, saison 259€ en 4× sans frais avec accès aux 5 clubs, école dès 280€/an. Avis Google 4,2/5 sur 59 avis." />
+  <!-- Polices auto-hébergées : mêmes familles et graisses que la maquette
+       (woff2 latin, cf. /assets/css/fonts.css). -->
   <link rel="preload" as="font" type="font/woff2" href="/fonts/space-grotesk-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/fonts.css?v=13" />
+  <link rel="stylesheet" href="/assets/css/fonts.css?v=14" />
   <meta name="keywords" content="tarifs salle de boxe Toulouse, prix boxe Saint-Cyprien, abonnement boxe rive gauche, offre duo boxe, saison boxe Toulouse 259, baby boxe tarif Toulouse" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="Boxing Center Saint-Cyprien" />
@@ -41,9 +40,9 @@
   <meta name="twitter:description" content="Essai 10€, Duo 29€/personne, saison 259€, école dès 280€/an. Rive gauche, Toulouse." />
   <meta name="twitter:image" content="https://st-cyprien.boxingcenter.fr/assets/img/sc/salle-1.webp" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=13" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=13" />
-  <link rel="stylesheet" href="/assets/css/tarifs.css?v=13" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=14" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=14" />
+  <link rel="stylesheet" href="/assets/css/tarifs.css?v=14" />
 
   <!-- SEO/GEO — graphe JSON-LD unifié (organisation · salle · site · page · image ·
        fil d'Ariane). Faits réels uniquement — miroir de data.js. -->
@@ -57,6 +56,9 @@
         "name": "Boxing Center",
         "url": "https://boxingcenter.fr/",
         "subOrganization": [
+          {
+            "@id": "https://st-cyprien.boxingcenter.fr/#salle"
+          },
           {
             "@type": "SportsActivityLocation",
             "name": "Boxing Center Minimes",
@@ -80,7 +82,10 @@
         ],
         "sameAs": [
           "https://www.instagram.com/boxingcentertoulouse/",
-          "https://www.facebook.com/BoxingCenterToulouse/"
+          "https://www.facebook.com/BoxingCenterToulouse/",
+          "https://boxingcenter.fr/",
+          "https://boutique.boxingcenter.fr/",
+          "https://www.boxing-center-portet.fr/"
         ]
       },
       {
@@ -96,7 +101,7 @@
         "email": "boxingcenter31@gmail.com",
         "priceRange": "€€",
         "image": "https://st-cyprien.boxingcenter.fr/assets/img/sc/salle-1.webp",
-        "logo": "https://st-cyprien.boxingcenter.fr/assets/img/logo-white.png",
+        "logo": "https://st-cyprien.boxingcenter.fr/assets/img/logo-white.webp",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "11 rue Sainte-Lucie",
@@ -151,7 +156,8 @@
         "sameAs": [
           "https://www.instagram.com/boxingcentertoulouse/",
           "https://www.facebook.com/BoxingCenterToulouse/",
-          "https://boxingcenter.fr/"
+          "https://boxingcenter.fr/",
+          "https://boutique.boxingcenter.fr/"
         ],
         "parentOrganization": {
           "@id": "https://boxingcenter.fr/#organization"
@@ -222,6 +228,23 @@
           "ratingValue": "4.2",
           "bestRating": "5",
           "reviewCount": 59
+        },
+        "potentialAction": {
+          "@type": "ReserveAction",
+          "name": "Réserver une séance d'essai",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://box-plus.vercel.app/seance-essai",
+            "inLanguage": "fr-FR",
+            "actionPlatform": [
+              "https://schema.org/DesktopWebPlatform",
+              "https://schema.org/MobileWebPlatform"
+            ]
+          },
+          "result": {
+            "@type": "Reservation",
+            "name": "Séance d'essai — 10 €, toutes disciplines, matériel prêté"
+          }
         }
       },
       {
@@ -254,6 +277,13 @@
         "dateModified": "2026-07-19",
         "breadcrumb": {
           "@id": "https://st-cyprien.boxingcenter.fr/tarifs/#breadcrumb"
+        },
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": [
+            "h1",
+            ".lead"
+          ]
         }
       },
       {
@@ -400,13 +430,10 @@
     <span class="chatbot__label">Une question&nbsp;? Appelle la salle</span>
   </a>
 
-  <!-- Libs (CDN — la team remplace par des imports npm en Astro/Next) -->
-  <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script is:inline defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script is:inline defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=13"></script>
-  <script is:inline type="module" src="/assets/js/tarifs.js?v=13"></script>
-  <!-- l'assistant : module autonome, il remplace la pastille par un vrai dialogue -->
-  <script is:inline type="module" src="/assets/js/chatbot.js?v=13"></script>
+  <!-- Libs d'animation, auto-hébergées et regroupées (gsap + ScrollTrigger + Lenis) :
+       une seule requête same-origin au lieu de trois vers un CDN tiers. -->
+  <script is:inline defer src="/assets/js/vendor.min.js?v=14"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=14"></script>
+  <script is:inline type="module" src="/assets/js/tarifs.js?v=14"></script>
 </body>
 </html>
