@@ -60,6 +60,13 @@
 
 /* ----------------------------- RESET ------------------------------ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* [hidden] EST CACHÉ — sans discussion.
+   La règle navigateur « [hidden]{display:none} » ne pèse que 0,0,1,0 : la
+   moindre classe qui pose un display (.slot, .pl-reset, img{display:block}…)
+   la bat au score ou à l'ordre, et l'élément reste à l'écran alors que le JS
+   le croit caché — le compteur ment, le bouton de reset s'affiche à vide.
+   Une seule règle, en tête du design system, ferme la famille entière. */
+[hidden] { display: none !important; }
 html { -webkit-text-size-adjust: 100%; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body {
