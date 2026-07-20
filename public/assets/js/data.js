@@ -101,7 +101,7 @@ export const LINKS = {
   coachings: "https://box-plus.vercel.app/coachings",
   materiel: "https://box-plus.vercel.app/materiel",
   // maillage de marque : la boutique du réseau a son propre domaine
-  boutique: "https://boutique.boxingcenter.fr/",
+  boutique: "https://box-plus.vercel.app/",
   groupe: "https://boxingcenter.fr/",
   facebook: "https://www.facebook.com/BoxingCenterToulouse/",
   instagram: "https://www.instagram.com/boxingcentertoulouse/",
