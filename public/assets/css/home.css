@@ -33,26 +33,43 @@
 .hero.is-lit .hero__spot { opacity: 1; }
 @media (hover: none) { .hero__spot { display: none; } }
 
-.hero__grid { position: relative; z-index: 2; display: grid; gap: clamp(2rem,4vw,4rem); grid-template-columns: 1fr; align-items: center; }
-@media (min-width: 980px){ .hero__grid { grid-template-columns: 1.05fr .95fr; } }
-.hero__title { font-size: clamp(3.2rem, 2rem + 7vw, 7.6rem); }
-.hero__sub { margin-top: clamp(1.1rem,2.4vw,1.6rem); max-width: 44ch; }
+/* LA COMPOSITION — trois étages empilés, jamais deux colonnes qui se disputent
+   la hauteur. L'étage 2 (.hero__front) aligne la parole et la photo sur le MÊME
+   trait de départ (align-items:start) : c'est ce qui empêche définitivement
+   l'image de « glisser » sous le texte, ce que faisait l'ancien align-items:center
+   sur une colonne de texte deux fois plus haute que la photo. */
+.hero__inner { position: relative; z-index: 2; display: flex; flex-direction: column; }
+.hero__inner > .eyebrow { align-self: flex-start; }
+
+/* LE TITRE — calibré, plus jamais un mur. La ligne la plus longue de l'accroche
+   fait 26 signes ; la taille est plafonnée pour que cette ligne tienne dans la
+   largeur de .wrap (1280px max) — donc DEUX lignes, à toutes les tailles utiles,
+   au lieu des quatre à cinq d'avant. C'est la même police, le même chrome, la
+   même accroche : on ne perd pas la voix, on lui rend son impact. */
+.hero__title { font-size: clamp(1.9rem, 6.4vw, 5.7rem); margin-top: clamp(.9rem,2vw,1.4rem); }
+
+.hero__front { display: grid; gap: clamp(1.6rem,3.6vw,3.2rem); grid-template-columns: 1fr; align-items: start; margin-top: clamp(1.6rem,3.4vw,2.6rem); }
+@media (min-width: 900px){ .hero__front { grid-template-columns: 1fr 1fr; } }
+.hero__say { display: flex; flex-direction: column; gap: clamp(1.1rem,2.4vw,1.7rem); }
+.hero__sub { margin-top: 0; max-width: 42ch; }
 .hero__sub b { color: var(--spark); font-weight: 650; }
-.hero__badges { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: clamp(1.2rem,2.6vw,1.7rem); }
-.hero__badges span { display: inline-flex; align-items: center; gap: .6ch; font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .05em; color: var(--ink); background: rgba(18,21,31,.7); border: 1px solid var(--line); border-radius: 100px; padding: .55em .95em; backdrop-filter: blur(6px); }
+/* Sous la photo, les quatre repères tiennent sur UNE ligne à la largeur de la
+   colonne : un badge orphelin sur une deuxième ligne a l'air d'un oubli. Le
+   rembourrage est resserré juste ce qu'il faut — la cible tactile reste tenue
+   par la hauteur de ligne du mono. */
+.hero__badges { display: flex; flex-wrap: wrap; gap: .42rem; margin-top: 0; }
+.hero__badges span { display: inline-flex; align-items: center; gap: .55ch; font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .04em; color: var(--ink); background: rgba(18,21,31,.7); border: 1px solid var(--line); border-radius: 100px; padding: .55em .8em; backdrop-filter: blur(6px); }
 .hero__badges span::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--spark); box-shadow: 0 0 10px rgba(246,248,252,.8); }
-.hero__cta { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: clamp(1.5rem,3.4vw,2.2rem); }
-.hero__media { position: relative; }
-/* the hero photo is a wide room pano (~2:1) — a less-portrait card shows more of the
-   room width (cropRatio 2.28→~2.0) instead of squeezing over half the room out of frame */
-.hero__photo { aspect-ratio: 4/4.1; border-radius: calc(var(--radius) + 6px); box-shadow: var(--shadow), 0 0 0 1px var(--line); }
+.hero__cta { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 0; }
+.hero__media { position: relative; display: flex; flex-direction: column; gap: clamp(.8rem,1.6vw,1.1rem); }
+/* La photo du plateau est un panoramique (~2:1). Le cadre portrait 4/4.1 en
+   jetait plus de la moitié hors champ ; le cadre paysage en montre nettement
+   plus — la salle gagne à l'échange, l'objet reste sous son spot. */
+.hero__photo { aspect-ratio: 16/10.4; border-radius: calc(var(--radius) + 6px); box-shadow: var(--shadow), 0 0 0 1px var(--line); }
 /* the object under its spot */
 .hero__photo::before { content: ""; position: absolute; inset: 0; z-index: 1; background: radial-gradient(85% 60% at 50% 0%, rgba(246,248,252,.14), transparent 65%), linear-gradient(180deg, transparent 55%, rgba(6,7,11,.66)); pointer-events: none; }
-.hero__card { position: absolute; left: clamp(-1.2rem,-2vw,-1.8rem); bottom: clamp(1.2rem,3vw,2rem); z-index: 2; background: rgba(18,21,31,.9); backdrop-filter: blur(8px); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1rem 1.2rem; display: flex; flex-direction: column; gap: .2rem; }
-.hero__card b { font-family: var(--f-display); font-weight: 700; font-size: 1.5rem; letter-spacing: -.02em; background: var(--chrome); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.hero__card i { font-style: normal; font: 600 .64rem/1.4 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 /* stats fold INTO the hero — a light strip, not a separate section */
-.hero__stats { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: var(--line-soft); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-top: clamp(2.2rem,5vh,3.4rem); }
+.hero__stats { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: var(--line-soft); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-top: clamp(2rem,4.4vh,3rem); }
 @media (min-width: 820px){ .hero__stats { grid-template-columns: repeat(4,1fr); } }
 .stat { background: rgba(18,21,31,.65); backdrop-filter: blur(6px); padding: clamp(1rem,2vw,1.5rem); }
 .stat__v { font-family: var(--f-display); font-weight: 700; letter-spacing: -.03em; font-size: clamp(1.7rem,3.6vw,2.6rem); color: var(--ink); display: flex; align-items: baseline; }
@@ -205,10 +222,17 @@
 }
 
 /* ================ MOBILE PASS (≤820px, desktop untouched) ========= */
-@media (max-width: 820px) {
+/* Le héros en UNE colonne (sous le point de bascule de .hero__front) : la salle
+   passe JUSTE APRÈS l'accroche. On lit le titre, on voit la salle, puis on lit
+   pourquoi et on clique. L'image n'est plus le wagon de queue — c'est la
+   deuxième chose que l'œil rencontre. */
+@media (max-width: 899px) {
   .hero { min-height: auto; }
-  .hero__photo { aspect-ratio: 4/3.2; }
-  .hero__card { left: .8rem; }
+  .hero__photo { aspect-ratio: 16/11; }
+  .hero__front > .hero__media { order: -1; }
+}
+
+@media (max-width: 820px) {
   .config__grid { padding-block: clamp(3.5rem,8vw,5rem); }
   .cfg__tag { display: none; }
   .cfg__name { font-size: clamp(1.2rem,5.6vw,1.7rem); }

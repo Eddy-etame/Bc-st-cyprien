@@ -290,6 +290,11 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 .chatbot__label { white-space: nowrap; font: 600 var(--step--1)/1 var(--f-ui); padding-right: 1.4rem; opacity: 0; transform: translateX(-8px); transition: opacity .3s, transform .35s var(--ease); }
 .chatbot:hover { width: 17.5rem; transform: translateY(-3px); }
 .chatbot:hover .chatbot__label { opacity: 1; transform: none; }
+/* Au clavier, la pastille s'ouvre COMME au survol et porte un anneau qui se
+   voit : le contour par défaut du navigateur se perdait sur le fond clair de
+   la pastille (--ink). L'anneau est posé à l'extérieur, il ne rogne rien. */
+.chatbot:focus-visible { width: 17.5rem; outline: 2px solid var(--spark); outline-offset: 3px; box-shadow: var(--shadow), 0 0 0 5px rgba(6,7,11,.85); }
+.chatbot:focus-visible .chatbot__label { opacity: 1; transform: none; }
 .chatbot[data-loading] { cursor: progress; }
 .chatbot[data-loading] .chatbot__icon svg { animation: chatbot-wait .95s ease-in-out infinite; }
 @keyframes chatbot-wait { 50% { opacity: .3; } }

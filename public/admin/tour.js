@@ -237,6 +237,16 @@ const FLOWS = {
     { sel: "#pane", t: "Ce que tu en fais",
       b: "Tu appelles. Ce sont des gens qui ont déjà tapé leur numéro pour qu'on les rappelle : ils t'attendent. Le téléphone et l'e-mail sont cliquables." },
   ],
+  moderClub: [
+    { sel: '#nav .navbtn[data-k="club"]', t: "La galerie du club", do: () => renderSection("club"),
+      b: "Les visiteurs peuvent déposer une photo ou une vidéo de 15 secondes depuis la page Galerie. Tout ce qu'ils envoient s'arrête ICI et n'apparaît nulle part sur le site tant que tu n'y as pas touché." },
+    { sel: "#pane", t: "Regarde d'abord",
+      b: "Chaque carte montre le média en grand, le prénom de celui qui l'a déposé, sa légende, et le format. Une vidéo se lit sur place — écoute-la aussi, le son compte." },
+    { sel: "#pane", t: "Deux boutons, deux conséquences",
+      b: "« Publier » l'envoie sur le mur public, visible par tout le monde. « Refuser » supprime le fichier définitivement chez l'hébergeur — on te demandera de confirmer. Dans le doute, laisse-le en attente et demande à un collègue." },
+    { sel: '#nav .navbtn[data-k="leads"]', t: "Et le contributeur ?",
+      b: "Pour déposer, il a laissé son prénom et un moyen de le joindre : tu le retrouves dans « Les contacts », marqué comme contributeur. C'est un membre qui s'implique — c'est le meilleur moment pour l'appeler." },
+  ],
   howPublish: [
     { sel: "#status", t: "1 · L'état, en haut à droite",
       b: "Il dit toujours la vérité : « À jour » quand le site en ligne et ton écran disent la même chose, « Modifications non publiées » dès que tu changes quelque chose." },

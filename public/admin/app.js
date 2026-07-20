@@ -52,6 +52,7 @@ const ICONS = {
   coaches: I('<circle cx="12" cy="14.5" r="5"/><path d="M9.4 10.3 6.5 3.5"/><path d="M14.6 10.3l2.9-6.8"/>'),
   schedule: I('<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17"/><path d="M8 3v4"/><path d="M16 3v4"/>'),
   leads: I('<path d="M4 6.5h16v11H4z"/><path d="m4.5 7 7.5 6 7.5-6"/>'),
+  club: I('<rect x="3.5" y="5" width="17" height="14" rx="2.5"/><circle cx="8.6" cy="10" r="1.6"/><path d="m4.5 17 5-5 3.5 3.5L16 13l3.5 4"/>'),
 };
 
 /* ---------- 2. le schéma : il pilote la génération des formulaires ---------- */
@@ -112,6 +113,8 @@ const SCHEMA = {
       { k: "lvl", label: "Niveau" },
     ],
   },
+
+  club: { label: "La galerie du club", type: "club" },
 
   leads: { label: "Les contacts", type: "leads" },
 };
@@ -266,7 +269,10 @@ async function renderLeads() {
     host.append(el("div", { class: "lead" },
       el("div", {},
         el("div", { class: "lead__who" }, [l.prenom, l.nom].filter(Boolean).join(" ") || "Visiteur sans prénom"),
-        el("span", { class: "lead__tag" }, l.event === "callback_request" ? "Demande de rappel" : "Coordonnées laissées")),
+        el("span", { class: "lead__tag" },
+          l.event === "callback_request" ? "Demande de rappel"
+          : l.event === "upload_contributor" ? "A posté sur le mur du club"
+          : "Coordonnées laissées")),
       el("div", { class: "lead__contact" },
         l.phone ? el("a", { href: "tel:" + l.phone.replace(/\s/g, "") }, l.phone) : null,
         l.email ? el("a", { href: "mailto:" + l.email }, l.email) : null),
@@ -275,6 +281,100 @@ async function renderLeads() {
         el("br"),
         isNaN(when) ? "" : when.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" }))
     ));
+  }
+}
+
+/* ---------- 5 bis. LA GALERIE DU CLUB — la file de modération ---------- *
+ * Ce que les visiteurs déposent sur /galerie/ atterrit ici, et NULLE PART
+ * ailleurs tant que personne n'a cliqué. Deux gestes, deux conséquences,
+ * annoncées avant d'être faites :
+ *   · « Publier »  → le média rejoint le mur public ;
+ *   · « Refuser »  → le fichier est SUPPRIMÉ chez l'hébergeur, définitivement.
+ * Le second demande confirmation : on ne détruit pas le souvenir de
+ * quelqu'un sur un clic distrait.
+ * --------------------------------------------------------------------- */
+let CLUB = null;
+
+async function renderClub() {
+  const pane = $("#pane");
+  pane.append(el("p", { class: "intro" },
+    "Les photos et les vidéos déposées par les membres sur la page Galerie attendent ici. Rien n'est visible sur le site tant que tu n'as pas cliqué sur « Publier ». Regarde, puis tranche : ce mur porte le nom du club."));
+  const host = el("div", { class: "clubq" });
+  pane.append(host);
+  host.append(el("div", { class: "skel" }), el("div", { class: "skel" }));
+
+  let res;
+  try { res = await api("/api/community/pending"); }
+  catch (e) {
+    host.innerHTML = "";
+    host.append(el("div", { class: "empty" }, el("b", {}, "La file n'a pas répondu"), el("p", {}, e.message)));
+    return;
+  }
+  host.innerHTML = "";
+  CLUB = res.items || [];
+  paintNav();
+
+  if (res.branche === false) {
+    host.append(el("div", { class: "empty" },
+      el("b", {}, "Le mur n'est pas encore branché"),
+      el("p", { html: "La page Galerie affiche déjà l'invitation à déposer, mais il manque l'endroit où ranger les fichiers. Sur Vercel, ajoute la variable <code>CLOUDINARY_URL</code> (elle se copie depuis le tableau de bord Cloudinary), puis redéploie. Les dépôts arriveront ici tout seuls." })));
+    return;
+  }
+  if (!CLUB.length) {
+    host.append(el("div", { class: "empty" },
+      el("b", {}, "Rien à regarder pour l'instant"),
+      el("p", {}, "La file est vide : tout ce qui a été déposé a déjà été traité. Le prochain dépôt apparaîtra ici, sans que tu aies rien à faire.")));
+    return;
+  }
+
+  if (res.vision === false) {
+    host.append(el("div", { class: "empty", style: "margin-bottom:16px" },
+      el("b", {}, "Le coup d'œil automatique est éteint"),
+      el("p", { html: "Sans clé de vision (<code>GEMINI_API_KEY</code>), aucun média n'est pré-trié : tout arrive ici et c'est toi qui juges. Rien n'est moins sûr pour autant — de toute façon, rien ne se publie sans ton clic." })));
+  }
+
+  for (const it of CLUB) {
+    const carte = el("div", { class: "clubcard" });
+    const vue = el("div", { class: "clubcard__media" });
+    if (it.type === "video") {
+      const v = el("video", { src: it.src, poster: it.poster || null, controls: "", preload: "none", playsinline: "" });
+      vue.append(v);
+    } else {
+      vue.append(el("img", { src: it.src, alt: it.legende || "Média déposé par un visiteur", loading: "lazy", decoding: "async" }));
+    }
+    const meta = el("div", { class: "clubcard__meta" },
+      el("div", { class: "clubcard__who" }, it.auteur || "Sans prénom"),
+      el("div", { class: "clubcard__cap" }, it.legende || "Pas de légende"),
+      el("div", { class: "clubcard__tech" },
+        `${it.type === "video" ? "Vidéo" : "Photo"}${it.duree ? ` · ${it.duree}s` : ""}${it.largeur ? ` · ${it.largeur}×${it.hauteur}` : ""}`));
+    if (it.horsSujet === true) {
+      meta.append(el("div", { class: "clubcard__flag" }, "À regarder de près : ce cliché n'a probablement rien à voir avec la salle."));
+    }
+
+    const agir = async (action, btn) => {
+      if (action === "reject" && !confirm(`Refuser ce média de ${it.auteur || "ce visiteur"} ? Le fichier sera supprimé définitivement.`)) return;
+      btn.disabled = true;
+      const avant = btn.textContent;
+      btn.textContent = action === "approve" ? "Publication…" : "Suppression…";
+      try {
+        await api("/api/community/moderate", { method: "POST", body: JSON.stringify({ id: it.id, type: it.type, action }) });
+        carte.remove();
+        CLUB = CLUB.filter((x) => x.id !== it.id);
+        paintNav();
+        setStatus(action === "approve" ? "Publié sur le mur du club." : "Refusé et supprimé.", "ok");
+        if (!CLUB.length) renderSection("club");
+      } catch (e) {
+        btn.disabled = false; btn.textContent = avant;
+        setStatus("Action refusée : " + e.message, "bad");
+      }
+    };
+
+    const actions = el("div", { class: "clubcard__actions" },
+      el("button", { class: "btn btn--light sm", type: "button", onclick: (e) => agir("approve", e.currentTarget) }, "Publier"),
+      el("button", { class: "btn ghost sm danger", type: "button", onclick: (e) => agir("reject", e.currentTarget) }, "Refuser"));
+
+    carte.append(vue, meta, actions);
+    host.append(carte);
   }
 }
 
@@ -298,6 +398,7 @@ function renderDashboard() {
     ["editCoach", "Ajouter ou modifier un coach", "Avec la règle photo de la maison."],
     ["editPlanning", "Retoucher le planning", "Un créneau, une heure, un coach."],
     ["seeLeads", "Voir qui a laissé son numéro", "Les contacts captés par l'assistant."],
+    ["moderClub", "Valider les photos des membres", "Ce qui attend sur le mur du club."],
     ["howPublish", "Comprendre « Publier »", "Ce qui part en ligne, et quand."],
   ];
   for (const [k, title, sub] of wiz) {
@@ -317,6 +418,7 @@ function paintNav() {
     b.insertAdjacentHTML("afterbegin", ICONS[k] || ICONS.dashboard);
     b.append(document.createTextNode(def.label));
     if (k === "leads" && LEADS && LEADS.length) b.append(el("span", { class: "badge" }, String(LEADS.length)));
+    if (k === "club" && CLUB && CLUB.length) b.append(el("span", { class: "badge" }, String(CLUB.length)));
     nav.append(b);
   }
 }
@@ -328,6 +430,7 @@ function renderSection(key) {
   $("#pane").innerHTML = "";
   paintNav();
   if (def.type === "dashboard") renderDashboard();
+  else if (def.type === "club") renderClub();
   else if (def.type === "leads") renderLeads();
   else if (def.type === "object") renderObject(key, def);
   else if (def.type === "list") renderList(key, def);

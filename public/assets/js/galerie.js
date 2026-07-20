@@ -219,6 +219,33 @@ function stampCount() {
   if (el) el.textContent = `${FLAT.length} clichés · ${GALLERY.length} zones`;
 }
 
+/* ------------------------------------------------------------------ *
+ * LE MUR DU CLUB, EN CHARGEMENT PARESSEUX. Le module communautaire (et le
+ * réseau qui va avec) ne descend QUE lorsque la section approche du cadre.
+ * Un visiteur qui vient voir les photos de la salle et repart n'aura donc
+ * téléchargé ni le mur, ni — a fortiori — le formulaire (lui, c'est encore
+ * un cran plus loin : au clic). Sans IntersectionObserver, on charge au
+ * premier défilement : jamais au premier rendu, jamais jamais non plus.
+ * ------------------------------------------------------------------ */
+function armCommunity() {
+  const sec = document.getElementById("club");
+  if (!sec) return;
+  let parti = false;
+  const go = () => {
+    if (parti) return;
+    parti = true;
+    import("./community.js?v=15").then((m) => m.initCommunity()).catch(() => { /* le reste de la page vit sa vie */ });
+  };
+  if (!("IntersectionObserver" in window)) {
+    window.addEventListener("scroll", go, { once: true, passive: true });
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) { io.disconnect(); go(); }
+  }, { rootMargin: "600px 0px" });
+  io.observe(sec);
+}
+
 /* ------------------------------ BOOT ------------------------------ */
 function boot() {
   renderGallery();
@@ -226,6 +253,7 @@ function boot() {
   renderIndex();
   stampCount();
   lightbox();
+  armCommunity();
 
   window.BC.reveal(document);
   window.BC.magnetic(document);

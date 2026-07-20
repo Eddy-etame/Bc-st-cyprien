@@ -189,3 +189,20 @@ svg{display:block}
 @media(prefers-reduced-motion:reduce){
   *,*::after{animation:none!important;transition:none!important}
 }
+
+/* ---------- LA GALERIE DU CLUB — la file de modération ---------- *
+   Le média est montré EN GRAND : on ne valide pas une photo sur une
+   vignette de timbre-poste. Les deux gestes sont côte à côte, et celui
+   qui détruit garde l'aspect « fantôme dangereux » du reste du vestiaire. */
+.clubq{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:760px){.clubq{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1200px){.clubq{grid-template-columns:repeat(3,1fr)}}
+.clubcard{border:1px solid var(--line);border-radius:var(--r);background:var(--paper-2);overflow:hidden;display:flex;flex-direction:column}
+.clubcard__media{position:relative;aspect-ratio:4/3.4;background:var(--paper);overflow:hidden}
+.clubcard__media img,.clubcard__media video{width:100%;height:100%;object-fit:contain;display:block;background:#000}
+.clubcard__meta{padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.clubcard__who{font-family:var(--disp);font-size:16px;font-weight:700;color:var(--ink)}
+.clubcard__cap{color:var(--ink-soft);font-size:.9rem;line-height:1.45}
+.clubcard__tech{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;color:var(--muted)}
+.clubcard__flag{margin-top:6px;padding-left:10px;border-left:2px solid var(--spark);color:var(--ink);font-size:.84rem;line-height:1.45}
+.clubcard__actions{margin-top:auto;padding:0 14px 14px;display:flex;gap:8px;flex-wrap:wrap}

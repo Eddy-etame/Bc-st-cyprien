@@ -74,9 +74,16 @@ function renderConfig() {
      le navigateur a choisi. On laisse donc le navigateur décider seul. */
 
   let curr = 0;
+  /* Le jeton du dernier échange : le corps de la fiche est repeint APRÈS un
+     délai (le temps que l'ancien texte s'efface). Au survol on peut traverser
+     trois disciplines pendant ce délai — sans jeton, trois repeints s'empilent
+     et le dernier arrivé n'est pas forcément le bon. Seul le plus récent peint. */
+  let swapSeq = 0;
+  let hoverT = 0;               // l'échange au survol en attente (cf. plus bas)
   const select = (i) => {
-    if (i === curr) return;
+    if (i === curr || !DISCIPLINES[i]) return;
     curr = i;
+    const seq = ++swapSeq;
     const d = DISCIPLINES[i];
     [...list.children].forEach((b, k) => { b.classList.toggle("is-active", k === i); b.setAttribute("aria-selected", String(k === i)); b.setAttribute("tabindex", k === i ? "0" : "-1"); });
     const panel = document.getElementById("config-panel");
@@ -85,6 +92,7 @@ function renderConfig() {
     if (bg) [...bg.children].forEach((m, k) => m.classList.toggle("is-active", k === i));
     body.classList.add("is-swapping");
     setTimeout(() => {
+      if (seq !== swapSeq) return;   // un survol plus récent a pris la main
       body.innerHTML = sheet(d);
       window.BC.magnetic(body);
       body.classList.remove("is-swapping");
@@ -92,8 +100,42 @@ function renderConfig() {
   };
   list.addEventListener("click", (e) => {
     const b = e.target.closest(".cfg");
-    if (b) select(+b.dataset.i);
+    if (b) { clearTimeout(hoverT); select(+b.dataset.i); }
   });
+
+  /* ---------------------------------------------------------------- *
+   *  LE SURVOL PILOTE LA FICHE — il ne faut plus cliquer pour voir.
+   *  Passe le curseur d'Anglaise à Boxing Camp : la photo, le coach, les
+   *  jours et le niveau suivent, en direct. Le clic marche toujours (et
+   *  reste le SEUL mode au doigt, où le survol n'existe pas : on exige
+   *  (hover:hover) ET un pointeur fin, et on ignore les événements de
+   *  type "touch" que certains navigateurs émettent quand même).
+   *  Anti-scintillement : 90 ms de temporisation. Traverser une entrée
+   *  pour aller à la suivante ne la fait donc pas clignoter au passage —
+   *  seule celle où le curseur se POSE est jouée.
+   * ---------------------------------------------------------------- */
+  const fine = window.matchMedia("(hover: hover) and (pointer: fine)");
+  list.addEventListener("pointerover", (e) => {
+    if (!fine.matches || e.pointerType === "touch") return;
+    const b = e.target.closest(".cfg");
+    if (!b || +b.dataset.i === curr) return;
+    clearTimeout(hoverT);
+    hoverT = setTimeout(() => select(+b.dataset.i), 90);
+  });
+  /* Le curseur quitte la liste : on annule l'échange en attente, mais on ne
+     revient PAS en arrière — la dernière discipline regardée reste allumée.
+     Une fiche qui se réinitialise dès qu'on s'en éloigne est une fiche qu'on
+     ne peut pas lire. */
+  list.addEventListener("pointerout", (e) => {
+    if (!e.relatedTarget || !list.contains(e.relatedTarget)) clearTimeout(hoverT);
+  });
+  /* Au clavier, le focus fait exactement ce que fait le survol : immédiat,
+     sans temporisation (on ne « traverse » pas une entrée au clavier). */
+  list.addEventListener("focusin", (e) => {
+    const b = e.target.closest(".cfg");
+    if (b) { clearTimeout(hoverT); select(+b.dataset.i); }
+  });
+
   list.addEventListener("keydown", (e) => {
     if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
     e.preventDefault();

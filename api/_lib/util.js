@@ -18,6 +18,45 @@ export function isAdmin(req) {
   return timingSafeEqual(given, good);
 }
 
+/** L'IP de l'appelant — la clé du garde-fou anti-spam de la galerie. */
+export function ipOf(req) {
+  return (
+    (req.headers["x-forwarded-for"] || "").split(",")[0].trim() ||
+    req.socket?.remoteAddress ||
+    "0.0.0.0"
+  );
+}
+
+/* ------------------------------------------------------------------ *
+ *  LE FILTRE À INJURES — un prénom ou une légende passe par ici avant
+ *  d'aller où que ce soit. Il coupe trois choses : les insultes (FR + EN),
+ *  le martèlement de caractères (aaaaaaa), et les liens (un mur du club
+ *  n'est pas un panneau publicitaire). Les caractères = | < > sont retirés :
+ *  ce sont eux qui séparent les champs du contexte Cloudinary, on ne laisse
+ *  personne écrire dans un champ voisin.
+ *  Renvoie { value, bad } — jamais une exception, jamais un texte modifié
+ *  en douce : soit on accepte, soit on refuse en le disant.
+ * ------------------------------------------------------------------ */
+const INJURES = [
+  "merde", "putain", "connard", "connasse", "salope", "encule", "pute", "bite", "couille", "nique",
+  "ntm", "pd", "pede", "tapette", "bougnoule", "negro", "negre", "youpin", "salaud", "batard",
+  "fuck", "shit", "bitch", "cunt", "nigger", "faggot", "whore", "rape", "nazi", "kys", "porn", "sex",
+];
+
+export function cleanName(s, max = 40) {
+  const value = String(s ?? "").trim().slice(0, max).replace(/[=|<>]/g, "");
+  const norm = value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-z0-9\s]/g, " ");
+  const bad =
+    /(.)\1{6,}/.test(norm) ||
+    /https?:|www\.|\.[a-z]{2,}\/?/i.test(value) ||
+    INJURES.some((w) => new RegExp(`\\b${w}`, "i").test(norm));
+  return { value, bad };
+}
+
 /** Corps de requête, que Vercel l'ait parsé ou non. */
 export function readBody(req) {
   if (!req.body) return {};
