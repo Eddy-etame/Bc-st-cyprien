@@ -12,3 +12,10 @@ _dist_before/
 .env
 .env.*
 !.env.example
+
+# Artefact de build, regénéré par npm run prebuild — jamais versionné.
+# Ses <lastmod> viennent du dernier commit qui a touché chaque page : versionné,
+# le fichier porte donc toujours la date du commit PRÉCÉDENT, et le premier
+# build qui suit le rend aussitôt modifié. L'arbre ne pouvait plus jamais être
+# propre. Il sort du dépôt ; Astro le copie de public/ vers dist/ à chaque build.
+public/sitemap.xml

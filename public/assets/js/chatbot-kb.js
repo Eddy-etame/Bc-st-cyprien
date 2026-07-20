@@ -54,7 +54,11 @@ const RULES = [
   [/essai|d[ée]couvr|tester|essayer|premi[èe]re s[ée]ance|1re/i, 0],
   [/tarif|prix|co[ûu]te|combien|abonn|duo|saison|mensuel|annuel/i, 1],
   [/horaire|ouvert|ferm|heure|dimanche|midi/i, 2],
-  [/adresse|o[ùu]\b|situ|acc[èe]s|m[ée]tro|parking|venir|plan|rue|quartier/i, 3],
+  /* « \b » compte en ASCII : après le « ù » de « où » il n'y a PAS de frontière
+     de mot, et « Où se trouve la salle ? » retombait sur la phrase générique
+     alors que l'adresse est juste là. On borne à la main sur les lettres
+     accentuées — même famille que le « où » de la liste STOP des prénoms. */
+  [/adresse|o[ùu](?![a-zà-öø-ÿ])|se trouve|situ|acc[èe]s|m[ée]tro|parking|venir|plan|rue|quartier/i, 3],
   [/discipline|thai|tha[ïi]|k1|kick|mma|grappling|cross|hyrox|lady|camp|anglaise|cours/i, 4],
   [/enfant|gosse|fils|fille|baby|[ée]ducative|ado|3 ans|jeune/i, 5],
   [/coach|entra[îi]neur|prof|encadr|[ée]quipe|dadi|tawee|hicham|victor/i, 6],

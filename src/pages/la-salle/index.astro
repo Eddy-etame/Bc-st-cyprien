@@ -446,7 +446,25 @@
 
   </main>
 
-  <div id="footer"></div>
+  <div id="footer"><!-- LE MAILLAGE DE MARQUE, SERVI EN DUR ------------------------------
+       Les liens sortants du pied de page (le groupe, la boutique, les salles
+       sœurs, les réseaux) sont écrits par site.js. Un robot qui n'exécute pas
+       le JavaScript n'en voyait donc AUCUN dans le HTML livré : le maillage
+       n'existait qu'à l'écran. Il est posé ici, en dur, À L'INTÉRIEUR du
+       conteneur que site.js remplace intégralement au montage. Résultat : les
+       liens sont dans dist/*.html, et le rendu à l'écran est inchangé — ce
+       bloc ne peint rien et disparaît dès que le pied de page est monté. -->
+    <nav class="maillage" hidden style="display:none" aria-label="Le réseau Boxing Center">
+      <a href="https://boxingcenter.fr/">Boxing Center — le groupe</a>
+      <a href="https://box-plus.vercel.app/">La boutique Boxing Center</a>
+      <a href="https://boxingcenter.fr/">Boxing Center Minimes</a>
+      <a href="https://www.boxing-center-portet.fr/">Boxing Center Portet-sur-Garonne</a>
+      <a href="https://boxingcenter.fr/">Boxing Center États-Unis</a>
+      <a href="https://boxingcenter.fr/">Boxing Center Ramonville</a>
+      <a href="https://www.instagram.com/boxingcentertoulouse/">Instagram Boxing Center</a>
+      <a href="https://www.facebook.com/BoxingCenterToulouse/">Facebook Boxing Center</a>
+    </nav>
+  </div>
 
   <!-- chatbot — pointe vers du réel (tél de la salle) -->
   <a class="chatbot" href="tel:+33562244682" aria-label="Une question ? Appelle la salle Boxing Center Saint-Cyprien">
