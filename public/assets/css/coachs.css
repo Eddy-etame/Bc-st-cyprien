@@ -52,7 +52,7 @@
 .rostercard__body { padding: 1.1rem 1.2rem 1.4rem; }
 .rostercard__tag { font: 600 .6rem/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--spark); }
 .rostercard__name { font-family: var(--f-display); font-weight: 700; font-size: var(--step-1); letter-spacing: -.01em; color: var(--ink); margin-top: .45rem; }
-.rostercard__role { font: 600 .74rem/1.3 var(--f-mono); letter-spacing: .02em; color: var(--spark-2); margin-top: .35rem; }
+.rostercard__role { font: 600 .78rem/1.3 var(--f-mono); letter-spacing: .02em; color: var(--spark-2); margin-top: .35rem; }
 /* vraies phrases → --ink-soft (~11:1) ; --muted reste aux labels/meta */
 .rostercard__note { color: var(--ink-soft); font-size: var(--step--1); line-height: 1.55; margin-top: .7rem; }
 .roster__note { margin-top: clamp(1.6rem,3vw,2.2rem); max-width: 60ch; color: var(--ink-soft); font-size: var(--step--1); line-height: 1.6; padding-left: 1rem; border-left: 2px solid var(--line); }

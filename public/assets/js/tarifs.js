@@ -4,8 +4,8 @@
    compléments → conditions → avis Google RÉELS → FAQ argent. Tout depuis
    data.js (PROMOS daté, jamais de prix en dur), tous les CTA → box-plus.
    ===================================================================== */
-import { TARIFS, PROMOS, REVIEWS, LINKS, SALLE } from "./data.js?v=15";
-import { PRICING_FAQ } from "./data-tarifs.js?v=15";
+import { TARIFS, PROMOS, REVIEWS, LINKS, SALLE } from "./data.js?v=19";
+import { PRICING_FAQ } from "./data-tarifs.js?v=19";
 
 const $ = (s, r = document) => r.querySelector(s);
 

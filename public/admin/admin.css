@@ -209,3 +209,9 @@ svg{display:block}
 .clubcard__contact:focus-visible{outline:2px solid var(--spark);outline-offset:2px;border-radius:3px}
 .clubcard__flag{margin-top:6px;padding-left:10px;border-left:2px solid var(--spark);color:var(--ink);font-size:.84rem;line-height:1.45}
 .clubcard__actions{margin-top:auto;padding:0 14px 14px;display:flex;gap:8px;flex-wrap:wrap}
+
+/* Lisibilité mobile — plancher 12px sur les micro-labels du vestiaire (≤600px). */
+@media (max-width:600px){
+  .lg-kicker,.brand__k,.badge,.kicker,.status,.n,.lead__meta,.dots,.clubcard__tech,
+  label,.field label,.form label{font-size:12px !important}
+}

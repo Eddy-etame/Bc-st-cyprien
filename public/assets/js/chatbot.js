@@ -13,7 +13,7 @@
    bloqué ⇒ la pastille d'origine appelle la salle. Rien ne régresse.
    ===================================================================== */
 import { QUICKS, fallbackAnswer, GENERIC } from "./chatbot-kb.js";
-import { SALLE } from "./data.js?v=15";
+import { SALLE } from "./data.js?v=19";
 
 /* ---------------------------- constantes -------------------------- */
 const EMAIL_RE = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i;

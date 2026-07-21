@@ -4,7 +4,7 @@
    Same proven engine as the other salles, with the showroom's restraint:
    no custom cursor, no grain — precision instead of texture.
    ===================================================================== */
-import { NAV, LINKS, SALLE, NETWORK, picture, pictureEl } from "./data.js?v=15";
+import { NAV, LINKS, SALLE, NETWORK, picture, pictureEl } from "./data.js?v=19";
 
 /* ------------------------- MAILLAGE DE MARQUE ---------------------- *
  * Le réseau propriétaire est un maillage VOULU : les liens sortants vers
@@ -478,7 +478,7 @@ function armChatbot() {
   const pill = document.querySelector("a.chatbot");
   if (!pill) return;
   let load = null;
-  const warm = () => (load ||= import("./chatbot.js?v=15"));
+  const warm = () => (load ||= import("./chatbot.js?v=19"));
   ["pointerenter", "focus", "touchstart"].forEach((ev) =>
     pill.addEventListener(ev, warm, { once: true, passive: true })
   );

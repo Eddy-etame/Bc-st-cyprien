@@ -5,8 +5,8 @@
    La home positionne + route : configurateur → /plannings/ · /activites/ ·
    box-plus. Tout est rendu depuis data.js (planning réel rentrée 2026).
    ===================================================================== */
-import { DISCIPLINES, COACHES, LINKS, COACH_TBD_SHORT, COACH_TBD_WHY_SHORT } from "./data.js?v=15";
-import { STATS } from "./data-home.js?v=15";
+import { DISCIPLINES, COACHES, LINKS, COACH_TBD_SHORT, COACH_TBD_WHY_SHORT } from "./data.js?v=19";
+import { STATS } from "./data-home.js?v=19";
 
 const gsap = window.gsap;
 const ScrollTrigger = window.ScrollTrigger;

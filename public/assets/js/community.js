@@ -30,7 +30,7 @@ const esc = (s = "") => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").r
 let stylesPromis = null;
 function chargerStyles() {
   if (stylesPromis) return stylesPromis;
-  const href = "/assets/css/community.css?v=15";
+  const href = "/assets/css/community.css?v=19";
   if (document.querySelector(`link[href^="/assets/css/community.css"]`)) return (stylesPromis = Promise.resolve());
   stylesPromis = new Promise((resolve) => {
     const link = document.createElement("link");
@@ -125,7 +125,7 @@ export async function initCommunity() {
       const avant = libelle.textContent;
       libelle.textContent = "Un instant…";
       try {
-        const mod = await import("/assets/js/community-form.js?v=15");
+        const mod = await import("/assets/js/community-form.js?v=19");
         mod.monterFormulaire(root, () => peindreMur(grid));
         ouvrir.remove();
       } catch {
