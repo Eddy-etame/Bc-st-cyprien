@@ -8,7 +8,7 @@
    berceau), Portet a vu grand (le vaisseau amiral), États-Unis a bâti le
    colosse, Ramonville a ouvert le ciel — Saint-Cyprien a tout retenu.
    1 200 m² rive gauche, le premier Boxing Center rive gauche.
-   La DA reste le SHOWROOM au noir : la lumière n'éclaire pas du matériel,
+   La DA reste le SHOWROOM au noir : la lumière n’éclaire pas du matériel,
    elle isole LE GESTE (ta garde, ton souffle, tes appuis). Le configurateur
    = "choisis ce que la lumière éclaire cette semaine".
    Staff & créneaux = le planning officiel rentrée 2026 (poster du club).
@@ -18,10 +18,10 @@ import { OVERRIDES } from "./content-overrides.js";
 
 /* ------------------------- LES CLICHÉS EN AVIF ---------------------- *
  * Liste écrite par scripts/build-avif.mjs — NE PAS ÉDITER À LA MAIN.
- * N'y figurent que les images où l'AVIF est réellement plus léger que le
+ * N’y figurent que les images où l’AVIF est réellement plus léger que le
  * WebP à qualité visuellement identique (mesuré, PSNR >= 42 dB). Sur les
- * photos déjà bien serrées, l'AVIF est plus lourd : elles n'y sont pas.
- * Tout ce qui n'est pas listé reste servi en WebP, point. */
+ * photos déjà bien serrées, l’AVIF est plus lourd : elles n’y sont pas.
+ * Tout ce qui n’est pas listé reste servi en WebP, point. */
 const AVIF = new Set([
   /* AVIF:DEBUT */
   "/assets/img/logo-white.webp",
@@ -33,8 +33,8 @@ const AVIF = new Set([
 ]);
 
 /** Le <img> reste la vérité (alt, lazy, dimensions) ; le <source> AVIF ne
- *  s'ajoute que si le fichier existe vraiment — sinon un navigateur qui
- *  comprend l'AVIF téléchargerait un 404 et n'afficherait rien. */
+ *  s’ajoute que si le fichier existe vraiment — sinon un navigateur qui
+ *  comprend l’AVIF téléchargerait un 404 et n’afficherait rien. */
 export function picture(src, attrs = "") {
   const img = `<img src="${src}" ${attrs} />`;
   if (!AVIF.has(src)) return img;
@@ -42,8 +42,8 @@ export function picture(src, attrs = "") {
 }
 
 /** Même décision, pour le code qui construit ses nœuds au lieu de coller
- *  du HTML : renvoie l'élément à insérer (un <img>, ou un <picture> qui
- *  le contient). Le <img> reste accessible à l'appelant. */
+ *  du HTML : renvoie l’élément à insérer (un <img>, ou un <picture> qui
+ *  le contient). Le <img> reste accessible à l’appelant. */
 export function pictureEl(img) {
   if (!AVIF.has(img.getAttribute("src"))) return img;
   const p = document.createElement("picture");
@@ -92,7 +92,7 @@ export const SALLE = {
   mapsLink: "https://maps.google.com/?q=11+rue+Sainte-Lucie+31300+Toulouse",
 };
 
-/* Conversion — tout l'essai pointe vers box-plus (liens vérifiés 2026-07-12) */
+/* Conversion — tout l’essai pointe vers box-plus (liens vérifiés 2026-07-12) */
 export const LINKS = {
   essai: "https://box-plus.vercel.app/seance-essai",          // CTA principal de CHAQUE page (10€)
   abos: "https://box-plus.vercel.app/abonnements",
@@ -121,14 +121,14 @@ export const NAV = [
 export const COACH_TBD = "Coach à confirmer";
 export const COACH_TBD_SHORT = "Nom à venir";
 export const COACH_TBD_WHY =
-  "Le créneau tourne, la salle est ouverte, le tapis est là. Le nom de l'encadrant s'affichera ici le jour où il est acté au planning officiel — pas avant. On préfère une case vide à un nom qu'on ne peut pas tenir.";
+  "Le créneau tourne, la salle est ouverte, le tapis est là. Le nom de l’encadrant s’affichera ici le jour où il est acté au planning officiel — pas avant. On préfère une case vide à un nom qu’on ne peut pas tenir.";
 
 /* La version courte : sur /activites/ et dans le configurateur, la case vide
-   n'est pas le sujet de la page — elle se justifie en deux lignes. La version
-   longue reste sur /coachs/, dont l'encadrement EST le sujet. Une bonne
-   formule ne sert qu'une fois. */
+   n’est pas le sujet de la page — elle se justifie en deux lignes. La version
+   longue reste sur /coachs/, dont l’encadrement EST le sujet. Une bonne
+   formule ne sert qu’une fois. */
 export const COACH_TBD_WHY_SHORT =
-  "Le cours a lieu, le tapis est prêt — mais aucun encadrant n'est acté au planning officiel. Tant que ce n'est pas signé, on n'écrit pas de nom.";
+  "Le cours a lieu, le tapis est prêt — mais aucun encadrant n’est acté au planning officiel. Tant que ce n’est pas signé, on n’écrit pas de nom.";
 
 /* ------------------------------------------------------------------ *
  *  LE CONFIGURATEUR — la signature. Tu choisis ta discipline comme on
@@ -136,9 +136,9 @@ export const COACH_TBD_WHY_SHORT =
  *  (planning rentrée 2026, poster officiel du club). `cat` groupe les
  *  entrées pour /activites/ (adultes · lady · école).
  *
- *  `alt` = le VRAI texte alternatif, écrit d'après le cliché lui-même
- *  (ce qu'on voit, pas ce qu'on vend). Il ne dérive JAMAIS de `tag` ni de
- *  `name` — ceux-là ne servent qu'à la pastille mono (data-label).
+ *  `alt` = le VRAI texte alternatif, écrit d’après le cliché lui-même
+ *  (ce qu’on voit, pas ce qu’on vend). Il ne dérive JAMAIS de `tag` ni de
+ *  `name` — ceux-là ne servent qu’à la pastille mono (data-label).
  * ------------------------------------------------------------------ */
 export const DISCIPLINES = [
   {
@@ -150,9 +150,9 @@ export const DISCIPLINES = [
     jours: "Midi lun./mer./ven. · soirs lun./mer./ven. 20h",
     niveau: "Débutant → confirmé",
     desc: "Jab, esquive, jeu de jambes : le noble art enseigné proprement, du premier gant aux gants qui piquent. Les cours du midi pour la pause active, les soirs pour le vrai travail.",
-    teaser: "Le pied avant, le jab, la sortie d'axe. Tout part de là.",
+    teaser: "Le pied avant, le jab, la sortie d’axe. Tout part de là.",
     img: "/assets/img/sc/anglaise-header.webp",
-    alt: "Un boxeur en casque et gants, garde haute et appui avant marqué, au milieu d'un cours d'anglaise sur le ring ; d'autres binômes travaillent derrière les cordes",
+    alt: "Un boxeur en casque et gants, garde haute et appui avant marqué, au milieu d’un cours d’anglaise sur le ring ; d’autres binômes travaillent derrière les cordes",
   },
   {
     key: "thai",
@@ -162,10 +162,10 @@ export const DISCIPLINES = [
     coach: "Tawee · Victor G",
     jours: "Midi mar. & jeu. · soirs mar./jeu. 20h · ven. 19h",
     niveau: "Tous niveaux",
-    desc: "Tibias, genoux, coudes — la boxe la plus complète, avec un enseignement dans les règles de l'art. Deux coachs, cinq créneaux par semaine.",
+    desc: "Tibias, genoux, coudes — la boxe la plus complète, avec un enseignement dans les règles de l’art. Deux coachs, cinq créneaux par semaine.",
     teaser: "Poings, tibias, genoux, coudes. Rien ne reste dehors.",
     img: "/assets/img/sc/thai-1.webp",
-    alt: "Deux pratiquants de boxe thaï face à face au bord du ring : l'un tient les pattes d'ours, mains bandées de rouge, l'autre s'apprête à frapper",
+    alt: "Deux pratiquants de boxe thaï face à face au bord du ring : l’un tient les pattes d’ours, mains bandées de rouge, l’autre s’apprête à frapper",
   },
   {
     key: "grappling",
@@ -177,9 +177,9 @@ export const DISCIPLINES = [
     jours: "Mardi & jeudi · 19h – 20h",
     niveau: "Tous niveaux",
     desc: "Projections, contrôle, soumissions. Le complément sol qui transforme un boxeur en combattant complet.",
-    teaser: "Là où la boxe s'arrête, le sol commence.",
+    teaser: "Là où la boxe s’arrête, le sol commence.",
     img: "/assets/img/sc/grappling.webp",
-    alt: "Vue plongeante sur la cage : plusieurs binômes travaillent au sol, contrôles et sorties, pendant qu'un pratiquant debout observe la position",
+    alt: "Vue plongeante sur la cage : plusieurs binômes travaillent au sol, contrôles et sorties, pendant qu’un pratiquant debout observe la position",
   },
   {
     key: "hyrox",
@@ -190,9 +190,9 @@ export const DISCIPLINES = [
     jours: "Hyrox mer. 18h20 · cross lun. & mer. 19h",
     niveau: "Ça pique — pour tous",
     desc: "Circuits Hyrox et cross-training : le cardio et la force qui portent tes gants. La zone moteur tourne toute la semaine.",
-    teaser: "Le moteur d'abord : le souffle qui tient les trois dernières reprises.",
+    teaser: "Le moteur d’abord : le souffle qui tient les trois dernières reprises.",
     img: "/assets/img/sc/hyrox.webp",
-    alt: "Un groupe de pratiquants court en peloton sur une route de campagne, foulée soutenue — le travail de caisse derrière l'Hyrox et le cross",
+    alt: "Un groupe de pratiquants court en peloton sur une route de campagne, foulée soutenue — le travail de caisse derrière l’Hyrox et le cross",
   },
   {
     key: "lady",
@@ -205,7 +205,7 @@ export const DISCIPLINES = [
     desc: "Un créneau à elles : la boxe pour la forme, la confiance et le cardio — pas de cliché, pas de galerie qui te regarde.",
     teaser: "Un créneau à elles, du premier gant au sac qui claque.",
     img: "/assets/img/sc/lady-2.webp",
-    alt: "Une boxeuse en gants, garde serrée, frappe un sac de frappe pendant un cours Lady Punch ; d'autres pratiquantes travaillent aux sacs derrière elle",
+    alt: "Une boxeuse en gants, garde serrée, frappe un sac de frappe pendant un cours Lady Punch ; d’autres pratiquantes travaillent aux sacs derrière elle",
   },
   {
     key: "kids",
@@ -215,10 +215,10 @@ export const DISCIPLINES = [
     coach: "Dadi",
     jours: "Baby 3/6 sam. · 7/11 & 12/16 mer. + sam. · compétiteurs mer./sam.",
     niveau: "Baby → compétition",
-    desc: "Du Baby Boxe aux compétiteurs : coordination, respect, cadre. L'école complète, du premier déplacement au premier combat.",
+    desc: "Du Baby Boxe aux compétiteurs : coordination, respect, cadre. L’école complète, du premier déplacement au premier combat.",
     teaser: "De 3 ans au premier combat, une seule école et une seule ligne.",
     img: "/assets/img/sc/educative-1.webp",
-    alt: "Deux jeunes boxeurs en casque et gants s'échangent des touches en assaut encadré, devant un mur peint de la salle",
+    alt: "Deux jeunes boxeurs en casque et gants s’échangent des touches en assaut encadré, devant un mur peint de la salle",
   },
   {
     key: "camp",
@@ -228,7 +228,7 @@ export const DISCIPLINES = [
     coach: "Dadi · Hicham",
     jours: "Lun. & ven. 18h20 · sam. 11h",
     niveau: "Tous niveaux",
-    desc: "Le format signature Boxing Center : technique + cardio + sacs en une séance dense. Le meilleur point d'entrée si tu hésites.",
+    desc: "Le format signature Boxing Center : technique + cardio + sacs en une séance dense. Le meilleur point d’entrée si tu hésites.",
     teaser: "Le format maison : rien à choisir, tout y passe.",
     img: "/assets/img/sc/training.webp",
     alt: "Sur le tapis, un pratiquant lance un coup de pied haut pendant que le groupe travaille en binômes, gants et protège-tibias aux jambes",
@@ -286,26 +286,26 @@ export const DAYS = [
 
 export const COACHES = [
   { name: "Dadi", role: "Anglaise · Lady Punch · École", tag: "Le pilier",
-    note: "Anglaise, Lady Punch et toute l'école, du Baby Boxe aux compétiteurs : Dadi tient la semaine d'un bout à l'autre.",
+    note: "Anglaise, Lady Punch et toute l’école, du Baby Boxe aux compétiteurs : Dadi tient la semaine d’un bout à l’autre.",
     img: "/assets/img/sc/coach-dadi.webp",
-    // alt écrit d'après le cliché — jamais dérivé du nom ni du tag
+    // alt écrit d’après le cliché — jamais dérivé du nom ni du tag
     alt: "Le coach Dadi, casquette et t-shirt Boxing Center rouge, poing serré devant lui, debout sur le tapis au bord du ring de la salle" },
-  { name: "Tawee", role: "Boxe Thaï · K1", tag: "L'art thaï", note: "La thaï enseignée comme elle se boxe là-bas — les tibias avant les mots." },
+  { name: "Tawee", role: "Boxe Thaï · K1", tag: "L’art thaï", note: "La thaï enseignée comme elle se boxe là-bas — les tibias avant les mots." },
   { name: "Hicham", role: "Hyrox · Cross · Camp", tag: "Le moteur", note: "Les circuits qui construisent la caisse. Tu repars vidé, tu reviens plus fort." },
-  { name: "Victor G", role: "Boxe Thaï · K1", tag: "La relève", note: "Les créneaux thaï/K1 du soir — l'intensité montante de la semaine." },
+  { name: "Victor G", role: "Boxe Thaï · K1", tag: "La relève", note: "Les créneaux thaï/K1 du soir — l’intensité montante de la semaine." },
 ];
 
 /* ------------------------------------------------------------------ *
  *  LES OFFRES — bloc daté (source : posters officiels + OFFRES_RENTREE_2026).
  *  Jamais en dur dans les pages ; toujours via PROMOS + SEASON. RÈGLE :
- *  le Duo s'écrit TOUJOURS "29€ par personne" — jamais "29€ pour deux".
+ *  le Duo s’écrit TOUJOURS "29€ par personne" — jamais "29€ pour deux".
  * ------------------------------------------------------------------ */
 export const PROMOS = {
   saison: SEASON,
   label: SEASON_LABEL,
   bonus: "T-shirt Boxing Center offert aux 100 premiers inscrits de la saison.",
   essai: {
-    name: "Séance d'essai",
+    name: "Séance d’essai",
     price: "10€",
     detail: "Toutes disciplines, matériel prêté, sans engagement.",
     cta: "Réserver mon essai",
@@ -333,7 +333,7 @@ export const PROMOS = {
 
 export const TARIFS = [
   {
-    name: "Séance d'essai",
+    name: "Séance d’essai",
     price: "10€",
     period: "la séance",
     feature: "Toutes disciplines, matériel prêté",
@@ -378,11 +378,11 @@ export const REVIEWS = {
   ],
 };
 
-/* Le réseau — les quatre sœurs, dans l'ordre de la lignée. C'est la PREUVE
+/* Le réseau — les quatre sœurs, dans l’ordre de la lignée. C’est la PREUVE
    du titre : Saint-Cyprien vient après elles et retient ce qui marche.
    (Balma-Gramont vendue — jamais citée. Réseau = 5 clubs avec Saint-Cyprien.) */
 export const NETWORK = [
-  { id: "minimes", name: "Minimes", tag: "Le berceau", feat: "La salle historique · 3 rings · l'école", url: "https://boxingcenter.fr/" },
+  { id: "minimes", name: "Minimes", tag: "Le berceau", feat: "La salle historique · 3 rings · l’école", url: "https://boxingcenter.fr/" },
   { id: "portet", name: "Portet-sur-Garonne", tag: "Le vaisseau amiral", feat: "Le grand format · ring olympique · cage MMA", url: "https://www.boxing-center-portet.fr/" },
   { id: "etats-unis", name: "États-Unis", tag: "Le colosse", feat: "1 200 m² · 3 zones · 2 rings · cage MMA", url: "https://boxingcenter.fr/" },
   { id: "ramonville", name: "Ramonville", tag: "Le ciel ouvert", feat: "Octogone 7 m · ring olympique · 300 m² extérieur", url: "https://boxingcenter.fr/" },
@@ -391,11 +391,11 @@ export const NETWORK = [
 /* FAQ générale — servie en FAQPage LD-JSON sur /contact/. */
 export const FAQ = [
   { q: "Où se trouve Boxing Center Saint-Cyprien ?", a: "Au 11 rue Sainte-Lucie, 31300 Toulouse, en plein quartier Saint-Cyprien rive gauche — à 4 minutes à pied du métro ligne A (Saint-Cyprien République)." },
-  { q: "Comment se passe la première séance ?", a: "Tu arrives 10 minutes avant, en tenue de sport. Les gants et le matériel te sont prêtés sur place, le coach t'explique le déroulé, et tu boxes avec le groupe. La séance d'essai coûte 10€, toutes disciplines." },
-  { q: "Je n'ai jamais boxé, je peux venir ?", a: "Oui. La plupart des créneaux sont ouverts à tous les niveaux : commence par le Boxing Camp — technique, cardio, sacs, à ton rythme. Personne ne te regarde débuter." },
-  { q: "Quelles disciplines peut-on pratiquer ?", a: "Boxe anglaise, boxe thaï / K1, grappling, Hyrox, cross-training, Lady Punch, boxing camp et toute l'école enfants du Baby Boxe (3/6 ans) aux compétiteurs." },
+  { q: "Comment se passe la première séance ?", a: "Tu arrives 10 minutes avant, en tenue de sport. Les gants et le matériel te sont prêtés sur place, le coach t’explique le déroulé, et tu boxes avec le groupe. La séance d’essai coûte 10€, toutes disciplines." },
+  { q: "Je n’ai jamais boxé, je peux venir ?", a: "Oui. La plupart des créneaux sont ouverts à tous les niveaux : commence par le Boxing Camp — technique, cardio, sacs, à ton rythme. Personne ne te regarde débuter." },
+  { q: "Quelles disciplines peut-on pratiquer ?", a: "Boxe anglaise, boxe thaï / K1, grappling, Hyrox, cross-training, Lady Punch, boxing camp et toute l’école enfants du Baby Boxe (3/6 ans) aux compétiteurs." },
   { q: "Y a-t-il des cours pour les enfants ?", a: "Oui, dès 3 ans : Baby Boxe le samedi, boxe éducative 7/11 ans et ados 12/16 ans le mercredi et le samedi, et un créneau compétiteurs encadré par Dadi." },
-  { q: "Faut-il un abonnement pour commencer ?", a: "Non. La séance d'essai à 10€ donne accès à toutes les disciplines, matériel prêté. Tu t'abonnes ensuite si tu veux continuer — sans engagement, ou à la saison." },
+  { q: "Faut-il un abonnement pour commencer ?", a: "Non. La séance d’essai à 10€ donne accès à toutes les disciplines, matériel prêté. Tu t’abonnes ensuite si tu veux continuer — sans engagement, ou à la saison." },
   { q: "Quels sont les horaires ?", a: "Du lundi au samedi, de 10h00 à 21h15 (dernier cours 20h–21h15 selon les jours). Fermé le dimanche." },
 ];
 
@@ -403,7 +403,7 @@ export const FAQ = [
  *  LE CONTENU DU VESTIAIRE — la dernière opération de ce fichier.
  *
  *  Le backoffice publie public/content.json ; le pré-build le transforme
- *  en content-overrides.js (module statique, coût d'exécution nul). On
+ *  en content-overrides.js (module statique, coût d’exécution nul). On
  *  fusionne ICI, à la fin : tout ce qui précède reste la valeur de repli,
  *  et une surcharge partielle ne peut jamais VIDER un bloc.
  *
@@ -414,7 +414,7 @@ export const FAQ = [
 function mergeInto(target, patch) {
   if (!patch || typeof patch !== "object") return;
   for (const [k, v] of Object.entries(patch)) {
-    if (v == null || v === "") continue;                       // jamais d'effacement par omission
+    if (v == null || v === "") continue;                       // jamais d’effacement par omission
     if (Array.isArray(v)) { if (Array.isArray(target[k])) target[k].splice(0, target[k].length, ...v); else target[k] = v; }
     else if (typeof v === "object" && target[k] && typeof target[k] === "object") mergeInto(target[k], v);
     else target[k] = v;
@@ -431,16 +431,16 @@ replaceList(COACHES, OVERRIDES.coaches);
 replaceList(SCHEDULE, OVERRIDES.schedule);
 replaceList(FAQ, OVERRIDES.faq);
 
-/* L'adresse complète est un champ dérivé : si le vestiaire a changé la rue
+/* L’adresse complète est un champ dérivé : si le vestiaire a changé la rue
    ou la ville sans retoucher `full`, on la recompose — sinon la fiche de
-   pied de page afficherait l'ancienne adresse à côté de la nouvelle. */
+   pied de page afficherait l’ancienne adresse à côté de la nouvelle. */
 if (OVERRIDES.salle?.address && !OVERRIDES.salle.address.full) {
   SALLE.address.full = `${SALLE.address.street}, ${SALLE.address.zip} ${SALLE.address.city}`;
 }
 
 /* Même piège pour le téléphone : le vestiaire change le numéro AFFICHÉ, oublie
-   le champ « lien », et tous les boutons d'appel du site composent encore
-   l'ancien numéro. Mesuré : fiche « 05 62 24 46 99 », href « +33562244682 ».
+   le champ « lien », et tous les boutons d’appel du site composent encore
+   l’ancien numéro. Mesuré : fiche « 05 62 24 46 99 », href « +33562244682 ».
    On recompose donc le lien à partir du numéro français saisi (00 → +33). */
 if (OVERRIDES.salle?.phone && !OVERRIDES.salle.phoneHref) {
   const chiffres = SALLE.phone.replace(/\D/g, "");

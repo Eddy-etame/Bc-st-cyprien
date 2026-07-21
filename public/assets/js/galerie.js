@@ -1,28 +1,28 @@
 /* =====================================================================
    SAINT-CYPRIEN · galerie.js — regardée, pas lue.
-   Grille par zone (le plateau · l'anglaise · le pieds-poings · le sol · le
-   moteur · Lady Punch · l'école). Le manifeste photo vit désormais dans
+   Grille par zone (le plateau · l’anglaise · le pieds-poings · le sol · le
+   moteur · Lady Punch · l’école). Le manifeste photo vit désormais dans
    data.js (GALLERY — TODO levé) : zones, édito, captions mono et VRAIS alt.
-   L'entrée "développe" chaque photo (du sombre au net) via IntersectionObserver
+   L’entrée "développe" chaque photo (du sombre au net) via IntersectionObserver
    — donc insensible au ticker gelé.
 
-   Deux prises en main : l'INDEX des zones (on saute où on veut) et la
+   Deux prises en main : l’INDEX des zones (on saute où on veut) et la
    VISIONNEUSE (on regarde une photo en grand, on avance au clavier). Une
-   galerie où l'on ne peut pas agrandir une photo n'est pas une galerie.
+   galerie où l’on ne peut pas agrandir une photo n’est pas une galerie.
    ===================================================================== */
-import { picture } from "./data.js?v=19";
-import { GALLERY } from "./data-galerie.js?v=19";
+import { picture } from "./data.js?v=20";
+import { GALLERY } from "./data-galerie.js?v=20";
 
 const $ = (s, r = document) => r.querySelector(s);
 const IMG = "/assets/img/sc/";
 const esc = (s = "") => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-/* Toutes les photos à plat, dans l'ordre de lecture — c'est la liste que
+/* Toutes les photos à plat, dans l’ordre de lecture — c’est la liste que
    la visionneuse parcourt (elle traverse les zones sans buter dessus). */
 const FLAT = GALLERY.flatMap((z) => z.shots.map((s) => ({ ...s, zone: z.zone })));
 
-/* Une zone = un intertitre + une ligne d'édito + une grille de figures. */
+/* Une zone = un intertitre + une ligne d’édito + une grille de figures. */
 function figure(s, i) {
   return `<figure class="gitem${s.feat === "wide" ? " gitem--wide" : ""}">
     <button class="gitem__btn" type="button" data-i="${i}" aria-label="Agrandir : ${esc(s.alt)}">
@@ -52,7 +52,7 @@ function renderGallery() {
   ).join("");
 }
 
-/* L'INDEX — une puce par zone, elle emmène à la zone et se surligne quand
+/* L’INDEX — une puce par zone, elle emmène à la zone et se surligne quand
    on y est. Même grammaire que les filtres du planning et le plan de la
    visite : sur ce site, une liste de sections se pilote toujours pareil. */
 function renderIndex() {
@@ -102,9 +102,9 @@ function renderIndex() {
 /* ------------------------------------------------------------------ *
  * LA VISIONNEUSE — une photo, en grand, sur le noir. Flèches / clic pour
  * naviguer, Échap ou clic hors cadre pour sortir, focus rendu au bouton
- * d'origine. Le focus reste piégé dans la boîte tant qu'elle est ouverte.
+ * d’origine. Le focus reste piégé dans la boîte tant qu’elle est ouverte.
  * La légende porte la zone + la caption ; le texte alternatif reste sur
- * l'image (il décrit, il ne décore pas).
+ * l’image (il décrit, il ne décore pas).
  * ------------------------------------------------------------------ */
 function lightbox() {
   const box = $("#glight");
@@ -115,8 +115,8 @@ function lightbox() {
     <div class="glight__inner" role="dialog" aria-modal="true" aria-label="Visionneuse photo" aria-describedby="glight-cap">
       <figure class="glight__fig">
         <!-- pas de src="" ici : un src vide fait re-télécharger la PAGE elle-même
-             comme si c'était une image (requête inutile + image cassée au DOM).
-             La source n'est posée qu'à la première ouverture, dans paint(). -->
+             comme si c’était une image (requête inutile + image cassée au DOM).
+             La source n’est posée qu’à la première ouverture, dans paint(). -->
         <img id="glight-img" alt="" decoding="async" />
         <figcaption class="glight__cap" id="glight-cap">
           <span class="glight__zone"></span>
@@ -182,7 +182,7 @@ function lightbox() {
     else if (e.key === "ArrowRight") { e.preventDefault(); paint(i + 1); }
     else if (e.key === "ArrowLeft") { e.preventDefault(); paint(i - 1); }
     else if (e.key === "Tab") {
-      // piège à focus : la visionneuse est modale, on ne s'en échappe pas au clavier
+      // piège à focus : la visionneuse est modale, on ne s’en échappe pas au clavier
       const f = focusables();
       if (!f.length) return;
       const first = f[0], last = f[f.length - 1];
@@ -193,7 +193,7 @@ function lightbox() {
 }
 
 /* "Développer" — chaque photo passe du sombre au net quand elle entre dans
-   le cadre. Pur IO ; en reduced-motion ou sans IO, tout est net d'emblée. */
+   le cadre. Pur IO ; en reduced-motion ou sans IO, tout est net d’emblée. */
 function develop() {
   const items = [...document.querySelectorAll(".gitem")];
   const revealAll = () => items.forEach((it) => it.classList.add("is-in"));
@@ -205,9 +205,9 @@ function develop() {
   items.forEach((it) => io.observe(it));
 
   // Dead-man net (loi n°1) : si le ticker gsap est gelé (rAF mort → scroll
-  // Lenis bloqué, l'IO ne verra jamais les photos entrer), on développe tout
+  // Lenis bloqué, l’IO ne verra jamais les photos entrer), on développe tout
   // pour ne JAMAIS laisser une photo illisible. Sur un vrai navigateur le
-  // ticker avance → ce filet ne se déclenche pas, l'IO fait le développé.
+  // ticker avance → ce filet ne se déclenche pas, l’IO fait le développé.
   const g = window.gsap;
   if (g) { const f0 = g.ticker.frame; setTimeout(() => { if (g.ticker.frame === f0) revealAll(); }, 3500); }
   else { setTimeout(revealAll, 3500); }
@@ -222,8 +222,8 @@ function stampCount() {
 /* ------------------------------------------------------------------ *
  * LE MUR DU CLUB, EN CHARGEMENT PARESSEUX. Le module communautaire (et le
  * réseau qui va avec) ne descend QUE lorsque la section approche du cadre.
- * Un visiteur qui vient voir les photos de la salle et repart n'aura donc
- * téléchargé ni le mur, ni — a fortiori — le formulaire (lui, c'est encore
+ * Un visiteur qui vient voir les photos de la salle et repart n’aura donc
+ * téléchargé ni le mur, ni — a fortiori — le formulaire (lui, c’est encore
  * un cran plus loin : au clic). Sans IntersectionObserver, on charge au
  * premier défilement : jamais au premier rendu, jamais jamais non plus.
  * ------------------------------------------------------------------ */
@@ -234,7 +234,7 @@ function armCommunity() {
   const go = () => {
     if (parti) return;
     parti = true;
-    import("./community.js?v=19").then((m) => m.initCommunity()).catch(() => { /* le reste de la page vit sa vie */ });
+    import("./community.js?v=20").then((m) => m.initCommunity()).catch(() => { /* le reste de la page vit sa vie */ });
   };
   if (!("IntersectionObserver" in window)) {
     window.addEventListener("scroll", go, { once: true, passive: true });

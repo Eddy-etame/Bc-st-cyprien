@@ -17,7 +17,7 @@ import path from "path";
 import { execFileSync } from "child_process";
 
 const ROOT = process.cwd();
-const SITE = "https://st-cyprien.boxingcenter.fr";
+const SITE = "https://bc-st-cyprien.vercel.app";
 const OUT = path.join(ROOT, "public/sitemap.xml");
 
 /* Le contenu éditorial du sitemap reste écrit à la main — les titres

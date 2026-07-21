@@ -1,20 +1,20 @@
 /* =====================================================================
    LE DÉPÔT — le formulaire du mur du club, chargé UNIQUEMENT au clic.
 
-   Il refuse avant d'envoyer. Chaque refus dit ce qui ne va pas et ce qu'il
+   Il refuse avant d’envoyer. Chaque refus dit ce qui ne va pas et ce qu’il
    faut faire — jamais « erreur ». Les mêmes règles sont rejouées par le
-   serveur (api/community/sign.js) : ici c'est du confort, là-bas c'est la
+   serveur (api/community/sign.js) : ici c’est du confort, là-bas c’est la
    serrure. Ce qui est vérifié au navigateur :
 
      · prénom obligatoire, filtre à injures ;
-     · e-mail OU téléphone obligatoire (c'est aussi la prise de contact) ;
-     · type RÉEL du fichier (File.type), pas l'extension ;
+     · e-mail OU téléphone obligatoire (c’est aussi la prise de contact) ;
+     · type RÉEL du fichier (File.type), pas l’extension ;
      · poids ;
      · durée ≤ 15 s, mesurée sur le fichier ;
      · pour une image : DÉCODAGE effectif — un fichier qui se dit image mais
        qui ne se décode pas est refusé sur place.
 
-   L'envoi part directement chez Cloudinary (le fichier ne traverse jamais
+   L’envoi part directement chez Cloudinary (le fichier ne traverse jamais
    Vercel). Une fois accepté, les coordonnées rejoignent LE CARNET EXISTANT
    via /api/lead avec event="upload_contributor" — pas un second système.
    ===================================================================== */
@@ -35,7 +35,7 @@ function grossier(s) {
   return INJURES.some((w) => new RegExp(`\\b${w}`, "i").test(n));
 }
 
-/** La durée réelle d'une vidéo, lue dans ses métadonnées. */
+/** La durée réelle d’une vidéo, lue dans ses métadonnées. */
 function dureeVideo(file) {
   return new Promise((resolve, reject) => {
     const v = document.createElement("video");
@@ -46,7 +46,7 @@ function dureeVideo(file) {
   });
 }
 
-/** Le décodage d'une image : la seule preuve qu'un fichier EST une image. */
+/** Le décodage d’une image : la seule preuve qu’un fichier EST une image. */
 async function estVraimentUneImage(file) {
   try {
     if ("createImageBitmap" in window) {
@@ -83,7 +83,7 @@ export function monterFormulaire(root, surSucces) {
           <input type="text" name="legende" maxlength="70" placeholder="Ex. Sparring du jeudi soir" />
         </label>
       </div>
-      <p class="club__note">Laisse au moins un moyen de te joindre — c'est comme ça qu'on te prévient quand ta photo passe.</p>
+      <p class="club__note">Laisse au moins un moyen de te joindre — c’est comme ça qu’on te prévient quand ta photo passe.</p>
       <div class="club__row">
         <label class="club__field">
           <span>E-mail</span>
@@ -99,7 +99,7 @@ export function monterFormulaire(root, surSucces) {
         <span class="club__filebtn">Choisir ma photo ou ma vidéo</span>
         <span class="club__filename" id="club-filename">Aucun fichier choisi</span>
       </label>
-      <p class="club__hint">Photo ${LIM.imageMo} Mo max · vidéo ${LIM.videoMo} Mo et ${LIM.dureeSec} s max · rien n'est publié avant d'être validé par le staff.</p>
+      <p class="club__hint">Photo ${LIM.imageMo} Mo max · vidéo ${LIM.videoMo} Mo et ${LIM.dureeSec} s max · rien n’est publié avant d’être validé par le staff.</p>
       <div class="club__bar" aria-hidden="true"><i></i></div>
       <div class="club__actions">
         <button class="btn btn--primary" type="submit"><span>Envoyer au staff</span></button>
@@ -124,19 +124,19 @@ export function monterFormulaire(root, surSucces) {
     const v = (n) => (form.querySelector(`[name="${n}"]`)?.value || "").trim();
     const prenom = v("prenom"), legende = v("legende"), email = v("email"), phone = v("phone");
 
-    if (prenom.length < 2) return dire(status, "Donne ton prénom : sur ce mur, on signe ce qu'on poste.", "err");
+    if (prenom.length < 2) return dire(status, "Donne ton prénom : sur ce mur, on signe ce qu’on poste.", "err");
     if (grossier(prenom)) return dire(status, "Ce prénom ne passe pas. Mets le vrai, ça ira plus vite.", "err");
     if (legende && grossier(legende)) return dire(status, "Cette légende ne passe pas. Reformule et renvoie.", "err");
-    if (email && !EMAIL_RE.test(email)) return dire(status, "Cet e-mail a l'air incomplet. Vérifie-le.", "err");
-    if (phone && !TEL_RE.test(phone)) return dire(status, "Ce numéro a l'air incomplet. Vérifie-le.", "err");
+    if (email && !EMAIL_RE.test(email)) return dire(status, "Cet e-mail a l’air incomplet. Vérifie-le.", "err");
+    if (phone && !TEL_RE.test(phone)) return dire(status, "Ce numéro a l’air incomplet. Vérifie-le.", "err");
     if (!email && !phone) return dire(status, "Laisse un e-mail ou un téléphone — sans ça, on ne peut pas te répondre.", "err");
 
     const file = fileInput.files?.[0];
-    if (!file) return dire(status, "Choisis d'abord une photo ou une vidéo.", "err");
+    if (!file) return dire(status, "Choisis d’abord une photo ou une vidéo.", "err");
 
     const estVideo = file.type.startsWith("video/");
     const estImage = file.type.startsWith("image/");
-    if (!estVideo && !estImage) return dire(status, "Photo ou vidéo, rien d'autre. Choisis un vrai fichier image ou vidéo.", "err");
+    if (!estVideo && !estImage) return dire(status, "Photo ou vidéo, rien d’autre. Choisis un vrai fichier image ou vidéo.", "err");
 
     const maxMo = estVideo ? LIM.videoMo : LIM.imageMo;
     if (file.size > maxMo * 1024 * 1024) return dire(status, `Trop lourd : ${maxMo} Mo maximum pour ${estVideo ? "une vidéo" : "une photo"}.`, "err");
@@ -150,11 +150,11 @@ export function monterFormulaire(root, surSucces) {
         return dire(status, `${LIM.dureeSec} secondes maximum — la tienne en fait ${Math.round(duree)}. Garde le meilleur passage.`, "err");
       }
     } else if (!(await estVraimentUneImage(file))) {
-      return dire(status, "Ce fichier se dit image mais ne s'ouvre pas comme une image. Choisis-en un autre.", "err");
+      return dire(status, "Ce fichier se dit image mais ne s’ouvre pas comme une image. Choisis-en un autre.", "err");
     }
 
     submit.disabled = true;
-    dire(status, "Préparation de l'envoi…", "info");
+    dire(status, "Préparation de l’envoi…", "info");
 
     let s;
     try {
@@ -171,7 +171,7 @@ export function monterFormulaire(root, surSucces) {
     }
 
     /* Le fichier part DIRECTEMENT chez Cloudinary avec les paramètres signés.
-       Retirer un seul d'entre eux casse la signature — donc le dossier, le
+       Retirer un seul d’entre eux casse la signature — donc le dossier, le
        tag "pending" et la coupe à 15 s ne sont pas négociables côté client. */
     const fd = new FormData();
     fd.append("file", file);
@@ -194,7 +194,7 @@ export function monterFormulaire(root, surSucces) {
       if (bar) bar.style.width = "0%";
       if (xhr.status >= 200 && xhr.status < 300) {
         dire(status, `Reçu, ${prenom}. Le staff la regarde — si elle passe, elle sera sur le mur.`, "ok");
-        /* LA CAPTURE — le même carnet que l'assistant, pas un deuxième. */
+        /* LA CAPTURE — le même carnet que l’assistant, pas un deuxième. */
         fetch("/api/lead", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -209,13 +209,13 @@ export function monterFormulaire(root, surSucces) {
         fileName.textContent = "Aucun fichier choisi";
         surSucces?.();
       } else {
-        dire(status, "L'envoi a échoué en route. Retente — le fichier est toujours sur ton téléphone.", "err");
+        dire(status, "L’envoi a échoué en route. Retente — le fichier est toujours sur ton téléphone.", "err");
       }
     };
     xhr.onerror = () => {
       submit.disabled = false;
       if (bar) bar.style.width = "0%";
-      dire(status, "Connexion perdue pendant l'envoi. Retente quand ça remarche.", "err");
+      dire(status, "Connexion perdue pendant l’envoi. Retente quand ça remarche.", "err");
     };
     xhr.send(fd);
   });

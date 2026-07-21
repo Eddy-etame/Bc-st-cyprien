@@ -3,7 +3,7 @@
 
    Pourquoi à part : data.js est chargé par les 8 pages. Y laisser ce bloc
    revenait à faire descendre STATS à
-   quelqu'un qui lit les tarifs. Rien ici n'est surchargeable par le
+   quelqu’un qui lit les tarifs. Rien ici n’est surchargeable par le
    vestiaire — la fusion de public/content.json reste entièrement dans
    data.js, à un seul endroit.
    ===================================================================== */
@@ -17,9 +17,9 @@ export const STATS = [
 ];
 
 /* ------------------------------------------------------------------ *
- *  L'ÉTAT « PAS ENCORE NOMMÉ » — le grappling tourne au planning officiel
- *  mais le poster ne porte AUCUN nom d'encadrant (roster.json : aucune
- *  entrée, confidence nulle). On n'invente pas : on affiche un état voulu,
+ *  L’ÉTAT « PAS ENCORE NOMMÉ » — le grappling tourne au planning officiel
+ *  mais le poster ne porte AUCUN nom d’encadrant (roster.json : aucune
+ *  entrée, confidence nulle). On n’invente pas : on affiche un état voulu,
  *  identifié partout par le même token, avec la raison écrite en clair.
  *  Toute la chaîne (configurateur, activités, planning, coachs) lit ceci.
  * ------------------------------------------------------------------ */

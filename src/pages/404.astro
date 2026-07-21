@@ -4,34 +4,34 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Page introuvable (404) — Boxing Center Saint-Cyprien</title>
-  <meta name="description" content="Cette page n'existe pas. Retrouve le planning, les tarifs et le contact de Boxing Center Saint-Cyprien, rive gauche à Toulouse." />
+  <meta name="description" content="Cette page n’existe pas. Retrouve le planning, les tarifs et le contact de Boxing Center Saint-Cyprien, rive gauche à Toulouse." />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/space-grotesk-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin />
   <meta name="robots" content="noindex, follow" />
   <meta name="theme-color" content="#0b0d14" />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
-  <link rel="shortcut icon" href="/favicon.png" />
-  <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
-  <!-- Open Graph / Twitter (pas de canonical ni og:url : la 404 est servie sur n'importe quelle URL) -->
+  <link rel="icon" href="/favicon.svg?i=2" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.png?i=2" type="image/png" sizes="32x32" />
+  <link rel="shortcut icon" href="/favicon.png?i=2" />
+  <link rel="icon" href="/favicon-192.png?i=2" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?i=2" sizes="180x180" />
+  <!-- Open Graph / Twitter (pas de canonical ni og:url : la 404 est servie sur n’importe quelle URL) -->
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Boxing Center Saint-Cyprien" />
   <meta property="og:title" content="Page introuvable (404) — Boxing Center Saint-Cyprien" />
-  <meta property="og:description" content="Cette page n'existe pas. Retrouve le planning, les tarifs et le contact de Boxing Center Saint-Cyprien, rive gauche à Toulouse." />
-  <meta property="og:image" content="https://st-cyprien.boxingcenter.fr/assets/img/sc/salle-1.webp" />
+  <meta property="og:description" content="Cette page n’existe pas. Retrouve le planning, les tarifs et le contact de Boxing Center Saint-Cyprien, rive gauche à Toulouse." />
+  <meta property="og:image" content="https://bc-st-cyprien.vercel.app/assets/img/sc/salle-1.webp" />
   <meta property="og:image:type" content="image/webp" />
   <meta property="og:image:width" content="768" />
   <meta property="og:image:height" content="512" />
   <meta property="og:image:alt" content="La salle Boxing Center Saint-Cyprien — 1 200 m² rive gauche, Toulouse" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Page introuvable (404) — Boxing Center Saint-Cyprien" />
-  <meta name="twitter:description" content="Cette page n'existe pas. Retrouve le planning, les tarifs et le contact de Boxing Center Saint-Cyprien, rive gauche à Toulouse." />
-  <meta name="twitter:image" content="https://st-cyprien.boxingcenter.fr/assets/img/sc/salle-1.webp" />
+  <meta name="twitter:description" content="Cette page n’existe pas. Retrouve le planning, les tarifs et le contact de Boxing Center Saint-Cyprien, rive gauche à Toulouse." />
+  <meta name="twitter:image" content="https://bc-st-cyprien.vercel.app/assets/img/sc/salle-1.webp" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=19" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=19" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=20" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=20" />
 
   <style is:inline>
     .e404 { min-height: 78vh; display: grid; place-items: center; text-align: center; position: relative; overflow: hidden; background: var(--void); }
@@ -53,10 +53,10 @@
     <section class="e404" aria-label="Page introuvable">
       <div class="e404__in">
         <span class="e404__code">Erreur 404</span>
-        <h1 class="e404__title">Ce créneau<span class="tint">n'existe pas.</span></h1>
-        <p class="lead">La page a bougé ou n'a jamais existé. Reviens dans la lumière : le planning, les tarifs et la salle t'attendent rive gauche.</p>
+        <h1 class="e404__title">Ce créneau<span class="tint">n’existe pas.</span></h1>
+        <p class="lead">La page a bougé ou n’a jamais existé. Reviens dans la lumière : le planning, les tarifs et la salle t’attendent rive gauche.</p>
         <div class="e404__links">
-          <a class="btn btn--primary" data-magnetic href="/"><span>Retour à l'accueil</span></a>
+          <a class="btn btn--primary" data-magnetic href="/"><span>Retour à l’accueil</span></a>
           <a class="btn" data-magnetic href="/plannings/"><span>Le planning</span></a>
           <a class="btn" data-magnetic href="/contact/"><span>Nous trouver</span></a>
         </div>
@@ -66,11 +66,11 @@
 
   <div id="footer"><!-- LE MAILLAGE DE MARQUE, SERVI EN DUR ------------------------------
        Les liens sortants du pied de page (le groupe, la boutique, les salles
-       sœurs, les réseaux) sont écrits par site.js. Un robot qui n'exécute pas
-       le JavaScript n'en voyait donc AUCUN dans le HTML livré : le maillage
-       n'existait qu'à l'écran. Il est posé ici, en dur, À L'INTÉRIEUR du
+       sœurs, les réseaux) sont écrits par site.js. Un robot qui n’exécute pas
+       le JavaScript n’en voyait donc AUCUN dans le HTML livré : le maillage
+       n’existait qu’à l’écran. Il est posé ici, en dur, À L’INTÉRIEUR du
        conteneur que site.js remplace intégralement au montage. Résultat : les
-       liens sont dans dist/*.html, et le rendu à l'écran est inchangé — ce
+       liens sont dans dist/*.html, et le rendu à l’écran est inchangé — ce
        bloc ne peint rien et disparaît dès que le pied de page est monté. -->
     <nav class="maillage" hidden style="display:none" aria-label="Le réseau Boxing Center">
       <a href="https://boxingcenter.fr/">Boxing Center — le groupe</a>
@@ -90,8 +90,8 @@
     <span class="chatbot__label">Une question&nbsp;? Appelle la salle</span>
   </a>
 
-  <!-- Libs d'animation, auto-hébergées et regroupées (gsap + ScrollTrigger + Lenis). -->
-  <script is:inline defer src="/assets/js/vendor.min.js?v=19"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=19"></script>
+  <!-- Libs d’animation, auto-hébergées et regroupées (gsap + ScrollTrigger + Lenis). -->
+  <script is:inline defer src="/assets/js/vendor.min.js?v=20"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=20"></script>
 </body>
 </html>

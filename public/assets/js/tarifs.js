@@ -4,8 +4,8 @@
    compléments → conditions → avis Google RÉELS → FAQ argent. Tout depuis
    data.js (PROMOS daté, jamais de prix en dur), tous les CTA → box-plus.
    ===================================================================== */
-import { TARIFS, PROMOS, REVIEWS, LINKS, SALLE } from "./data.js?v=19";
-import { PRICING_FAQ } from "./data-tarifs.js?v=19";
+import { TARIFS, PROMOS, REVIEWS, LINKS, SALLE } from "./data.js?v=20";
+import { PRICING_FAQ } from "./data-tarifs.js?v=20";
 
 const $ = (s, r = document) => r.querySelector(s);
 
@@ -17,8 +17,8 @@ function renderEssai() {
   el.innerHTML = `
     <div class="essai__spot" aria-hidden="true"></div>
     <div class="essai__body">
-      <span class="eyebrow">La séance d'essai</span>
-      <h2 class="display essai__title">L'essai d'abord.<br><span class="tint">Dix euros, sans filet.</span></h2>
+      <span class="eyebrow">La séance d’essai</span>
+      <h2 class="display essai__title">L’essai d’abord.<br><span class="tint">Dix euros, sans filet.</span></h2>
       <p class="lead essai__lead">${e.detail}</p>
     </div>
     <div class="essai__cta">
@@ -27,7 +27,7 @@ function renderEssai() {
     </div>`;
 }
 
-/* Les deux offres datées — le Duo s'écrit TOUJOURS "29€ par personne" */
+/* Les deux offres datées — le Duo s’écrit TOUJOURS "29€ par personne" */
 function renderPromos() {
   const el = $("#promos");
   if (!el) return;
@@ -51,7 +51,7 @@ function renderMore() {
   const ecole = TARIFS.find((x) => x.name.startsWith("École")) || TARIFS[TARIFS.length - 1];
   const cards = [
     { name: ecole.name, price: ecole.price, period: ecole.period, feature: ecole.feature, items: ecole.items, cta: ecole.cta, href: ecole.href },
-    { name: "Coaching privé", feature: "En tête-à-tête, ton geste sous une seule paire d'yeux", items: ["Sur rendez-vous", "On casse un défaut précis", "Avec un coach de la salle"], cta: "Voir les coachings", href: LINKS.coachings },
+    { name: "Coaching privé", feature: "En tête-à-tête, ton geste sous une seule paire d’yeux", items: ["Sur rendez-vous", "On casse un défaut précis", "Avec un coach de la salle"], cta: "Voir les coachings", href: LINKS.coachings },
     { name: "Matériel", feature: "Gants, protections, textile", items: ["Équipe-toi pour durer", "Conseil à la salle", "Boutique en ligne"], cta: "La boutique", href: LINKS.materiel },
   ];
   el.innerHTML = cards
@@ -108,7 +108,7 @@ function boot() {
   window.BC.magnetic(document);
   window.BC.spotlight(".phero", ".phero__spot");
   window.BC.spotlight(".essai", ".essai__spot");
-  window.BC.touchLife();   // mobile : promos, tarifs, avis s'animent au passage
+  window.BC.touchLife();   // mobile : promos, tarifs, avis s’animent au passage
 
   const start = () => window.BC.refresh();
   window.addEventListener("load", start);

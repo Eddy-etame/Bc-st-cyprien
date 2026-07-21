@@ -1,17 +1,17 @@
 /* =====================================================================
    SAINT-CYPRIEN · site.js — chrome + motion engine (light edition)
    window.BC = { reveal, magnetic, refresh, media, split, scramble, lenis }
-   Same proven engine as the other salles, with the showroom's restraint:
+   Same proven engine as the other salles, with the showroom’s restraint:
    no custom cursor, no grain — precision instead of texture.
    ===================================================================== */
-import { NAV, LINKS, SALLE, NETWORK, picture, pictureEl } from "./data.js?v=19";
+import { NAV, LINKS, SALLE, NETWORK, picture, pictureEl } from "./data.js?v=20";
 
 /* ------------------------- MAILLAGE DE MARQUE ---------------------- *
  * Le réseau propriétaire est un maillage VOULU : les liens sortants vers
  * boxingcenter.fr, la boutique et les salles sœurs partent en target=_blank
- * + rel="noopener" — et SURTOUT PAS en nofollow (c'est du jus de marque
- * qu'on donne exprès). L'icône dit au lecteur qu'il change de site.
- * Un seul endroit produit ces liens : nav, menu et pied s'y branchent. */
+ * + rel="noopener" — et SURTOUT PAS en nofollow (c’est du jus de marque
+ * qu’on donne exprès). L’icône dit au lecteur qu’il change de site.
+ * Un seul endroit produit ces liens : nav, menu et pied s’y branchent. */
 const svgExt = `<svg class="ext" width="10" height="10" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 11L11 5M11 5H6M11 5V10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 const ext = (href, label, title) =>
   `<a href="${href}" target="_blank" rel="noopener"${title ? ` title="${title}"` : ""}>${label} ${svgExt}</a>`;
@@ -67,7 +67,7 @@ function mountNav() {
       </div>
       <nav class="menu__nav" aria-label="Menu">${menuLinks}</nav>
       <div class="menu__foot">
-        <a class="btn btn--primary" data-magnetic href="${LINKS.essai}"><span>Réserver l'essai · 10€</span></a>
+        <a class="btn btn--primary" data-magnetic href="${LINKS.essai}"><span>Réserver l’essai · 10€</span></a>
         <div class="menu__ext">
           ${ext(LINKS.groupe, "Le réseau Boxing Center")}
           ${ext(LINKS.boutique, "Boutique")}
@@ -131,7 +131,7 @@ function mountFooter() {
             <span class="eyebrow">À toi de jouer</span>
             <h2 class="display footer__cut">Rive gauche.<br><span class="tint">Tout est prêt.</span></h2>
           </div>
-          <a class="btn btn--primary" data-magnetic href="${LINKS.essai}"><span>Réserver l'essai · 10€</span></a>
+          <a class="btn btn--primary" data-magnetic href="${LINKS.essai}"><span>Réserver l’essai · 10€</span></a>
         </div>
         <div class="fiche" aria-label="Fiche technique de la salle">
           ${fields.map((f) => `<div class="fiche__cell${f.wide ? " fiche__cell--wide" : ""}"><span class="fk">${f.k}</span><span class="fv">${f.v}</span></div>`).join("")}
@@ -152,8 +152,8 @@ function mountFooter() {
 
         <!-- LE MAILLAGE INTER-SALLES — rendu depuis NETWORK (données réelles),
              sur les 8 pages. Volontairement une simple ligne de liens : la
-             vitrine des salles sœurs vit sur /la-salle/ et n'a pas à être
-             rejouée ici. Ce qui compte en pied de page, c'est le lien. -->
+             vitrine des salles sœurs vit sur /la-salle/ et n’a pas à être
+             rejouée ici. Ce qui compte en pied de page, c’est le lien. -->
         <nav class="netmesh" aria-label="Les autres salles du réseau Boxing Center">
           <span class="netmesh__k">Ton abonnement ouvre aussi</span>
           <ul class="netmesh__list">
@@ -225,8 +225,8 @@ function reveal(scope = document) {
   // Dead-man n°0 : sans gsap (CDN coupé/lent), on NE lance rien et on retire
   // `fx` — tout est déjà peint en clair par le CSS. Avant, gsap.set() levait
   // une TypeError ICI, ce qui tuait la fin du boot de chaque page : le
-  // count-up des « preuves du titre » ne s'exécutait jamais et les stats
-  // restaient à 0 pour de bon. La lisibilité ne dépend d'aucune lib.
+  // count-up des « preuves du titre » ne s’exécutait jamais et les stats
+  // restaient à 0 pour de bon. La lisibilité ne dépend d’aucune lib.
   if (reduce || !gsap) { document.documentElement.classList.remove("fx"); return; }
   scope.querySelectorAll(".reveal-mask").forEach((m) => {
     const kids = [...m.children];
@@ -254,8 +254,8 @@ function reveal(scope = document) {
       document.documentElement.classList.remove("fx");
       document.querySelectorAll(".reveal-mask > span, [data-reveal], [data-reveal-group] > *").forEach((el) => {
         // transition coupée AVANT de repeindre : si le ticker est gelé, le
-        // compositeur l'est aussi, et une transition d'opacité déclenchée ici
-        // reste bloquée à sa valeur de départ — l'élément affiche opacity 1 en
+        // compositeur l’est aussi, et une transition d’opacité déclenchée ici
+        // reste bloquée à sa valeur de départ — l’élément affiche opacity 1 en
         // inline mais calcule 0, donc reste invisible (constaté sur .wsheet).
         el.style.transition = "none";
         el.style.opacity = "1"; el.style.transform = "none";
@@ -281,7 +281,7 @@ function hydrateMedia(scope = document) {
     // alt: prefer an explicit data-alt (real image described) over the mono pill label (data-label)
     img.alt = el.dataset.alt || el.dataset.label || ""; img.loading = el.hasAttribute("data-eager") ? "eager" : "lazy"; img.decoding = "async";
     if (el.hasAttribute("data-eager")) img.fetchPriority = "high"; // LCP (le préload du head porte déjà fetchpriority=high)
-    // pictureEl n'enveloppe que les clichés dont l'AVIF est MESURÉ plus léger ;
+    // pictureEl n’enveloppe que les clichés dont l’AVIF est MESURÉ plus léger ;
     // partout ailleurs il rend le <img> tel quel, sans nœud en plus.
     el.prepend(pictureEl(img));
   });
@@ -309,23 +309,23 @@ function initKinetics() {
 /* Toutes les pages rendent leur contenu en JS APRÈS le boot de Lenis :
    Lenis garde donc une hauteur périmée (mesuré sur /la-salle/ : limite
    5 626 pour un document de 9 438). Conséquence, tout scrollTo au-delà de
-   l'ancienne limite se faisait écrêter et s'arrêtait en chemin. On
+   l’ancienne limite se faisait écrêter et s’arrêtait en chemin. On
    remesure Lenis en même temps que ScrollTrigger — chaque page appelle
    déjà BC.refresh() au load et à +500 ms. */
 /* ------------------------- UN SEUL NUMÉRO ------------------------- *
  * Plusieurs pages portent le téléphone EN DUR dans leur markup (héros,
- * gong final, cartes tarifs). Tant que le numéro ne bougeait pas, c'était
- * invisible. Depuis que le vestiaire peut le changer, ça ne l'est plus :
+ * gong final, cartes tarifs). Tant que le numéro ne bougeait pas, c’était
+ * invisible. Depuis que le vestiaire peut le changer, ça ne l’est plus :
  * mesuré après une modification, la fiche affichait « 05 62 24 46 99 »
  * pendant que deux boutons composaient encore tel:+33562244682. Un bouton
- * d'appel qui compose l'ancien numéro est pire qu'un bouton mort.
+ * d’appel qui compose l’ancien numéro est pire qu’un bouton mort.
  * On réaligne donc TOUS les liens tel: et leurs libellés sur SALLE — en un
  * seul endroit, rejoué à chaque refresh (donc après les rendus tardifs). */
 function syncPhone(scope = document) {
   const href = `tel:${SALLE.phoneHref}`;
   scope.querySelectorAll('a[href^="tel:"]').forEach((a) => {
     if (a.getAttribute("href") !== href) a.setAttribute("href", href);
-    // le libellé n'est réécrit QUE s'il est lui-même un numéro : on ne touche
+    // le libellé n’est réécrit QUE s’il est lui-même un numéro : on ne touche
     // pas à « Savoir qui encadre · … » ni à aucune phrase.
     const cible = a.querySelector("span") || a;
     if (/^[\d\s.+-]{10,}$/.test(cible.textContent.trim()) && cible.textContent.trim() !== SALLE.phone) {
@@ -336,13 +336,13 @@ function syncPhone(scope = document) {
 
 const refresh = () => { lenis?.resize(); ScrollTrigger?.refresh(); syncPhone(); };
 
-/* Le rattrapage ci-dessus dépendait d'un CALENDRIER : syncPhone tournait au
+/* Le rattrapage ci-dessus dépendait d’un CALENDRIER : syncPhone tournait au
  * boot, au load et à +500 ms, et chaque page rend son contenu en JS quelque
  * part là-dedans. Mesuré sur /tarifs/ après un changement de numéro au
- * vestiaire : un bouton d'appel bien visible affichait encore « 05 62 24 46 82 »
- * et le composait, parce que tarifs.js l'avait posé APRÈS le dernier passage.
- * Un BC.refresh() à la main le corrigeait — donc ce n'était pas la logique, mais
- * l'instant. On ne parie plus sur l'horloge : tout lien tel: ajouté au document,
+ * vestiaire : un bouton d’appel bien visible affichait encore « 05 62 24 46 82 »
+ * et le composait, parce que tarifs.js l’avait posé APRÈS le dernier passage.
+ * Un BC.refresh() à la main le corrigeait — donc ce n’était pas la logique, mais
+ * l’instant. On ne parie plus sur l’horloge : tout lien tel: ajouté au document,
  * quand que ce soit, est réaligné à la frame suivante. */
 function watchPhone() {
   if (!("MutationObserver" in window)) return;
@@ -351,17 +351,17 @@ function watchPhone() {
     if (prevu) return;
     if (!lots.some((l) => [...l.addedNodes].some((n) => n.nodeType === 1))) return;
     prevu = true;
-    // surtout PAS requestAnimationFrame : mesuré, l'onglet en arrière-plan ne
+    // surtout PAS requestAnimationFrame : mesuré, l’onglet en arrière-plan ne
     // rend plus de frame, la relance restait en attente et le drapeau bloquait
-    // l'observateur pour de bon. setTimeout tourne, lui, onglet caché compris.
+    // l’observateur pour de bon. setTimeout tourne, lui, onglet caché compris.
     setTimeout(() => { prevu = false; syncPhone(); }, 0);
   }).observe(document.body, { childList: true, subtree: true });
 }
 
 /* ------------------------- SCROLL TO ELEMENT ---------------------- *
  * Lenis pilote le scroll via son propre rAF : un scrollIntoView natif en
- * "smooth" se fait écraser à chaque frame et s'arrête en chemin (mesuré :
- * 1 099 px parcourus pour une cible à 2 648). Tout saut d'ancre passe donc
+ * "smooth" se fait écraser à chaque frame et s’arrête en chemin (mesuré :
+ * 1 099 px parcourus pour une cible à 2 648). Tout saut d’ancre passe donc
  * par ICI — Lenis quand il est là, natif sinon, et instantané en
  * reduced-motion. `offset` compense les barres collantes (plan, index). */
 function scrollToEl(target, { offset = 0, block = "center" } = {}) {
@@ -383,19 +383,19 @@ function scrollToEl(target, { offset = 0, block = "center" } = {}) {
   const from = window.scrollY;
   lenis.scrollTo(el, { offset, duration: 1.05 });
 
-  // Dead-man net (loi n°3, appliquée au DÉPLACEMENT) : Lenis n'avance que
+  // Dead-man net (loi n°3, appliquée au DÉPLACEMENT) : Lenis n’avance que
   // si le ticker gsap tourne. Ticker gelé = onglet en arrière-plan, rAF
-  // suspendu, lib CDN à moitié chargée… et l'utilisateur clique un index
-  // qui ne l'emmène nulle part. Si rien n'a bougé au bout de 260 ms, on
+  // suspendu, lib CDN à moitié chargée… et l’utilisateur clique un index
+  // qui ne l’emmène nulle part. Si rien n’a bougé au bout de 260 ms, on
   // reprend la main en natif. Un index qui ne scrolle pas est un bouton
-  // mort — ça ne peut jamais dépendre d'une lib.
+  // mort — ça ne peut jamais dépendre d’une lib.
   setTimeout(() => {
     if (Math.abs(window.scrollY - from) > 4) return; // Lenis a démarré, on le laisse finir
     const dest = y();
     if (Math.abs(window.scrollY - dest) < 8) return; // déjà à destination
-    // SEC, pas "smooth" : si le ticker est gelé, l'animation de scroll natif
-    // l'est en général aussi (mesuré : elle s'arrête à mi-course). Arriver
-    // d'un coup est moche une demi-seconde ; ne pas arriver est cassé.
+    // SEC, pas "smooth" : si le ticker est gelé, l’animation de scroll natif
+    // l’est en général aussi (mesuré : elle s’arrête à mi-course). Arriver
+    // d’un coup est moche une demi-seconde ; ne pas arriver est cassé.
     window.scrollTo(0, dest);
   }, 260);
 }
@@ -446,11 +446,11 @@ function spotlight(heroSel = ".hero", spotSel = ".hero__spot") {
 
 /* --------------------------- TOUCH-LIFE --------------------------- *
  * De la vie sur TOUTE la page en mobile (hover:none), pas que le héros : les
- * cartes se soulèvent / s'allument quand elles traversent le cadre. Pur IO →
- * insensible au ticker gsap gelé. Chaque page l'appelle APRÈS son rendu.
+ * cartes se soulèvent / s’allument quand elles traversent le cadre. Pur IO →
+ * insensible au ticker gsap gelé. Chaque page l’appelle APRÈS son rendu.
  * (Le curseur-spotlight se désactive en hover:none — ceci le remplace.) */
-/* .station (visite) + .gitem (galerie) s'animent déjà via leur propre IO sur
-   tous les appareils → hors liste pour ne pas doubler l'observateur. */
+/* .station (visite) + .gitem (galerie) s’animent déjà via leur propre IO sur
+   tous les appareils → hors liste pour ne pas doubler l’observateur. */
 const TOUCH_LIFE_SEL = ".promo, .sister, .codecard, .level, .pnote, .rostercard, .coachcard, .tarif, .review, .slot, .act, .coords li, .cfg, .route, .week, .pulse";
 function touchLife(scope = document) {
   if (!window.matchMedia("(hover: none)").matches || !("IntersectionObserver" in window)) return;
@@ -463,22 +463,22 @@ function touchLife(scope = document) {
   els.forEach((el) => { if (!el.dataset.tlBound) { el.dataset.tlBound = "1"; io.observe(el); } });
 }
 
-/* -------------------------- L'ASSISTANT (paresseux) ---------------- *
+/* -------------------------- L’ASSISTANT (paresseux) ---------------- *
  * Le dialogue pèse ~21 Ko (chatbot.js + sa base locale) pour un visiteur sur
- * dix qui l'ouvre : il ne part donc PLUS au premier rendu. La pastille reste
- * le lien tel: du HTML ; on l'arme ici, et le module n'est téléchargé qu'au
+ * dix qui l’ouvre : il ne part donc PLUS au premier rendu. La pastille reste
+ * le lien tel: du HTML ; on l’arme ici, et le module n’est téléchargé qu’au
  * moment où le visiteur montre son intention.
  *
  * Trois étages, du plus tôt au plus tard — aucun ne dégrade le précédent :
  *   1. survol / focus / doigt posé  -> on précharge (le clic paraît instantané) ;
  *   2. clic                          -> on attend le module puis on ouvre ;
  *   3. module injoignable            -> on suit le href, la salle sonne.
- * Sans JS du tout, l'étage 3 est le comportement natif du lien. */
+ * Sans JS du tout, l’étage 3 est le comportement natif du lien. */
 function armChatbot() {
   const pill = document.querySelector("a.chatbot");
   if (!pill) return;
   let load = null;
-  const warm = () => (load ||= import("./chatbot.js?v=19"));
+  const warm = () => (load ||= import("./chatbot.js?v=20"));
   ["pointerenter", "focus", "touchstart"].forEach((ev) =>
     pill.addEventListener(ev, warm, { once: true, passive: true })
   );

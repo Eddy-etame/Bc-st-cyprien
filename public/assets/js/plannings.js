@@ -5,20 +5,20 @@
    couleur, plus bas dans la page, reste la source de vérité.
    Deep-link : /plannings/#<discipline> pré-sélectionne la discipline.
    ===================================================================== */
-import { SCHEDULE, DAYS, DISCIPLINES, SEASON_LABEL, COACH_TBD, COACH_TBD_SHORT } from "./data.js?v=19";
+import { SCHEDULE, DAYS, DISCIPLINES, SEASON_LABEL, COACH_TBD, COACH_TBD_SHORT } from "./data.js?v=20";
 
 const $ = (s, r = document) => r.querySelector(s);
 const byKey = Object.fromEntries(DISCIPLINES.map((d) => [d.key, d]));
 const state = { day: "", key: "", coach: "" };
-/* pas un vrai nom de coach → jamais une puce de filtre (le grappling n'a pas
+/* pas un vrai nom de coach → jamais une puce de filtre (le grappling n’a pas
    encore son encadrant nommé ; roster.json fait foi). */
 const NON_COACH = new Set([COACH_TBD]);
 
 /* ------------------------------------------------------------------ *
  * LA SEMAINE EN CHIFFRES — la page affichait une grille sans jamais dire
- * ce qu'elle pèse. Tout est COMPTÉ sur SCHEDULE au chargement : aucun de
- * ces nombres n'est saisi, donc aucun ne peut vieillir. L'heure sert de
- * frontière midi/soir (12h40 vs ≥18h) — c'est la lecture du poster.
+ * ce qu’elle pèse. Tout est COMPTÉ sur SCHEDULE au chargement : aucun de
+ * ces nombres n’est saisi, donc aucun ne peut vieillir. L’heure sert de
+ * frontière midi/soir (12h40 vs ≥18h) — c’est la lecture du poster.
  * ------------------------------------------------------------------ */
 const hourOf = (t) => parseInt(t, 10);
 function renderPulse() {
@@ -81,7 +81,7 @@ function renderGrid() {
       <ul class="pday__list" data-reveal-group>
         ${rows
           .map((s) => {
-            // le créneau sans encadrant nommé porte sa marque : c'est un état
+            // le créneau sans encadrant nommé porte sa marque : c’est un état
             // assumé, pas une ligne oubliée (cf. COACH_TBD dans data.js).
             const tbd = s.coach === COACH_TBD;
             const meta = tbd ? `<i class="tbd">${COACH_TBD_SHORT}</i> · ${s.lvl}` : `${s.coach} · ${s.lvl}`;
@@ -98,9 +98,9 @@ function renderGrid() {
 
 /* --------------------------- FILTER ------------------------------- *
  * Un filtre qui ne dit pas combien il a gardé est un bouton muet : on
- * comptait les créneaux visibles sans jamais l'écrire. Le compteur annonce
+ * comptait les créneaux visibles sans jamais l’écrire. Le compteur annonce
  * le résultat (et le lit à voix haute — aria-live), et la remise à zéro
- * n'apparaît QUE lorsqu'il y a quelque chose à remettre à zéro. */
+ * n’apparaît QUE lorsqu’il y a quelque chose à remettre à zéro. */
 function apply() {
   let shown = 0;
   document.querySelectorAll(".slot").forEach((sl) => {
@@ -176,12 +176,12 @@ function boot() {
   renderGrid();
   wire();
   fromHash();
-  apply();   // le compteur affiche l'état réel dès l'arrivée, filtre ou pas
+  apply();   // le compteur affiche l’état réel dès l’arrivée, filtre ou pas
 
   window.BC.reveal(document);
   window.BC.magnetic(document);
   window.BC.spotlight(".phero", ".phero__spot");
-  window.BC.touchLife();   // mobile : les créneaux s'allument au passage
+  window.BC.touchLife();   // mobile : les créneaux s’allument au passage
 
   const start = () => window.BC.refresh();
   window.addEventListener("load", start);

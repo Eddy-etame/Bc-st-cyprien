@@ -1,10 +1,10 @@
 /* =====================================================================
    SAINT-CYPRIEN · contact.js — zéro friction.
    Coordonnées + carte + horaires + FAQ (FAQPage, miroir du LD-JSON de la
-   page). Tout depuis data.js ; pas de formulaire local, l'essai → box-plus,
+   page). Tout depuis data.js ; pas de formulaire local, l’essai → box-plus,
    la pastille chatbot → tel réel.
    ===================================================================== */
-import { SALLE, FAQ, REVIEWS } from "./data.js?v=19";
+import { SALLE, FAQ, REVIEWS } from "./data.js?v=20";
 
 const $ = (s, r = document) => r.querySelector(s);
 
@@ -54,7 +54,7 @@ function boot() {
   window.BC.reveal(document);
   window.BC.magnetic(document);
   window.BC.spotlight(".phero", ".phero__spot");
-  window.BC.touchLife();   // mobile : coordonnées & lignes s'animent au passage
+  window.BC.touchLife();   // mobile : coordonnées & lignes s’animent au passage
 
   const start = () => window.BC.refresh();
   window.addEventListener("load", start);

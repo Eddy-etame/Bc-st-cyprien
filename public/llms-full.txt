@@ -15,7 +15,7 @@
 - Fédérations : FFBoxe, FFKMDA, FMMAF.
 - Position dans le réseau : dernière-née des 5 salles Boxing Center (Minimes, Portet-sur-Garonne, États-Unis, Ramonville, Saint-Cyprien) ; premier Boxing Center rive gauche de Toulouse.
 - Itinéraire : https://maps.google.com/?q=11+rue+Sainte-Lucie+31300+Toulouse
-- Sites du réseau : site mère https://boxingcenter.fr/ · Portet-sur-Garonne https://www.boxing-center-portet.fr/ · Minimes https://minimes.boxingcenter.fr/ · Ramonville https://ramonville.boxingcenter.fr/ · boutique https://box-plus.vercel.app/ · inscriptions, abonnements et séance d'essai https://box-plus.vercel.app/
+- Sites du réseau : site mère https://boxingcenter.fr/ · Portet-sur-Garonne https://www.boxing-center-portet.fr/ · Minimes https://bc-minimes.vercel.app/ · Ramonville https://bc-ramonville.vercel.app/ · boutique https://box-plus.vercel.app/ · inscriptions, abonnements et séance d'essai https://box-plus.vercel.app/
 - Réseaux sociaux : https://www.instagram.com/boxingcentertoulouse/ · https://www.facebook.com/BoxingCenterToulouse/
 
 ## L'assistant du site
@@ -27,13 +27,13 @@
 - Son module n'est téléchargé qu'au moment où on ouvre le dialogue. Sans JavaScript, la pastille reste un simple lien d'appel vers la salle.
 - Zones non indexables, à ne pas citer ni suivre : /admin/ (le vestiaire, le backoffice éditorial) et /api/ (les fonctions). Elles sont en noindex et interdites dans robots.txt.
 
-## Accueil (https://st-cyprien.boxingcenter.fr/)
+## Accueil (https://bc-st-cyprien.vercel.app/)
 
 - La salle en chiffres : 1 200 m² de plateau rive gauche ; 4 minutes du métro A (Saint-Cyprien République) ; plus de 10 disciplines à une seule adresse ; 4 coachs spécialisés au planning.
 - Le configurateur de la page d'accueil présente chaque discipline avec son coach, ses jours et son niveau (données du planning officiel).
 - Séance d'essai : 10 €, toutes disciplines, gants et matériel prêtés, sans engagement. Réservation : https://box-plus.vercel.app/seance-essai
 
-## La salle (https://st-cyprien.boxingcenter.fr/la-salle/)
+## La salle (https://bc-st-cyprien.vercel.app/la-salle/)
 
 Six postes sur un seul niveau :
 1. Le plateau — 1 200 m², un seul niveau, rive gauche ; le ring visible depuis l'entrée.
@@ -47,7 +47,7 @@ Déroulé d'une séance (affiché sur la page) : accueil et présentation au coa
 
 La lignée du réseau (ordre d'arrivée) : Minimes (le berceau, la salle historique, 3 rings, l'école), Portet-sur-Garonne (le vaisseau amiral, ring olympique, cage MMA — https://www.boxing-center-portet.fr/), États-Unis (le colosse, 1 200 m², 3 zones, 2 rings, cage MMA), Ramonville (le ciel ouvert, octogone 7 m, ring olympique, 300 m² extérieur), puis Saint-Cyprien.
 
-## Activités (https://st-cyprien.boxingcenter.fr/activites/)
+## Activités (https://bc-st-cyprien.vercel.app/activites/)
 
 Aiguillage « par où commencer » — cinq intentions courantes et la discipline vers laquelle la salle oriente :
 - « Je n'ai jamais mis de gants » → Boxing camp (3 créneaux/semaine) : aucun acquis demandé.
@@ -76,7 +76,7 @@ Paliers de l'école, âge par âge :
 - Éducative ados, 12 à 16 ans — mercredi et samedi 15h : gestuelle propre, premiers assauts encadrés.
 - Compétiteurs — mercredi et samedi : préparation, sparring, corner ; encadré par Dadi.
 
-## Coachs (https://st-cyprien.boxingcenter.fr/coachs/)
+## Coachs (https://bc-st-cyprien.vercel.app/coachs/)
 
 - Dadi — le pilier : boxe anglaise, Lady Punch et toute l'école enfants, du Baby Boxe aux compétiteurs. 12 créneaux par semaine à son nom. Seul coach dont la photo est publiée, parce que la source officielle du réseau associe son nom à son visage.
 - Tawee — boxe thaï / K1 : 2 créneaux par semaine (mardi et jeudi 12h40).
@@ -91,7 +91,7 @@ Méthode d'encadrement (trois règles affichées sur la page) :
 2. Une surface, un spécialiste — le pieds-poings à Tawee et Victor G, le moteur à Hicham ; aucun coach ne couvre une discipline qui n'est pas la sienne.
 3. Un visage seulement s'il est prouvé — une photo n'est publiée sous un nom que si la source officielle du réseau associe les deux ; sinon une tuile, jamais une banque d'images.
 
-## Galerie (https://st-cyprien.boxingcenter.fr/galerie/)
+## Galerie (https://bc-st-cyprien.vercel.app/galerie/)
 
 16 photos réelles de la salle, réparties en 7 zones. Aucune image de banque : ce sont les clichés du club, pris pendant des cours réels. Chaque photo s'ouvre en grand dans une visionneuse (clavier : flèches pour naviguer, Échap pour fermer).
 - Le plateau (1 photo) — 1 200 m² sur un seul niveau ; depuis la porte on voit les sacs, le ring et la cage.
@@ -102,7 +102,7 @@ Méthode d'encadrement (trois règles affichées sur la page) :
 - Lady Punch (2 photos) — créneau 100 % féminin, mardi et jeudi 18h20.
 - L'école (3 photos) — Baby Boxe, éducative 7/11, ados 12/16, compétiteurs.
 
-## Planning (https://st-cyprien.boxingcenter.fr/plannings/)
+## Planning (https://bc-st-cyprien.vercel.app/plannings/)
 
 La semaine en chiffres (comptée sur la grille ci-dessous) : 24 cours par semaine, 6 jours ouverts (dimanche fermé), 9 cours en journée, 15 cours du soir à partir de 18h, 7 disciplines au planning.
 La grille de la page est filtrable par jour, par discipline et par coach, avec le nombre de créneaux retenus affiché en direct et une remise à zéro.
@@ -117,7 +117,7 @@ Grille hebdomadaire (le poster officiel de la saison, affiché sur la page, fait
 - Dimanche : fermé.
 Conseils pratiques : arriver 10 minutes avant ; gants et protections prêtés pour la première séance ; en cas de doute sur un créneau, appeler le 05 62 24 46 82.
 
-## Tarifs (https://st-cyprien.boxingcenter.fr/tarifs/)
+## Tarifs (https://bc-st-cyprien.vercel.app/tarifs/)
 
 - Séance d'essai : 10 € la séance — accès à toutes les disciplines, gants et matériel prêtés, sans engagement.
 - Offre Duo : 29 € par personne (au lieu de 44 €) — 4 semaines, cours illimités, sans engagement. Toujours « 29 € par personne », jamais « 29 € pour deux ».
@@ -128,7 +128,7 @@ Conseils pratiques : arriver 10 minutes avant ; gants et protections prêtés po
 - L'inscription, les prélèvements et le détail des formules se finalisent sur box-plus : https://box-plus.vercel.app/abonnements#promotions
 - Avis Google affichés sur la page : 4,2/5, 59 avis. Citations réelles : « Une petite salle au top, des coachs au top, nichée au cœur de Saint Cyp'. » (Ronan L.) ; « Super salle, tous les mois Dadi améliore la salle avec des nouveaux équipements. » (Kayon M.) ; « Bonne salle, propre avec de bons équipements. Cours complet. » (Omar T.) ; « Les cours de boxing lady sont top ! Il y a une bonne ambiance. » (Alyssia P.)
 
-## Contact (https://st-cyprien.boxingcenter.fr/contact/)
+## Contact (https://bc-st-cyprien.vercel.app/contact/)
 
 - Adresse : 11 rue Sainte-Lucie, 31300 Toulouse.
 - Téléphone : 05 62 24 46 82.

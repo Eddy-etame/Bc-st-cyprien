@@ -1,34 +1,34 @@
 /* =====================================================================
-   L'ASSISTANT — Boxing Center Saint-Cyprien.
+   L’ASSISTANT — Boxing Center Saint-Cyprien.
 
    Philosophie (≠ formulaire) : le bot se présente, demande ton prénom,
-   puis RÉPOND. L'IA (/api/chat, ancrée sur les faits de la salle) rend la
+   puis RÉPOND. L’IA (/api/chat, ancrée sur les faits de la salle) rend la
    conversation humaine pendant que le widget capte AU VOL les coordonnées
-   que le visiteur donne de lui-même — prénom, email, téléphone. Dès qu'on
+   que le visiteur donne de lui-même — prénom, email, téléphone. Dès qu’on
    a un prénom ET un moyen de rappel, le contact part vers /api/lead.
-   On n'interroge jamais de force : une seule relance douce, puis silence.
+   On n’interroge jamais de force : une seule relance douce, puis silence.
 
    AMÉLIORATION PROGRESSIVE : la pastille du HTML reste un vrai lien tel:.
    Ce module la REMPLACE par un bouton qui ouvre le panneau. Script mort ou
-   bloqué ⇒ la pastille d'origine appelle la salle. Rien ne régresse.
+   bloqué ⇒ la pastille d’origine appelle la salle. Rien ne régresse.
    ===================================================================== */
 import { QUICKS, fallbackAnswer, GENERIC } from "./chatbot-kb.js";
-import { SALLE } from "./data.js?v=19";
+import { SALLE } from "./data.js?v=20";
 
 /* ---------------------------- constantes -------------------------- */
 const EMAIL_RE = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i;
 /* numéro FR : +33 ou 0, puis 9 chiffres groupés librement */
 const PHONE_RE = /(?:\+33|0)\s?[1-9](?:[\s.\-]?\d{2}){4}/;
-/* déclencheurs SPÉCIFIQUES d'un prénom — pas de « c'est » nu, qui capterait
-   « c'est ouvert » ou « c'est combien » */
+/* déclencheurs SPÉCIFIQUES d’un prénom — pas de « c’est » nu, qui capterait
+   « c’est ouvert » ou « c’est combien » */
 const NAME_RE = /(?:je m['’ ]?appelle|moi c['’ ]?est|mon nom est|mon pr[ée]nom (?:est|c['’ ]?est)|je me nomme|ici c['’ ]?est)\s+([a-zà-öø-ÿ][a-zà-öø-ÿ'’-]+)/i;
 
-/* ------------------- CE QUI N'EST PAS UN PRÉNOM -------------------- *
+/* ------------------- CE QUI N’EST PAS UN PRÉNOM -------------------- *
  * Un prénom écrit dans le carnet de la salle est un FAIT sur un être
- * humain. On ne l'invente jamais. Un mot n'est retenu que s'il a la
- * forme d'un prénom ET qu'il n'est dans aucune de ces familles :
+ * humain. On ne l’invente jamais. Un mot n’est retenu que s’il a la
+ * forme d’un prénom ET qu’il n’est dans aucune de ces familles :
  * interrogatifs, pronoms, politesses, jours, mots du site. Au moindre
- * doute on ne capture RIEN — aucun prénom vaut mieux qu'un faux. */
+ * doute on ne capture RIEN — aucun prénom vaut mieux qu’un faux. */
 const STOP_NAMES = new RegExp("^(" + [
   /* interrogatifs — la cause du défaut : « Quels sont vos tarifs ? » */
   "quel", "quelle", "quels", "quelles", "comment", "ou", "où", "quand", "pourquoi",
@@ -39,12 +39,12 @@ const STOP_NAMES = new RegExp("^(" + [
   "votre", "vos", "notre", "nos", "son", "sa", "ses", "ce", "cet", "cette", "ces",
   /* politesses et acquiescements */
   "bonjour", "bonsoir", "salut", "coucou", "hello", "hey", "yo", "merci", "svp",
-  "oui", "ouais", "non", "nan", "ok", "okay", "d’accord", "d'accord", "bien",
+  "oui", "ouais", "non", "nan", "ok", "okay", "d’accord", "d’accord", "bien",
   "super", "cool", "bof", "rien", "voir", "sais", "aucune", "aucun",
   /* articles, liaisons, négations */
   "le", "la", "les", "un", "une", "des", "du", "de", "au", "aux",
   "et", "pas", "plus", "avec", "sans", "pour", "par", "sur", "dans", "chez", "vers",
-  /* mots du site — ce qu'on tape quand on pose une question, pas quand on se présente */
+  /* mots du site — ce qu’on tape quand on pose une question, pas quand on se présente */
   "tarif", "tarifs", "prix", "horaire", "horaires", "planning", "plannings",
   "cours", "boxe", "boxing", "salle", "essai", "adresse", "acces", "accès",
   "inscription", "abonnement", "abonnements", "coach", "coachs", "enfant",
@@ -53,9 +53,9 @@ const STOP_NAMES = new RegExp("^(" + [
   "dispo", "disponible", "info", "infos", "renseignement", "renseignements",
   /* jours et repères de temps */
   "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche",
-  "matin", "midi", "soir", "aujourd’hui", "aujourd'hui", "demain", "week",
+  "matin", "midi", "soir", "aujourd’hui", "aujourd’hui", "demain", "week",
 ].join("|") + ")$", "i");
-/* La FORME d'un prénom : un seul mot, lettres (accents et traits d'union
+/* La FORME d’un prénom : un seul mot, lettres (accents et traits d’union
    admis), 2 à 20 signes. Ni chiffre, ni ponctuation, ni espace. */
 const NAME_SHAPE = /^[a-zà-öø-ÿ][a-zà-öø-ÿ'’-]{1,19}$/i;
 const looksLikeFirstName = (w) =>
@@ -101,15 +101,15 @@ async function submitLead(payload) {
 export function initChatbot() {
   if (document.getElementById("scchat")) return;
   const pill = document.querySelector("a.chatbot");
-  if (!pill) return; // pas de point d'accroche sur cette page
+  if (!pill) return; // pas de point d’accroche sur cette page
 
   /* LE PANNEAU EST HORS FLUX DÈS LA PREMIÈRE IMAGE.
      La feuille du widget est chargée par JS pour ne jamais bloquer le rendu de
-     la page. Mesuré sur le rendu : entre l'ajout du panneau et l'application de
+     la page. Mesuré sur le rendu : entre l’ajout du panneau et l’application de
      cette feuille, .scchat était un bloc STATIQUE en fin de <body> — le focus
      du champ projetait alors le visiteur tout en bas (scrollY 0 → 6326, le
      maximum). On pose donc AVANT tout un noyau de style en ligne, appliqué
-     dans la même image : le panneau est fixe avant même d'exister à l'écran.
+     dans la même image : le panneau est fixe avant même d’exister à l’écran.
      La feuille complète est chargée juste après, elle a le dernier mot. */
   if (!document.getElementById("scchat-core")) {
     const core = document.createElement("style");
@@ -122,8 +122,8 @@ export function initChatbot() {
     link.id = "scchat-css"; link.rel = "stylesheet"; link.href = "/assets/css/chatbot.css?v=1";
     document.head.appendChild(link);
   }
-  /* Troisième ceinture : on n'ouvre pas avant que la feuille soit réellement
-     appliquée — et on n'attend jamais indéfiniment, le noyau suffit déjà. */
+  /* Troisième ceinture : on n’ouvre pas avant que la feuille soit réellement
+     appliquée — et on n’attend jamais indéfiniment, le noyau suffit déjà. */
   const cssReady = new Promise((resolve) => {
     const link = document.getElementById("scchat-css");
     if (!link || link.sheet) return resolve();
@@ -151,7 +151,7 @@ export function initChatbot() {
   launcher.setAttribute("aria-haspopup", "dialog");
   launcher.setAttribute("aria-expanded", "false");
   launcher.setAttribute("aria-controls", "scchat-panel");
-  launcher.setAttribute("aria-label", "Ouvrir l'assistant du Boxing Center Saint-Cyprien");
+  launcher.setAttribute("aria-label", "Ouvrir l’assistant du Boxing Center Saint-Cyprien");
   const label = launcher.querySelector(".chatbot__label");
   if (label) label.innerHTML = "Une question&nbsp;? On te répond";
   pill.replaceWith(launcher);
@@ -167,9 +167,9 @@ export function initChatbot() {
         <span class="scchat__beam" aria-hidden="true"></span>
         <div class="scchat__ident">
           <span class="scchat__kicker">Boxing Center · rive gauche</span>
-          <strong id="scchat-title">L'assistant de Saint-Cyprien</strong>
+          <strong id="scchat-title">L’assistant de Saint-Cyprien</strong>
         </div>
-        <button type="button" class="scchat__close" id="scchat-close" aria-label="Fermer l'assistant">
+        <button type="button" class="scchat__close" id="scchat-close" aria-label="Fermer l’assistant">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
             <path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
           </svg>
@@ -214,7 +214,7 @@ export function initChatbot() {
     if (typing) {
       messagesEl.insertAdjacentHTML("beforeend",
         `<div class="scchat__msg scchat__msg--bot scchat__msg--typing"><div class="scchat__bubble">
-           <span class="scchat__dots" aria-label="L'assistant écrit"><i></i><i></i><i></i></span>
+           <span class="scchat__dots" aria-label="L’assistant écrit"><i></i><i></i><i></i></span>
          </div></div>`);
     }
     messagesEl.scrollTop = messagesEl.scrollHeight;
@@ -236,7 +236,7 @@ export function initChatbot() {
   }
   const hideChips = () => { chipsEl.hidden = true; chipsEl.innerHTML = ""; };
 
-  /* ------------------- capture des coordonnées au fil de l'eau ------------------- */
+  /* ------------------- capture des coordonnées au fil de l’eau ------------------- */
   function contextString() {
     const bits = [];
     if (profile.prenom) bits.push(`Prénom : ${profile.prenom}`);
@@ -245,7 +245,7 @@ export function initChatbot() {
     return bits.join(". ");
   }
 
-  /** Envoie le contact — seulement s'il est joignable, et jamais deux fois pareil. */
+  /** Envoie le contact — seulement s’il est joignable, et jamais deux fois pareil. */
   function maybeSubmitLead(event) {
     if (!profile.email && !profile.phone) return false;
     const sig = JSON.stringify(profile);
@@ -263,8 +263,8 @@ export function initChatbot() {
   }
 
   /** Extrait prénom / email / téléphone du message. true si du neuf a été capté.
-   *  `fromChip` : le message vient d'une puce préécrite — ce n'est JAMAIS une
-   *  présentation, c'est une question toute faite. On n'y cherche pas de prénom. */
+   *  `fromChip` : le message vient d’une puce préécrite — ce n’est JAMAIS une
+   *  présentation, c’est une question toute faite. On n’y cherche pas de prénom. */
   function extract(text, fromChip = false) {
     let found = false;
     const email = text.match(EMAIL_RE);
@@ -272,23 +272,23 @@ export function initChatbot() {
     const phone = text.match(PHONE_RE);
     if (phone && !profile.phone) { profile.phone = phone[0].replace(/\s+/g, " ").trim(); found = true; }
     if (!profile.prenom && !fromChip) {
-      /* VOIE 1 — le visiteur se présente explicitement (« moi c'est Karim »).
-         La tournure porte l'intention : c'est la voie la plus sûre. */
+      /* VOIE 1 — le visiteur se présente explicitement (« moi c’est Karim »).
+         La tournure porte l’intention : c’est la voie la plus sûre. */
       const m = text.match(NAME_RE);
       let name = m && m[1] ? m[1].trim() : "";
 
-      /* VOIE 2 — le bot VIENT de demander le prénom, à l'instant, et la réponse
-         est un mot unique qui a la forme d'un prénom. Toute autre réponse —
+      /* VOIE 2 — le bot VIENT de demander le prénom, à l’instant, et la réponse
+         est un mot unique qui a la forme d’un prénom. Toute autre réponse —
          une question, une phrase, un mot de la liste STOP — ne donne RIEN.
-         C'est cette voie qui écrivait « Quels » dans le carnet client. */
+         C’est cette voie qui écrivait « Quels » dans le carnet client. */
       if (!name && expectName) {
         const seul = text.trim();
         if (!/\s/.test(seul) && looksLikeFirstName(seul)) name = seul;
       }
       if (looksLikeFirstName(name)) { profile.prenom = titleCase(name); found = true; }
     }
-    /* La fenêtre du prénom ne dure qu'un tour de parole : elle se referme ici,
-       qu'on ait capté quelque chose ou non. */
+    /* La fenêtre du prénom ne dure qu’un tour de parole : elle se referme ici,
+       qu’on ait capté quelque chose ou non. */
     expectName = false;
     return found;
   }
@@ -307,10 +307,10 @@ export function initChatbot() {
     try {
       reply = await askAi(text, aiHistory.slice(-6), contextString());
     } catch {
-      /* Pas d'IA (aucune clé configurée, réseau coupé) : on compose depuis la
-         base locale. L'IA sait accuser réception d'un prénom ou d'un numéro ;
-         la base, non — c'est donc ICI qu'on le fait, sinon le bot répond une
-         généralité à quelqu'un qui vient de taper son téléphone, et il a l'air
+      /* Pas d’IA (aucune clé configurée, réseau coupé) : on compose depuis la
+         base locale. L’IA sait accuser réception d’un prénom ou d’un numéro ;
+         la base, non — c’est donc ICI qu’on le fait, sinon le bot répond une
+         généralité à quelqu’un qui vient de taper son téléphone, et il a l’air
          de ne pas avoir écouté. */
       const kb = fallbackAnswer(text);
       const bits = [];
@@ -328,17 +328,17 @@ export function initChatbot() {
     }
 
     if (gotContact) {
-      // On accuse TOUJOURS réception d'un moyen de rappel — pas seulement après
-      // un « être rappelé ». C'est le moment où le visiteur se demande si ça
+      // On accuse TOUJOURS réception d’un moyen de rappel — pas seulement après
+      // un « être rappelé ». C’est le moment où le visiteur se demande si ça
       // a servi à quelque chose.
       const suite = callbackAsked
         ? "un coach te rappelle très vite."
-        : "si tu veux qu'on te cale un créneau, un coach te rappelle.";
+        : "si tu veux qu’on te cale un créneau, un coach te rappelle.";
       callbackAsked = false;
-      await botSay(`C'est noté${profile.prenom ? `, ${profile.prenom}` : ""} — ${suite}`, 450);
+      await botSay(`C’est noté${profile.prenom ? `, ${profile.prenom}` : ""} — ${suite}`, 450);
     } else if (!nudged && exchanges >= 2 && !profile.email && !profile.phone) {
       nudged = true;
-      await botSay("Au fait — si tu veux qu'un coach te rappelle ou te cale un créneau, laisse-moi un numéro ou un email quand tu veux. Sans pression.", 450);
+      await botSay("Au fait — si tu veux qu’un coach te rappelle ou te cale un créneau, laisse-moi un numéro ou un email quand tu veux. Sans pression.", 450);
     }
     showChips();
   }
@@ -348,7 +348,7 @@ export function initChatbot() {
     hideChips();
     if (profile.email || profile.phone) {
       maybeSubmitLead("callback_request");
-      await botSay(`C'est parti${profile.prenom ? `, ${profile.prenom}` : ""} — je transmets, un coach te rappelle. Autre chose en attendant ?`);
+      await botSay(`C’est parti${profile.prenom ? `, ${profile.prenom}` : ""} — je transmets, un coach te rappelle. Autre chose en attendant ?`);
       callbackAsked = false;
       showChips();
       return;
@@ -356,7 +356,7 @@ export function initChatbot() {
     await botSay(profile.prenom
       ? `Volontiers ${profile.prenom} : laisse-moi un numéro ou un email, et un coach te rappelle.`
       : "Volontiers. Dis-moi ton prénom et un numéro (ou un email), et un coach te rappelle.");
-    /* Après la demande, jamais avant : la fenêtre du prénom s'ouvre ici. */
+    /* Après la demande, jamais avant : la fenêtre du prénom s’ouvre ici. */
     expectName = !profile.prenom;
     input.placeholder = "Ton prénom et ton numéro…";
   }
@@ -377,7 +377,7 @@ export function initChatbot() {
     panel.hidden = false;
     root.classList.add("is-open");
     launcher.setAttribute("aria-expanded", "true");
-    launcher.setAttribute("aria-label", "Fermer l'assistant du Boxing Center Saint-Cyprien");
+    launcher.setAttribute("aria-label", "Fermer l’assistant du Boxing Center Saint-Cyprien");
     /* Le focus ne déplace JAMAIS la page : ni maintenant, ni si la feuille du
        widget arrivait en retard. Le noyau de style en ligne a déjà sorti le
        panneau du flux ; `preventScroll` est la seconde ceinture. */
@@ -385,8 +385,8 @@ export function initChatbot() {
     input.focus({ preventScroll: true });
     if (!opened) {
       opened = true;
-      await botSay("Salut, je suis l'assistant de Boxing Center Saint-Cyprien — 1 200 m² rive gauche, à 4 minutes du métro A. Comment tu t'appelles ?", 700);
-      /* La question vient d'être POSÉE : c'est seulement maintenant qu'un mot
+      await botSay("Salut, je suis l’assistant de Boxing Center Saint-Cyprien — 1 200 m² rive gauche, à 4 minutes du métro A. Comment tu t’appelles ?", 700);
+      /* La question vient d’être POSÉE : c’est seulement maintenant qu’un mot
          unique peut être lu comme un prénom — et pour un seul tour de parole. */
       expectName = true;
       showChips();
@@ -396,8 +396,8 @@ export function initChatbot() {
     panel.hidden = true;
     root.classList.remove("is-open");
     launcher.setAttribute("aria-expanded", "false");
-    launcher.setAttribute("aria-label", "Ouvrir l'assistant du Boxing Center Saint-Cyprien");
-    // le focus revient sur la pastille — c'est d'elle qu'on est parti
+    launcher.setAttribute("aria-label", "Ouvrir l’assistant du Boxing Center Saint-Cyprien");
+    // le focus revient sur la pastille — c’est d’elle qu’on est parti
     launcher.focus();
   }
 

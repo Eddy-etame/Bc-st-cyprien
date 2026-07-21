@@ -1,17 +1,17 @@
 /* =====================================================================
    SAINT-CYPRIEN · la-salle.js — la visite privée.
    La visite du showroom au noir : six postes (VISITE), chacun ALLUMÉ quand
-   tu l'atteins (IO light-up, indépendant de gsap → survit au ticker gelé).
+   tu l’atteins (IO light-up, indépendant de gsap → survit au ticker gelé).
    Puis LE CODE (4 valeurs durables), LE RÉSEAU (les 4 sœurs + sa place, la
    preuve du titre) et les infos pratiques. Tout depuis data.js.
    ===================================================================== */
-import { NETWORK, SALLE, LINKS, picture } from "./data.js?v=19";
-import { VISITE, VALUES } from "./data-la-salle.js?v=19";
+import { NETWORK, SALLE, LINKS, picture } from "./data.js?v=20";
+import { VISITE, VALUES } from "./data-la-salle.js?v=20";
 
 const $ = (s, r = document) => r.querySelector(s);
 const esc = (s = "") => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
-/* LA VISITE — six postes, en split alterné, photo lit-under-spot. L'alt
+/* LA VISITE — six postes, en split alterné, photo lit-under-spot. L’alt
    vient de data.js et décrit le cliché ; la pastille mono garde `tag`. */
 function renderVisite() {
   const el = $("#visite");
@@ -33,9 +33,9 @@ function renderVisite() {
   ).join("");
 }
 
-/* LE PLAN — l'index des six postes, collant sous le titre. Clic = on descend
-   au poste et on l'allume ; le scroll renvoie l'ascenseur en surlignant le
-   poste courant. C'est la seule vraie prise en main de la page : sans lui la
+/* LE PLAN — l’index des six postes, collant sous le titre. Clic = on descend
+   au poste et on l’allume ; le scroll renvoie l’ascenseur en surlignant le
+   poste courant. C’est la seule vraie prise en main de la page : sans lui la
    visite se subissait, avec lui elle se pilote. Purs IO + scrollIntoView →
    aucune dépendance à gsap (le ticker peut geler, ça marche encore). */
 function renderPlan() {
@@ -60,7 +60,7 @@ function wirePlan() {
      block:"nearest", remonte la chaîne des ancêtres scrollables et repositionne
      le document : la barre étant sticky, chaque surlignage rappelait le scroll
      à sa hauteur (mesuré : la page revenait sans cesse à 1 099 px et aucun
-     saut d'ancre n'aboutissait). On pilote donc scrollLeft à la main. */
+     saut d’ancre n’aboutissait). On pilote donc scrollLeft à la main. */
   const keepInStrip = (b) => {
     const br = b.getBoundingClientRect(), pr = bar.getBoundingClientRect();
     if (br.left < pr.left) bar.scrollLeft += br.left - pr.left - 12;
@@ -97,7 +97,7 @@ function wirePlan() {
   stations.forEach((s) => io.observe(s));
 }
 
-/* LE CODE — quatre valeurs durables (le geste / l'école / le quartier / le choix). */
+/* LE CODE — quatre valeurs durables (le geste / l’école / le quartier / le choix). */
 function renderCode() {
   const el = $("#code");
   if (!el) return;
@@ -110,7 +110,7 @@ function renderCode() {
   ).join("");
 }
 
-/* LE RÉSEAU — les quatre sœurs dans l'ordre de la lignée, puis Saint-Cyprien
+/* LE RÉSEAU — les quatre sœurs dans l’ordre de la lignée, puis Saint-Cyprien
    en bout de chaîne (la preuve : elle vient après et retient ce qui marche). */
 function renderLineage() {
   const el = $("#lineage");
@@ -153,7 +153,7 @@ function renderInfos() {
   el.innerHTML = rows.map((r) => `<li><span class="qk">${r.k}</span><span class="qv">${r.v}</span></li>`).join("");
 }
 
-/* IO LIGHT-UP — le faisceau s'allume sur le poste qui entre dans le cadre.
+/* IO LIGHT-UP — le faisceau s’allume sur le poste qui entre dans le cadre.
    Pur IntersectionObserver : aucune dépendance à gsap, donc insensible au
    ticker gelé. Le texte reste lisible en permanence — seule la lumière bouge. */
 function lightUp() {
@@ -180,7 +180,7 @@ function boot() {
   window.BC.reveal(document);
   window.BC.magnetic(document);
   window.BC.spotlight(".phero", ".phero__spot");
-  window.BC.touchLife();   // mobile : postes/valeurs/sœurs s'animent au passage
+  window.BC.touchLife();   // mobile : postes/valeurs/sœurs s’animent au passage
   lightUp();
 
   const start = () => window.BC.refresh();

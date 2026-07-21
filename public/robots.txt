@@ -51,4 +51,4 @@ Allow: /
 Disallow: /admin/
 Disallow: /api/
 
-Sitemap: https://st-cyprien.boxingcenter.fr/sitemap.xml
+Sitemap: https://bc-st-cyprien.vercel.app/sitemap.xml

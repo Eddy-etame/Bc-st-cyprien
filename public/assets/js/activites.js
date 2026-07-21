@@ -1,37 +1,37 @@
 /* =====================================================================
    SAINT-CYPRIEN · activites.js — le catalogue plein écran.
    Un écran par discipline (ancre #<key>), groupé par public : adultes ·
-   Lady Punch · l'école. Par entrée : photo, coach, niveau, jours (résumé 1
+   Lady Punch · l’école. Par entrée : photo, coach, niveau, jours (résumé 1
    ligne) + 2 liens (créneaux → /plannings/#<key> · essayer → box-plus).
    Tout depuis DISCIPLINES (data.js). Deep-link : /activites/#<key> défile
-   jusqu'à la discipline et l'allume.
+   jusqu’à la discipline et l’allume.
    ===================================================================== */
-import { DISCIPLINES, LINKS, COACH_TBD, COACH_TBD_SHORT, COACH_TBD_WHY_SHORT, SALLE, SCHEDULE, DAYS, picture } from "./data.js?v=19";
-import { ECOLE_LEVELS, PARCOURS, PARCOURS_NOTE, SEMAINES } from "./data-activites.js?v=19";
+import { DISCIPLINES, LINKS, COACH_TBD, COACH_TBD_SHORT, COACH_TBD_WHY_SHORT, SALLE, SCHEDULE, DAYS, picture } from "./data.js?v=20";
+import { ECOLE_LEVELS, PARCOURS, PARCOURS_NOTE, SEMAINES } from "./data-activites.js?v=20";
 
 const $ = (s, r = document) => r.querySelector(s);
 const esc = (s = "") => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 const byKey = Object.fromEntries(DISCIPLINES.map((d) => [d.key, d]));
 const dayLong = Object.fromEntries(DAYS.map((d) => [d.k, d.long]));
 
-/* Les trois publics, dans l'ordre de lecture. */
+/* Les trois publics, dans l’ordre de lecture. */
 const GROUPS = [
   { cat: "adulte", eyebrow: "Adultes", title: "La boxe, pour de vrai.", lead: "Cinq disciplines, cinq intensités. Prends celle qui te fait peur en premier." },
   { cat: "lady", eyebrow: "100 % féminin", title: "Lady Punch.", lead: "Le mardi et le jeudi, la salle leur appartient." },
-  { cat: "ecole", eyebrow: "L'école · dès 3 ans", title: "L'école, âge par âge.", lead: "Une salle, tous les âges : du bac à sable au premier ring." },
+  { cat: "ecole", eyebrow: "L’école · dès 3 ans", title: "L’école, âge par âge.", lead: "Une salle, tous les âges : du bac à sable au premier ring." },
 ];
 
 /* ------------------------------------------------------------------ *
- * L'AIGUILLAGE — la page était un catalogue : sept portes, aucune indication.
- * Ici on répond à la vraie question d'entrée (« je veux QUOI »), et chaque
+ * L’AIGUILLAGE — la page était un catalogue : sept portes, aucune indication.
+ * Ici on répond à la vraie question d’entrée (« je veux QUOI »), et chaque
  * réponse emmène à la discipline plus bas — même geste que le plan de la
- * visite et l'index de la galerie : sur ce site, on pilote toujours pareil.
+ * visite et l’index de la galerie : sur ce site, on pilote toujours pareil.
  * Le compte de créneaux est DÉRIVÉ de SCHEDULE, jamais saisi.
  * ------------------------------------------------------------------ */
 function renderParcours() {
   const el = $("#parcours");
   if (!el) return;
-  const routes = PARCOURS.filter((p) => byKey[p.key]); // une route sans cible ne s'affiche pas
+  const routes = PARCOURS.filter((p) => byKey[p.key]); // une route sans cible ne s’affiche pas
   if (!routes.length) return;
   el.innerHTML = routes
     .map((p) => {
@@ -42,8 +42,8 @@ function renderParcours() {
         <span class="route__arrow" aria-hidden="true">↓</span>
         <span class="route__pick">${d.name}</span>
         <span class="route__why">${p.why}</span>
-        <!-- séparateur long : le coach du camp s'écrit déjà "Dadi · Hicham",
-             un "·" de plus collait deux listes l'une dans l'autre. -->
+        <!-- séparateur long : le coach du camp s’écrit déjà "Dadi · Hicham",
+             un "·" de plus collait deux listes l’une dans l’autre. -->
         <span class="route__meta">${n} créneau${n > 1 ? "x" : ""} par semaine${d.coachTbd ? "" : ` — ${d.coach}`}</span>
       </button>`;
     })
@@ -65,7 +65,7 @@ function renderParcours() {
 
 /* ------------------------------------------------------------------ *
  * LES SEMAINES-TYPES — chaque ligne est résolue contre SCHEDULE au rendu :
- * on n'écrit aucun horaire à la main, donc la page ne peut pas mentir si le
+ * on n’écrit aucun horaire à la main, donc la page ne peut pas mentir si le
  * poster bouge. Un pointeur orphelin est retiré (et sa carte disparaît si
  * elle se vide) plutôt que rendu approximativement.
  * ------------------------------------------------------------------ */
@@ -104,7 +104,7 @@ function renderSemaines() {
 
 /* Une entrée = un écran : photo lit-under-spot + fiche + 2 liens réels. */
 function entry(d) {
-  // La pastille mono garde `tag` ; l'alt vient de data.js et décrit la photo.
+  // La pastille mono garde `tag` ; l’alt vient de data.js et décrit la photo.
   const coachLine = d.coachTbd
     ? `<dd class="act__tbd-val"><i class="tbd">${COACH_TBD_SHORT}</i></dd>`
     : `<dd>${d.coach}</dd>`;
@@ -131,7 +131,7 @@ function entry(d) {
   </article>`;
 }
 
-/* L'ÉTAT VOULU — le créneau tourne, le nom n'est pas acté. On l'affiche
+/* L’ÉTAT VOULU — le créneau tourne, le nom n’est pas acté. On l’affiche
    comme une décision, pas comme un blanc : un cartouche à part, la raison
    écrite, et le téléphone pour ceux qui veulent savoir tout de suite. */
 function tbdNote() {
@@ -142,7 +142,7 @@ function tbdNote() {
   </aside>`;
 }
 
-/* Le sous-bloc paliers de l'école (ECOLE_LEVELS, désormais dans data.js). */
+/* Le sous-bloc paliers de l’école (ECOLE_LEVELS, désormais dans data.js). */
 function ecoleLevels() {
   return `<div class="levels" data-reveal-group>
     ${ECOLE_LEVELS.map(
@@ -184,14 +184,14 @@ function renderJump() {
   el.innerHTML = DISCIPLINES.map((d) => `<a class="act-chip" href="#${d.key}">${d.name}</a>`).join("");
 }
 
-/* Deep-link : #<key> défile jusqu'à la discipline et l'allume brièvement. */
+/* Deep-link : #<key> défile jusqu’à la discipline et l’allume brièvement. */
 function fromHash() {
   const k = decodeURIComponent(location.hash.slice(1));
   if (!k) return;
   const target = document.getElementById(k);
   if (!target) return;
   requestAnimationFrame(() => {
-    // idem : le deep-link /activites/#<key> s'arrêtait en chemin sous Lenis
+    // idem : le deep-link /activites/#<key> s’arrêtait en chemin sous Lenis
     window.BC.scrollToEl(target, { offset: -110 });
     target.classList.add("is-target");
     setTimeout(() => target.classList.remove("is-target"), 2400);
@@ -209,7 +209,7 @@ function boot() {
   window.BC.reveal(document);
   window.BC.magnetic(document);
   window.BC.spotlight(".phero", ".phero__spot");
-  window.BC.touchLife();   // mobile : les écrans-disciplines s'animent au passage
+  window.BC.touchLife();   // mobile : les écrans-disciplines s’animent au passage
 
   const start = () => { window.BC.refresh(); fromHash(); };
   window.addEventListener("load", start);

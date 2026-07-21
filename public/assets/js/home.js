@@ -5,8 +5,8 @@
    La home positionne + route : configurateur → /plannings/ · /activites/ ·
    box-plus. Tout est rendu depuis data.js (planning réel rentrée 2026).
    ===================================================================== */
-import { DISCIPLINES, COACHES, LINKS, COACH_TBD_SHORT, COACH_TBD_WHY_SHORT } from "./data.js?v=19";
-import { STATS } from "./data-home.js?v=19";
+import { DISCIPLINES, COACHES, LINKS, COACH_TBD_SHORT, COACH_TBD_WHY_SHORT } from "./data.js?v=20";
+import { STATS } from "./data-home.js?v=20";
 
 const gsap = window.gsap;
 const ScrollTrigger = window.ScrollTrigger;
@@ -49,7 +49,7 @@ function renderConfig() {
       <span class="cfg__tag">${d.tag}</span>
     </button>`).join("");
   // data-label = la pastille mono (le NOM). data-alt = le vrai texte
-  // alternatif, écrit d'après le cliché. Les deux ne se confondent plus.
+  // alternatif, écrit d’après le cliché. Les deux ne se confondent plus.
   mediaBox.innerHTML = DISCIPLINES.map((d, i) => `<div class="media ${i === 0 ? "is-active" : ""}" data-img="${d.img}" data-alt="${esc(d.alt)}" data-label="${d.name}"></div>`).join("");
   const sheet = (d) => `
     <div class="config__facts">
@@ -66,20 +66,20 @@ function renderConfig() {
     </div>`;
   body.innerHTML = sheet(DISCIPLINES[0]);
   /* Il y avait ici un préchauffage `new Image(); im.src = d.img` pour que le
-     changement d'onglet soit instantané. Depuis que certains clichés sont
+     changement d’onglet soit instantané. Depuis que certains clichés sont
      servis en AVIF, ce raccourci téléchargeait le WebP pendant que le <picture>
-     du rendu prenait l'AVIF : mesuré, DEUX fichiers pour la même photo et
-     +50 Ko sur l'accueil. Les sept médias sont de toute façon montés juste en
+     du rendu prenait l’AVIF : mesuré, DEUX fichiers pour la même photo et
+     +50 Ko sur l’accueil. Les sept médias sont de toute façon montés juste en
      dessous par BC.media() — la même image, une seule fois, dans le format que
      le navigateur a choisi. On laisse donc le navigateur décider seul. */
 
   let curr = 0;
   /* Le jeton du dernier échange : le corps de la fiche est repeint APRÈS un
-     délai (le temps que l'ancien texte s'efface). Au survol on peut traverser
-     trois disciplines pendant ce délai — sans jeton, trois repeints s'empilent
-     et le dernier arrivé n'est pas forcément le bon. Seul le plus récent peint. */
+     délai (le temps que l’ancien texte s’efface). Au survol on peut traverser
+     trois disciplines pendant ce délai — sans jeton, trois repeints s’empilent
+     et le dernier arrivé n’est pas forcément le bon. Seul le plus récent peint. */
   let swapSeq = 0;
-  let hoverT = 0;               // l'échange au survol en attente (cf. plus bas)
+  let hoverT = 0;               // l’échange au survol en attente (cf. plus bas)
   const select = (i) => {
     if (i === curr || !DISCIPLINES[i]) return;
     curr = i;
@@ -105,9 +105,9 @@ function renderConfig() {
 
   /* ---------------------------------------------------------------- *
    *  LE SURVOL PILOTE LA FICHE — il ne faut plus cliquer pour voir.
-   *  Passe le curseur d'Anglaise à Boxing Camp : la photo, le coach, les
+   *  Passe le curseur d’Anglaise à Boxing Camp : la photo, le coach, les
    *  jours et le niveau suivent, en direct. Le clic marche toujours (et
-   *  reste le SEUL mode au doigt, où le survol n'existe pas : on exige
+   *  reste le SEUL mode au doigt, où le survol n’existe pas : on exige
    *  (hover:hover) ET un pointeur fin, et on ignore les événements de
    *  type "touch" que certains navigateurs émettent quand même).
    *  Anti-scintillement : 90 ms de temporisation. Traverser une entrée
@@ -122,9 +122,9 @@ function renderConfig() {
     clearTimeout(hoverT);
     hoverT = setTimeout(() => select(+b.dataset.i), 90);
   });
-  /* Le curseur quitte la liste : on annule l'échange en attente, mais on ne
+  /* Le curseur quitte la liste : on annule l’échange en attente, mais on ne
      revient PAS en arrière — la dernière discipline regardée reste allumée.
-     Une fiche qui se réinitialise dès qu'on s'en éloigne est une fiche qu'on
+     Une fiche qui se réinitialise dès qu’on s’en éloigne est une fiche qu’on
      ne peut pas lire. */
   list.addEventListener("pointerout", (e) => {
     if (!e.relatedTarget || !list.contains(e.relatedTarget)) clearTimeout(hoverT);
@@ -152,7 +152,7 @@ function renderCoaches() {
   if (!row) return;
   row.innerHTML = COACHES.map((c) => {
     const initial = c.name.trim().charAt(0).toUpperCase();
-    // photo seulement si roster.json prouve nom↔visage ; l'alt décrit le
+    // photo seulement si roster.json prouve nom↔visage ; l’alt décrit le
     // cliché (data.js), il ne recopie plus le nom ni le rôle.
     const face = c.img
       ? `<div class="media coachcard__media" data-img="${c.img}" data-label="" data-alt="${esc(c.alt || "")}"></div>`

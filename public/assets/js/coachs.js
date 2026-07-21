@@ -1,18 +1,18 @@
 /* =====================================================================
    SAINT-CYPRIEN · coachs.js — un pilier, trois spécialistes, une case
    assumée.
-   Dadi d'abord, GRAND, avec sa vraie photo (coach-dadi.webp) et le spotlight
+   Dadi d’abord, GRAND, avec sa vraie photo (coach-dadi.webp) et le spotlight
    qui suit le curseur. Les autres (Tawee, Hicham, Victor G) = tuiles
    silhouette-showroom (initiale chrome), JAMAIS de stock — roster.json fait
-   foi. Le faisceau passe d'un coach à l'autre (interval, pause au survol).
+   foi. Le faisceau passe d’un coach à l’autre (interval, pause au survol).
 
    Ajouts : LA SEMAINE COACH PAR COACH (les vrais créneaux, dérivés de
    SCHEDULE — zéro saisie parallèle, donc zéro dérive avec /plannings/), LE
-   TAPIS SANS NOM (l'état voulu du grappling, écrit et daté par personne) et
+   TAPIS SANS NOM (l’état voulu du grappling, écrit et daté par personne) et
    LA MÉTHODE (trois règles vérifiables, pas de biographie inventée).
    ===================================================================== */
-import { COACHES, SCHEDULE, DAYS, LINKS, SALLE, COACH_TBD, COACH_TBD_SHORT, COACH_TBD_WHY, picture } from "./data.js?v=19";
-import { ENCADREMENT } from "./data-coachs.js?v=19";
+import { COACHES, SCHEDULE, DAYS, LINKS, SALLE, COACH_TBD, COACH_TBD_SHORT, COACH_TBD_WHY, picture } from "./data.js?v=20";
+import { ENCADREMENT } from "./data-coachs.js?v=20";
 
 const $ = (s, r = document) => r.querySelector(s);
 const esc = (s = "") => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -20,7 +20,7 @@ const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g
 const dayOrder = Object.fromEntries(DAYS.map((d, i) => [d.k, i]));
 const dayLong = Object.fromEntries(DAYS.map((d) => [d.k, d.long]));
 
-/* La semaine réelle d'un coach, reconstruite depuis SCHEDULE (le poster).
+/* La semaine réelle d’un coach, reconstruite depuis SCHEDULE (le poster).
    On ne recopie rien à la main : si le planning bouge, cette page bouge. */
 function slotsOf(name) {
   return SCHEDULE.filter((s) => s.coach === name).sort(
@@ -47,9 +47,9 @@ function renderLead() {
       <p class="coachlead__role">${c.role}</p>
       <p class="coachlead__note">${c.note}</p>
       <ul class="coachlead__chips" aria-label="Ce que ${c.name} encadre">${chips}</ul>
-      <p class="coachlead__count"><b>${n}</b> créneaux par semaine à son nom sur le planning officiel — du Baby Boxe du samedi après-midi au cours d'anglaise de 20h.</p>
+      <p class="coachlead__count"><b>${n}</b> créneaux par semaine à son nom sur le planning officiel — du Baby Boxe du samedi après-midi au cours d’anglaise de 20h.</p>
       <div class="coachlead__cta">
-        <a class="btn btn--primary" data-magnetic href="${LINKS.essai}"><span>S'entraîner avec ${c.name} · 10€</span></a>
+        <a class="btn btn--primary" data-magnetic href="${LINKS.essai}"><span>S’entraîner avec ${c.name} · 10€</span></a>
         <a class="btn" data-magnetic href="/plannings/#anglaise"><span>Ses créneaux</span></a>
       </div>
     </div>`;
@@ -83,9 +83,9 @@ function renderRoster() {
 }
 
 /* ------------------------------------------------------------------ *
- * LA SEMAINE, COACH PAR COACH — l'onglet ouvre les VRAIS créneaux du
- * coach (jour, heure, discipline, niveau), tirés de SCHEDULE. C'est la
- * réponse à la seule question qu'on se pose vraiment sur cette page :
+ * LA SEMAINE, COACH PAR COACH — l’onglet ouvre les VRAIS créneaux du
+ * coach (jour, heure, discipline, niveau), tirés de SCHEDULE. C’est la
+ * réponse à la seule question qu’on se pose vraiment sur cette page :
  * « qui je vais avoir en face, et quand ». Clavier : flèches + Home/End.
  * ------------------------------------------------------------------ */
 function renderSemaine() {
@@ -184,8 +184,8 @@ function renderSemaine() {
 /* ------------------------------------------------------------------ *
  * LE TAPIS SANS NOM — le grappling tourne mardi et jeudi, le poster ne
  * porte aucun encadrant. On ne bricole pas un nom, on ne cache pas la
- * ligne : on l'écrit, on dit pourquoi, on donne le téléphone. L'état a
- * l'air voulu parce qu'il l'est.
+ * ligne : on l’écrit, on dit pourquoi, on donne le téléphone. L’état a
+ * l’air voulu parce qu’il l’est.
  * ------------------------------------------------------------------ */
 function renderTbd() {
   const el = $("#tbd");
@@ -221,8 +221,8 @@ function renderMethode() {
   ).join("");
 }
 
-/* LE FAISCEAU — il passe d'un coach à l'autre. Interval sobre ; il se cale
-   sur la tuile survolée et repart quand le curseur s'en va. CSS-only visual,
+/* LE FAISCEAU — il passe d’un coach à l’autre. Interval sobre ; il se cale
+   sur la tuile survolée et repart quand le curseur s’en va. CSS-only visual,
    donc insensible au ticker gelé (la lisibilité ne dépend jamais de ça). */
 function beam() {
   const cards = [...document.querySelectorAll(".rostercard")];
@@ -256,7 +256,7 @@ function boot() {
   window.BC.magnetic(document);
   window.BC.spotlight(".phero", ".phero__spot");
   window.BC.spotlight(".coachlead", ".coachlead__spot"); // la lumière suit le curseur sur Dadi
-  window.BC.touchLife();   // mobile : les tuiles roster s'animent au passage
+  window.BC.touchLife();   // mobile : les tuiles roster s’animent au passage
   beam();
 
   const start = () => window.BC.refresh();
