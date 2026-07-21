@@ -18,8 +18,13 @@ const EMAIL_RE = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
 async function notifyEmail(lead) {
   const key = process.env.RESEND_API_KEY;
   if (!key) return false;
-  const to = process.env.LEAD_EMAIL_TO || "boxingcenter31@gmail.com";
-  const from = process.env.LEAD_EMAIL_FROM || "Boxing Center Saint-Cyprien <onboarding@resend.dev>";
+  /* Les deux noms sont acceptés : le .env de ce dépôt écrit LEAD_TO, le code
+     lisait LEAD_EMAIL_TO. Tant que les deux existent dans la nature, on lit
+     les deux — une notification qui part à la mauvaise adresse parce qu'une
+     variable s'appelle presque comme il faut, ça ne se voit pas, et c'est le
+     pire genre de panne. */
+  const to = process.env.LEAD_EMAIL_TO || process.env.LEAD_TO || "boxingcenter31@gmail.com";
+  const from = process.env.LEAD_EMAIL_FROM || process.env.LEAD_FROM || "Boxing Center Saint-Cyprien <onboarding@resend.dev>";
   const lignes = [
     ["Prénom", lead.prenom], ["Nom", lead.nom], ["Email", lead.email],
     ["Téléphone", lead.phone], ["Salle", lead.salle], ["Origine", lead.event],

@@ -4,54 +4,62 @@
    le plus ancien en premier (on ne laisse personne attendre indéfiniment).
 
    LE COUP D'ŒIL AUTOMATIQUE (facultatif) : si une clé de vision est présente
-   dans l'environnement (GEMINI_API_KEY), chaque IMAGE en attente reçoit un
+   dans l'environnement (le POOL GEMINI_API_KEY*, le même que l'assistant —
+   les clés sont numérotées, on les ramasse toutes), chaque IMAGE reçoit un
    avis « probablement hors sujet » — un INDICE pour le staff, jamais une
    sentence : on ne supprime pas le souvenir de quelqu'un sur l'avis d'une
    machine. Sans clé, la file fonctionne exactement pareil, simplement sans
    l'indice. C'est la dégradation honnête : moins d'aide, jamais moins de
    sécurité — puisque rien n'est publiable sans validation humaine.
    ===================================================================== */
-import { allowCors, isAdmin } from "../_lib/util.js";
-import { ready, FOLDER, search, publicItem } from "../_lib/cloudinary.js";
+import { allowCors, isAdmin, geminiKeys } from "../_lib/util.js";
+import { ready, FOLDER, search, adminItem } from "../_lib/cloudinary.js";
 
 const MODELE = process.env.GEMINI_MODEL || "gemini-2.5-flash";
 
+const QUESTION =
+  "Réponds par un seul mot. Cette image est-elle une vraie photographie en rapport avec une salle de sport de combat (boxe, thaï, grappling, cross-training, matériel, membres, coachs, locaux) ? " +
+  "Réponds OUI si c'est le cas. Réponds NON si c'est autre chose : capture d'écran, mème, publicité, document, ou contenu choquant ou sexuel.";
+
 /** Renvoie true si l'image est manifestement hors sujet — ou null si on ne sait pas. */
-async function avisVision(item) {
-  const cle = process.env.GEMINI_API_KEY;
-  if (!cle || item.type !== "image") return null;
+async function avisVision(item, cles) {
+  if (!cles.length || item.type !== "image") return null;
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), 8000);
   try {
-    const ctrl = new AbortController();
-    const t = setTimeout(() => ctrl.abort(), 6000);
     const img = await fetch(item.src, { signal: ctrl.signal });
-    if (!img.ok) { clearTimeout(t); return null; }
+    if (!img.ok) return null;
     const b64 = Buffer.from(await img.arrayBuffer()).toString("base64");
-    const r = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${MODELE}:generateContent?key=${cle}`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        signal: ctrl.signal,
-        body: JSON.stringify({
-          contents: [{
-            parts: [
-              { text: "Cette image a-t-elle un rapport avec une salle de sport de combat (boxe, thaï, grappling, cross-training, matériel, membres, coachs, locaux) ? Réponds UNIQUEMENT par OUI ou NON." },
-              { inline_data: { mime_type: img.headers.get("content-type") || "image/jpeg", data: b64 } },
-            ],
-          }],
-          generationConfig: { maxOutputTokens: 5, temperature: 0 },
-        }),
-      }
-    );
-    clearTimeout(t);
-    if (!r.ok) return null;
-    const j = await r.json();
-    const txt = (j?.candidates?.[0]?.content?.parts?.[0]?.text || "").trim().toUpperCase();
-    if (txt.startsWith("NON")) return true;
-    if (txt.startsWith("OUI")) return false;
+    const corps = JSON.stringify({
+      contents: [{
+        parts: [
+          { text: QUESTION },
+          { inline_data: { mime_type: img.headers.get("content-type") || "image/jpeg", data: b64 } },
+        ],
+      }],
+      generationConfig: { maxOutputTokens: 5, temperature: 0 },
+    });
+    /* On saute les clés mortes exactement comme l'assistant : un quota épuisé
+       sur la première clé ne doit pas éteindre le pré-tri de toute la file. */
+    for (const cle of cles) {
+      try {
+        const r = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models/${MODELE}:generateContent?key=${cle}`,
+          { method: "POST", headers: { "Content-Type": "application/json" }, signal: ctrl.signal, body: corps }
+        );
+        if (!r.ok) continue;
+        const j = await r.json();
+        const txt = (j?.candidates?.[0]?.content?.parts?.[0]?.text || "").trim().toUpperCase();
+        if (txt.startsWith("NON")) return true;
+        if (txt.startsWith("OUI")) return false;
+        return null;
+      } catch { /* clé suivante */ }
+    }
     return null;
   } catch {
     return null; // pas de clé, pas de réseau, pas de réponse : on ne conclut rien
+  } finally {
+    clearTimeout(t);
   }
 }
 
@@ -63,11 +71,12 @@ export default async function handler(req, res) {
 
   try {
     const r = await search(`folder:${FOLDER} AND tags=pending`, { max: 60, sort: "asc" });
-    const items = (r.resources || []).map(publicItem);
+    const items = (r.resources || []).map(adminItem);
     // L'avis de vision, en parallèle et plafonné : la file doit rester rapide.
-    const avis = await Promise.all(items.slice(0, 12).map(avisVision));
+    const cles = geminiKeys();
+    const avis = await Promise.all(items.slice(0, 12).map((it) => avisVision(it, cles)));
     avis.forEach((a, i) => { if (a !== null) items[i].horsSujet = a; });
-    res.status(200).json({ items, branche: true, vision: Boolean(process.env.GEMINI_API_KEY) });
+    res.status(200).json({ items, branche: true, vision: cles.length > 0 });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }

@@ -1,0 +1,75 @@
+/* =====================================================================
+   LE MUR DU CLUB — LA FEUILLE PARESSEUSE.
+   Elle ne descend JAMAIS au premier rendu. community.js l'injecte quand la
+   section approche du cadre, et attend qu'elle soit là avant de peindre :
+   pas de vignette nue, pas de formulaire déshabillé. Tout ce qui est ici
+   habille du DOM créé par JavaScript — c'est la règle qui décide de ce qui
+   part dans ce fichier et de ce qui reste dans galerie.css.
+
+   Même charte que le reste du showroom : lumière blanche sur near-black,
+   chrome sur les titres, aucune teinte inventée. L'erreur elle-même reste
+   dans la charte : elle se signale par le poids et une barre, jamais par un
+   rouge qui n'existe nulle part ailleurs sur ce site.
+   ===================================================================== */
+.club__item { position: relative; aspect-ratio: 4/4.4; overflow: hidden; border-radius: var(--radius);
+  border: 1px solid var(--line); background: var(--paper-2); transition: transform .35s var(--ease-spring), border-color .3s, box-shadow .35s; }
+.club__item:hover { transform: translateY(-4px); border-color: rgba(233,236,244,.3); box-shadow: var(--shadow); }
+.club__item img, .club__item video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  filter: contrast(1.06) brightness(.94) saturate(.94); }
+/* le voile : la légende ne joue JAMAIS contre l'image nue (loi n°1) */
+.club__item::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, transparent 46%, rgba(6,7,11,.88)); }
+.club__cap { position: absolute; left: .75rem; right: .75rem; bottom: .7rem; z-index: 2;
+  font: 600 .66rem/1.35 var(--f-mono); letter-spacing: .04em; color: var(--ink);
+  overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.club__play { position: absolute; right: .7rem; top: .7rem; z-index: 2; width: 26px; height: 26px; display: grid; place-items: center;
+  font-size: .6rem; color: var(--void); background: var(--spark); border-radius: 50%; box-shadow: var(--glow); }
+
+/* --- les états : « rien encore » a l'air VOULU, jamais cassé --- */
+.club__empty { grid-column: 1 / -1; padding: clamp(1.6rem,4vw,2.4rem); text-align: center; color: var(--ink-soft);
+  border: 1px dashed var(--line); border-radius: var(--radius); background: var(--paper-2); font-size: var(--step--1); }
+.club__skel { aspect-ratio: 4/4.4; border-radius: var(--radius); border: 1px solid var(--line);
+  background: linear-gradient(100deg, var(--paper-2) 30%, var(--paper-3) 50%, var(--paper-2) 70%);
+  background-size: 240% 100%; animation: club-skel 1.3s linear infinite; }
+@keyframes club-skel { from { background-position: 140% 0; } to { background-position: -40% 0; } }
+@media (prefers-reduced-motion: reduce){ .club__skel { animation: none; } }
+
+/* --- le dépôt --- */
+.club__form-slot { margin-top: clamp(1.6rem,3.4vw,2.4rem); }
+.club__form { margin-top: 1.2rem; padding: clamp(1.3rem,3vw,2rem); border: 1px solid var(--line);
+  border-radius: calc(var(--radius) + 6px); background: rgba(18,21,31,.72); backdrop-filter: blur(12px); box-shadow: var(--shadow); }
+.club__formlede { color: var(--ink-soft); font-size: var(--step--1); line-height: 1.6; max-width: 56ch; }
+.club__formlede b { color: var(--spark); font-weight: 650; }
+.club__note { margin-top: 1.2rem; padding-left: .9rem; border-left: 2px solid var(--spark-2);
+  color: var(--ink-soft); font-size: var(--step--1); line-height: 1.6; max-width: 52ch; }
+.club__row { display: grid; gap: .9rem; grid-template-columns: 1fr; margin-top: 1.1rem; }
+@media (min-width: 640px){ .club__row { grid-template-columns: 1fr 1fr; } }
+.club__field { display: flex; flex-direction: column; gap: .45rem; }
+.club__field > span { font: 600 .64rem/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.club__field > span i { font-style: normal; color: var(--spark-2); margin-left: .8ch; letter-spacing: .08em; }
+.club__field input { min-height: 46px; padding: .7em .95em; border-radius: 10px; border: 1px solid var(--line);
+  background: var(--void); color: var(--ink); font: 450 var(--step--1)/1.4 var(--f-ui); transition: border-color .25s, box-shadow .25s; }
+.club__field input::placeholder { color: var(--muted); }
+.club__field input:focus-visible { outline: none; border-color: var(--spark); box-shadow: 0 0 0 3px rgba(246,248,252,.14); }
+
+.club__file { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; margin-top: 1.1rem; }
+.club__file input[type="file"] { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.club__filebtn { display: inline-flex; align-items: center; min-height: 46px; padding: .7em 1.3em; border-radius: 100px;
+  border: 1.5px solid var(--line); background: var(--paper-2); color: var(--ink);
+  font: 600 var(--step--1)/1 var(--f-ui); cursor: pointer; transition: border-color .3s, box-shadow .3s, transform .2s var(--ease-spring); }
+.club__file:hover .club__filebtn { border-color: var(--spark); box-shadow: var(--glow); transform: translateY(-2px); }
+.club__file input[type="file"]:focus-visible + .club__filebtn { outline: 2px solid var(--spark); outline-offset: 2px; }
+.club__filename { font: 600 .66rem/1.4 var(--f-mono); letter-spacing: .04em; color: var(--muted); word-break: break-all; }
+.club__hint { margin-top: .9rem; font: 600 .64rem/1.5 var(--f-mono); letter-spacing: .04em; color: var(--muted); }
+
+.club__bar { margin-top: 1rem; height: 3px; border-radius: 100px; background: var(--line-soft); overflow: hidden; }
+.club__bar > i { display: block; height: 100%; width: 0%; background: var(--spark); box-shadow: var(--glow); transition: width .2s linear; }
+.club__actions { margin-top: 1.2rem; display: flex; flex-wrap: wrap; gap: .8rem; }
+
+/* Le message de retour — il porte sa couleur DANS la charte : l'accent blanc
+   pour ce qui va, le chrome pour ce qui informe, et l'erreur reste lisible
+   sans inventer un rouge qui n'existe nulle part ailleurs sur le site. */
+.club__status { margin-top: 1rem; min-height: 1.4em; font-size: var(--step--1); line-height: 1.6; color: var(--ink-soft); }
+.club__status[data-kind="ok"]   { color: var(--spark); font-weight: 600; }
+.club__status[data-kind="info"] { color: var(--spark-2); }
+.club__status[data-kind="err"]  { color: var(--ink); font-weight: 600; padding-left: .9rem; border-left: 2px solid var(--spark); }

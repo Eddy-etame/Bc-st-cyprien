@@ -345,6 +345,14 @@ async function renderClub() {
     const meta = el("div", { class: "clubcard__meta" },
       el("div", { class: "clubcard__who" }, it.auteur || "Sans prénom"),
       el("div", { class: "clubcard__cap" }, it.legende || "Pas de légende"),
+      /* Le moyen de rappel du déposant : cliquable, pour prévenir en deux
+         gestes quand la photo passe — c'est ce qu'on lui a promis. */
+      it.contact
+        ? el("a", {
+            class: "clubcard__contact",
+            href: it.contact.includes("@") ? `mailto:${it.contact}` : `tel:${it.contact.replace(/[^\d+]/g, "")}`,
+          }, it.contact)
+        : el("div", { class: "clubcard__tech" }, "Pas de contact enregistré"),
       el("div", { class: "clubcard__tech" },
         `${it.type === "video" ? "Vidéo" : "Photo"}${it.duree ? ` · ${it.duree}s` : ""}${it.largeur ? ` · ${it.largeur}×${it.hauteur}` : ""}`));
     if (it.horsSujet === true) {

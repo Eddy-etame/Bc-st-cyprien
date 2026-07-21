@@ -118,8 +118,12 @@ export function url(publicId, { resourceType = "image", tr = "q_auto,f_auto", ex
  *  contributeur ne quittent le serveur — ces trois-là ne vivent que dans
  *  le carnet de contacts, derrière le mot de passe du staff.
  * ------------------------------------------------------------------ */
+export function ctxOf(r) {
+  return (r.context && (r.context.custom || r.context)) || {};
+}
+
 export function publicItem(r) {
-  const ctx = (r.context && (r.context.custom || r.context)) || {};
+  const ctx = ctxOf(r);
   const video = r.resource_type === "video";
   return {
     id: r.public_id,
@@ -133,4 +137,17 @@ export function publicItem(r) {
     duree: r.duration ? Math.round(r.duration * 10) / 10 : 0,
     le: r.created_at,
   };
+}
+
+/* ------------------------------------------------------------------ *
+ *  LA FORME ADMIN — la même chose, plus le moyen de rappel du déposant.
+ *  Elle n'est servie QUE par /api/community/pending, qui exige le mot de
+ *  passe du staff. C'est la seule porte par laquelle un contact sort du
+ *  serveur, et elle est fermée à clé : le mur public, lui, continue de
+ *  n'afficher qu'un prénom. L'IP ne sort nulle part — elle sert au
+ *  garde-fou anti-spam, pas à ficher les gens.
+ * ------------------------------------------------------------------ */
+export function adminItem(r) {
+  const ctx = ctxOf(r);
+  return { ...publicItem(r), contact: ctx.contact || "" };
 }

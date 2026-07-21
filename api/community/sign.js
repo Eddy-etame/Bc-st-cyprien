@@ -100,7 +100,14 @@ export default async function handler(req, res) {
   /* 7. La signature. Tout ce qui compte est DEDANS. */
   const c = config();
   const timestamp = Math.round(Date.now() / 1000);
-  const context = `title=${legende.value}|author=${prenom.value}|ip=${ip}`;
+  /* Le moyen de rappel voyage AVEC le média : quand le staff ouvre la file,
+     il doit voir d'un coup d'œil qui a envoyé quoi, sans aller croiser deux
+     listes. Ce champ ne sort jamais côté public (cf. publicItem) — seul
+     adminItem le laisse passer, derrière le mot de passe du vestiaire.
+     Ni l'e-mail ni le téléphone ne contiennent = | < > : les regex qui les
+     ont validés plus haut l'interdisent, la grammaire du contexte tient. */
+  const contact = emailOk ? email : phone;
+  const context = `title=${legende.value}|author=${prenom.value}|contact=${contact}|ip=${ip}`;
   const aSigner = { context, folder: FOLDER, tags: "pending", timestamp };
   if (estVideo) aSigner.transformation = `du_${LIMITS.maxDureeSec}`; // la coupe, scellée
   const signature = sign(aSigner, c.apiSecret);

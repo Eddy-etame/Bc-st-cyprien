@@ -65,6 +65,26 @@ export function readBody(req) {
 }
 
 /* ------------------------------------------------------------------ *
+ *  LE POOL GEMINI — les clés ne s'appellent pas toutes GEMINI_API_KEY.
+ *  Dans ce dépôt elles sont numérotées (GEMINI_API_KEY_1 … _11) pour
+ *  répartir le quota. Qui lit une seule variable ne trouve donc RIEN et
+ *  croit qu'il n'y a pas de clé. Ce ramassage est la seule lecture
+ *  autorisée : l'assistant et le coup d'œil de la galerie partagent le
+ *  même pool, mélangé pour ne pas brûler toujours la première.
+ * ------------------------------------------------------------------ */
+export function geminiKeys() {
+  const keys = Object.keys(process.env)
+    .filter((k) => /^GEMINI_API_KEY/.test(k))
+    .map((k) => process.env[k])
+    .filter(Boolean);
+  for (let i = keys.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [keys[i], keys[j]] = [keys[j], keys[i]];
+  }
+  return keys;
+}
+
+/* ------------------------------------------------------------------ *
  *  STOCKAGE DES LEADS — Upstash Redis via son API REST (fetch simple,
  *  aucune dépendance, palier gratuit). Configuré par deux variables :
  *  UPSTASH_REDIS_REST_URL + UPSTASH_REDIS_REST_TOKEN.

@@ -7,7 +7,7 @@
    Aucune clé configurée ⇒ 503, et le widget bascule sur sa base de
    connaissance locale : le bot reste utile, jamais une page morte.
    ===================================================================== */
-import { allowCors, readBody } from "./_lib/util.js";
+import { allowCors, readBody, geminiKeys } from "./_lib/util.js";
 import { factsBlock } from "./_lib/salle.js";
 
 const RULES = `Tu es l'assistant du BOXING CENTER SAINT-CYPRIEN, la salle de boxe du quartier Saint-Cyprien, à Toulouse rive gauche.
@@ -99,15 +99,8 @@ export default async function handler(req, res) {
   const messages = [...history, { role: "user", content: message }];
   const system = systemFor(body.context);
 
-  // 1) pool Gemini — on mélange puis on saute les clés mortes
-  const gKeys = Object.keys(process.env)
-    .filter((k) => /^GEMINI_API_KEY/.test(k))
-    .map((k) => process.env[k])
-    .filter(Boolean);
-  for (let i = gKeys.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [gKeys[i], gKeys[j]] = [gKeys[j], gKeys[i]];
-  }
+  // 1) pool Gemini — mélangé, on saute les clés mortes (cf. _lib/util.js)
+  const gKeys = geminiKeys();
   const gModel = process.env.GEMINI_MODEL || "gemini-2.5-flash";
   for (const key of gKeys) {
     try {

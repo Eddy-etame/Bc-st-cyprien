@@ -57,6 +57,54 @@ La pastille en bas à droite est un vrai dialogue. Elle reste un lien `tel:` dan
 | **E-mail** | `RESEND_API_KEY`, `LEAD_EMAIL_TO` (défaut `boxingcenter31@gmail.com`), `LEAD_EMAIL_FROM` | Une notification par contact. |
 | **Webhook** | `LEAD_WEBHOOK_URL` | POST JSON brut (Zapier, Make, CRM…). |
 
+## La galerie participative — « Le mur du club »
+
+Sur `/galerie/`, le mur du haut est celui du club (nos photos, inchangé). Dessous, **Le mur du club** : les membres y déposent leurs photos et leurs vidéos. **Rien ne se publie tout seul.**
+
+### Le trajet d'un dépôt
+
+1. Le visiteur donne **son prénom** et **un e-mail *ou* un téléphone** — c'est obligatoire, et c'est aussi la capture de lead.
+2. Le navigateur vérifie sur place : type réel du fichier (une image doit se *décoder*, pas seulement s'appeler `.jpg`), poids, et **durée ≤ 15 s** lue dans les métadonnées de la vidéo.
+3. `POST /api/community/sign` **rejoue toutes ces règles côté serveur** puis renvoie une signature Cloudinary. Le dossier, le tag `pending` et la coupe `du_15` sont **dans la signature** : les retirer côté navigateur casse la signature et Cloudinary refuse l'envoi.
+4. Le fichier part **directement chez Cloudinary** — il ne traverse jamais Vercel (les fonctions plafonnent à 4,5 Mo, une vidéo de club en fait dix fois plus).
+5. Les coordonnées rejoignent **le carnet existant** via `POST /api/lead` avec `event="upload_contributor"`. Pas un second système : le même que l'assistant, relu au même endroit dans le vestiaire.
+6. Le média attend en `pending`. **Seul le staff le publie.**
+
+### Le stockage
+
+Le même que le site de Portet : **Cloudinary**, qui sert à la fois de stockage, de transcodage (`q_auto` / `f_auto`), de base de données (les tags `pending` / `approved`) et d'outil de modération. Une seule variable à copier depuis le tableau de bord Cloudinary :
+
+| Variable | Rôle | Défaut |
+|---|---|---|
+| `CLOUDINARY_URL` | `cloudinary://clé:secret@cloud` — **la seule obligatoire** | — |
+| `COMMUNITY_FOLDER` | le dossier de **cette** salle : une salle, un dossier, jamais de mélange | `bc-st-cyprien-community` |
+| `COMMUNITY_MAX_IMAGE_MO` | poids max d'une photo | `12` |
+| `COMMUNITY_MAX_VIDEO_MO` | poids max d'une vidéo | `80` |
+| `COMMUNITY_MAX_DUREE_SEC` | durée max d'une vidéo, **scellée dans la signature** | `15` |
+| `COMMUNITY_RATE_WINDOW_MIN` / `COMMUNITY_RATE_MAX` | le garde-fou anti-spam, par IP | `15` min / `4` envois |
+
+### Sans clé — ce qui se passe vraiment
+
+| Ce qui manque | Ce que ça change |
+|---|---|
+| `CLOUDINARY_URL` | La section reste visible et annonce honnêtement que le mur ouvre bientôt. Le formulaire refuse poliment. **Rien ne casse, aucune page blanche.** |
+| Le pool `GEMINI_API_KEY*` | Le pré-tri automatique des images s'éteint. **Tout part en file de modération humaine** — et le vestiaire le dit en clair. Moins d'aide, jamais moins de sécurité : rien n'était publiable sans clic humain de toute façon. |
+
+Le coup d'œil automatique **ne supprime jamais rien** : il pose un avertissement sur la vignette (« ce cliché n'a probablement rien à voir avec la salle »). C'est un indice pour le staff, pas une sentence — on ne détruit pas le souvenir de quelqu'un sur l'avis d'une machine.
+
+### Comment le staff modère
+
+Dans le vestiaire (`/admin/`), section **« La galerie du club »** — le menu porte un compteur de ce qui attend.
+
+- **Publier** → le média passe `approved` et rejoint le mur public.
+- **Refuser** → le fichier est **supprimé définitivement** chez Cloudinary. Une confirmation est demandée : on ne détruit pas sur un clic distrait.
+
+Chaque vignette affiche le prénom, la légende, le format, la durée, et **le moyen de rappel du déposant** (cliquable) — c'est ce qu'on lui a promis : le prévenir quand sa photo passe. Ce contact ne sort du serveur **que** par `/api/community/pending`, qui exige le mot de passe staff ; le mur public, lui, n'affiche qu'un prénom.
+
+### Ce que ça coûte au premier rendu : rien
+
+`community.js`, `community-form.js` et `community.css` **ne descendent pas** avec la page. Le mur et sa feuille de style se chargent quand la section approche du cadre ; le formulaire, seulement au clic sur « Déposer ». Un visiteur qui vient regarder les photos ne télécharge rien de tout ça. Côté mur, les vignettes sont en `loading="lazy"` et les vidéos en `preload="none"`.
+
 ## Le backoffice « Le vestiaire » — `/admin/`
 
 Protégé par `ADMIN_TOKEN` **côté serveur uniquement** : le mot de passe voyage dans l'en-tête `x-admin-token` et n'est gardé que le temps de l'onglet. Aucun secret dans le front.
@@ -84,6 +132,8 @@ Deux champs sont **recalculés** si le staff les oublie : l'adresse complète et
 | `UPSTASH_REDIS_REST_*` | le carnet de contacts | les contacts partent par e-mail / webhook, ou sont journalisés |
 | `RESEND_API_KEY`, `LEAD_EMAIL_TO` | notification par e-mail | — |
 | `LEAD_WEBHOOK_URL` | relais vers un CRM | — |
+| `CLOUDINARY_URL` | le stockage du mur du club | la section annonce honnêtement que le mur ouvre bientôt |
+| `COMMUNITY_FOLDER` | le dossier de cette salle | `bc-st-cyprien-community` |
 
 Plusieurs clés Gemini sont acceptées (`GEMINI_API_KEY`, `GEMINI_API_KEY_2`, …) : elles sont mélangées à chaque appel et les clés mortes sont sautées.
 

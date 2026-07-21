@@ -204,5 +204,8 @@ svg{display:block}
 .clubcard__who{font-family:var(--disp);font-size:16px;font-weight:700;color:var(--ink)}
 .clubcard__cap{color:var(--ink-soft);font-size:.9rem;line-height:1.45}
 .clubcard__tech{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;color:var(--muted)}
+.clubcard__contact{font-family:var(--mono);font-size:.78rem;letter-spacing:.03em;color:var(--ink-soft);text-decoration:underline;text-underline-offset:3px;word-break:break-all}
+.clubcard__contact:hover{color:var(--ink)}
+.clubcard__contact:focus-visible{outline:2px solid var(--spark);outline-offset:2px;border-radius:3px}
 .clubcard__flag{margin-top:6px;padding-left:10px;border-left:2px solid var(--spark);color:var(--ink);font-size:.84rem;line-height:1.45}
 .clubcard__actions{margin-top:auto;padding:0 14px 14px;display:flex;gap:8px;flex-wrap:wrap}

@@ -4,9 +4,11 @@
    Ce module ne descend PAS au premier rendu : galerie.js ne l'appelle que
    lorsque la section approche du cadre (cf. la fin de galerie.js). Et le
    formulaire, lui, n'est chargé qu'au clic sur « Déposer » — c'est un
-   troisième fichier, community-form.js. Résultat : un visiteur qui vient
-   regarder les photos de la salle ne télécharge ni le mur ni le formulaire
-   tant qu'il ne les demande pas.
+   troisième fichier, community-form.js. Le CSS suit la même discipline :
+   community.css est injecté par ce module, pas par le <head> de la page.
+   Résultat : un visiteur qui vient regarder les photos de la salle ne
+   télécharge ni le mur, ni sa feuille de style, ni le formulaire tant qu'il
+   ne les demande pas.
 
    Chaîne complète : le navigateur demande une signature à /api/community/sign,
    envoie le fichier DIRECTEMENT à Cloudinary avec cette signature (tag
@@ -15,6 +17,32 @@
    ===================================================================== */
 
 const esc = (s = "") => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+
+/* -------------------------------------------------------------------- *
+ *  LA FEUILLE DU MUR — elle descend ICI, jamais dans le <head> de la page.
+ *  C'est la moitié CSS de la règle : /galerie/ au premier rendu ne demande
+ *  ni community.js ni community.css. On ATTEND qu'elle soit posée avant de
+ *  peindre quoi que ce soit — une vignette qui apparaît nue puis se rhabille,
+ *  c'est une régression, même d'un dixième de seconde. Le garde-temps de
+ *  2 s est là pour qu'un réseau qui traîne retarde le mur sans jamais
+ *  l'empêcher : au pire il s'habille un instant plus tard.
+ * -------------------------------------------------------------------- */
+let stylesPromis = null;
+function chargerStyles() {
+  if (stylesPromis) return stylesPromis;
+  const href = "/assets/css/community.css?v=15";
+  if (document.querySelector(`link[href^="/assets/css/community.css"]`)) return (stylesPromis = Promise.resolve());
+  stylesPromis = new Promise((resolve) => {
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = href;
+    link.onload = resolve;
+    link.onerror = resolve;
+    document.head.appendChild(link);
+    setTimeout(resolve, 2000);
+  });
+  return stylesPromis;
+}
 
 /* Les états « vides » sont ÉCRITS : un mur sans photo doit avoir l'air d'un
    mur qui attend, jamais d'une page cassée. */
@@ -83,6 +111,7 @@ export async function initCommunity() {
   const ouvrir = root.querySelector("#club-open");
   if (!grid) return;
 
+  await chargerStyles();
   peindreMur(grid);
 
   /* LE FORMULAIRE — troisième chargement paresseux : il n'existe qu'au clic. */
