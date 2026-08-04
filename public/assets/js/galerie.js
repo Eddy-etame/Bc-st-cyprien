@@ -10,8 +10,8 @@
    VISIONNEUSE (on regarde une photo en grand, on avance au clavier). Une
    galerie où l’on ne peut pas agrandir une photo n’est pas une galerie.
    ===================================================================== */
-import { picture } from "./data.js?v=20";
-import { GALLERY } from "./data-galerie.js?v=20";
+import { picture } from "./data.js?v=21";
+import { GALLERY } from "./data-galerie.js?v=21";
 
 const $ = (s, r = document) => r.querySelector(s);
 const IMG = "/assets/img/sc/";
@@ -234,7 +234,7 @@ function armCommunity() {
   const go = () => {
     if (parti) return;
     parti = true;
-    import("./community.js?v=20").then((m) => m.initCommunity()).catch(() => { /* le reste de la page vit sa vie */ });
+    import("./community.js?v=21").then((m) => m.initCommunity()).catch(() => { /* le reste de la page vit sa vie */ });
   };
   if (!("IntersectionObserver" in window)) {
     window.addEventListener("scroll", go, { once: true, passive: true });

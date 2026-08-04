@@ -11,8 +11,8 @@
    TAPIS SANS NOM (l’état voulu du grappling, écrit et daté par personne) et
    LA MÉTHODE (trois règles vérifiables, pas de biographie inventée).
    ===================================================================== */
-import { COACHES, SCHEDULE, DAYS, LINKS, SALLE, COACH_TBD, COACH_TBD_SHORT, COACH_TBD_WHY, picture } from "./data.js?v=20";
-import { ENCADREMENT } from "./data-coachs.js?v=20";
+import { COACHES, SCHEDULE, DAYS, LINKS, SALLE, COACH_TBD, COACH_TBD_SHORT, COACH_TBD_WHY, picture } from "./data.js?v=21";
+import { ENCADREMENT } from "./data-coachs.js?v=21";
 
 const $ = (s, r = document) => r.querySelector(s);
 const esc = (s = "") => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
