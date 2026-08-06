@@ -377,8 +377,8 @@ export const TARIFS = [
 /* Avis Google RÉELS (verbatim, cités — jamais inventés). Réassurance sur
    /tarifs/ + /contact/. Source : fiche Google Boxing Center Saint-Cyprien. */
 export const REVIEWS = {
-  rating: "4,2/5",
-  count: 59,
+  rating: "4,0/5",
+  count: 97, // relevé Google Maps 2026-08-06
   source: "Avis Google",
   quotes: [
     { text: "Une petite salle au top, des coachs au top, nichée au cœur de Saint Cyp'.", author: "Ronan L." },
