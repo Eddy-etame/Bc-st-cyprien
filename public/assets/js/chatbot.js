@@ -98,6 +98,54 @@ async function submitLead(payload) {
 }
 
 /* ------------------------------ WIDGET ---------------------------- */
+
+/* La pensée Portet émulée : clés fermées → vrais boutons sous les messages. */
+const ACTIONS = {
+  offre:       { label: "Je prends ma place — 29€", href: "https://box-plus.vercel.app/abonnements#promo" },
+  saison:      { label: "Je réserve ma saison · 259€", href: "https://box-plus.vercel.app/abonnements#promo" },
+  essai:       { label: "Je viens essayer · 10€", href: "https://box-plus.vercel.app/seance-essai" },
+  enfants:     { label: "J’inscris mon enfant", href: "https://box-plus.vercel.app/abonnements#enfants" },
+  abonnements: { label: "Voir les abonnements", href: "https://box-plus.vercel.app/abonnements" },
+  boutique:    { label: "La boutique du club", href: "https://box-plus.vercel.app/" },
+  tarifs:      { label: "Les tarifs en détail", href: "/tarifs/" },
+  planning:    { label: "Voir le planning", href: "/plannings/" },
+  disciplines: { label: "Découvrir les cours", href: "/activites/" },
+  salle:       { label: "Visiter la salle", href: "/la-salle/" },
+  coachs:      { label: "Rencontrer les coachs", href: "/coachs/" },
+  galerie:     { label: "Voir la galerie", href: "/galerie/" },
+  contact:     { label: "Adresse & contact", href: "/contact/" },
+  appeler:     { label: "Appeler la salle", href: "tel:+33562244682" },
+  rappel:      { label: "Être rappelé par un coach", act: "rappel" },
+};
+function resolveActions(keys) {
+  const out = [];
+  for (const k of keys) {
+    const [key, ...rest] = String(k).split(":");
+    const def = ACTIONS[key.trim()];
+    if (!def) continue;
+    const label = rest.join(":").trim();
+    if (!out.some((a) => (a.href || a.act) === (def.href || def.act))) out.push(label ? { ...def, label } : def);
+    if (out.length >= 3) break;
+  }
+  return out;
+}
+function parseReply(rawText) {
+  let text = String(rawText);
+  const keys = [];
+  text = text.replace(/\[\s*(?:boutons|buttons)\s*:\s*([^\]]+)\]/gi, (_, list) => {
+    keys.push(...list.split(",").map((s) => s.trim()).filter(Boolean));
+    return "";
+  });
+  text = text.replace(/(?:https?:\/\/)?box-plus\.vercel\.app[\w\/#-]*/gi, (u) => {
+    const href = (u.startsWith("http") ? u : "https://" + u).replace(/\/$/, "");
+    const hit = Object.entries(ACTIONS).find(([, d]) => (d.href || "").replace(/\/$/, "") === href);
+    if (hit && !keys.some((k) => k.split(":")[0] === hit[0])) keys.push(hit[0]);
+    return hit ? "la boutique en ligne" : u;
+  });
+  text = text.replace(/\s{2,}/g, " ").replace(/\s+([.,!?])/g, "$1").trim();
+  return { text, actions: resolveActions(keys) };
+}
+
 export function initChatbot() {
   if (document.getElementById("scchat")) return;
   const pill = document.querySelector("a.chatbot");
@@ -209,7 +257,14 @@ export function initChatbot() {
 
   function render() {
     messagesEl.innerHTML = messages
-      .map((m) => `<div class="scchat__msg scchat__msg--${m.role}"><div class="scchat__bubble">${esc(m.text)}</div></div>`)
+      .map((m) => {
+        const actions = m.actions && m.actions.length ? `<div class="scchat__actions">${m.actions.map((a) => {
+          if (a.act) return `<button type="button" class="scchat__action scchat__action--ext" data-act="${a.act}">${esc(a.label)}</button>`;
+          const ext = /^https?:/i.test(a.href);
+          return `<a class="scchat__action${ext ? " scchat__action--ext" : ""}" href="${a.href.replace(/"/g, "&quot;")}"${ext ? ` target="_blank" rel="noopener"` : ""}>${esc(a.label)}</a>`;
+        }).join("")}</div>` : "";
+        return `<div class="scchat__msg scchat__msg--${m.role}"><div class="scchat__stack"><div class="scchat__bubble">${esc(m.text)}</div>${actions}</div></div>`;
+      })
       .join("");
     if (typing) {
       messagesEl.insertAdjacentHTML("beforeend",
@@ -219,11 +274,11 @@ export function initChatbot() {
     }
     messagesEl.scrollTop = messagesEl.scrollHeight;
   }
-  async function botSay(text, pause = 550) {
+  async function botSay(text, pause = 550, actions) {
     typing = true; render();
     await delay(pause);
     typing = false;
-    messages.push({ role: "bot", text });
+    messages.push({ role: "bot", text, actions });
     render();
   }
   const userSay = (text) => { messages.push({ role: "user", text }); render(); };
@@ -235,6 +290,10 @@ export function initChatbot() {
     chipsEl.hidden = false;
   }
   const hideChips = () => { chipsEl.hidden = true; chipsEl.innerHTML = ""; };
+  messagesEl.addEventListener("click", (e) => {
+    const act = e.target.closest("button[data-act]");
+    if (act && act.dataset.act === "rappel") startCallback();
+  });
 
   /* ------------------- capture des coordonnées au fil de l’eau ------------------- */
   function contextString() {
@@ -304,8 +363,10 @@ export function initChatbot() {
 
     hideChips();
     let reply = null;
+    let replyActions = [];
     try {
-      reply = await askAi(text, aiHistory.slice(-6), contextString());
+      const parsed = parseReply(await askAi(text, aiHistory.slice(-6), contextString()));
+      reply = parsed.text; replyActions = parsed.actions;
     } catch {
       /* Pas d’IA (aucune clé configurée, réseau coupé) : on compose depuis la
          base locale. L’IA sait accuser réception d’un prénom ou d’un numéro ;
@@ -323,7 +384,7 @@ export function initChatbot() {
 
     if (reply) {
       aiHistory.push({ role: "user", content: text }, { role: "assistant", content: reply });
-      await botSay(reply);
+      await botSay(reply, 550, replyActions);
       exchanges++;
     }
 
@@ -385,7 +446,7 @@ export function initChatbot() {
     input.focus({ preventScroll: true });
     if (!opened) {
       opened = true;
-      await botSay("Salut, je suis l’assistant de Boxing Center Saint-Cyprien — 1 200 m² rive gauche, à 4 minutes du métro A. Comment tu t’appelles ?", 700);
+      await botSay("Salut, je suis l’assistant de Boxing Center Saint-Cyprien — 1 200 m² rive gauche, à 4 minutes du métro A. L’offre de la rentrée est à 29€ par personne. Comment tu t’appelles ?", 700, resolveActions(["offre", "essai"]));
       /* La question vient d’être POSÉE : c’est seulement maintenant qu’un mot
          unique peut être lu comme un prénom — et pour un seul tour de parole. */
       expectName = true;

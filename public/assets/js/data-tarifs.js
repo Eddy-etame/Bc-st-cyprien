@@ -10,9 +10,9 @@
 
 /* FAQ argent — servie sur /tarifs/. Désamorce les malentendus prix. */
 export const PRICING_FAQ = [
-  { q: "L’offre Duo, c’est 29€ pour deux ?", a: "Non : 29€ par personne. Tu viens avec ton binôme, vous payez 29€ chacun pour 4 semaines de cours illimités, sans engagement." },
-  { q: "Y a-t-il un engagement ?", a: "La séance d’essai et l’offre Duo sont sans engagement. La saison se règle en une fois ou en 4× sans frais, sur douze mois." },
-  { q: "Le t-shirt offert, c’est pour qui ?", a: "Pour les 100 premiers inscrits de la saison : un t-shirt Boxing Center offert dès l’inscription." },
+  { q: "L’offre Rentrée, c’est 29€ pour deux ?", a: "Non : 29€ par personne, au lieu de 44,99€. Quatre semaines de cours illimités, sans engagement — et encore mieux à deux, 29€ chacun." },
+  { q: "Y a-t-il un engagement ?", a: "L’offre Rentrée et la séance d’essai sont sans engagement. La saison se règle en une fois ou en 4× sans frais, sur douze mois." },
+  { q: "Le t-shirt, c’est pour qui ?", a: "Pour chaque enfant inscrit à l’école : le t-shirt Boxing Center est inclus dans l’inscription (295€ l’année, baby 250€)." },
   { q: "Je peux m’entraîner dans les autres salles ?", a: "Oui. La saison donne accès libre aux 5 clubs du réseau : Portet, Minimes, États-Unis, Saint-Cyprien et Ramonville." },
 ];
 

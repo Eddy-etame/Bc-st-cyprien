@@ -16,7 +16,7 @@ export const QUICKS = [
   {
     label: "Les tarifs",
     q: "Quels sont les tarifs ?",
-    a: "Essai 10€. Offre Duo 29€ par personne (4 semaines, cours illimités, sans engagement). Offre Saison 259€ les 12 mois, payable en 4× sans frais, avec l’accès libre aux 5 clubs. École et Baby Boxe dès 280€ l’année.",
+    a: "L’offre Rentrée : 29€ par personne pour 4 semaines illimitées (au lieu de 44,99€). La Saison : 259€ les 12 mois en 4× sans frais, accès libre aux 5 clubs. L’école : 295€ l’année t-shirt inclus, baby 250€. Et l’essai à 10€ pour tester. [boutons: offre, tarifs]",
   },
   {
     label: "Les horaires",

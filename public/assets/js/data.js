@@ -96,7 +96,7 @@ export const SALLE = {
 export const LINKS = {
   essai: "https://box-plus.vercel.app/seance-essai",          // CTA principal de CHAQUE page (10€)
   abos: "https://box-plus.vercel.app/abonnements",
-  promos: "https://box-plus.vercel.app/abonnements#promotions", // cartes Duo / Saison
+  promos: "https://box-plus.vercel.app/abonnements#promo", // cartes Duo / Saison
   enfants: "https://box-plus.vercel.app/abonnements#enfants",
   coachings: "https://box-plus.vercel.app/coachings",
   materiel: "https://box-plus.vercel.app/materiel",
@@ -303,7 +303,7 @@ export const COACHES = [
 export const PROMOS = {
   saison: SEASON,
   label: SEASON_LABEL,
-  bonus: "T-shirt Boxing Center offert aux 100 premiers inscrits de la saison.",
+  bonus: "Inscription enfant : le t-shirt Boxing Center est inclus — pour tous.",
   essai: {
     name: "Séance d’essai",
     price: "10€",
@@ -312,12 +312,12 @@ export const PROMOS = {
     href: LINKS.essai,
   },
   duo: {
-    name: "Offre Duo",
+    name: "Offre Rentrée",
     price: "29€",
     unit: "par personne",
-    was: "44€",
-    detail: "4 semaines, cours illimités, sans engagement. Tu viens avec ton binôme — vous payez 29€ chacun.",
-    cta: "Je viens avec mon binôme",
+    was: "44,99€",
+    detail: "4 semaines, cours illimités, sans engagement. Encore mieux à deux — 29€ chacun.",
+    cta: "Je prends ma place — 29€",
     href: LINKS.promos,
   },
   saisonOffer: {
@@ -333,33 +333,43 @@ export const PROMOS = {
 
 export const TARIFS = [
   {
-    name: "Séance d’essai",
-    price: "10€",
-    period: "la séance",
-    feature: "Toutes disciplines, matériel prêté",
-    items: ["Accès à toutes les disciplines", "Gants et matériel prêtés", "Sans engagement"],
-    cta: "Réserver mon essai",
-    href: LINKS.essai,
-    highlight: false,
+    name: "Offre Rentrée",
+    price: "29€",
+    period: "par personne · 4 semaines",
+    feature: "Cours illimités, toutes disciplines — encore mieux à deux",
+    items: ["29€ par personne (au lieu de 44,99€)", "Toutes les disciplines", "Sans engagement"],
+    cta: "Je prends ma place — 29€",
+    href: LINKS.promos,
+    highlight: true,
   },
   {
     name: SEASON_LABEL,
     price: "259€",
     period: "les 12 mois",
-    feature: "Accès libre aux 5 clubs · payable en 4×",
-    items: ["Toutes les disciplines adultes", "Payable en 4× sans frais", "Accès libre aux 5 salles du réseau"],
+    feature: "Accès libre aux 5 clubs · payable en 4× — moins de 5€ par semaine",
+    items: ["Toutes les disciplines adultes", "Payable en 4× 64,75€ sans frais", "Accès libre aux 5 salles du réseau"],
     cta: "Je prends ma saison",
     href: LINKS.promos,
-    highlight: true,
+    highlight: false,
   },
   {
     name: "École & Baby Boxe",
-    price: "dès 280€",
-    period: "/ an",
-    feature: "Enfants & ados, dès 3 ans",
-    items: ["Baby 3/6 · 7/11 · ados 12/16", "Matériel fourni", "Compétiteurs encadrés par Dadi"],
+    price: "295€",
+    period: "/ an · t-shirt inclus",
+    feature: "Baby Boxe 250€ · enfants & ados dès 3 ans",
+    items: ["Baby 3/6 à 250€ · 7/11 · ados 12/16", "Matériel fourni", "Compétiteurs encadrés par Dadi"],
     cta: "Inscrire mon enfant",
     href: LINKS.enfants,
+    highlight: false,
+  },
+  {
+    name: "Séance d’essai",
+    price: "10€",
+    period: "la séance",
+    feature: "Toujours là ? Alors viens essayer — gants prêtés",
+    items: ["Accès à toutes les disciplines", "Gants et matériel prêtés", "Sans engagement — tu viens, tu testes, tu décides"],
+    cta: "Je viens essayer · 10€",
+    href: LINKS.essai,
     highlight: false,
   },
 ];

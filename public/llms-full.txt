@@ -120,12 +120,12 @@ Conseils pratiques : arriver 10 minutes avant ; gants et protections prêtés po
 ## Tarifs (https://bc-st-cyprien.vercel.app/tarifs/)
 
 - Séance d'essai : 10 € la séance — accès à toutes les disciplines, gants et matériel prêtés, sans engagement.
-- Offre Duo : 29 € par personne (au lieu de 44 €) — 4 semaines, cours illimités, sans engagement. Toujours « 29 € par personne », jamais « 29 € pour deux ».
+- Offre Rentrée : 29 € par personne (au lieu de 44,99 €) — 4 semaines, cours illimités, sans engagement. Toujours « 29 € par personne », jamais « 29 € pour deux ».
 - Offre Saison : 259 € les 12 mois (au lieu de 400 €) — boxe anglaise, MMA, boxe pieds-poings, Lady Punch, Boxing Fitness ; payable en 4× sans frais ; accès libre aux 5 clubs du réseau.
 - École & Baby Boxe : dès 280 €/an — Baby 3/6, 7/11, ados 12/16, matériel fourni, compétiteurs encadrés par Dadi.
-- Bonus : t-shirt Boxing Center offert aux 100 premiers inscrits de la saison.
+- École : 295 €/an t-shirt du club inclus, Baby Boxe 250 €/an.
 - Coaching privé : sur rendez-vous, avec un coach de la salle (détail sur https://box-plus.vercel.app/coachings).
-- L'inscription, les prélèvements et le détail des formules se finalisent sur box-plus : https://box-plus.vercel.app/abonnements#promotions
+- L'inscription, les prélèvements et le détail des formules se finalisent sur box-plus : https://box-plus.vercel.app/abonnements#promo
 - Avis Google affichés sur la page : 4,2/5, 59 avis. Citations réelles : « Une petite salle au top, des coachs au top, nichée au cœur de Saint Cyp'. » (Ronan L.) ; « Super salle, tous les mois Dadi améliore la salle avec des nouveaux équipements. » (Kayon M.) ; « Bonne salle, propre avec de bons équipements. Cours complet. » (Omar T.) ; « Les cours de boxing lady sont top ! Il y a une bonne ambiance. » (Alyssia P.)
 
 ## Contact (https://bc-st-cyprien.vercel.app/contact/)

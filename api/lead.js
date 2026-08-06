@@ -15,6 +15,20 @@ const clean = (v, max = 120) =>
   String(v ?? "").replace(/[\u0000-\u001f<>]/g, "").trim().slice(0, max);
 const EMAIL_RE = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
 
+/* Copie vers la base COMMUNE du réseau (gestion-manager) — la règle du boss :
+   tout formulaire, tout chatbot, UNE seule base. Côté serveur : pas de CORS,
+   jamais bloquant. */
+async function forwardToNetwork(lead) {
+  try {
+    await fetch("https://gestion-manager.vercel.app/api/chatbot/lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...lead, salle: lead.salle || "Saint-Cyprien", source: "bc-st-cyprien" }),
+    });
+    return true;
+  } catch { return false; }
+}
+
 async function notifyEmail(lead) {
   const key = process.env.RESEND_API_KEY;
   if (!key) return false;
@@ -82,6 +96,7 @@ export default async function handler(req, res) {
     try { await kv(["LPUSH", LEADS_KEY, JSON.stringify(lead)]); await kv(["LTRIM", LEADS_KEY, 0, 999]); stored.kv = true; }
     catch (e) { console.error("[lead] stockage KV échoué :", e.message); }
   }
+  try { stored.network = await forwardToNetwork(lead); } catch (e) { console.error("[lead] réseau échoué :", e.message); }
   try { stored.email = await notifyEmail(lead); } catch (e) { console.error("[lead] e-mail échoué :", e.message); }
   try { stored.webhook = await notifyWebhook(lead); } catch (e) { console.error("[lead] webhook échoué :", e.message); }
 

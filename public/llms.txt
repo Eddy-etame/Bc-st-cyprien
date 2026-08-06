@@ -12,7 +12,7 @@ Le détail factuel page par page est dans [llms-full.txt](https://bc-st-cyprien.
 - [Coachs](https://bc-st-cyprien.vercel.app/coachs/): l'encadrement — Dadi (anglaise, Lady Punch, école, 12 créneaux/semaine), Tawee (thaï/K1, 2), Hicham (Hyrox, cross, camp, 5), Victor G (thaï/K1, 3) ; la semaine réelle de chaque coach, la méthode d'encadrement, et l'état assumé du grappling (aucun encadrant nommé à ce jour).
 - [Galerie](https://bc-st-cyprien.vercel.app/galerie/): 16 photos réelles de la salle en 7 zones (plateau, ring, pieds-poings, sol, moteur, Lady Punch, école), consultables en grand dans une visionneuse.
 - [Planning](https://bc-st-cyprien.vercel.app/plannings/): 24 cours par semaine sur 6 jours (9 en journée, 15 dès 18h, 7 disciplines) ; la grille hebdomadaire filtrable (jour, discipline, coach) et le poster officiel de la saison qui fait foi.
-- [Tarifs](https://bc-st-cyprien.vercel.app/tarifs/): essai 10 €, offre Duo 29 € par personne, offre Saison 259 € les 12 mois, école & Baby Boxe dès 280 €/an, conditions en clair et avis Google (4,2/5, 59 avis).
+- [Tarifs](https://bc-st-cyprien.vercel.app/tarifs/): offre Rentrée 29 € par personne, offre Saison 259 € les 12 mois, école 295 €/an t-shirt inclus (baby 250 €), essai 10 €, conditions en clair et avis Google (4,2/5, 59 avis).
 - [Contact](https://bc-st-cyprien.vercel.app/contact/): adresse, horaires, téléphone, carte, itinéraire métro et questions fréquentes.
 
 ## L'assistant du site
@@ -37,11 +37,11 @@ Une pastille en bas à droite de chaque page ouvre un assistant conversationnel.
 - Disciplines : boxe anglaise (coach Dadi) ; boxe thaï/K1 (coachs Tawee et Victor G) ; grappling ; Hyrox & cross-training (coach Hicham) ; Lady Punch 100 % féminin (coach Dadi) ; boxe éducative & Baby Boxe dès 3 ans — Baby 3/6, éducative 7/11, ados 12/16, compétiteurs (coach Dadi) ; boxing camp (coachs Dadi et Hicham)
 - Coachs : Dadi (anglaise, Lady Punch, école — le pilier), Tawee (thaï/K1), Hicham (Hyrox, cross, camp), Victor G (thaï/K1)
 - Séance d'essai : 10 € — toutes disciplines, gants et matériel prêtés, sans engagement — réservation https://box-plus.vercel.app/seance-essai
-- Offre Duo : 29 € par personne (jamais « 29 € pour deux ») — 4 semaines, cours illimités, sans engagement
+- Offre Rentrée : 29 € par personne (jamais « 29 € pour deux ») — 4 semaines, cours illimités, sans engagement (au lieu de 44,99 €)
 - Offre Saison : 259 € les 12 mois — payable en 4× sans frais, accès libre aux 5 clubs du réseau
 - École & Baby Boxe : dès 280 €/an
-- Bonus : t-shirt Boxing Center offert aux 100 premiers inscrits de la saison
-- Inscriptions et promotions : https://box-plus.vercel.app/abonnements#promotions
+- École : 295 €/an t-shirt du club inclus, Baby Boxe 250 €/an
+- Inscriptions et promotions : https://box-plus.vercel.app/abonnements#promo
 - Grappling : créneau actif (mardi & jeudi 19h–20h) SANS encadrant nommé — le poster officiel n'en porte pas, le site n'en invente pas. Ne pas attribuer ce cours à un coach.
 - Avis Google : 4,2/5 sur 59 avis (affichés sur la page Tarifs)
 - Réseaux : https://www.instagram.com/boxingcentertoulouse/ · https://www.facebook.com/BoxingCenterToulouse/ · https://boxingcenter.fr/

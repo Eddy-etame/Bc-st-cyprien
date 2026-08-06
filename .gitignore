@@ -8,6 +8,9 @@ _dist_before/
 # outil de vérification local (non versionné)
 .claude/
 
+# notes de recherche copywriting (travail interne, non versionné)
+.research/
+
 # secrets — JAMAIS versionnés
 .env
 .env.*
