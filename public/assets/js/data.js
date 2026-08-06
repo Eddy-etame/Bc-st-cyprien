@@ -243,7 +243,7 @@ export const DISCIPLINES = [
  * ------------------------------------------------------------------ */
 export const SCHEDULE = [
   // Lundi
-  { day: "Lun", time: "12h40", key: "anglaise",  name: "Boxe Anglaise",  coach: "Dadi",        lvl: "Tous niveaux" },
+  { day: "Lun", time: "12h40", key: "camp",      name: "Boxing Camp",    coach: "Coach à confirmer", lvl: "Tous niveaux" },
   { day: "Lun", time: "18h20", key: "camp",      name: "Boxing Camp",    coach: "Hicham",      lvl: "Tous niveaux" },
   { day: "Lun", time: "19h00", key: "hyrox",     name: "Cross-Training", coach: "Hicham",      lvl: "Ça pique" },
   { day: "Lun", time: "20h00", key: "anglaise",  name: "Boxe Anglaise",  coach: "Dadi",        lvl: "Débutant → confirmé" },
@@ -254,7 +254,9 @@ export const SCHEDULE = [
   { day: "Mar", time: "20h00", key: "thai",      name: "Boxe Thaï · K1", coach: "Victor G",    lvl: "Tous niveaux" },
   // Mercredi
   { day: "Mer", time: "12h40", key: "anglaise",  name: "Boxe Anglaise",  coach: "Dadi",        lvl: "Tous niveaux" },
-  { day: "Mer", time: "15h00", key: "kids",      name: "Éducative 7/11 · 12/16 · compétiteurs", coach: "Dadi", lvl: "7 → 16 ans" },
+  { day: "Mer", time: "15h00", key: "kids",      name: "Éducative 7/11", coach: "Dadi",       lvl: "7 → 11 ans" },
+  { day: "Mer", time: "16h00", key: "kids",      name: "Éducative 12/16", coach: "Dadi",      lvl: "12 → 16 ans" },
+  { day: "Mer", time: "17h00", key: "kids",      name: "Éducative compétiteurs", coach: "Dadi", lvl: "jusqu’à 18h15" },
   { day: "Mer", time: "18h20", key: "hyrox",     name: "Hyrox",          coach: "Hicham",      lvl: "Ça pique" },
   { day: "Mer", time: "19h00", key: "hyrox",     name: "Cross-Training", coach: "Hicham",      lvl: "Ça pique" },
   { day: "Mer", time: "20h00", key: "anglaise",  name: "Boxe Anglaise",  coach: "Dadi",        lvl: "Débutant → confirmé" },
@@ -271,7 +273,10 @@ export const SCHEDULE = [
   // Samedi
   { day: "Sam", time: "11h00", key: "camp",      name: "Boxing Camp",    coach: "Hicham",      lvl: "Tous niveaux" },
   { day: "Sam", time: "14h15", key: "kids",      name: "Baby Boxe",      coach: "Dadi",        lvl: "3 → 6 ans" },
-  { day: "Sam", time: "15h00", key: "kids",      name: "Éducative 7/11 · 12/16 · compétiteurs", coach: "Dadi", lvl: "7 → 16 ans" },
+  { day: "Sam", time: "15h00", key: "kids",      name: "Éducative 7/11", coach: "Dadi",       lvl: "7 → 11 ans" },
+  { day: "Sam", time: "16h00", key: "kids",      name: "Éducative 12/16", coach: "Dadi",      lvl: "12 → 16 ans" },
+  { day: "Sam", time: "17h00", key: "kids",      name: "Éducative compétiteurs", coach: "Dadi", lvl: "jusqu’à 18h15" },
+  { day: "Sam", time: "18h00", key: "thai",      name: "Boxe Pieds-Poings", coach: "Coach à confirmer", lvl: "jusqu’à 20h00" },
 ];
 
 /* Jours de la semaine (ordre + libellé long) — pour la /plannings/ */
