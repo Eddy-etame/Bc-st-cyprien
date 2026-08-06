@@ -122,7 +122,7 @@ Conseils pratiques : arriver 10 minutes avant ; gants et protections prêtés po
 - Séance d'essai : 10 € la séance — accès à toutes les disciplines, gants et matériel prêtés, sans engagement.
 - Offre Rentrée : 29 € par personne (au lieu de 44,99 €) — 4 semaines, cours illimités, sans engagement. Toujours « 29 € par personne », jamais « 29 € pour deux ».
 - Offre Saison : 259 € les 12 mois (au lieu de 400 €) — boxe anglaise, MMA, boxe pieds-poings, Lady Punch, Boxing Fitness ; payable en 4× sans frais ; accès libre aux 5 clubs du réseau.
-- École & Baby Boxe : dès 280 €/an — Baby 3/6, 7/11, ados 12/16, matériel fourni, compétiteurs encadrés par Dadi.
+- École & Baby Boxe : 295 €/an t-shirt du club inclus, Baby Boxe 250 €/an — 3/6, 7/11, ados 12/16, matériel fourni, compétiteurs encadrés par Dadi.
 - École : 295 €/an t-shirt du club inclus, Baby Boxe 250 €/an.
 - Coaching privé : sur rendez-vous, avec un coach de la salle (détail sur https://box-plus.vercel.app/coachings).
 - L'inscription, les prélèvements et le détail des formules se finalisent sur box-plus : https://box-plus.vercel.app/abonnements#promo
