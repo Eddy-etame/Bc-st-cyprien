@@ -149,7 +149,7 @@ export const DISCIPLINES = [
     coach: "Dadi",
     jours: "Midi lun./mer./ven. · soirs lun./mer./ven. 20h",
     niveau: "Débutant → confirmé",
-    desc: "Jab, esquive, jeu de jambes : le noble art enseigné proprement, du premier gant aux gants qui piquent. Les cours du midi pour la pause active, les soirs pour le vrai travail.",
+    desc: "Jab, esquive, jeu de jambes : le noble art enseigné proprement, du premier gant au gant de compétition. Les cours du midi pour la pause active, les soirs de 20h pour le vrai travail — six passages par semaine, le même œil au bord des cordes.",
     teaser: "Le pied avant, le jab, la sortie d’axe. Tout part de là.",
     img: "/assets/img/sc/anglaise-header.webp",
     alt: "Un boxeur en casque et gants, garde haute et appui avant marqué, au milieu d’un cours d’anglaise sur le ring ; d’autres binômes travaillent derrière les cordes",
@@ -176,7 +176,7 @@ export const DISCIPLINES = [
     coachTbd: true,          // état voulu, pas un trou : cf. COACH_TBD_WHY
     jours: "Mardi & jeudi · 19h – 20h",
     niveau: "Tous niveaux",
-    desc: "Projections, contrôle, soumissions. Le complément sol qui transforme un boxeur en combattant complet.",
+    desc: "Projections, contrôle, soumissions. Le complément sol qui apprend au boxeur ce que le debout ne montre jamais — on tombe, on sort, on recommence. Tous niveaux, mardi et jeudi 19h.",
     teaser: "Là où la boxe s’arrête, le sol commence.",
     img: "/assets/img/sc/grappling.webp",
     alt: "Vue plongeante sur la cage : plusieurs binômes travaillent au sol, contrôles et sorties, pendant qu’un pratiquant debout observe la position",
@@ -188,7 +188,7 @@ export const DISCIPLINES = [
     cat: "adulte",
     coach: "Hicham",
     jours: "Hyrox mer. 18h20 · cross lun. & mer. 19h",
-    niveau: "Ça pique — pour tous",
+    niveau: "Intense — zéro prérequis",
     desc: "Circuits Hyrox et cross-training : le cardio et la force qui portent tes gants. La zone moteur tourne toute la semaine.",
     teaser: "Le moteur d’abord : le souffle qui tient les trois dernières reprises.",
     img: "/assets/img/sc/hyrox.webp",
@@ -202,7 +202,7 @@ export const DISCIPLINES = [
     coach: "Dadi",
     jours: "Mardi & jeudi · 18h20 – 19h",
     niveau: "Zéro prérequis",
-    desc: "Un créneau à elles : la boxe pour la forme, la confiance et le cardio — pas de cliché, pas de galerie qui te regarde.",
+    desc: "Un créneau à elles, mardi et jeudi 18h20 : cardio, technique, sac — aucun prérequis, aucune galerie qui te regarde. Beaucoup y mettent leurs premiers gants ; certaines rejoignent ensuite les cours mixtes. Les deux sont très bien.",
     teaser: "Un créneau à elles, du premier gant au sac qui claque.",
     img: "/assets/img/sc/lady-2.webp",
     alt: "Une boxeuse en gants, garde serrée, frappe un sac de frappe pendant un cours Lady Punch ; d’autres pratiquantes travaillent aux sacs derrière elle",
@@ -215,7 +215,7 @@ export const DISCIPLINES = [
     coach: "Dadi",
     jours: "Baby 3/6 sam. · 7/11 & 12/16 mer. + sam. · compétiteurs mer./sam.",
     niveau: "Baby → compétition",
-    desc: "Du Baby Boxe aux compétiteurs : coordination, respect, cadre. L’école complète, du premier déplacement au premier combat.",
+    desc: "On touche, on ne frappe pas — règle fédérale, non négociable. Du Baby Boxe (dès 3 ans) aux compétiteurs : motricité, concentration, respect, et le même coach — Dadi — à chaque palier. Il n’y a personne à qui réexpliquer ton gamin.",
     teaser: "De 3 ans au premier combat, une seule école et une seule ligne.",
     img: "/assets/img/sc/educative-1.webp",
     alt: "Deux jeunes boxeurs en casque et gants s’échangent des touches en assaut encadré, devant un mur peint de la salle",
@@ -245,7 +245,7 @@ export const SCHEDULE = [
   // Lundi
   { day: "Lun", time: "12h40", key: "camp",      name: "Boxing Camp",    coach: "Coach à confirmer", lvl: "Tous niveaux" },
   { day: "Lun", time: "18h20", key: "camp",      name: "Boxing Camp",    coach: "Hicham",      lvl: "Tous niveaux" },
-  { day: "Lun", time: "19h00", key: "hyrox",     name: "Cross-Training", coach: "Hicham",      lvl: "Ça pique" },
+  { day: "Lun", time: "19h00", key: "hyrox",     name: "Cross-Training", coach: "Hicham",      lvl: "Intense" },
   { day: "Lun", time: "20h00", key: "anglaise",  name: "Boxe Anglaise",  coach: "Dadi",        lvl: "Débutant → confirmé" },
   // Mardi
   { day: "Mar", time: "12h40", key: "thai",      name: "Boxe Thaï · K1", coach: "Tawee",       lvl: "Tous niveaux" },
@@ -257,8 +257,8 @@ export const SCHEDULE = [
   { day: "Mer", time: "15h00", key: "kids",      name: "Éducative 7/11", coach: "Dadi",       lvl: "7 → 11 ans" },
   { day: "Mer", time: "16h00", key: "kids",      name: "Éducative 12/16", coach: "Dadi",      lvl: "12 → 16 ans" },
   { day: "Mer", time: "17h00", key: "kids",      name: "Éducative compétiteurs", coach: "Dadi", lvl: "jusqu’à 18h15" },
-  { day: "Mer", time: "18h20", key: "hyrox",     name: "Hyrox",          coach: "Hicham",      lvl: "Ça pique" },
-  { day: "Mer", time: "19h00", key: "hyrox",     name: "Cross-Training", coach: "Hicham",      lvl: "Ça pique" },
+  { day: "Mer", time: "18h20", key: "hyrox",     name: "Hyrox",          coach: "Hicham",      lvl: "Intense" },
+  { day: "Mer", time: "19h00", key: "hyrox",     name: "Cross-Training", coach: "Hicham",      lvl: "Intense" },
   { day: "Mer", time: "20h00", key: "anglaise",  name: "Boxe Anglaise",  coach: "Dadi",        lvl: "Débutant → confirmé" },
   // Jeudi
   { day: "Jeu", time: "12h40", key: "thai",      name: "Boxe Thaï · K1", coach: "Tawee",       lvl: "Tous niveaux" },
@@ -291,11 +291,11 @@ export const DAYS = [
 
 export const COACHES = [
   { name: "Dadi", role: "Anglaise · Lady Punch · École", tag: "Le pilier",
-    note: "Anglaise, Lady Punch et toute l’école, du Baby Boxe aux compétiteurs : Dadi tient la semaine d’un bout à l’autre.",
+    note: "Anglaise, Lady Punch et toute l’école, du Baby Boxe aux compétiteurs : Dadi tient la semaine d’un bout à l’autre. Premier cours ? Dis-lui que tu n’as jamais boxé — c’est exactement là que son travail commence.",
     img: "/assets/img/sc/coach-dadi.webp",
     // alt écrit d’après le cliché — jamais dérivé du nom ni du tag
     alt: "Le coach Dadi, casquette et t-shirt Boxing Center rouge, poing serré devant lui, debout sur le tapis au bord du ring de la salle" },
-  { name: "Tawee", role: "Boxe Thaï · K1", tag: "L’art thaï", note: "La thaï enseignée comme elle se boxe là-bas — les tibias avant les mots." },
+  { name: "Tawee", role: "Boxe Thaï · K1", tag: "L’art thaï", note: "La thaï enseignée comme elle se boxe là-bas — les tibias avant les mots. Et pour ta première : on apprend la touche avant la puissance." },
   { name: "Hicham", role: "Hyrox · Cross · Camp", tag: "Le moteur", note: "Les circuits qui construisent la caisse. Tu repars vidé, tu reviens plus fort." },
   { name: "Victor G", role: "Boxe Thaï · K1", tag: "La relève", note: "Les créneaux thaï/K1 du soir — l’intensité montante de la semaine." },
 ];
