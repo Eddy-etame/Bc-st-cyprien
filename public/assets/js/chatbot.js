@@ -486,11 +486,30 @@ export function initChatbot() {
       opened = true;
       /* Bonjour d'abord. Le message ouvrait sur la surface et le prix puis
          demandait le prenom dans la foulee : trois demandes en une phrase. */
-      await botSay("Bonjour 👋 Je suis l’assistant de Boxing Center Saint-Cyprien.", 450);
-      await botSay("Les cours, les créneaux, les tarifs — dites-moi ce que vous cherchez et je vous guide. On est rive gauche, à 4 minutes du métro A.", 620, resolveActions(["offre", "essai"]));
-      /* La question vient d’être POSÉE : c’est seulement maintenant qu’un mot
-         unique peut être lu comme un prénom — et pour un seul tour de parole. */
+      /* Trois temps, jamais plus : bonjour + je vois ou vous etes, UN
+         fait vrai sur cette page, une question ouverte. Le fait est ce
+         qui separe un assistant d'un pop-up. Chiffres verifies dans
+         data.js, un par un. */
+      const ACCUEILS = {
+        "/tarifs/": ["Bonjour \u{1F44B} Vous \u00eates sur les tarifs.", "La rentr\u00e9e \u00e0 29\u20ac par personne est la formule la plus prise. Je vous aide \u00e0 choisir\u00a0?"],
+        "/activites/": ["Bonjour \u{1F44B} Vous regardez les disciplines.", "Sept, de l\u2019anglaise au grappling. Dites-moi votre objectif, je vous oriente."],
+        "/plannings/": ["Bonjour \u{1F44B} Vous cherchez un cr\u00e9neau.", "Ouvert du lundi au samedi, 10h\u201321h15. Donnez-moi vos dispos, je vous dis lequel prendre."],
+        "/coachs/": ["Bonjour \u{1F44B} Vous regardez l\u2019\u00e9quipe.", "Quatre coachs\u00a0: Dadi, Tawee, Hicham et Victor G. Une question sur l\u2019un d\u2019eux\u00a0?"],
+        "/la-salle/": ["Bonjour \u{1F44B} Vous d\u00e9couvrez la salle.", "1\u202f200 m\u00b2 sur un seul niveau\u00a0: depuis la porte, vous voyez tout. Envie de passer\u00a0?"],
+        "/galerie/": ["Bonjour \u{1F44B} Vous parcourez la galerie.", "Seize cl\u00e9ich\u00e9s, sept zones de la salle. Une question sur l\u2019une d\u2019elles\u00a0?"],
+        "/premiere-seance/": ["Bonjour \u{1F44B} Vous pr\u00e9parez votre premi\u00e8re s\u00e9ance.", "Gants pr\u00eat\u00e9s, aucun niveau demand\u00e9, pas de sparring impos\u00e9. Une question\u00a0?"],
+        "/contact/": ["Bonjour \u{1F44B} Vous cherchez \u00e0 nous joindre.", "11 rue Sainte-Lucie, \u00e0 4 minutes du m\u00e9tro A. Ou laissez-moi votre num\u00e9ro."],
+      };
+      const _page = location.pathname.replace(/index\.html$/, "");
+      const [_b, _s] = ACCUEILS[_page] || ["Bonjour \u{1F44B} Je suis l’assistant de Boxing Center Saint-Cyprien.", "Les cours, les créneaux, les tarifs — dites-moi ce que vous cherchez."];
+      await botSay(_b, 450);
+      await botSay(_s, 620, resolveActions(["offre", "essai"]));
+      /* Le prenom en TROISIEME bulle, apres deux messages qui ont deja
+         rendu service. `expectName` etait armee sans que la question soit
+         posee : un mot unique etait lu comme un prenom alors que personne
+         n'avait rien demande. Maintenant elle est posee pour de bon. */
       expectName = true;
+      await botSay("Et vous, comment vous appelez-vous ?", 420);
       showChips();
     }
   }
