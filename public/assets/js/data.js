@@ -115,10 +115,10 @@ export const NAV = [
      « combien ça coûte » mais « il se passe quoi quand je pousse la porte ».
      Elle a donc sa page, et elle est la première après l’accueil. */
   { href: "/premiere-seance/", label: "1re séance" },
-  { href: "/la-salle/", label: "La salle" },
+  { href: "/la-salle/", label: "La salle", top: false },
   { href: "/activites/", label: "Activités" },
   { href: "/coachs/", label: "Coachs" },
-  { href: "/galerie/", label: "Galerie" },
+  { href: "/galerie/", label: "Galerie", top: false },
   { href: "/plannings/", label: "Planning" },
   { href: "/tarifs/", label: "Tarifs" },
   { href: "/contact/", label: "Contact" },
