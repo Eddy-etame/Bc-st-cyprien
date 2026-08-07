@@ -27,15 +27,15 @@ export const PARCOURS = [
   {
     want: "Je n’ai jamais mis de gants",
     key: "camp",
-    why: "Le camp ne demande aucun acquis : on t’apprend à te tenir, à respirer, à frapper un sac sans te faire mal au poignet. Trois créneaux dans la semaine, personne ne regarde le nouveau.",
+    why: "Le camp ne demande aucun acquis : on t’apprend à te tenir, à respirer, à frapper un sac sans te faire mal au poignet. Quatre créneaux dans la semaine, personne ne regarde le nouveau.",
   },
   {
     want: "Je veux une technique, pas une séance de fitness",
     key: "anglaise",
-    why: "Six passages par semaine sur le même ring, le même œil au bord des cordes. Le jab avant la sueur : c’est le poste où l’on te corrige un détail jusqu’à ce qu’il tienne.",
+    why: "Cinq passages par semaine sur le même ring, le même œil au bord des cordes. Le jab avant la sueur : c’est le poste où l’on te corrige un détail jusqu’à ce qu’il tienne.",
   },
   {
-    want: "Je veux que ça pique",
+    want: "Je veux d’abord construire le souffle",
     key: "hyrox",
     why: "Hyrox et cross : la zone moteur, charges et circuits. Tu n’y apprends pas à boxer, tu y construis la caisse qui te permet de boxer une troisième reprise.",
   },

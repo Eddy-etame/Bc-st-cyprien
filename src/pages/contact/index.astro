@@ -202,14 +202,6 @@
           "itemListElement": [
             {
               "@type": "Offer",
-              "name": "Séance d’essai",
-              "price": "10",
-              "priceCurrency": "EUR",
-              "description": "Séance d’essai toutes disciplines, matériel prêté.",
-              "url": "https://box-plus.vercel.app/seance-essai"
-            },
-            {
-              "@type": "Offer",
               "name": "Offre Rentrée",
               "price": "29",
               "priceCurrency": "EUR",
@@ -223,15 +215,47 @@
               "priceCurrency": "EUR",
               "description": "259€ les 12 mois, payable en 4× sans frais, accès libre aux 5 clubs.",
               "url": "https://box-plus.vercel.app/abonnements#promo"
+            },
+            {
+              "@type": "Offer",
+              "name": "Abonnement adulte, échéance de 4 semaines",
+              "price": "44.99",
+              "priceCurrency": "EUR",
+              "description": "44,99€ par échéance de 4 semaines, accès aux 5 salles et à toutes les disciplines — le tarif de tous les jours.",
+              "url": "https://box-plus.vercel.app/abonnements#prelevement"
+            },
+            {
+              "@type": "Offer",
+              "name": "Abonnement étudiant, échéance de 4 semaines",
+              "price": "36.99",
+              "priceCurrency": "EUR",
+              "description": "36,99€ par échéance de 4 semaines pour les étudiants, accès aux 5 salles et à toutes les disciplines.",
+              "url": "https://box-plus.vercel.app/abonnements#prelevement"
+            },
+            {
+              "@type": "Offer",
+              "name": "École & Baby Boxe",
+              "price": "295",
+              "priceCurrency": "EUR",
+              "description": "295€ à l’année, t-shirt du club inclus — Baby Boxe 3/6 ans à 250€.",
+              "url": "https://box-plus.vercel.app/abonnements#enfants"
+            },
+            {
+              "@type": "Offer",
+              "name": "Séance d’essai",
+              "price": "10",
+              "priceCurrency": "EUR",
+              "description": "Séance d’essai toutes disciplines, matériel prêté, sans engagement.",
+              "url": "https://box-plus.vercel.app/seance-essai"
             }
           ]
         },
         "description": "Boxing Center Saint-Cyprien : la nouvelle génération du réseau, 1 200 m² rive gauche, le premier Boxing Center rive gauche de Toulouse. Boxe anglaise, thaï/K1, grappling, Hyrox, cross-training, Lady Punch et école enfants dès 3 ans, à 4 minutes du métro A (Saint-Cyprien République). Séance d’essai 10€.",
         "aggregateRating": {
           "@type": "AggregateRating",
-          "ratingValue": "4.2",
+          "ratingValue": "4.0",
           "bestRating": "5",
-          "reviewCount": 59
+          "reviewCount": 97
         },
         "potentialAction": {
           "@type": "ReserveAction",
@@ -335,7 +359,7 @@
             "name": "Comment se passe la première séance ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Tu arrives 10 minutes avant, en tenue de sport. Les gants et le matériel te sont prêtés sur place, le coach t’explique le déroulé, et tu boxes avec le groupe. La séance d’essai coûte 10€, toutes disciplines."
+              "text": "Tu arrives 10 minutes avant, en tenue de sport. Tu dis que c’est ta première fois — c’est la seule phrase à préparer. Les gants et le matériel te sont prêtés sur place, puis échauffement, technique et sac, à ton rythme : pas de sparring imposé, pas de test. La séance d’essai coûte 10€, toutes disciplines. Le déroulé complet est sur la page « Ta première séance »."
             }
           },
           {
@@ -441,6 +465,12 @@
           <h2 class="display" style="margin-top:1rem;font-size:clamp(1.9rem,4.4vw,3rem)"><span class="reveal-mask"><span>Les questions</span></span><span class="reveal-mask"><span class="tint">qu’on nous pose.</span></span></h2>
         </div>
         <div class="faq" id="faq"></div>
+        <!-- Le renvoi vers le levier de conversion : la FAQ répond en trois
+             lignes à « comment se passe la première séance ». La page, elle,
+             y répond en entier — c’est là qu’on envoie qui hésite encore. -->
+        <div style="margin-top:clamp(1.4rem,3vw,2rem)" data-reveal>
+          <a class="btn" data-magnetic href="/premiere-seance/"><span>Comment se passe ta 1<sup>re</sup> séance</span></a>
+        </div>
       </div>
     </section>
 

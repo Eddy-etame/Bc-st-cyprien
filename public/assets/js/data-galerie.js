@@ -28,7 +28,7 @@ export const GALLERY = [
   },
   {
     id: "anglaise", zone: "L’anglaise", spec: "Le noble art · le ring",
-    lede: "Six créneaux par semaine sur le même ring : trois midis, trois soirs. C’est le poste de Dadi, du premier jab au sparring encadré.",
+    lede: "Cinq créneaux par semaine sur le même ring : deux midis, trois soirs. C’est le poste de Dadi, du premier jab au sparring encadré.",
     shots: [
       { f: "anglaise-header.webp", feat: "wide", cap: "Le ring", alt: "Un boxeur en casque et gants, garde haute et appui avant marqué, au milieu d’un cours d’anglaise sur le ring" },
       { f: "anglaise.webp", cap: "Au travail", alt: "Un cours d’anglaise en plein travail : jeunes et adultes gantés de part et d’autre des cordes, sacs et poires de vitesse en arrière-plan" },
@@ -36,7 +36,7 @@ export const GALLERY = [
   },
   {
     id: "pieds-poings", zone: "Le pieds-poings", spec: "Thaï · K1",
-    lede: "Cinq créneaux tenus à deux : Tawee le midi, Victor G le soir. Les tibias et les genoux entrent dans le jeu, la technique ne baisse pas d’un cran.",
+    lede: "Cinq créneaux tenus à deux : Tawee le midi, Victor G le soir — le sixième, samedi 18h, attend son encadrant. Les tibias et les genoux entrent dans le jeu, la technique ne baisse pas d’un cran.",
     shots: [
       { f: "thai-2.webp", feat: "wide", cap: "La surface thaï", alt: "Un pratiquant lance un genou face à un coach qui tient la patte d’ours, sur le tapis bleu au pied du ring" },
       { f: "thai.webp", cap: "Tibias, genoux", alt: "Travail de boxe thaï aux sacs, protège-tibias aux jambes, sous la lumière de la salle" },

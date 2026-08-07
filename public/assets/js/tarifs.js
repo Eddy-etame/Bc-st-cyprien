@@ -18,7 +18,7 @@ function renderEssai() {
     <div class="essai__spot" aria-hidden="true"></div>
     <div class="essai__body">
       <span class="eyebrow">La séance d’essai</span>
-      <h2 class="display essai__title">L’essai d’abord.<br><span class="tint">Dix euros, sans filet.</span></h2>
+      <h2 class="display essai__title">Rien de tout ça ?<br><span class="tint">Alors viens voir. Dix euros.</span></h2>
       <p class="lead essai__lead">${e.detail}</p>
     </div>
     <div class="essai__cta">
@@ -44,6 +44,26 @@ function renderPromos() {
   if (bonus) bonus.textContent = PROMOS.bonus;
 }
 
+/* Une carte tarif — même gabarit pour les classiques et les compléments. */
+const carteTarif = (t) => `<article class="tarif">
+      <h3 class="tarif__name">${t.name}</h3>
+      ${t.price ? `<div class="tarif__price">${t.price}<small> ${t.period}</small></div>` : ""}
+      <p class="tarif__feature">${t.feature}</p>
+      <ul class="tarif__items">${t.items.map((i) => `<li>${i}</li>`).join("")}</ul>
+      <a class="btn ${t.price ? "btn--primary" : ""}" data-magnetic href="${t.href}"><span>${t.cta}</span></a>
+    </article>`;
+
+/* Les classiques — le barreau entre la promo et l’école. Aucun prix barré :
+   ce n’est pas une offre, c’est le tarif. Si le vestiaire supprime la ligne,
+   la section disparaît proprement au lieu d’afficher une grille vide. */
+function renderClassiques() {
+  const el = $("#classiques");
+  if (!el) return;
+  const c = TARIFS.find((x) => x.name.toLowerCase().startsWith("les classiques"));
+  if (!c) { el.closest("section")?.remove(); return; }
+  el.innerHTML = carteTarif(c);
+}
+
 /* École (depuis TARIFS) + coachings + matériel (box-plus) */
 function renderMore() {
   const el = $("#more");
@@ -54,17 +74,7 @@ function renderMore() {
     { name: "Coaching privé", feature: "En tête-à-tête, ton geste sous une seule paire d’yeux", items: ["Sur rendez-vous", "On casse un défaut précis", "Avec un coach de la salle"], cta: "Voir les coachings", href: LINKS.coachings },
     { name: "Matériel", feature: "Gants, protections, textile", items: ["Équipe-toi pour durer", "Conseil à la salle", "Boutique en ligne"], cta: "La boutique", href: LINKS.materiel },
   ];
-  el.innerHTML = cards
-    .map(
-      (t) => `<article class="tarif">
-      <h3 class="tarif__name">${t.name}</h3>
-      ${t.price ? `<div class="tarif__price">${t.price}<small> ${t.period}</small></div>` : ""}
-      <p class="tarif__feature">${t.feature}</p>
-      <ul class="tarif__items">${t.items.map((i) => `<li>${i}</li>`).join("")}</ul>
-      <a class="btn ${t.price ? "btn--primary" : ""}" data-magnetic href="${t.href}"><span>${t.cta}</span></a>
-    </article>`
-    )
-    .join("");
+  el.innerHTML = cards.map(carteTarif).join("");
 }
 
 /* Avis Google RÉELS — verbatim, cités (jamais inventés) */
@@ -98,9 +108,10 @@ function renderFaq() {
 
 /* ------------------------------ BOOT ------------------------------ */
 function boot() {
-  renderEssai();
   renderPromos();
+  renderClassiques();
   renderMore();
+  renderEssai();   // en dernier dans le DOM comme dans l’ordre de vente
   renderReviews();
   renderFaq();
 

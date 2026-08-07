@@ -25,10 +25,12 @@ export const FACTS = {
   coachs:
     "Dadi (anglaise, Lady Punch et toute l’école — le pilier de la semaine), Tawee (thaï / K1), Victor G (thaï / K1 le soir), Hicham (Hyrox, cross, camp). Le créneau grappling du mardi et du jeudi tourne, mais l’encadrant n’est pas encore acté au planning officiel : on ne donne pas de nom tant qu’il ne l’est pas.",
   offres:
-    "Dans l’ordre où on les propose : offre RENTRÉE 29€ PAR PERSONNE pour 4 semaines de cours illimités, sans engagement (au lieu de 44,99€). Offre Saison 259€ les 12 mois, payable en 4× sans frais, accès libre aux 5 clubs du réseau. École 295€ / an t-shirt du club inclus, Baby Boxe 250€. Séance d’essai 10€ EN DERNIER (toutes disciplines, matériel prêté, sans engagement).",
+    "Dans l’ordre où on les propose : offre RENTRÉE 29€ PAR PERSONNE pour 4 semaines de cours illimités, sans engagement (au lieu de 44,99€). Offre Saison 259€ les 12 mois, payable en 4× sans frais, accès libre aux 5 clubs du réseau. Hors promotion, abonnement classique 44,99€ adulte et 36,99€ étudiant par échéance de 4 semaines, accès aux 5 salles (c’est un tarif, jamais barré — c’est lui qui est barré sur l’offre de rentrée). École 295€ / an t-shirt du club inclus, Baby Boxe 250€. Séance d’essai 10€ EN DERNIER (toutes disciplines, matériel prêté, sans engagement).",
   planning:
-    "Lun 12h40 anglaise / 18h20 Boxing Camp / 19h cross / 20h anglaise ; Mar 12h40 thaï / 18h20 Lady Punch / 19h grappling / 20h thaï ; Mer 12h40 anglaise / 15h école 7-16 & compétiteurs / 18h20 Hyrox / 19h cross / 20h anglaise ; Jeu 12h40 thaï / 18h20 Lady Punch / 19h grappling / 20h thaï ; Ven 12h40 anglaise / 18h20 Boxing Camp / 19h thaï / 20h anglaise ; Sam 11h Boxing Camp / 14h15 Baby Boxe / 15h école 7-16 & compétiteurs.",
-  avis: "Note Google 4,2/5 sur 59 avis.",
+    "29 cours sur 6 jours. Lun 12h40 Boxing Camp (encadrant non acté) / 18h20 Boxing Camp / 19h cross / 20h anglaise ; Mar 12h40 thaï / 18h20 Lady Punch / 19h grappling / 20h thaï ; Mer 12h40 anglaise / 15h éducative 7-11, 16h 12-16, 17h compétiteurs / 18h20 Hyrox / 19h cross / 20h anglaise ; Jeu 12h40 thaï / 18h20 Lady Punch / 19h grappling / 20h thaï ; Ven 12h40 anglaise / 18h20 Boxing Camp / 19h thaï / 20h anglaise ; Sam 11h Boxing Camp / 14h15 Baby Boxe / 15h éducative 7-11, 16h 12-16, 17h compétiteurs / 18h pieds-poings (encadrant non acté).",
+  avis: "Note Google 4,0/5 sur 97 avis (relevé du 2026-08-06). C’est la vraie note : ne jamais l’embellir.",
+  premiere:
+    "La page « Ta première séance » (/premiere-seance/) décrit le déroulé réel : arriver 10 minutes avant, dire que c’est sa première fois, gants et protections PRÊTÉS, échauffement d’un quart d’heure, un point technique, le sac — à son rythme. Aucun sparring imposé (personne ne monte sur le ring sans en avoir envie), aucun test d’entrée, aucun engagement, aucun certificat médical pour l’essai. Tenue : t-shirt, short ou legging, baskets propres, bouteille d’eau.",
   reseau:
     "Réseau Boxing Center — 5 clubs : Saint-Cyprien, Minimes (le berceau), Portet-sur-Garonne (le vaisseau amiral), États-Unis (le colosse), Ramonville (le ciel ouvert). L’abonnement saison donne accès libre aux 5. Site du groupe : boxingcenter.fr.",
 };
@@ -67,6 +69,7 @@ export function factsBlock() {
     `- Encadrement : ${f.coachs}`,
     `- Offres : ${f.offres}`,
     `- Planning de la semaine : ${f.planning}`,
+    `- Première séance : ${f.premiere}`,
     `- ${f.avis}`,
     `- ${f.reseau}`,
   ].join("\n");

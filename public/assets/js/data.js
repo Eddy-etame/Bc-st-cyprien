@@ -96,7 +96,9 @@ export const SALLE = {
 export const LINKS = {
   essai: "https://box-plus.vercel.app/seance-essai",          // CTA principal de CHAQUE page (10€)
   abos: "https://box-plus.vercel.app/abonnements",
-  promos: "https://box-plus.vercel.app/abonnements#promo", // cartes Duo / Saison
+  promos: "https://box-plus.vercel.app/abonnements#promo", // Rentrée / Saison
+  prelevement: "https://box-plus.vercel.app/abonnements#prelevement", // les classiques au mois
+  comptant: "https://box-plus.vercel.app/abonnements#comptant",
   enfants: "https://box-plus.vercel.app/abonnements#enfants",
   coachings: "https://box-plus.vercel.app/coachings",
   materiel: "https://box-plus.vercel.app/materiel",
@@ -109,6 +111,10 @@ export const LINKS = {
 
 export const NAV = [
   { href: "/", label: "Accueil" },
+  /* Le levier de conversion : la question qui bloque vraiment n’est pas
+     « combien ça coûte » mais « il se passe quoi quand je pousse la porte ».
+     Elle a donc sa page, et elle est la première après l’accueil. */
+  { href: "/premiere-seance/", label: "1re séance" },
   { href: "/la-salle/", label: "La salle" },
   { href: "/activites/", label: "Activités" },
   { href: "/coachs/", label: "Coachs" },
@@ -147,9 +153,9 @@ export const DISCIPLINES = [
     tag: "Le noble art",
     cat: "adulte",
     coach: "Dadi",
-    jours: "Midi lun./mer./ven. · soirs lun./mer./ven. 20h",
+    jours: "Midi mer. & ven. · soirs lun./mer./ven. 20h",
     niveau: "Débutant → confirmé",
-    desc: "Jab, esquive, jeu de jambes : le noble art enseigné proprement, du premier gant au gant de compétition. Les cours du midi pour la pause active, les soirs de 20h pour le vrai travail — six passages par semaine, le même œil au bord des cordes.",
+    desc: "Jab, esquive, jeu de jambes : le noble art enseigné proprement, du premier gant au gant de compétition. Les deux midis pour la pause active, les trois soirs de 20h pour le vrai travail — cinq passages par semaine, le même œil au bord des cordes.",
     teaser: "Le pied avant, le jab, la sortie d’axe. Tout part de là.",
     img: "/assets/img/sc/anglaise-header.webp",
     alt: "Un boxeur en casque et gants, garde haute et appui avant marqué, au milieu d’un cours d’anglaise sur le ring ; d’autres binômes travaillent derrière les cordes",
@@ -160,9 +166,9 @@ export const DISCIPLINES = [
     tag: "Pieds-poings",
     cat: "adulte",
     coach: "Tawee · Victor G",
-    jours: "Midi mar. & jeu. · soirs mar./jeu. 20h · ven. 19h",
+    jours: "Midi mar. & jeu. · soirs mar./jeu. 20h · ven. 19h · sam. 18h",
     niveau: "Tous niveaux",
-    desc: "Tibias, genoux, coudes — la boxe la plus complète, avec un enseignement dans les règles de l’art. Deux coachs, cinq créneaux par semaine.",
+    desc: "Tibias, genoux, coudes — la boxe la plus complète, avec un enseignement dans les règles de l’art. Six créneaux par semaine, cinq tenus par Tawee et Victor G ; celui du samedi 18h attend encore son encadrant.",
     teaser: "Poings, tibias, genoux, coudes. Rien ne reste dehors.",
     img: "/assets/img/sc/thai-1.webp",
     alt: "Deux pratiquants de boxe thaï face à face au bord du ring : l’un tient les pattes d’ours, mains bandées de rouge, l’autre s’apprête à frapper",
@@ -226,7 +232,7 @@ export const DISCIPLINES = [
     tag: "Le condensé",
     cat: "adulte",
     coach: "Dadi · Hicham",
-    jours: "Lun. & ven. 18h20 · sam. 11h",
+    jours: "Midi lun. · lun. & ven. 18h20 · sam. 11h",
     niveau: "Tous niveaux",
     desc: "Le format signature Boxing Center : technique + cardio + sacs en une séance dense. Le meilleur point d’entrée si tu hésites.",
     teaser: "Le format maison : rien à choisir, tout y passe.",
@@ -357,6 +363,21 @@ export const TARIFS = [
     href: LINKS.promos,
     highlight: false,
   },
+  /* LES CLASSIQUES — le barreau manquant de l’échelle. Entre la promo de
+     rentrée et l’école, il y a le tarif de tous les jours : celui qu’on paie
+     quand la promo est passée. Il s’écrit SANS prix barré (ce n’est pas une
+     offre, c’est le prix), et il part vers l’ancre #prelevement de la
+     boutique — c’est là que la formule au mois se règle. */
+  {
+    name: "Les classiques",
+    price: "44,99€",
+    period: "/ 4 semaines · adulte",
+    feature: "Le tarif de tous les jours — étudiant 36,99€",
+    items: ["Adulte 44,99€ / 4 semaines", "Étudiant 36,99€ / 4 semaines", "Accès aux 5 salles, toutes les disciplines"],
+    cta: "Voir les formules au mois",
+    href: LINKS.prelevement,
+    highlight: false,
+  },
   {
     name: "École & Baby Boxe",
     price: "295€",
@@ -406,7 +427,7 @@ export const NETWORK = [
 /* FAQ générale — servie en FAQPage LD-JSON sur /contact/. */
 export const FAQ = [
   { q: "Où se trouve Boxing Center Saint-Cyprien ?", a: "Au 11 rue Sainte-Lucie, 31300 Toulouse, en plein quartier Saint-Cyprien rive gauche — à 4 minutes à pied du métro ligne A (Saint-Cyprien République)." },
-  { q: "Comment se passe la première séance ?", a: "Tu arrives 10 minutes avant, en tenue de sport. Les gants et le matériel te sont prêtés sur place, le coach t’explique le déroulé, et tu boxes avec le groupe. La séance d’essai coûte 10€, toutes disciplines." },
+  { q: "Comment se passe la première séance ?", a: "Tu arrives 10 minutes avant, en tenue de sport. Tu dis que c’est ta première fois — c’est la seule phrase à préparer. Les gants et le matériel te sont prêtés sur place, puis échauffement, technique et sac, à ton rythme : pas de sparring imposé, pas de test. La séance d’essai coûte 10€, toutes disciplines. Le déroulé complet est sur la page « Ta première séance »." },
   { q: "Je n’ai jamais boxé, je peux venir ?", a: "Oui. La plupart des créneaux sont ouverts à tous les niveaux : commence par le Boxing Camp — technique, cardio, sacs, à ton rythme. Personne ne te regarde débuter." },
   { q: "Quelles disciplines peut-on pratiquer ?", a: "Boxe anglaise, boxe thaï / K1, grappling, Hyrox, cross-training, Lady Punch, boxing camp et toute l’école enfants du Baby Boxe (3/6 ans) aux compétiteurs." },
   { q: "Y a-t-il des cours pour les enfants ?", a: "Oui, dès 3 ans : Baby Boxe le samedi, boxe éducative 7/11 ans et ados 12/16 ans le mercredi et le samedi, et un créneau compétiteurs encadré par Dadi." },

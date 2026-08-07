@@ -29,9 +29,36 @@
 
 ## Accueil (https://bc-st-cyprien.vercel.app/)
 
-- La salle en chiffres : 1 200 m² de plateau rive gauche ; 4 minutes du métro A (Saint-Cyprien République) ; plus de 10 disciplines à une seule adresse ; 4 coachs spécialisés au planning.
+- La salle en chiffres : 1 200 m² de plateau rive gauche ; 4 minutes du métro A (Saint-Cyprien République) ; 7 disciplines et 29 cours par semaine à une seule adresse ; 4 coachs nommés au planning.
 - Le configurateur de la page d’accueil présente chaque discipline avec son coach, ses jours et son niveau (données du planning officiel).
 - Séance d’essai : 10 €, toutes disciplines, gants et matériel prêtés, sans engagement. Réservation : https://box-plus.vercel.app/seance-essai
+
+## Ta première séance (https://bc-st-cyprien.vercel.app/premiere-seance/)
+
+Page dédiée au déroulé réel d’une première séance. Ce sont des faits de la salle, à reprendre tels quels.
+
+Avant de venir :
+- Le repère : 11 rue Sainte-Lucie, rive gauche, quartier Saint-Cyprien ; métro ligne A, station Saint-Cyprien République, 4 minutes à pied.
+- L’heure : arriver une dizaine de minutes avant le cours. Salle ouverte lundi–samedi 10h00–21h15, fermée le dimanche.
+- Le créneau : tous les cours du planning acceptent une première séance. Point d’entrée conseillé si l’on n’a jamais mis de gants : le Boxing Camp (lundi et vendredi 18h20, samedi 11h).
+
+Le déroulé, dans l’ordre (environ 1h15) :
+1. Passer la porte — un seul niveau, la ligne de sacs, le tapis, le ring au fond, la cage à droite.
+2. Dire que c’est sa première fois — la seule phrase à préparer. Le coach du créneau (Dadi, Tawee, Victor G ou Hicham selon l’heure) prend le relais.
+3. Les gants et les protections sont PRÊTÉS pour la première séance ; le coach montre le vestiaire et la zone de travail.
+4. Échauffement collectif d’environ 15 minutes : corde, déplacements, mobilité. Le coach cale la suite sur le niveau observé.
+5. Un seul point technique par cours — la garde, le souffle ou les appuis — travaillé jusqu’à ce qu’il tienne.
+6. Application aux sacs ou aux pattes d’ours, à son rythme, puis retour au calme (gainage, étirements) et point du coach.
+
+Ce que la salle ne fait PAS le premier soir (à ne jamais contredire) :
+- Aucun sparring imposé : personne ne monte sur le ring sans en avoir envie — ça se demande, ça ne s’impose pas.
+- Aucun test d’entrée : ni chrono, ni nombre de répétitions, ni niveau à prouver.
+- Aucun engagement à la sortie : l’essai est sans engagement, aucune signature n’est demandée.
+- Aucun certificat médical ni dossier pour l’essai : ils se règlent au moment de l’inscription seulement.
+
+La tenue : t-shirt, short ou legging, baskets propres réservées à l’intérieur, bouteille d’eau. Rien d’autre à acheter.
+Prix : séance d’essai 10 €, toutes disciplines, matériel prêté, sans engagement — réservation https://box-plus.vercel.app/seance-essai
+Question avant de venir : 05 62 24 46 82.
 
 ## La salle (https://bc-st-cyprien.vercel.app/la-salle/)
 
@@ -50,9 +77,9 @@ La lignée du réseau (ordre d’arrivée) : Minimes (le berceau, la salle histo
 ## Activités (https://bc-st-cyprien.vercel.app/activites/)
 
 Aiguillage « par où commencer » — cinq intentions courantes et la discipline vers laquelle la salle oriente :
-- « Je n’ai jamais mis de gants » → Boxing camp (3 créneaux/semaine) : aucun acquis demandé.
-- « Je veux une technique, pas une séance de fitness » → Boxe anglaise (6 créneaux/semaine, coach Dadi).
-- « Je veux que ça pique » → Hyrox & cross (3 créneaux/semaine, coach Hicham).
+- « Je n’ai jamais mis de gants » → Boxing camp (4 créneaux/semaine) : aucun acquis demandé.
+- « Je veux une technique, pas une séance de fitness » → Boxe anglaise (5 créneaux/semaine, coach Dadi).
+- « Je veux d’abord construire le souffle » → Hyrox & cross (3 créneaux/semaine, coach Hicham).
 - « Je préfère commencer sans galerie derrière moi » → Lady Punch (2 créneaux/semaine, 100 % féminin, coach Dadi).
 - « C’est pour mon enfant » → Boxe éducative (3 créneaux/semaine, dès 3 ans, coach Dadi).
 La boxe thaï et le grappling ne figurent pas dans cet aiguillage : la salle considère qu’on ne les choisit pas par hasard. Ils restent accessibles aux mêmes conditions.
@@ -62,13 +89,13 @@ Semaines-types proposées à titre d’exemple (créneaux réels du planning, ce
 - 3× par semaine : lundi 20h00 Boxe Anglaise (Dadi) + mardi 20h00 Boxe Thaï · K1 (Victor G) + jeudi 19h00 Grappling (encadrant non nommé).
 - 4× par semaine : lundi 19h00 Cross-Training (Hicham) + mardi 20h00 Boxe Thaï · K1 (Victor G) + mercredi 18h20 Hyrox (Hicham) + vendredi 18h20 Boxing Camp (Dadi).
 
-- Boxe anglaise — coach Dadi ; midi lun./mer./ven. et soirs lun./mer./ven. 20h ; débutant à confirmé.
-- Boxe thaï · K1 — coachs Tawee et Victor G ; midi mar. et jeu., soirs mar./jeu. 20h, ven. 19h ; tous niveaux.
+- Boxe anglaise — coach Dadi ; midi mer. et ven., soirs lun./mer./ven. 20h ; 5 créneaux ; débutant à confirmé.
+- Boxe thaï · K1 — coachs Tawee et Victor G ; midi mar. et jeu., soirs mar./jeu. 20h, ven. 19h ; plus un créneau samedi 18h sans encadrant nommé ; 6 créneaux ; tous niveaux.
 - Grappling — mardi et jeudi 19h–20h ; tous niveaux. Aucun encadrant nommé à ce jour : le poster officiel n’en porte pas et le site n’en invente pas (état affiché « nom à venir »).
 - Hyrox & cross — coach Hicham ; Hyrox mer. 18h20, cross lun. et mer. 19h.
 - Lady Punch — 100 % féminin ; coach Dadi ; mardi et jeudi 18h20–19h ; zéro prérequis.
 - Boxe éducative — dès 3 ans ; coach Dadi ; Baby 3/6 le samedi, 7/11 et 12/16 mercredi + samedi, compétiteurs mercredi/samedi.
-- Boxing camp — coachs Dadi et Hicham ; lun. et ven. 18h20, sam. 11h ; technique + cardio + sacs, tous niveaux.
+- Boxing camp — coachs Dadi et Hicham ; lun. 12h40 (sans encadrant nommé), lun. et ven. 18h20, sam. 11h ; 4 créneaux ; technique + cardio + sacs, tous niveaux.
 
 Paliers de l’école, âge par âge :
 - Baby Boxe, 3 à 6 ans — samedi 14h15 : coordination, jeu, premiers déplacements.
@@ -78,7 +105,7 @@ Paliers de l’école, âge par âge :
 
 ## Coachs (https://bc-st-cyprien.vercel.app/coachs/)
 
-- Dadi — le pilier : boxe anglaise, Lady Punch et toute l’école enfants, du Baby Boxe aux compétiteurs. 12 créneaux par semaine à son nom. Seul coach dont la photo est publiée, parce que la source officielle du réseau associe son nom à son visage.
+- Dadi — le pilier : boxe anglaise, Lady Punch et toute l’école enfants, du Baby Boxe aux compétiteurs. 15 créneaux par semaine à son nom. Seul coach dont la photo est publiée, parce que la source officielle du réseau associe son nom à son visage.
 - Tawee — boxe thaï / K1 : 2 créneaux par semaine (mardi et jeudi 12h40).
 - Hicham — Hyrox, cross-training et boxing camp : 5 créneaux par semaine.
 - Victor G — boxe thaï / K1 : 3 créneaux par semaine (mardi 20h, jeudi 20h, vendredi 19h).
@@ -104,29 +131,30 @@ Méthode d’encadrement (trois règles affichées sur la page) :
 
 ## Planning (https://bc-st-cyprien.vercel.app/plannings/)
 
-La semaine en chiffres (comptée sur la grille ci-dessous) : 24 cours par semaine, 6 jours ouverts (dimanche fermé), 9 cours en journée, 15 cours du soir à partir de 18h, 7 disciplines au planning.
+La semaine en chiffres (comptée sur la grille ci-dessous) : 29 cours par semaine, 6 jours ouverts (dimanche fermé), 13 cours en journée, 16 cours du soir à partir de 18h, 7 disciplines au planning.
 La grille de la page est filtrable par jour, par discipline et par coach, avec le nombre de créneaux retenus affiché en direct et une remise à zéro.
 
 Grille hebdomadaire (le poster officiel de la saison, affiché sur la page, fait foi) :
-- Lundi : 12h40 Boxe Anglaise (Dadi) ; 18h20 Boxing Camp (Hicham) ; 19h00 Cross-Training (Hicham) ; 20h00 Boxe Anglaise (Dadi).
+- Lundi : 12h40 Boxing Camp (coach à confirmer) ; 18h20 Boxing Camp (Hicham) ; 19h00 Cross-Training (Hicham) ; 20h00 Boxe Anglaise (Dadi).
 - Mardi : 12h40 Boxe Thaï · K1 (Tawee) ; 18h20 Lady Punch (Dadi) ; 19h00 Grappling (coach à confirmer) ; 20h00 Boxe Thaï · K1 (Victor G).
-- Mercredi : 12h40 Boxe Anglaise (Dadi) ; 15h00 Éducative 7/11 · 12/16 · compétiteurs (Dadi) ; 18h20 Hyrox (Hicham) ; 19h00 Cross-Training (Hicham) ; 20h00 Boxe Anglaise (Dadi).
+- Mercredi : 12h40 Boxe Anglaise (Dadi) ; 15h00 Éducative 7/11, 16h00 Éducative 12/16, 17h00 Éducative compétiteurs (Dadi) ; 18h20 Hyrox (Hicham) ; 19h00 Cross-Training (Hicham) ; 20h00 Boxe Anglaise (Dadi).
 - Jeudi : 12h40 Boxe Thaï · K1 (Tawee) ; 18h20 Lady Punch (Dadi) ; 19h00 Grappling (coach à confirmer) ; 20h00 Boxe Thaï · K1 (Victor G).
 - Vendredi : 12h40 Boxe Anglaise (Dadi) ; 18h20 Boxing Camp (Dadi) ; 19h00 Boxe Thaï · K1 (Victor G) ; 20h00 Boxe Anglaise (Dadi).
-- Samedi : 11h00 Boxing Camp (Hicham) ; 14h15 Baby Boxe 3/6 (Dadi) ; 15h00 Éducative 7/11 · 12/16 · compétiteurs (Dadi).
+- Samedi : 11h00 Boxing Camp (Hicham) ; 14h15 Baby Boxe 3/6 (Dadi) ; 15h00 Éducative 7/11, 16h00 Éducative 12/16, 17h00 Éducative compétiteurs (Dadi) ; 18h00 Boxe Pieds-Poings (coach à confirmer).
 - Dimanche : fermé.
 Conseils pratiques : arriver 10 minutes avant ; gants et protections prêtés pour la première séance ; en cas de doute sur un créneau, appeler le 05 62 24 46 82.
 
 ## Tarifs (https://bc-st-cyprien.vercel.app/tarifs/)
 
-- Séance d’essai : 10 € la séance — accès à toutes les disciplines, gants et matériel prêtés, sans engagement.
 - Offre Rentrée : 29 € par personne (au lieu de 44,99 €) — 4 semaines, cours illimités, sans engagement. Toujours « 29 € par personne », jamais « 29 € pour deux ».
 - Offre Saison : 259 € les 12 mois (au lieu de 400 €) — boxe anglaise, MMA, boxe pieds-poings, Lady Punch, Boxing Fitness ; payable en 4× sans frais ; accès libre aux 5 clubs du réseau.
+- Abonnement classique, hors promotion : 44,99 € adulte et 36,99 € étudiant, par échéance de 4 semaines, accès aux 5 salles et à toutes les disciplines ; aucun prix barré (c’est le tarif, pas une offre) : https://box-plus.vercel.app/abonnements#prelevement — relevé sur la boutique le 2026-08-07. C’est ce 44,99 € qui figure en prix barré sur l’offre de rentrée.
 - École & Baby Boxe : 295 €/an t-shirt du club inclus, Baby Boxe 250 €/an — 3/6, 7/11, ados 12/16, matériel fourni, compétiteurs encadrés par Dadi.
 - École : 295 €/an t-shirt du club inclus, Baby Boxe 250 €/an.
 - Coaching privé : sur rendez-vous, avec un coach de la salle (détail sur https://box-plus.vercel.app/coachings).
+- Séance d’essai : 10 € la séance — accès à toutes les disciplines, gants et matériel prêtés, sans engagement. Elle est présentée EN DERNIER : l’ordre de vente sur tout le site est rentrée 29 €, saison 259 €, classique 44,99 €/36,99 € par 4 semaines, école 295 € (baby 250 €), essai 10 €.
 - L’inscription, les prélèvements et le détail des formules se finalisent sur box-plus : https://box-plus.vercel.app/abonnements#promo
-- Avis Google affichés sur la page : 4,2/5, 59 avis. Citations réelles : « Une petite salle au top, des coachs au top, nichée au cœur de Saint Cyp'. » (Ronan L.) ; « Super salle, tous les mois Dadi améliore la salle avec des nouveaux équipements. » (Kayon M.) ; « Bonne salle, propre avec de bons équipements. Cours complet. » (Omar T.) ; « Les cours de boxing lady sont top ! Il y a une bonne ambiance. » (Alyssia P.)
+- Avis Google affichés sur la page : 4,0/5, 97 avis (relevé du 2026-08-06). Citations réelles : « Une petite salle au top, des coachs au top, nichée au cœur de Saint Cyp'. » (Ronan L.) ; « Super salle, tous les mois Dadi améliore la salle avec des nouveaux équipements. » (Kayon M.) ; « Bonne salle, propre avec de bons équipements. Cours complet. » (Omar T.) ; « Les cours de boxing lady sont top ! Il y a une bonne ambiance. » (Alyssia P.)
 
 ## Contact (https://bc-st-cyprien.vercel.app/contact/)
 
@@ -136,7 +164,7 @@ Conseils pratiques : arriver 10 minutes avant ; gants et protections prêtés po
 - Horaires : lundi–vendredi 10h00–21h15 ; samedi 10h00–21h15 ; dimanche fermé.
 - Questions fréquentes :
   - Où se trouve la salle ? Au 11 rue Sainte-Lucie, 31300 Toulouse, quartier Saint-Cyprien rive gauche, à 4 minutes à pied du métro ligne A (Saint-Cyprien République).
-  - Comment se passe la première séance ? Arriver 10 minutes avant, en tenue de sport ; gants et matériel prêtés ; la séance d’essai coûte 10 €, toutes disciplines.
+  - Comment se passe la première séance ? Arriver 10 minutes avant, en tenue de sport ; dire que c’est sa première fois ; gants et matériel prêtés ; échauffement, technique, sac, à son rythme ; aucun sparring imposé et aucun test ; la séance d’essai coûte 10 €, toutes disciplines. Déroulé complet : https://bc-st-cyprien.vercel.app/premiere-seance/
   - Peut-on venir sans avoir jamais boxé ? Oui — la plupart des créneaux sont tous niveaux ; le Boxing Camp est le meilleur point d’entrée.
   - Quelles disciplines ? Boxe anglaise, boxe thaï/K1, grappling, Hyrox, cross-training, Lady Punch, boxing camp et l’école enfants du Baby Boxe (3/6 ans) aux compétiteurs.
   - Des cours pour enfants ? Oui, dès 3 ans : Baby Boxe le samedi, éducative 7/11 et ados 12/16 le mercredi et le samedi, un créneau compétiteurs encadré par Dadi.

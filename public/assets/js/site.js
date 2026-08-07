@@ -112,7 +112,7 @@ function mountNav() {
 
 /* --------------------- FOOTER — la fiche technique ----------------- */
 function mountFooter() {
-  const cols = [{ h: "La salle", links: NAV.slice(1, 6) }];
+  const cols = [{ h: "La salle", links: NAV.slice(1, 7) }];
   const fields = [
     { k: "Établissement", v: "Boxing Center — Saint-Cyprien", wide: true },
     { k: "Génération", v: "La dernière-née du réseau" },
@@ -451,7 +451,7 @@ function spotlight(heroSel = ".hero", spotSel = ".hero__spot") {
  * (Le curseur-spotlight se désactive en hover:none — ceci le remplace.) */
 /* .station (visite) + .gitem (galerie) s’animent déjà via leur propre IO sur
    tous les appareils → hors liste pour ne pas doubler l’observateur. */
-const TOUCH_LIFE_SEL = ".promo, .sister, .codecard, .level, .pnote, .rostercard, .coachcard, .tarif, .review, .slot, .act, .coords li, .cfg, .route, .week, .pulse";
+const TOUCH_LIFE_SEL = ".promo, .sister, .codecard, .level, .pnote, .rostercard, .coachcard, .tarif, .review, .slot, .act, .coords li, .cfg, .route, .week, .pulse, .etape, .peur__item, .jamais__item, .suite__item";
 function touchLife(scope = document) {
   if (!window.matchMedia("(hover: none)").matches || !("IntersectionObserver" in window)) return;
   const els = scope.querySelectorAll(TOUCH_LIFE_SEL);

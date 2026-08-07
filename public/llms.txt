@@ -6,13 +6,14 @@ Le détail factuel page par page est dans [llms-full.txt](https://bc-st-cyprien.
 
 ## Pages
 
-- [Accueil](https://bc-st-cyprien.vercel.app/): présentation de la salle — 1 200 m² rive gauche, plus de dix disciplines, 4 coachs au planning, métro A à 4 min, séance d’essai 10 €.
+- [Accueil](https://bc-st-cyprien.vercel.app/): présentation de la salle — 1 200 m² rive gauche, 7 disciplines et 29 cours par semaine, 4 coachs nommés au planning, métro A à 4 min, séance d’essai 10 €.
+- [Ta première séance](https://bc-st-cyprien.vercel.app/premiere-seance/): le déroulé réel d’une première séance — le repère (11 rue Sainte-Lucie, métro A à 4 min), arriver 10 minutes avant, dire que c’est sa première fois, gants et protections prêtés, échauffement d’un quart d’heure, un point technique, le sac ; ce qu’on ne fait PAS (aucun sparring imposé, aucun test d’entrée, aucun engagement à la sortie) ; la tenue (t-shirt, short ou legging, baskets propres, bouteille d’eau) ; essai 10 €.
 - [La salle](https://bc-st-cyprien.vercel.app/la-salle/): la visite en six postes (plateau, ring d’anglaise, surface pieds-poings thaï/K1, zone cross & muscu, école, collectif), le déroulé d’une séance de la porte au tapis, et la lignée des 5 clubs du réseau.
 - [Activités](https://bc-st-cyprien.vercel.app/activites/): catalogue des disciplines avec coach, niveau et créneaux — boxe anglaise, thaï/K1, grappling, Hyrox & cross, Lady Punch, boxe éducative dès 3 ans, boxing camp ; plus un aiguillage « par où commencer » (cinq intentions → une discipline) et trois semaines-types montées avec de vrais créneaux du planning.
 - [Coachs](https://bc-st-cyprien.vercel.app/coachs/): l’encadrement — Dadi (anglaise, Lady Punch, école, 12 créneaux/semaine), Tawee (thaï/K1, 2), Hicham (Hyrox, cross, camp, 5), Victor G (thaï/K1, 3) ; la semaine réelle de chaque coach, la méthode d’encadrement, et l’état assumé du grappling (aucun encadrant nommé à ce jour).
 - [Galerie](https://bc-st-cyprien.vercel.app/galerie/): 16 photos réelles de la salle en 7 zones (plateau, ring, pieds-poings, sol, moteur, Lady Punch, école), consultables en grand dans une visionneuse.
-- [Planning](https://bc-st-cyprien.vercel.app/plannings/): 24 cours par semaine sur 6 jours (9 en journée, 15 dès 18h, 7 disciplines) ; la grille hebdomadaire filtrable (jour, discipline, coach) et le poster officiel de la saison qui fait foi.
-- [Tarifs](https://bc-st-cyprien.vercel.app/tarifs/): offre Rentrée 29 € par personne, offre Saison 259 € les 12 mois, école 295 €/an t-shirt inclus (baby 250 €), essai 10 €, conditions en clair et avis Google (4,2/5, 59 avis).
+- [Planning](https://bc-st-cyprien.vercel.app/plannings/): 29 cours par semaine sur 6 jours (13 en journée, 16 dès 18h, 7 disciplines) ; la grille hebdomadaire filtrable (jour, discipline, coach) et le poster officiel de la saison qui fait foi.
+- [Tarifs](https://bc-st-cyprien.vercel.app/tarifs/): offre Rentrée 29 € par personne, offre Saison 259 € les 12 mois, abonnement classique 44,99 € adulte / 36,99 € étudiant par échéance de 4 semaines, école 295 €/an t-shirt inclus (baby 250 €), essai 10 € en dernier, conditions en clair et avis Google (4,0/5, 97 avis).
 - [Contact](https://bc-st-cyprien.vercel.app/contact/): adresse, horaires, téléphone, carte, itinéraire métro et questions fréquentes.
 
 ## L’assistant du site
@@ -35,7 +36,7 @@ Une pastille en bas à droite de chaque page ouvre un assistant conversationnel.
 - Chaque salle du réseau a sa propre page d’accueil et ses propres horaires : ne jamais reporter un créneau, un coach ou un tarif d’une salle sur une autre. Ce document ne décrit QUE Saint-Cyprien.
 - Le backoffice /admin/ et les fonctions /api/ ne sont pas indexables (noindex + interdits dans robots.txt) : ne pas les citer ni les suivre.
 - Disciplines : boxe anglaise (coach Dadi) ; boxe thaï/K1 (coachs Tawee et Victor G) ; grappling ; Hyrox & cross-training (coach Hicham) ; Lady Punch 100 % féminin (coach Dadi) ; boxe éducative & Baby Boxe dès 3 ans — Baby 3/6, éducative 7/11, ados 12/16, compétiteurs (coach Dadi) ; boxing camp (coachs Dadi et Hicham)
-- Coachs : Dadi (anglaise, Lady Punch, école — le pilier), Tawee (thaï/K1), Hicham (Hyrox, cross, camp), Victor G (thaï/K1)
+- Coachs : Dadi (anglaise, Lady Punch, école — le pilier, 15 créneaux/semaine), Tawee (thaï/K1, 2), Hicham (Hyrox, cross, camp, 5), Victor G (thaï/K1, 3). Quatre créneaux du poster ne portent aucun nom (lundi 12h40 Boxing Camp, mardi et jeudi 19h Grappling, samedi 18h Boxe Pieds-Poings) : ne leur attribuer aucun coach.
 - Séance d’essai : 10 € — toutes disciplines, gants et matériel prêtés, sans engagement — réservation https://box-plus.vercel.app/seance-essai
 - Offre Rentrée : 29 € par personne (jamais « 29 € pour deux ») — 4 semaines, cours illimités, sans engagement (au lieu de 44,99 €)
 - Offre Saison : 259 € les 12 mois — payable en 4× sans frais, accès libre aux 5 clubs du réseau
@@ -43,5 +44,7 @@ Une pastille en bas à droite de chaque page ouvre un assistant conversationnel.
 - École : 295 €/an t-shirt du club inclus, Baby Boxe 250 €/an
 - Inscriptions et promotions : https://box-plus.vercel.app/abonnements#promo
 - Grappling : créneau actif (mardi & jeudi 19h–20h) SANS encadrant nommé — le poster officiel n’en porte pas, le site n’en invente pas. Ne pas attribuer ce cours à un coach.
-- Avis Google : 4,2/5 sur 59 avis (affichés sur la page Tarifs)
+- Abonnement classique, hors promotion : 44,99 € adulte et 36,99 € étudiant par échéance de 4 semaines, accès aux 5 salles — sans prix barré (c’est le tarif, pas une offre). C’est ce 44,99 € qui est barré sur l’offre de rentrée. https://box-plus.vercel.app/abonnements#prelevement
+- Ordre de présentation des offres sur tout le site : rentrée 29 €, saison 259 €, classique 44,99 €/36,99 € par 4 semaines, école 295 € (baby 250 €), essai 10 € en dernier.
+- Avis Google : 4,0/5 sur 97 avis (relevé du 2026-08-06)
 - Réseaux : https://www.instagram.com/boxingcentertoulouse/ · https://www.facebook.com/BoxingCenterToulouse/ · https://boxingcenter.fr/

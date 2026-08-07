@@ -11,12 +11,12 @@ export const QUICKS = [
   {
     label: "La séance d’essai",
     q: "Comment se passe la séance d’essai ?",
-    a: "10€ la séance, toutes disciplines, gants et matériel prêtés, sans engagement. Tu arrives 10 minutes avant en tenue de sport, le coach t’explique le déroulé et tu boxes avec le groupe.",
+    a: "10€ la séance, toutes disciplines, gants et matériel prêtés, sans engagement. Tu arrives 10 minutes avant en tenue de sport, tu dis que c’est ta première fois — c’est la seule phrase à préparer — puis échauffement, technique et sac, à ton rythme. Pas de sparring imposé, pas de test. [boutons: premiere, essai]",
   },
   {
     label: "Les tarifs",
     q: "Quels sont les tarifs ?",
-    a: "L’offre Rentrée : 29€ par personne pour 4 semaines illimitées (au lieu de 44,99€). La Saison : 259€ les 12 mois en 4× sans frais, accès libre aux 5 clubs. L’école : 295€ l’année t-shirt inclus, baby 250€. Et l’essai à 10€ pour tester. [boutons: offre, tarifs]",
+    a: "L’offre Rentrée : 29€ par personne pour 4 semaines illimitées (au lieu de 44,99€). La Saison : 259€ les 12 mois en 4× sans frais, accès libre aux 5 clubs. Hors promo, l’abonnement classique est à 44,99€ adulte / 36,99€ étudiant par échéance de 4 semaines. L’école : 295€ l’année t-shirt inclus, baby 250€. Et l’essai à 10€ pour tester, en dernier. [boutons: offre, saison, tarifs]",
   },
   {
     label: "Les horaires",
@@ -46,7 +46,7 @@ export const QUICKS = [
   {
     label: "Débuter",
     q: "Je n’ai jamais boxé, je peux venir ?",
-    a: "Oui, et c’est même le cas le plus courant. Commence par le Boxing Camp — technique, cardio, sacs, à ton rythme. Aucun acquis demandé, personne ne regarde le nouveau.",
+    a: "Oui, et c’est même le cas le plus courant. Commence par le Boxing Camp — technique, cardio, sacs, à ton rythme. Aucun acquis demandé, personne ne regarde le nouveau, et aucun sparring n’est imposé le premier soir. [boutons: premiere, essai]",
   },
 ];
 

@@ -32,6 +32,12 @@ const PAGES = [
     title: "La salle Boxing Center Saint-Cyprien — 1 200 m² rive gauche, Toulouse",
   },
   {
+    loc: "/premiere-seance/", src: ["src/pages/premiere-seance/index.astro", "public/assets/js/premiere-seance.js", "public/assets/css/premiere-seance.css"],
+    changefreq: "monthly", priority: "0.9",
+    img: "/assets/img/sc/salle-1.webp",
+    title: "Le plateau vu depuis la porte — ta première séance au Boxing Center Saint-Cyprien",
+  },
+  {
     loc: "/la-salle/", src: ["src/pages/la-salle/index.astro", "public/assets/js/la-salle.js"],
     changefreq: "monthly", priority: "0.8",
     img: "/assets/img/sc/salle-1.webp",

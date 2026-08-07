@@ -99,7 +99,31 @@ async function submitLead(payload) {
 
 /* ------------------------------ WIDGET ---------------------------- */
 
-/* La pensée Portet émulée : clés fermées → vrais boutons sous les messages. */
+/* ------------------------ LA MESURE DE LA VENTE -------------------- *
+ * Jusqu’ici, on ne pouvait PAS prouver que l’assistant vendait : ses
+ * boutons partaient vers la boutique par la même porte que tous les autres
+ * liens du site. On marque donc CHAQUE sortie box-plus de l’assistant.
+ *
+ * Deux pièges, évités ici :
+ *   1) l’ancre reste EN DERNIER (…?utm…#promo). Écrite avant, la boutique
+ *      recevrait « #promo?utm… » comme fragment et n’ouvrirait pas l’onglet ;
+ *   2) le marquage est posé À L’AFFICHAGE, pas dans le catalogue. parseReply
+ *      compare les URL écrites par le modèle aux href du catalogue pour les
+ *      transformer en boutons : des href marqués ne matcheraient plus, et le
+ *      bot recracherait des URL nues dans ses bulles.
+ */
+const UTM_CAMPAGNE = "st-cyprien";
+function tracke(href) {
+  if (!/^https?:\/\/box-plus\.vercel\.app/i.test(href || "")) return href;
+  const [avant, ...reste] = href.split("#");
+  const ancre = reste.join("#");
+  const sep = avant.includes("?") ? "&" : "?";
+  const marque = `${avant}${sep}utm_source=chatbot&utm_medium=bouton&utm_campaign=${UTM_CAMPAGNE}`;
+  return ancre ? `${marque}#${ancre}` : marque;
+}
+
+/* La pensée Portet émulée : clés fermées → vrais boutons sous les messages.
+   Les href restent NUS ici — c’est la clé de comparaison de parseReply. */
 const ACTIONS = {
   offre:       { label: "Je prends ma place — 29€", href: "https://box-plus.vercel.app/abonnements#promo" },
   saison:      { label: "Je réserve ma saison · 259€", href: "https://box-plus.vercel.app/abonnements#promo" },
@@ -108,6 +132,7 @@ const ACTIONS = {
   abonnements: { label: "Voir les abonnements", href: "https://box-plus.vercel.app/abonnements" },
   boutique:    { label: "La boutique du club", href: "https://box-plus.vercel.app/" },
   tarifs:      { label: "Les tarifs en détail", href: "/tarifs/" },
+  premiere:    { label: "Comment se passe ta 1re séance", href: "/premiere-seance/" },
   planning:    { label: "Voir le planning", href: "/plannings/" },
   disciplines: { label: "Découvrir les cours", href: "/activites/" },
   salle:       { label: "Visiter la salle", href: "/la-salle/" },
@@ -267,7 +292,9 @@ export function initChatbot() {
         const actions = m.actions && m.actions.length ? `<div class="scchat__actions">${m.actions.map((a) => {
           if (a.act) return `<button type="button" class="scchat__action scchat__action--ext" data-act="${a.act}">${esc(a.label)}</button>`;
           const ext = /^https?:/i.test(a.href);
-          return `<a class="scchat__action${ext ? " scchat__action--ext" : ""}" href="${a.href.replace(/"/g, "&quot;")}"${ext ? ` target="_blank" rel="noopener"` : ""}>${esc(a.label)}</a>`;
+          /* c’est ICI que la sortie boutique est marquée — nulle part ailleurs */
+          const href = tracke(a.href);
+          return `<a class="scchat__action${ext ? " scchat__action--ext" : ""}" href="${href.replace(/"/g, "&quot;")}"${ext ? ` target="_blank" rel="noopener"` : ""}>${esc(a.label)}</a>`;
         }).join("")}</div>` : "";
         return `<div class="scchat__msg scchat__msg--${m.role}"><div class="scchat__stack"><div class="scchat__bubble">${esc(m.text)}</div>${actions}</div></div>`;
       })

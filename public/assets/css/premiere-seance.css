@@ -1,0 +1,161 @@
+/* =====================================================================
+   SAINT-CYPRIEN · premiere-seance.css — la page qui répond à la seule
+   question qui bloque vraiment : « il se passe quoi quand je pousse la
+   porte ? ». Même showroom au noir que le reste du site ; on ne rajoute
+   AUCUN token, on ne fait que composer ceux de base.css.
+
+   Trois blocs propres à cette page :
+     .peur   — la peur nommée, puis démentie par un fait (deux colonnes)
+     .etape  — le déroulé numéroté, du trottoir au vestiaire
+     .jamais — ce qu’on NE fait PAS (la promesse la plus vendeuse du lot)
+   Le reste (.phero, .gong, .faq, .cond, .btn) vient de base/home/tarifs.
+   ===================================================================== */
+
+/* ------------------------------ L’EN-TÊTE --------------------------- */
+/* .phero-cta vivait dans contact.css : cette page ne charge pas cette
+   feuille, elle porte donc sa propre déclaration — identique, pour que les
+   deux en-têtes se comportent pareil si l’une des deux bouge un jour. */
+.phero-cta { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: clamp(1.4rem,3vw,2rem); }
+
+/* Le titre : une phrase courte, deux lignes — plus proche du panneau de
+   contact que du monument de /la-salle/. */
+body[data-page="premiere-seance"] .phero h1 { font-size: clamp(2.2rem, 1.7rem + 3.6vw, 4.4rem); }
+
+/* L’OBJET ALLUMÉ de cette page : LE SEUIL. Un montant, un linteau, et le
+   trait de lumière qui sort par en dessous — exactement ce qu’on voit
+   depuis le trottoir de la rue Sainte-Lucie avant de pousser. */
+body[data-page="premiere-seance"] .phero__mark {
+  background-image:
+    linear-gradient(180deg, var(--m-dim), var(--m-dim)),   /* montant gauche */
+    linear-gradient(180deg, var(--m-dim), var(--m-dim)),   /* montant droit  */
+    linear-gradient(90deg,  var(--m-dim), var(--m-dim));   /* linteau        */
+  background-size: 1.5px 100%, 1.5px 100%, 46% 1.5px;
+  background-position: 27% 0, 73% 0, 27% 0;
+  background-repeat: no-repeat;
+}
+body[data-page="premiere-seance"] .phero__mark::after {
+  content: ""; position: absolute; left: 27%; bottom: 0; width: 46%; height: 62%;
+  background: linear-gradient(180deg, transparent, rgba(246,248,252,.30));
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000);
+  mask-image: linear-gradient(180deg, transparent, #000);
+}
+body[data-page="premiere-seance"] .phero__mark::before {
+  content: ""; position: absolute; left: 27%; bottom: 0; width: 46%; height: 2px;
+  background: var(--spark); box-shadow: 0 0 18px rgba(246,248,252,.8);
+}
+body[data-page="premiere-seance"] .phero::before { background:
+  radial-gradient(58% 92% at 26% -16%, rgba(246,248,252,.16), transparent 62%),
+  linear-gradient(112deg, transparent 44%, rgba(246,248,252,.06) 50%, transparent 57%); }
+
+/* ------------------------- LE REPÈRE, EN TÊTE ---------------------- */
+.repere { display: grid; gap: .7rem; grid-template-columns: 1fr; margin-top: clamp(1.6rem,4vw,2.4rem); }
+@media (min-width: 720px){ .repere { grid-template-columns: repeat(3,1fr); } }
+.repere__cell { border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper-2);
+  padding: clamp(1.1rem,2.2vw,1.5rem); display: flex; flex-direction: column; gap: .5rem; }
+.repere__k { font: 600 .62rem/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--spark); }
+.repere__v { font-family: var(--f-display); font-weight: 700; font-size: var(--step-1); letter-spacing: -.01em; color: var(--ink); }
+.repere__d { color: var(--ink-soft); font-size: var(--step--1); line-height: 1.6; }
+.repere__cell a { color: var(--spark); text-decoration: underline; text-underline-offset: .25em; text-decoration-thickness: 1px; }
+
+/* --------------------- LA PEUR NOMMÉE, PUIS DÉMENTIE --------------- */
+.peur { display: grid; gap: .7rem; grid-template-columns: 1fr; margin-top: clamp(1.8rem,4vw,2.6rem); }
+@media (min-width: 900px){ .peur { grid-template-columns: repeat(2,1fr); } }
+.peur__item { border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper-2);
+  padding: clamp(1.2rem,2.4vw,1.7rem); display: flex; flex-direction: column; gap: .7rem;
+  transition: transform .45s var(--ease-out), box-shadow .45s var(--ease), border-color .4s; }
+.peur__item:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: rgba(233,236,244,.3); }
+.peur__q { font-family: var(--f-display); font-weight: 700; font-size: var(--step-1); line-height: 1.15;
+  letter-spacing: -.015em; color: var(--muted); }
+.peur__q::before { content: "« "; }
+.peur__q::after  { content: " »"; }
+.peur__a { color: var(--ink-soft); font-size: var(--step-0); line-height: 1.6; }
+.peur__a strong { color: var(--spark); font-weight: 650; }
+
+/* ------------------------ LE DÉROULÉ NUMÉROTÉ ---------------------- */
+.etapes { display: grid; gap: .7rem; grid-template-columns: 1fr; margin-top: clamp(1.8rem,4vw,2.6rem); }
+@media (min-width: 760px){ .etapes { grid-template-columns: repeat(2,1fr); } }
+@media (min-width: 1180px){ .etapes { grid-template-columns: repeat(3,1fr); } }
+.etape { position: relative; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper-2);
+  padding: clamp(1.2rem,2.4vw,1.6rem); display: flex; flex-direction: column; gap: .55rem;
+  transition: transform .45s var(--ease-out), box-shadow .45s var(--ease), border-color .4s; }
+.etape:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: rgba(233,236,244,.3); }
+.etape::after { content: ""; position: absolute; top: -1px; left: 12%; width: 76%; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(246,248,252,.4), transparent); opacity: 0; transition: opacity .6s var(--ease); }
+.etape:hover::after, .etape.is-inview::after { opacity: 1; }
+@media (max-width: 759.98px){ .etape::after { display: none; } }
+.etape__n { font: 600 .62rem/1 var(--f-mono); letter-spacing: .18em; color: var(--spark); }
+.etape__t { font-family: var(--f-display); font-weight: 700; font-size: var(--step-1); letter-spacing: -.01em; color: var(--ink); }
+.etape__d { color: var(--ink-soft); font-size: var(--step--1); line-height: 1.65; }
+
+/* ----------------------- CE QU’ON NE FAIT PAS ---------------------- */
+.jamais { display: grid; gap: .7rem; grid-template-columns: 1fr; margin-top: clamp(1.8rem,4vw,2.6rem); }
+@media (min-width: 860px){ .jamais { grid-template-columns: repeat(3,1fr); } }
+.jamais__item { border: 1px solid var(--line); border-radius: var(--radius); background: var(--void);
+  padding: clamp(1.2rem,2.4vw,1.7rem); display: flex; flex-direction: column; gap: .6rem; }
+.jamais__k { display: inline-flex; align-items: center; gap: .7ch; font: 600 .62rem/1 var(--f-mono);
+  letter-spacing: .14em; text-transform: uppercase; color: var(--spark); }
+.jamais__k::before { content: ""; width: 14px; height: 1.5px; background: var(--spark); }
+.jamais__t { font-family: var(--f-display); font-weight: 700; font-size: var(--step-1); letter-spacing: -.01em; color: var(--ink); }
+.jamais__d { color: var(--ink-soft); font-size: var(--step--1); line-height: 1.65; }
+
+/* --------------------- LA TENUE / CE QU’ON PRÊTE ------------------- */
+.sac { display: grid; gap: clamp(1.2rem,3vw,2rem); grid-template-columns: 1fr; margin-top: clamp(1.6rem,4vw,2.4rem); }
+@media (min-width: 860px){ .sac { grid-template-columns: repeat(2,1fr); } }
+.sac__col { border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper-2); padding: clamp(1.3rem,2.6vw,1.9rem); }
+.sac__t { font-family: var(--f-display); font-weight: 700; font-size: var(--step-1); letter-spacing: -.01em; color: var(--ink); margin-bottom: .9rem; }
+.sac__list { display: grid; gap: .65rem; }
+.sac__list li { display: flex; gap: .9ch; align-items: flex-start; color: var(--ink-soft); font-size: var(--step--1); line-height: 1.6; }
+.sac__list li::before { content: ""; flex: 0 0 6px; height: 6px; border-radius: 50%; margin-top: .55em; background: var(--spark); }
+.sac__note { margin-top: 1rem; padding-left: 1rem; border-left: 2px solid var(--line);
+  color: var(--muted); font-size: var(--step--1); line-height: 1.6; }
+
+/* ----------------------- LA SUITE (les offres) --------------------- */
+.suite { display: grid; gap: .7rem; grid-template-columns: 1fr; margin-top: clamp(1.6rem,4vw,2.4rem); }
+@media (min-width: 860px){ .suite { grid-template-columns: repeat(2,1fr); } }
+.suite__item { border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper-2);
+  padding: clamp(1.2rem,2.4vw,1.7rem); display: flex; flex-direction: column; gap: .6rem; align-items: flex-start; }
+.suite__price { display: flex; align-items: baseline; gap: .7ch; flex-wrap: wrap; }
+.suite__price b { font-family: var(--f-display); font-weight: 700; font-size: clamp(1.9rem,1.2rem+2.2vw,2.8rem); color: var(--ink); letter-spacing: -.02em; }
+.suite__price small { font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .06em; color: var(--muted); }
+.suite__price s { font: 500 var(--step--1)/1 var(--f-ui); color: var(--muted); }
+.suite__d { color: var(--ink-soft); font-size: var(--step--1); line-height: 1.65; }
+
+/* ------------------------------ LE FIL ----------------------------- */
+/* Un rappel discret : la page raconte l’essai, le prix reste écrit. */
+.fil { margin-top: clamp(1.4rem,3vw,2rem); padding-left: 1rem; border-left: 2px solid var(--line);
+  color: var(--ink-soft); font-size: var(--step--1); line-height: 1.65; max-width: 64ch; }
+.fil strong { color: var(--spark); font-weight: 650; }
+.fil a { color: var(--spark); text-decoration: underline; text-underline-offset: .25em; text-decoration-thickness: 1px; }
+
+/* --------------------------- MOBILE ÉTROIT -------------------------- */
+/* À 320px, un titre de carte en Space Grotesk 700 peut dépasser sa boîte :
+   on autorise la césure plutôt que le débordement horizontal. */
+@media (max-width: 420px){
+  .peur__q, .etape__t, .jamais__t, .sac__t { overflow-wrap: anywhere; hyphens: auto; }
+  .repere__v { font-size: var(--step-0); }
+}
+
+/* ---------------- LISIBILITÉ MOBILE — LE MÊME PLANCHER -------------- *
+ * home.css pose déjà un plancher de 12px à ≤600px sur la famille des
+ * micro-labels mono (.fk, .dstep__k, .cfg__n…). Mesuré au navigateur à
+ * 320px : les trois labels NÉS SUR CETTE PAGE (.repere__k, .etape__n,
+ * .jamais__k) tombaient à 9,92px — ils n'étaient pas dans la liste. On les
+ * y raccroche ici plutôt que d'aller allonger la liste d'en face : la page
+ * qui crée la classe porte sa propre dette. */
+@media (max-width: 600px){
+  .repere__k, .etape__n, .jamais__k { font-size: .75rem; }
+}
+
+/* ------------------- LES LIENS DANS LE TEXTE COURANT ---------------- *
+ * Mesuré à 320px : les liens posés au milieu d'une phrase (« la carte et
+ * l'itinéraire », « planning », « la page tarifs ») offraient 15 à 35px de
+ * haut à un pouce. On ne peut pas leur donner min-height:44px comme aux
+ * liens autonomes du site — ça casserait l'interligne du paragraphe. Le
+ * rembourrage vertical d'un élément EN LIGNE, lui, agrandit la zone
+ * cliquable sans toucher à la hauteur de ligne : c'est exactement ce qu'il
+ * faut. Un seul lien par paragraphe ici, donc aucune zone qui en recouvre
+ * une autre. */
+.repere__d a, .fil a, .sac__note a {
+  padding-block: .95rem; margin-block: -.95rem;
+  position: relative; z-index: 1;
+}

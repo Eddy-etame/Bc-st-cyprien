@@ -7,6 +7,11 @@
    ===================================================================== */
 import { DISCIPLINES, COACHES, LINKS, COACH_TBD_SHORT, COACH_TBD_WHY_SHORT } from "./data.js?v=21";
 import { STATS } from "./data-home.js?v=21";
+import { SCHEDULE } from "./data.js?v=21";
+
+/* Un chiffre de la bande d’accueil est DÉRIVÉ du planning : il ne peut donc
+   pas diverger du poster quand le vestiaire publie une grille différente. */
+const CHIFFRES_VIVANTS = { cours: () => SCHEDULE.length };
 
 const gsap = window.gsap;
 const ScrollTrigger = window.ScrollTrigger;
@@ -20,10 +25,10 @@ const esc = (s = "") => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace
 /* --------------------------- RENDER ------------------------------- */
 function renderStats() {
   $("#stats").innerHTML = STATS.map(
-    (s) => `<div class="stat">
+    (s0) => { const s = s0.from ? { ...s0, v: CHIFFRES_VIVANTS[s0.from]?.() ?? s0.v } : s0; return `<div class="stat">
       <div class="stat__v"><span data-count="${s.v}" ${s.raw ? "data-raw" : ""}>${s.raw ? s.v : 0}</span>${s.suffix ? `<span class="stat__u">${s.suffix.trim()}</span>` : ""}</div>
       <div class="stat__l">${s.l}</div>
-    </div>`
+    </div>`; }
   ).join("");
 }
 function renderTicker() {

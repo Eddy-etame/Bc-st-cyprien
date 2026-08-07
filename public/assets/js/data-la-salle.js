@@ -27,19 +27,19 @@ export const VISITE = [
     n: "02",
     t: "L’anglaise",
     tag: "Le noble art",
-    d: "Ring, cordes tendues, coin bleu, coin rouge. C’est le poste de Dadi : le jab, la garde, le déplacement, six fois par semaine.",
+    d: "Ring, cordes tendues, coin bleu, coin rouge. C’est le poste de Dadi : le jab, la garde, le déplacement, cinq fois par semaine.",
     img: "/assets/img/sc/anglaise.webp",
     alt: "Un cours d’anglaise en plein travail : jeunes et adultes gantés de part et d’autre des cordes, sacs et poires de vitesse en arrière-plan",
-    specs: ["Coach · Dadi", "6 créneaux / sem."],
+    specs: ["Coach · Dadi", "5 créneaux / sem."],
   },
   {
     n: "03",
     t: "Le pieds-poings",
     tag: "Thaï · K1",
-    d: "Le tapis pieds-poings, sous son propre faisceau. Tawee et Victor G y passent cinq fois par semaine.",
+    d: "Le tapis pieds-poings, sous son propre faisceau. Tawee et Victor G y passent cinq fois par semaine ; le sixième créneau, samedi 18h, attend son encadrant.",
     img: "/assets/img/sc/thai-2.webp",
     alt: "Un pratiquant lance un genou face à un coach qui tient la patte d’ours, sur le tapis bleu au pied du ring",
-    specs: ["Coachs · Tawee, Victor G", "5 créneaux / sem."],
+    specs: ["Coachs · Tawee, Victor G", "6 créneaux / sem."],
   },
   {
     n: "04",
@@ -63,10 +63,10 @@ export const VISITE = [
     n: "06",
     t: "Le collectif",
     tag: "Tous niveaux",
-    d: "Lady Punch le mardi et le jeudi, boxing camp trois fois par semaine : les créneaux où l’on transpire ensemble, tous niveaux confondus.",
+    d: "Lady Punch le mardi et le jeudi, boxing camp quatre fois par semaine : les créneaux où l’on transpire ensemble, tous niveaux confondus.",
     img: "/assets/img/sc/tous-niveaux.webp",
     alt: "Un pratiquant, gants aux poings, attend son tour au bord du ring pendant que le groupe s’échauffe derrière les cordes",
-    specs: ["Lady Punch · 100 % féminin", "Camp · 3 créneaux"],
+    specs: ["Lady Punch · 100 % féminin", "Camp · 4 créneaux"],
   },
 ];
 
@@ -77,7 +77,7 @@ export const VALUES = [
   { n: "01", t: "Le geste", d: "Chaque cours éclaire une chose : ta garde, ton souffle, tes appuis. Le reste attend son tour." },
   { n: "02", t: "L’école", d: "Du Baby Boxe 3/6 aux compétiteurs : une lignée complète, tenue par le même coach d’un âge à l’autre." },
   { n: "03", t: "Le quartier", d: "Tu vois le ring depuis la porte. Premier Boxing Center rive gauche, à 4 minutes du métro A." },
-  { n: "04", t: "Le choix", d: "Plus de dix disciplines, un seul plancher : tu règles ta semaine comme TU la veux." },
+  { n: "04", t: "Le choix", d: "Sept disciplines et vingt-neuf cours par semaine sur un seul plancher : tu règles ta semaine comme TU la veux." },
 ];
 
 /* L’encadrement — noms = le planning officiel rentrée 2026. Photo seulement
