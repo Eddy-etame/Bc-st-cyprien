@@ -22,7 +22,7 @@
        moment d'enregistrer. Une vidéo trop longue ne peut donc pas exister
        dans le dossier, même si le navigateur a menti sur sa durée.
    ===================================================================== */
-import { allowCors, readBody, cleanName, ipOf } from "../_lib/util.js";
+import { allowCors, readBody, cleanName, ipOf, issuePow, verifyPow } from "../_lib/util.js";
 import { config, ready, FOLDER, LIMITS, sign, search } from "../_lib/cloudinary.js";
 
 const EMAIL_RE = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
@@ -31,6 +31,7 @@ const TEL_RE = /^\+?[0-9 ().-]{9,20}$/;
 export default async function handler(req, res) {
   allowCors(res);
   if (req.method === "OPTIONS") return res.status(204).end();
+  if (req.method === "GET") return res.status(200).json(issuePow()); // le defi anti-bot
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
   if (!ready()) {
@@ -40,6 +41,16 @@ export default async function handler(req, res) {
   }
 
   const b = readBody(req);
+
+  /* Pot de miel : un humain ne voit pas ce champ. Un bot qui le remplit recoit
+     une signature FACTICE — son upload echouera chez Cloudinary, en silence. */
+  if (String(b.website || "").length > 0) {
+    return res.status(200).json({ cloudName: "denied", apiKey: "0", timestamp: 0, folder: "x", tags: "pending", context: "", signature: "0" });
+  }
+  /* Preuve de travail obligatoire */
+  if (!verifyPow(b.pow || {})) {
+    return res.status(400).json({ error: "Vérification expirée — réessaie, ça prend une seconde." });
+  }
 
   /* 1. Le prénom — obligatoire. On ne publie pas d'anonyme sur le mur du club. */
   const prenom = cleanName(b.prenom, 40);

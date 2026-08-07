@@ -72,6 +72,7 @@ export function monterFormulaire(root, surSucces) {
 
   slot.insertAdjacentHTML("beforeend", `
     <form class="club__form" id="club-form" novalidate>
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" />
       <p class="club__formlede">Une photo ou une vidéo de <b>15 secondes maximum</b>, prise ici. On la regarde, et si elle est bonne elle passe sur le mur.</p>
       <div class="club__row">
         <label class="club__field">
@@ -158,10 +159,23 @@ export function monterFormulaire(root, surSucces) {
 
     let s;
     try {
+      /* 0) le defi anti-bot : emis par le serveur, resolu ici en un clin d'oeil */
+      const powRes = await fetch("/api/community/sign").then((r) => r.json()).catch(() => null);
+      let powNonce = "";
+      if (powRes && powRes.challenge) {
+        const shaHex = async (x) => [...new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(x)))].map((v) => v.toString(16).padStart(2, "0")).join("");
+        const prefix = "0".repeat(powRes.difficulty || 4);
+        for (let n = 0; ; n++) {
+          if ((await shaHex(`${powRes.challenge}:${n}`)).startsWith(prefix)) { powNonce = String(n); break; }
+          if (n % 2000 === 1999) await new Promise((r) => setTimeout(r));
+        }
+      }
+      const website = (form.querySelector('input[name="website"]') || {}).value || "";
       const r = await fetch("/api/community/sign", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prenom, legende, email, phone, mime: file.type, octets: file.size, duree }),
+        body: JSON.stringify({ prenom, legende, email, phone, mime: file.type, octets: file.size, duree, website,
+          pow: powRes ? { challenge: powRes.challenge, ts: powRes.ts, sig: powRes.sig, nonce: powNonce } : {} }),
       });
       s = await r.json().catch(() => ({}));
       if (!r.ok) { submit.disabled = false; return dire(status, s.error || "Envoi refusé.", "err"); }

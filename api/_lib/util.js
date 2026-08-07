@@ -2,7 +2,7 @@
    Helpers partagés des fonctions serverless (Vercel) — Saint-Cyprien.
    Zéro dépendance npm : uniquement fetch + crypto natifs.
    ===================================================================== */
-import { createHash, timingSafeEqual } from "crypto";
+import { createHash, createHmac, timingSafeEqual } from "crypto";
 
 export function allowCors(res) {
   res.setHeader("Access-Control-Allow-Origin", process.env.CORS_ORIGIN || "*");
@@ -108,3 +108,28 @@ export async function kv(cmd) {
 }
 
 export const LEADS_KEY = "bcsc:leads";
+
+/* ---------- Preuve de travail (anti-bot, cout ~un clignement d'oeil) ----------
+   Meme mecanique que Portet et Minimes : defi signe HMAC (aucun etat serveur),
+   le client trouve un nonce tel que sha256("challenge:nonce") commence par
+   N zeros ; le serveur verifie signature, fraicheur et preuve. */
+const POW_DIFFICULTY = +(process.env.POW_DIFFICULTY || 4);
+const POW_TTL_MS = 10 * 60 * 1000;
+const powSecret = () => (process.env.CLOUDINARY_URL || process.env.ADMIN_TOKEN || "bc");
+
+export function issuePow() {
+  const ts = Date.now();
+  const challenge = createHash("sha256").update(`${ts}:${Math.random()}`).digest("hex").slice(0, 32);
+  const sig = createHmac("sha256", powSecret()).update(`${challenge}.${ts}`).digest("hex");
+  return { challenge, ts, sig, difficulty: POW_DIFFICULTY };
+}
+
+export function verifyPow({ challenge, ts, sig, nonce } = {}) {
+  if (!challenge || !ts || !sig || nonce === undefined) return false;
+  if (Date.now() - Number(ts) > POW_TTL_MS) return false;
+  const expect = createHmac("sha256", powSecret()).update(`${challenge}.${ts}`).digest("hex");
+  const a = Buffer.from(String(sig)), b = Buffer.from(expect);
+  if (a.length !== b.length || !timingSafeEqual(a, b)) return false;
+  const h = createHash("sha256").update(`${challenge}:${nonce}`).digest("hex");
+  return h.startsWith("0".repeat(POW_DIFFICULTY));
+}
