@@ -484,7 +484,10 @@ export function initChatbot() {
     input.focus({ preventScroll: true });
     if (!opened) {
       opened = true;
-      await botSay("Salut, je suis l’assistant de Boxing Center Saint-Cyprien — 1 200 m² rive gauche, à 4 minutes du métro A. L’offre de la rentrée est à 29€ par personne. Comment tu t’appelles ?", 700, resolveActions(["offre", "essai"]));
+      /* Bonjour d'abord. Le message ouvrait sur la surface et le prix puis
+         demandait le prenom dans la foulee : trois demandes en une phrase. */
+      await botSay("Bonjour 👋 Je suis l’assistant de Boxing Center Saint-Cyprien.", 450);
+      await botSay("Les cours, les créneaux, les tarifs — dites-moi ce que vous cherchez et je vous guide. On est rive gauche, à 4 minutes du métro A.", 620, resolveActions(["offre", "essai"]));
       /* La question vient d’être POSÉE : c’est seulement maintenant qu’un mot
          unique peut être lu comme un prénom — et pour un seul tour de parole. */
       expectName = true;

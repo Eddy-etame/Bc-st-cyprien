@@ -138,7 +138,20 @@
   padding: 0.75rem 0.85rem 0.85rem;
   background: var(--paper, #0b0d14);
 }
-.scchat__chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.65rem; }
+
+/* Le ruban de suggestions tient sur UNE ligne qui glisse. Il etait en
+   `flex-wrap: wrap` : les pastilles s'empilaient sur deux ou trois rangees
+   juste au-dessus du champ de saisie et mangeaient le tiers du panneau —
+   l'assistant paraissait plein avant d'avoir dit un mot. Barre de defilement
+   masquee (sur un ruban horizontal, elle se lit comme un defaut) et bords en
+   degrade : l'oeil comprend « ca continue » sans qu'on l'ecrive. */
+.scchat__chips { display: flex; flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden;
+  scroll-snap-type: none; -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; -ms-overflow-style: none;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 12px, #000 calc(100% - 20px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 12px, #000 calc(100% - 20px), transparent 100%); gap: 0.4rem; margin-bottom: 0.65rem; }
+.scchat__chips::-webkit-scrollbar { display: none; }
+.scchat__chips button { flex: 0 0 auto; white-space: nowrap; }
 .scchat__chips button {
   padding: 0.45rem 0.75rem;
   border-radius: 100px;
