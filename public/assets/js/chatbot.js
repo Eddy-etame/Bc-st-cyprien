@@ -183,6 +183,11 @@ export function initChatbot() {
 
   const sid = sessionId();
   const profile = { prenom: "", nom: "", email: "", phone: "", salle: "Saint-Cyprien" };
+  /* Le profil survit à la navigation (même session) : le bot ne redemande
+     jamais, et les formulaires du site se préremplissent avec. */
+  const PROFIL_KEY = "bcs-chat-profil";
+  try { Object.assign(profile, JSON.parse(sessionStorage.getItem(PROFIL_KEY) || "{}")); } catch { /* profil vierge */ }
+  const memoriserProfil = () => { try { sessionStorage.setItem(PROFIL_KEY, JSON.stringify(profile)); } catch { /* stockage indispo */ } };
   const aiHistory = [];
   const messages = [];
   let opened = false, typing = false, exchanges = 0;
@@ -350,6 +355,7 @@ export function initChatbot() {
     /* La fenêtre du prénom ne dure qu’un tour de parole : elle se referme ici,
        qu’on ait capté quelque chose ou non. */
     expectName = false;
+    if (found) memoriserProfil();
     return found;
   }
 
