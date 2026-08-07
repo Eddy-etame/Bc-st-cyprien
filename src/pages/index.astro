@@ -353,7 +353,7 @@
           <div class="hero__say">
             <p class="lead hero__sub" data-reveal>La salle est la dernière-née du réseau — mais la nouvelle génération, ce n’est pas elle. C’est le môme du Baby Boxe du samedi, la débutante du mardi 18h20, toi. 1 200 m² rive gauche, à 4 minutes du métro A. Choisis ce que la lumière éclaire cette semaine.</p>
             <div class="hero__cta" data-reveal>
-              <a class="btn btn--primary" data-magnetic href="https://box-plus.vercel.app/abonnements#promo"><span>Je prends ma place de rentrée — 29€</span></a>
+              <a class="btn btn--primary" data-magnetic href="https://box-plus.vercel.app/inscription?product=offre-duo&step=1&utm_source=site&utm_medium=cta&utm_campaign=bc-st-cyprien"><span>Je prends ma place de rentrée — 29€</span></a>
               <a class="btn" data-magnetic href="#configurateur"><span>Choisir ma discipline</span></a>
             </div>
             <p data-reveal style="margin-top:.55rem;font-size:.78rem;letter-spacing:.06em;color:var(--ink-soft)">29€ par personne · 4 semaines · gants prêtés</p>
@@ -426,10 +426,14 @@
           <div class="essai__body">
             <span class="eyebrow">L’offre de rentrée</span>
             <h2 class="display essai__title">Quatre semaines.<br><span class="tint">29€. Par personne.</span></h2>
-            <p class="lead essai__lead">Cours illimités, toutes disciplines de la salle, sans engagement — au lieu de 44,99€. Tu viens avec ton binôme si tu veux : chacun sa place, chacun ses gants.</p>
+            <p class="lead essai__lead">Cours illimités, toutes disciplines de la salle, sans engagement — au lieu de <s class="was">44,99€</s>. Tu viens avec ton binôme si tu veux : chacun sa place, chacun ses gants.</p>
+            <!-- Le compteur de places : vide et masqué à la livraison, il ne
+                 s'ouvre que si la boutique a donné le nombre RÉEL de places
+                 encore libres. Rien n'est écrit en dur ici. -->
+            <p class="places" data-places hidden></p>
           </div>
           <div class="essai__cta">
-            <a class="btn btn--primary" data-magnetic href="https://box-plus.vercel.app/abonnements#promo"><span>Je prends ma place de rentrée — 29€</span></a>
+            <a class="btn btn--primary" data-magnetic href="https://box-plus.vercel.app/inscription?product=offre-duo&step=1&utm_source=site&utm_medium=cta&utm_campaign=bc-st-cyprien"><span>Je prends ma place de rentrée — 29€</span></a>
             <a class="btn" data-magnetic href="tel:+33562244682"><span>05 62 24 46 82</span></a>
           </div>
         </div>

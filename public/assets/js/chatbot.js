@@ -240,7 +240,7 @@ export function initChatbot() {
   root.id = "scchat";
   root.className = "scchat";
   root.innerHTML = `
-    <section class="scchat__panel" id="scchat-panel" role="dialog" aria-modal="true"
+    <section class="scchat__panel" id="scchat-panel" data-lenis-prevent role="dialog" aria-modal="true"
              aria-labelledby="scchat-title" hidden>
       <header class="scchat__head">
         <span class="scchat__beam" aria-hidden="true"></span>
@@ -532,6 +532,8 @@ export function initChatbot() {
     profile, messages,
     get lastLead() { return window.__scchatLastLead || null; },
   };
+
+
 }
 
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initChatbot);
