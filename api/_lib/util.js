@@ -18,7 +18,7 @@ export function isAdmin(req) {
   return timingSafeEqual(given, good);
 }
 
-/** L'IP de l'appelant — la clé du garde-fou anti-spam de la galerie. */
+/** L’IP de l’appelant — la clé du garde-fou anti-spam de la galerie. */
 export function ipOf(req) {
   return (
     (req.headers["x-forwarded-for"] || "").split(",")[0].trim() ||
@@ -29,9 +29,9 @@ export function ipOf(req) {
 
 /* ------------------------------------------------------------------ *
  *  LE FILTRE À INJURES — un prénom ou une légende passe par ici avant
- *  d'aller où que ce soit. Il coupe trois choses : les insultes (FR + EN),
+ *  d’aller où que ce soit. Il coupe trois choses : les insultes (FR + EN),
  *  le martèlement de caractères (aaaaaaa), et les liens (un mur du club
- *  n'est pas un panneau publicitaire). Les caractères = | < > sont retirés :
+ *  n’est pas un panneau publicitaire). Les caractères = | < > sont retirés :
  *  ce sont eux qui séparent les champs du contexte Cloudinary, on ne laisse
  *  personne écrire dans un champ voisin.
  *  Renvoie { value, bad } — jamais une exception, jamais un texte modifié
@@ -57,7 +57,7 @@ export function cleanName(s, max = 40) {
   return { value, bad };
 }
 
-/** Corps de requête, que Vercel l'ait parsé ou non. */
+/** Corps de requête, que Vercel l’ait parsé ou non. */
 export function readBody(req) {
   if (!req.body) return {};
   if (typeof req.body === "string") { try { return JSON.parse(req.body || "{}"); } catch { return {}; } }
@@ -65,11 +65,11 @@ export function readBody(req) {
 }
 
 /* ------------------------------------------------------------------ *
- *  LE POOL GEMINI — les clés ne s'appellent pas toutes GEMINI_API_KEY.
+ *  LE POOL GEMINI — les clés ne s’appellent pas toutes GEMINI_API_KEY.
  *  Dans ce dépôt elles sont numérotées (GEMINI_API_KEY_1 … _11) pour
  *  répartir le quota. Qui lit une seule variable ne trouve donc RIEN et
- *  croit qu'il n'y a pas de clé. Ce ramassage est la seule lecture
- *  autorisée : l'assistant et le coup d'œil de la galerie partagent le
+ *  croit qu’il n’y a pas de clé. Ce ramassage est la seule lecture
+ *  autorisée : l’assistant et le coup d'œil de la galerie partagent le
  *  même pool, mélangé pour ne pas brûler toujours la première.
  * ------------------------------------------------------------------ */
 export function geminiKeys() {
@@ -88,13 +88,13 @@ export function geminiKeys() {
  *  STOCKAGE DES LEADS — Upstash Redis via son API REST (fetch simple,
  *  aucune dépendance, palier gratuit). Configuré par deux variables :
  *  UPSTASH_REDIS_REST_URL + UPSTASH_REDIS_REST_TOKEN.
- *  Non configuré ⇒ `kvReady()` est faux et l'appelant le dit honnêtement.
+ *  Non configuré ⇒ `kvReady()` est faux et l’appelant le dit honnêtement.
  * ------------------------------------------------------------------ */
 const KV_URL = () => (process.env.UPSTASH_REDIS_REST_URL || "").replace(/\/$/, "");
 const KV_TOKEN = () => process.env.UPSTASH_REDIS_REST_TOKEN || "";
 export const kvReady = () => Boolean(KV_URL() && KV_TOKEN());
 
-/** Exécute une commande Redis (tableau d'arguments) via l'API REST. */
+/** Exécute une commande Redis (tableau d’arguments) via l’API REST. */
 export async function kv(cmd) {
   if (!kvReady()) throw new Error("kv non configuré");
   const r = await fetch(KV_URL(), {
@@ -109,7 +109,7 @@ export async function kv(cmd) {
 
 export const LEADS_KEY = "bcsc:leads";
 
-/* ---------- Preuve de travail (anti-bot, cout ~un clignement d'oeil) ----------
+/* ---------- Preuve de travail (anti-bot, cout ~un clignement d’oeil) ----------
    Meme mecanique que Portet et Minimes : defi signe HMAC (aucun etat serveur),
    le client trouve un nonce tel que sha256("challenge:nonce") commence par
    N zeros ; le serveur verifie signature, fraicheur et preuve. */

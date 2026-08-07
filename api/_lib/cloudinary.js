@@ -7,13 +7,13 @@
 
      · sign()        — la signature SHA-1 que Cloudinary attend (paramètres
                        triés, `k=v` collés par &, puis le secret) ;
-     · search()      — l'API d'administration (auth Basic) : c'est NOTRE base
+     · search()      — l’API d’administration (auth Basic) : c’est NOTRE base
                        de données, interrogée par tags ;
-     · tag/destroy() — l'API d'envoi signée : approuver, refuser.
+     · tag/destroy() — l’API d’envoi signée : approuver, refuser.
 
    Configuré par UNE variable : CLOUDINARY_URL
    (cloudinary://<api_key>:<api_secret>@<cloud_name>).
-   Non configurée ⇒ ready() est faux et l'appelant le dit honnêtement, sans
+   Non configurée ⇒ ready() est faux et l’appelant le dit honnêtement, sans
    jamais casser la page publique.
    ===================================================================== */
 import { createHash } from "crypto";
@@ -53,7 +53,7 @@ export function sign(params, apiSecret) {
 
 const basic = (c) => "Basic " + Buffer.from(`${c.apiKey}:${c.apiSecret}`).toString("base64");
 
-/** L'API d'administration — c'est notre lecture de base (expression = requête). */
+/** L’API d’administration — c’est notre lecture de base (expression = requête). */
 export async function search(expression, { max = 60, sort = "desc" } = {}) {
   const c = parseUrl();
   if (!c) throw new Error("CLOUDINARY_URL absente");
@@ -71,7 +71,7 @@ export async function search(expression, { max = 60, sort = "desc" } = {}) {
   return r.json();
 }
 
-/** Poser / retirer un tag (API d'envoi, signée). */
+/** Poser / retirer un tag (API d’envoi, signée). */
 export async function tag(command, tagName, publicIds, resourceType = "image") {
   const c = parseUrl();
   if (!c) throw new Error("CLOUDINARY_URL absente");
@@ -104,7 +104,7 @@ export async function destroy(publicId, resourceType = "image") {
   return r.json();
 }
 
-/** L'URL de livraison, transformations comprises (q_auto/f_auto = le poids en moins). */
+/** L’URL de livraison, transformations comprises (q_auto/f_auto = le poids en moins). */
 export function url(publicId, { resourceType = "image", tr = "q_auto,f_auto", ext = "" } = {}) {
   const c = parseUrl();
   if (!c) return "";
@@ -113,8 +113,8 @@ export function url(publicId, { resourceType = "image", tr = "q_auto,f_auto", ex
 }
 
 /* ------------------------------------------------------------------ *
- *  LA FORME PUBLIQUE d'un média. Elle ne sort QUE ce que le mur affiche :
- *  le prénom et la légende. Ni l'e-mail, ni le téléphone, ni l'IP du
+ *  LA FORME PUBLIQUE d’un média. Elle ne sort QUE ce que le mur affiche :
+ *  le prénom et la légende. Ni l’e-mail, ni le téléphone, ni l’IP du
  *  contributeur ne quittent le serveur — ces trois-là ne vivent que dans
  *  le carnet de contacts, derrière le mot de passe du staff.
  * ------------------------------------------------------------------ */
@@ -141,10 +141,10 @@ export function publicItem(r) {
 
 /* ------------------------------------------------------------------ *
  *  LA FORME ADMIN — la même chose, plus le moyen de rappel du déposant.
- *  Elle n'est servie QUE par /api/community/pending, qui exige le mot de
- *  passe du staff. C'est la seule porte par laquelle un contact sort du
+ *  Elle n’est servie QUE par /api/community/pending, qui exige le mot de
+ *  passe du staff. C’est la seule porte par laquelle un contact sort du
  *  serveur, et elle est fermée à clé : le mur public, lui, continue de
- *  n'afficher qu'un prénom. L'IP ne sort nulle part — elle sert au
+ *  n’afficher qu’un prénom. L’IP ne sort nulle part — elle sert au
  *  garde-fou anti-spam, pas à ficher les gens.
  * ------------------------------------------------------------------ */
 export function adminItem(r) {

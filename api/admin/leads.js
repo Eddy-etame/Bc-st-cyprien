@@ -1,8 +1,8 @@
 /* =====================================================================
-   GET /api/admin/leads — les contacts laissés à l'assistant.
+   GET /api/admin/leads — les contacts laissés à l’assistant.
    Lit la liste Upstash écrite par /api/lead. Stockage non configuré ⇒ 200
    avec { configured:false } : le vestiaire affiche un état honnête (« le
-   carnet n'est pas encore branché »), jamais une page en erreur.
+   carnet n’est pas encore branché »), jamais une page en erreur.
    ===================================================================== */
 import { allowCors, isAdmin, kv, kvReady, LEADS_KEY } from "../_lib/util.js";
 

@@ -1,8 +1,8 @@
 /* =====================================================================
-   POST /api/lead — la capture de contacts de l'assistant.
+   POST /api/lead — la capture de contacts de l’assistant.
    Trois voies, toutes optionnelles, toutes cumulables :
      1. STOCKAGE   Upstash Redis REST (UPSTASH_REDIS_REST_URL + _TOKEN) —
-                   c'est ce que le vestiaire relit dans « Les contacts ».
+                   c’est ce que le vestiaire relit dans « Les contacts ».
      2. E-MAIL     Resend (RESEND_API_KEY + LEAD_EMAIL_TO, défaut
                    boxingcenter31@gmail.com) — une notification par lead.
      3. WEBHOOK    LEAD_WEBHOOK_URL — POST JSON brut (Zapier, Make, CRM…).
@@ -34,8 +34,8 @@ async function notifyEmail(lead) {
   if (!key) return false;
   /* Les deux noms sont acceptés : le .env de ce dépôt écrit LEAD_TO, le code
      lisait LEAD_EMAIL_TO. Tant que les deux existent dans la nature, on lit
-     les deux — une notification qui part à la mauvaise adresse parce qu'une
-     variable s'appelle presque comme il faut, ça ne se voit pas, et c'est le
+     les deux — une notification qui part à la mauvaise adresse parce qu’une
+     variable s’appelle presque comme il faut, ça ne se voit pas, et c’est le
      pire genre de panne. */
   const to = process.env.LEAD_EMAIL_TO || process.env.LEAD_TO || "boxingcenter31@gmail.com";
   const from = process.env.LEAD_EMAIL_FROM || process.env.LEAD_FROM || "Boxing Center Saint-Cyprien <onboarding@resend.dev>";
@@ -50,7 +50,7 @@ async function notifyEmail(lead) {
     body: JSON.stringify({
       from, to: [to],
       subject: `Nouveau contact — ${lead.prenom || "visiteur"}${lead.phone ? ` · ${lead.phone}` : ""}`,
-      html: `<p>Un visiteur a laissé ses coordonnées à l'assistant du site Saint-Cyprien.</p><table>${lignes}</table>`,
+      html: `<p>Un visiteur a laissé ses coordonnées à l’assistant du site Saint-Cyprien.</p><table>${lignes}</table>`,
     }),
   });
   return r.ok;
@@ -88,7 +88,7 @@ export default async function handler(req, res) {
     sessionId: clean(b.sessionId, 60),
   };
 
-  // Un contact sans moyen de rappel n'est pas un contact.
+  // Un contact sans moyen de rappel n’est pas un contact.
   if (!lead.email && !lead.phone) return res.status(200).json({ ok: true, stored: false, reason: "incomplet" });
 
   const stored = { kv: false, email: false, webhook: false };

@@ -159,7 +159,7 @@ export function monterFormulaire(root, surSucces) {
 
     let s;
     try {
-      /* 0) le defi anti-bot : emis par le serveur, resolu ici en un clin d'oeil */
+      /* 0) le defi anti-bot : emis par le serveur, resolu ici en un clin d’oeil */
       const powRes = await fetch("/api/community/sign").then((r) => r.json()).catch(() => null);
       let powNonce = "";
       if (powRes && powRes.challenge) {
