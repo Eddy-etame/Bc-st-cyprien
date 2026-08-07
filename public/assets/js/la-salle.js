@@ -5,8 +5,8 @@
    Puis LE CODE (4 valeurs durables), LE RÉSEAU (les 4 sœurs + sa place, la
    preuve du titre) et les infos pratiques. Tout depuis data.js.
    ===================================================================== */
-import { NETWORK, SALLE, LINKS, picture } from "./data.js?v=21";
-import { VISITE, VALUES } from "./data-la-salle.js?v=21";
+import { NETWORK, SALLE, LINKS, picture } from "./data.js?v=22";
+import { VISITE, VALUES } from "./data-la-salle.js?v=22";
 
 const $ = (s, r = document) => r.querySelector(s);
 const esc = (s = "") => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");

@@ -4,9 +4,9 @@
    Same proven engine as the other salles, with the showroom’s restraint:
    no custom cursor, no grain — precision instead of texture.
    ===================================================================== */
-import { NAV, LINKS, SALLE, NETWORK, picture, pictureEl } from "./data.js?v=21";
+import { NAV, LINKS, SALLE, NETWORK, picture, pictureEl } from "./data.js?v=22";
 
-import { initPlaces } from "./places.js?v=21";
+import { initPlaces } from "./places.js?v=22";
 /* ------------------------- MAILLAGE DE MARQUE ---------------------- *
  * Le réseau propriétaire est un maillage VOULU : les liens sortants vers
  * boxingcenter.fr, la boutique et les salles sœurs partent en target=_blank
@@ -479,7 +479,7 @@ function armChatbot() {
   const pill = document.querySelector("a.chatbot");
   if (!pill) return;
   let load = null;
-  const warm = () => (load ||= import("./chatbot.js?v=21"));
+  const warm = () => (load ||= import("./chatbot.js?v=22"));
   ["pointerenter", "focus", "touchstart"].forEach((ev) =>
     pill.addEventListener(ev, warm, { once: true, passive: true })
   );

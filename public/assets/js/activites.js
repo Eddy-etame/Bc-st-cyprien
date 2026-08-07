@@ -6,8 +6,8 @@
    Tout depuis DISCIPLINES (data.js). Deep-link : /activites/#<key> défile
    jusqu’à la discipline et l’allume.
    ===================================================================== */
-import { DISCIPLINES, LINKS, COACH_TBD, COACH_TBD_SHORT, COACH_TBD_WHY_SHORT, SALLE, SCHEDULE, DAYS, picture } from "./data.js?v=21";
-import { ECOLE_LEVELS, PARCOURS, PARCOURS_NOTE, SEMAINES } from "./data-activites.js?v=21";
+import { DISCIPLINES, LINKS, COACH_TBD, COACH_TBD_SHORT, COACH_TBD_WHY_SHORT, SALLE, SCHEDULE, DAYS, picture } from "./data.js?v=22";
+import { ECOLE_LEVELS, PARCOURS, PARCOURS_NOTE, SEMAINES } from "./data-activites.js?v=22";
 
 const $ = (s, r = document) => r.querySelector(s);
 const esc = (s = "") => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");

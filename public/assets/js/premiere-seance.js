@@ -15,7 +15,7 @@
      2. il branche le moteur d’animation commun (reveal, magnétique,
         projecteur du héros, vie tactile).
    ===================================================================== */
-import { PROMOS, SALLE } from "./data.js?v=21";
+import { PROMOS, SALLE } from "./data.js?v=22";
 
 const $  = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];

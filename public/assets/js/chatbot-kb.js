@@ -16,7 +16,7 @@ export const QUICKS = [
   {
     label: "Les tarifs",
     q: "Quels sont les tarifs ?",
-    a: "L’offre Rentrée : 29€ par personne pour 4 semaines illimitées (au lieu de 44,99€). La Saison : 259€ les 12 mois en 4× sans frais, accès libre aux 5 clubs. Hors promo, l’abonnement classique est à 44,99€ adulte / 36,99€ étudiant par échéance de 4 semaines. L’école : 295€ l’année t-shirt inclus, baby 250€. Et l’essai à 10€ pour tester, en dernier. [boutons: offre, saison, tarifs]",
+    a: "L’offre Rentrée : 29€ par personne pour 4 semaines illimitées (au lieu de 44€). La Saison : 259€ les 12 mois en 4× sans frais, accès libre aux 5 clubs. Hors promo, l’abonnement classique est à 44€ adulte / 36€ étudiant par échéance de 4 semaines. L’école : 295€ l’année t-shirt inclus, baby 250€. Et l’essai à 10€ pour tester, en dernier. [boutons: offre, saison, tarifs]",
   },
   {
     label: "Les horaires",
