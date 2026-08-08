@@ -51,14 +51,14 @@
     "verdict": "webp"
   },
   "sc/planning-2026-1600.webp": {
-    "octets": 134550,
+    "octets": 128934,
     "verdict": "avif",
     "q": 55
   },
   "sc/planning-2026-800.webp": {
-    "octets": 58496,
+    "octets": 54218,
     "verdict": "avif",
-    "q": 65
+    "q": 60
   },
   "sc/salle-1.webp": {
     "octets": 62124,
