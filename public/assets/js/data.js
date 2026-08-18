@@ -94,16 +94,16 @@ export const SALLE = {
 
 /* Conversion — tout l’essai pointe vers box-plus (liens vérifiés 2026-07-12) */
 export const LINKS = {
-  essai: "https://box-plus.vercel.app/seance-essai",          // CTA principal de CHAQUE page (10€)
-  abos: "https://box-plus.vercel.app/abonnements",
-  promos: "https://box-plus.vercel.app/abonnements#promo", // Rentrée / Saison
-  prelevement: "https://box-plus.vercel.app/abonnements#prelevement", // les classiques au mois
-  comptant: "https://box-plus.vercel.app/abonnements#comptant",
-  enfants: "https://box-plus.vercel.app/abonnements#enfants",
-  coachings: "https://box-plus.vercel.app/coachings",
-  materiel: "https://box-plus.vercel.app/materiel",
+  essai: "https://boutique.boxingcenter.fr/seance-essai",          // CTA principal de CHAQUE page (10€)
+  abos: "https://boutique.boxingcenter.fr/abonnements",
+  promos: "https://boutique.boxingcenter.fr/abonnements#promo", // Rentrée / Saison
+  prelevement: "https://boutique.boxingcenter.fr/abonnements#prelevement", // les classiques au mois
+  comptant: "https://boutique.boxingcenter.fr/abonnements#comptant",
+  enfants: "https://boutique.boxingcenter.fr/abonnements#enfants",
+  coachings: "https://boutique.boxingcenter.fr/coachings",
+  materiel: "https://boutique.boxingcenter.fr/materiel",
   // maillage de marque : la boutique du réseau a son propre domaine
-  boutique: "https://box-plus.vercel.app/",
+  boutique: "https://boutique.boxingcenter.fr/",
   groupe: "https://boxingcenter.fr/",
   facebook: "https://www.facebook.com/BoxingCenterToulouse/",
   instagram: "https://www.instagram.com/boxingcentertoulouse/",

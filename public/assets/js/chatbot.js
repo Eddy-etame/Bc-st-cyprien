@@ -125,12 +125,12 @@ function tracke(href) {
 /* La pensée Portet émulée : clés fermées → vrais boutons sous les messages.
    Les href restent NUS ici — c’est la clé de comparaison de parseReply. */
 const ACTIONS = {
-  offre:       { label: "Je prends ma place — 29€", href: "https://box-plus.vercel.app/abonnements#promo" },
-  saison:      { label: "Je réserve ma saison · 259€", href: "https://box-plus.vercel.app/abonnements#promo" },
-  essai:       { label: "Je viens essayer · 10€", href: "https://box-plus.vercel.app/seance-essai" },
-  enfants:     { label: "J’inscris mon enfant", href: "https://box-plus.vercel.app/abonnements#enfants" },
-  abonnements: { label: "Voir les abonnements", href: "https://box-plus.vercel.app/abonnements" },
-  boutique:    { label: "La boutique du club", href: "https://box-plus.vercel.app/" },
+  offre:       { label: "Je prends ma place — 29€", href: "https://boutique.boxingcenter.fr/abonnements#promo" },
+  saison:      { label: "Je réserve ma saison · 259€", href: "https://boutique.boxingcenter.fr/abonnements#promo" },
+  essai:       { label: "Je viens essayer · 10€", href: "https://boutique.boxingcenter.fr/seance-essai" },
+  enfants:     { label: "J’inscris mon enfant", href: "https://boutique.boxingcenter.fr/abonnements#enfants" },
+  abonnements: { label: "Voir les abonnements", href: "https://boutique.boxingcenter.fr/abonnements" },
+  boutique:    { label: "La boutique du club", href: "https://boutique.boxingcenter.fr/" },
   tarifs:      { label: "Les tarifs en détail", href: "/tarifs/" },
   premiere:    { label: "Comment se passe ta 1re séance", href: "/premiere-seance/" },
   planning:    { label: "Voir le planning", href: "/plannings/" },

@@ -15,7 +15,7 @@
 - Fédérations : FFBoxe, FFKMDA, FMMAF.
 - Position dans le réseau : dernière-née des 5 salles Boxing Center (Minimes, Portet-sur-Garonne, États-Unis, Ramonville, Saint-Cyprien) ; premier Boxing Center rive gauche de Toulouse.
 - Itinéraire : https://maps.google.com/?q=11+rue+Sainte-Lucie+31300+Toulouse
-- Sites du réseau : site mère https://boxingcenter.fr/ · Portet-sur-Garonne https://www.boxing-center-portet.fr/ · Minimes https://bc-minimes.vercel.app/ · Ramonville https://bc-ramonville.vercel.app/ · boutique https://box-plus.vercel.app/ · inscriptions, abonnements et séance d’essai https://box-plus.vercel.app/
+- Sites du réseau : site mère https://boxingcenter.fr/ · Portet-sur-Garonne https://www.boxing-center-portet.fr/ · Minimes https://bc-minimes.vercel.app/ · Ramonville https://bc-ramonville.vercel.app/ · boutique https://boutique.boxingcenter.fr/ · inscriptions, abonnements et séance d’essai https://boutique.boxingcenter.fr/
 - Réseaux sociaux : https://www.instagram.com/boxingcentertoulouse/ · https://www.facebook.com/BoxingCenterToulouse/
 
 ## L’assistant du site
@@ -31,7 +31,7 @@
 
 - La salle en chiffres : 1 200 m² de plateau rive gauche ; 4 minutes du métro A (Saint-Cyprien République) ; 7 disciplines et 29 cours par semaine à une seule adresse ; 4 coachs nommés au planning.
 - Le configurateur de la page d’accueil présente chaque discipline avec son coach, ses jours et son niveau (données du planning officiel).
-- Séance d’essai : 10 €, toutes disciplines, gants et matériel prêtés, sans engagement. Réservation : https://box-plus.vercel.app/seance-essai
+- Séance d’essai : 10 €, toutes disciplines, gants et matériel prêtés, sans engagement. Réservation : https://boutique.boxingcenter.fr/seance-essai
 
 ## Ta première séance (https://bc-st-cyprien.vercel.app/premiere-seance/)
 
@@ -57,7 +57,7 @@ Ce que la salle ne fait PAS le premier soir (à ne jamais contredire) :
 - Aucun certificat médical ni dossier pour l’essai : ils se règlent au moment de l’inscription seulement.
 
 La tenue : t-shirt, short ou legging, baskets propres réservées à l’intérieur, bouteille d’eau. Rien d’autre à acheter.
-Prix : séance d’essai 10 €, toutes disciplines, matériel prêté, sans engagement — réservation https://box-plus.vercel.app/seance-essai
+Prix : séance d’essai 10 €, toutes disciplines, matériel prêté, sans engagement — réservation https://boutique.boxingcenter.fr/seance-essai
 Question avant de venir : 05 62 24 46 82.
 
 ## La salle (https://bc-st-cyprien.vercel.app/la-salle/)
@@ -148,12 +148,12 @@ Conseils pratiques : arriver 10 minutes avant ; gants et protections prêtés po
 
 - Offre Rentrée : 29 € par personne (au lieu de 44,99 €) — 4 semaines, cours illimités, sans engagement. Toujours « 29 € par personne », jamais « 29 € pour deux ».
 - Offre Saison : 259 € les 12 mois (au lieu de 400 €) — boxe anglaise, MMA, boxe pieds-poings, Lady Punch, Boxing Fitness ; payable en 4× sans frais ; accès libre aux 5 clubs du réseau.
-- Abonnement classique, hors promotion : 44,99 € adulte et 36,99 € étudiant, par échéance de 4 semaines, accès aux 5 salles et à toutes les disciplines ; aucun prix barré (c’est le tarif, pas une offre) : https://box-plus.vercel.app/abonnements#prelevement — relevé sur la boutique le 2026-08-07. C’est ce 44,99 € qui figure en prix barré sur l’offre de rentrée.
+- Abonnement classique, hors promotion : 44,99 € adulte et 36,99 € étudiant, par échéance de 4 semaines, accès aux 5 salles et à toutes les disciplines ; aucun prix barré (c’est le tarif, pas une offre) : https://boutique.boxingcenter.fr/abonnements#prelevement — relevé sur la boutique le 2026-08-07. C’est ce 44,99 € qui figure en prix barré sur l’offre de rentrée.
 - École & Baby Boxe : 295 €/an t-shirt du club inclus, Baby Boxe 250 €/an — 3/6, 7/11, ados 12/16, matériel fourni, compétiteurs encadrés par Dadi.
 - École : 295 €/an t-shirt du club inclus, Baby Boxe 250 €/an.
-- Coaching privé : sur rendez-vous, avec un coach de la salle (détail sur https://box-plus.vercel.app/coachings).
+- Coaching privé : sur rendez-vous, avec un coach de la salle (détail sur https://boutique.boxingcenter.fr/coachings).
 - Séance d’essai : 10 € la séance — accès à toutes les disciplines, gants et matériel prêtés, sans engagement. Elle est présentée EN DERNIER : l’ordre de vente sur tout le site est rentrée 29 €, saison 259 €, classique 44,99 €/36,99 € par 4 semaines, école 295 € (baby 250 €), essai 10 €.
-- L’inscription, les prélèvements et le détail des formules se finalisent sur box-plus : https://box-plus.vercel.app/abonnements#promo
+- L’inscription, les prélèvements et le détail des formules se finalisent sur box-plus : https://boutique.boxingcenter.fr/abonnements#promo
 - Avis Google affichés sur la page : 4,0/5, 97 avis (relevé du 2026-08-06). Citations réelles : « Une petite salle au top, des coachs au top, nichée au cœur de Saint Cyp'. » (Ronan L.) ; « Super salle, tous les mois Dadi améliore la salle avec des nouveaux équipements. » (Kayon M.) ; « Bonne salle, propre avec de bons équipements. Cours complet. » (Omar T.) ; « Les cours de boxing lady sont top ! Il y a une bonne ambiance. » (Alyssia P.)
 
 ## Contact (https://bc-st-cyprien.vercel.app/contact/)
