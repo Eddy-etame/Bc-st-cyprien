@@ -4,6 +4,7 @@
 # ATTENTION à la structure : un robot n'obéit QU'AU groupe le plus
 # spécifique qui le nomme. Nommer un agent puis lui donner « Allow: / »
 # tout seul lui fait perdre les Disallow du groupe « * » — c'est ainsi
+# Instructions pour les agents IA : /ai.txt
 # que le vestiaire s'était retrouvé ouvert à Googlebot. Chaque groupe
 # répète donc ses interdictions. Des User-agent consécutifs partagent
 # un même jeu de règles.
