@@ -125,10 +125,10 @@ function tracke(href) {
 /* La pensée Portet émulée : clés fermées → vrais boutons sous les messages.
    Les href restent NUS ici — c’est la clé de comparaison de parseReply. */
 const ACTIONS = {
-  offre:       { label: "Je prends ma place — 29€", href: "https://boutique.boxingcenter.fr/abonnements#promo" },
-  saison:      { label: "Je réserve ma saison · 259€", href: "https://boutique.boxingcenter.fr/abonnements#promo" },
+  offre:       { label: "Je prends ma place — 29€", href: "https://boutique.boxingcenter.fr/offre/29" },
+  saison:      { label: "Je réserve ma saison · 259€", href: "https://boutique.boxingcenter.fr/offre/259" },
   essai:       { label: "Je viens essayer · 10€", href: "https://boutique.boxingcenter.fr/seance-essai" },
-  enfants:     { label: "J’inscris mon enfant", href: "https://boutique.boxingcenter.fr/abonnements#enfants" },
+  enfants:     { label: "J’inscris mon enfant", href: "https://boutique.boxingcenter.fr/abonnements" },
   abonnements: { label: "Voir les abonnements", href: "https://boutique.boxingcenter.fr/abonnements" },
   boutique:    { label: "La boutique du club", href: "https://boutique.boxingcenter.fr/" },
   tarifs:      { label: "Les tarifs en détail", href: "/tarifs/" },

@@ -96,10 +96,10 @@ export const SALLE = {
 export const LINKS = {
   essai: "https://boutique.boxingcenter.fr/seance-essai",          // CTA principal de CHAQUE page (10€)
   abos: "https://boutique.boxingcenter.fr/abonnements",
-  promos: "https://boutique.boxingcenter.fr/abonnements#promo", // Rentrée / Saison
+  promos: "https://boutique.boxingcenter.fr/offres-speciales", // Rentrée / Saison
   prelevement: "https://boutique.boxingcenter.fr/abonnements#prelevement", // les classiques au mois
-  comptant: "https://boutique.boxingcenter.fr/abonnements#comptant",
-  enfants: "https://boutique.boxingcenter.fr/abonnements#enfants",
+  comptant: "https://boutique.boxingcenter.fr/abonnements",
+  enfants: "https://boutique.boxingcenter.fr/abonnements",
   coachings: "https://boutique.boxingcenter.fr/coachings",
   materiel: "https://boutique.boxingcenter.fr/materiel",
   // maillage de marque : la boutique du réseau a son propre domaine

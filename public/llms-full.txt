@@ -153,7 +153,7 @@ Conseils pratiques : arriver 10 minutes avant ; gants et protections prêtés po
 - École : 295 €/an t-shirt du club inclus, Baby Boxe 250 €/an.
 - Coaching privé : sur rendez-vous, avec un coach de la salle (détail sur https://boutique.boxingcenter.fr/coachings).
 - Séance d’essai : 10 € la séance — accès à toutes les disciplines, gants et matériel prêtés, sans engagement. Elle est présentée EN DERNIER : l’ordre de vente sur tout le site est rentrée 29 €, saison 259 €, classique 44,99 €/36,99 € par 4 semaines, école 295 € (baby 250 €), essai 10 €.
-- L’inscription, les prélèvements et le détail des formules se finalisent sur box-plus : https://boutique.boxingcenter.fr/abonnements#promo
+- L’inscription, les prélèvements et le détail des formules se finalisent sur box-plus : https://boutique.boxingcenter.fr/offre/259
 - Avis Google affichés sur la page : 4,0/5, 97 avis (relevé du 2026-08-06). Citations réelles : « Une petite salle au top, des coachs au top, nichée au cœur de Saint Cyp'. » (Ronan L.) ; « Super salle, tous les mois Dadi améliore la salle avec des nouveaux équipements. » (Kayon M.) ; « Bonne salle, propre avec de bons équipements. Cours complet. » (Omar T.) ; « Les cours de boxing lady sont top ! Il y a une bonne ambiance. » (Alyssia P.)
 
 ## Contact (https://bc-st-cyprien.vercel.app/contact/)
