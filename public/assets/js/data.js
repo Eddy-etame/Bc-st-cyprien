@@ -347,10 +347,15 @@ export const PROMOS = {
  *  LE CADRAN DES OFFRES — ce qui tourne dans la roulette promo.
  *
  *  Une liste À PART, et c’est voulu : TARIFS est la grille complète (on la
- *  LIT, posément, sur /tarifs/) ; le cadran est une VITRINE — deux ou trois
- *  offres qui tournent en marge de la lecture. Mélanger les deux, c’est
- *  soit un cadran à sept cases que personne ne suit, soit une grille
- *  amputée. Le staff change un prix ici, le cadran suit sur les 10 pages.
+ *  LIT, posément, sur /tarifs/) ; le cadran est une VITRINE — les DEUX
+ *  offres qu’on met en avant, qui tournent en marge de la lecture.
+ *  Mélanger les deux listes, c’est soit un cadran à sept cases que
+ *  personne ne suit, soit une grille amputée. Le staff change un prix
+ *  ici, le cadran suit sur les 10 pages.
+ *
+ *  Deux publics, deux cases : celui qui teste quatre semaines et celui
+ *  qui prend l’année. Ajouter une troisième case (l’école, l’essai) se
+ *  fait en ajoutant un bloc — le module en accepte n’importe quel nombre.
  *
  *  `was` / `cut` sont FACULTATIFS et n’existent que si la remise est
  *  réelle (la saison : 259€ au lieu de 400€, c’est le poster officiel).
@@ -360,9 +365,13 @@ export const PROMOS = {
 export const ROULETTE = [
   {
     key: "rentree",
-    price: "59€",
+    price: "29€",
     name: "L’offre Rentrée",
+    /* la règle du bloc PROMOS s’applique ici aussi : « par personne »,
+       JAMAIS « pour deux ». */
     detail: "par personne · 4 semaines illimitées",
+    was: "44€",
+    cut: "-34%",
     href: LINKS.promos,
     cta: "Je prends ma place",
   },
@@ -375,14 +384,6 @@ export const ROULETTE = [
     cut: "-35%",
     href: LINKS.promos,
     cta: "Je prends ma saison",
-  },
-  {
-    key: "ecole",
-    price: "295€",
-    name: "L’école & Baby Boxe",
-    detail: "l’année · t-shirt inclus",
-    href: LINKS.enfants,
-    cta: "J’inscris mon enfant",
   },
 ];
 
