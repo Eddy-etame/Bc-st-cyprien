@@ -247,7 +247,14 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
    bouton d'essai réclamaient 1 159px de large pour 1 085px disponibles — le
    bouton « Essai · 10€ » sortait de l'écran. Sous 1200px, c'est le menu
    plein écran qui prend le relais : aucun lien perdu. */
-/* 1240 px : sous ce seuil la barre se chevauchait — le menu prend le relais. */
+/* 1240 px : sous ce seuil ce sont les PASTILLES qui se chevauchaient — le menu
+   plein écran prend le relais. Le bouton d'achat, lui, avait été masqué avec
+   elles par dommage collatéral : une fois les neuf pastilles parties, la barre
+   ne porte plus que la marque et le burger, et la place est libre. Mesuré au
+   navigateur : le bouton tient dès 360px (il ne débordait qu'à 320px, de 15px).
+   Le rendre invisible sur téléphone, c'est retirer le seul chemin d'achat
+   permanent sur l'appareil qui fait l'essentiel du trafic. */
+@media (min-width: 360px){ .nav__cta { display: inline-flex; } }
 @media (min-width: 1240px){ .nav__links { display: flex; } .nav__cta { display: inline-flex; } }
 /* Sous 1480px, les neuf pastilles doivent tenir dans la barre : on resserre
    l'air HORIZONTALE — jamais la cible tactile, qui reste à 44px de haut. */
