@@ -41,6 +41,7 @@
   <meta name="twitter:image" content="https://bc-st-cyprien.vercel.app/assets/img/sc/salle-1.webp" />
 
   <link rel="stylesheet" href="/assets/css/base.css?v=22" />
+  <link rel="stylesheet" href="/assets/css/roulette.css?v=22" />
   <link rel="stylesheet" href="/assets/css/home.css?v=22" />
   <link rel="stylesheet" href="/assets/css/activites.css?v=22" />
 
@@ -468,6 +469,14 @@
         <div class="semaines" id="semaines" data-reveal-group></div>
       </div>
     </section>
+
+    <!-- ============== LE CADRAN DES OFFRES (roulette.js) =============
+         Posé ici : la semaine type est lue, la question devient « combien ». Le module remplit `[data-roulette]` ; sans
+         JavaScript, il n'y a rien — donc rien de cassé. -->
+    <div class="rdial-band">
+      <div class="wrap"><div data-roulette></div></div>
+    </div>
+
 
     <!-- ========================= FINAL CTA ======================== -->
     <section class="gong" aria-label="Réserver une séance">

@@ -41,6 +41,7 @@
   <meta name="twitter:image" content="https://bc-st-cyprien.vercel.app/assets/img/sc/salle-1.webp" />
 
   <link rel="stylesheet" href="/assets/css/base.css?v=22" />
+  <link rel="stylesheet" href="/assets/css/roulette.css?v=22" />
   <link rel="stylesheet" href="/assets/css/home.css?v=22" />
   <link rel="stylesheet" href="/assets/css/la-salle.css?v=22" />
 
@@ -422,6 +423,14 @@
         <p class="deroule__note" data-reveal>Les gants et les protections sont prêtés pour la première séance : viens en tenue de sport, le reste attend sur place.</p>
       </div>
     </section>
+
+    <!-- ============== LE CADRAN DES OFFRES (roulette.js) =============
+         Posé ici : le déroulé d’une séance est compris. Le module remplit `[data-roulette]` ; sans
+         JavaScript, il n'y a rien — donc rien de cassé. -->
+    <div class="rdial-band">
+      <div class="wrap"><div data-roulette></div></div>
+    </div>
+
 
     <!-- ==================== LE CODE — 4 valeurs =================== -->
     <section class="section code-sec" aria-label="Le code de la salle">

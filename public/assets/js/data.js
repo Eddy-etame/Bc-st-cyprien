@@ -342,6 +342,50 @@ export const PROMOS = {
   },
 };
 
+
+/* ------------------------------------------------------------------ *
+ *  LE CADRAN DES OFFRES — ce qui tourne dans la roulette promo.
+ *
+ *  Une liste À PART, et c’est voulu : TARIFS est la grille complète (on la
+ *  LIT, posément, sur /tarifs/) ; le cadran est une VITRINE — deux ou trois
+ *  offres qui tournent en marge de la lecture. Mélanger les deux, c’est
+ *  soit un cadran à sept cases que personne ne suit, soit une grille
+ *  amputée. Le staff change un prix ici, le cadran suit sur les 10 pages.
+ *
+ *  `was` / `cut` sont FACULTATIFS et n’existent que si la remise est
+ *  réelle (la saison : 259€ au lieu de 400€, c’est le poster officiel).
+ *  Sans eux, le cadran affiche le détail de l’offre — jamais un faux prix
+ *  barré : la règle du site est de n’inventer ni prix ni promesse.
+ * ------------------------------------------------------------------ */
+export const ROULETTE = [
+  {
+    key: "rentree",
+    price: "59€",
+    name: "L’offre Rentrée",
+    detail: "par personne · 4 semaines illimitées",
+    href: LINKS.promos,
+    cta: "Je prends ma place",
+  },
+  {
+    key: "saison",
+    price: "259€",
+    name: "La saison complète",
+    detail: "les 12 mois · 4× sans frais",
+    was: "400€",
+    cut: "-35%",
+    href: LINKS.promos,
+    cta: "Je prends ma saison",
+  },
+  {
+    key: "ecole",
+    price: "295€",
+    name: "L’école & Baby Boxe",
+    detail: "l’année · t-shirt inclus",
+    href: LINKS.enfants,
+    cta: "J’inscris mon enfant",
+  },
+];
+
 export const TARIFS = [
   {
     name: "Offre Rentrée",
@@ -464,6 +508,7 @@ function replaceList(list, patch) {
 
 mergeInto(SALLE, OVERRIDES.salle);
 mergeInto(PROMOS, OVERRIDES.promos);
+replaceList(ROULETTE, OVERRIDES.roulette);
 replaceList(TARIFS, OVERRIDES.tarifs);
 replaceList(COACHES, OVERRIDES.coaches);
 replaceList(SCHEDULE, OVERRIDES.schedule);

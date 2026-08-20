@@ -44,6 +44,7 @@
   <link rel="preload" as="image" href="/assets/img/sc/salle-1.webp" fetchpriority="high" />
 
   <link rel="stylesheet" href="/assets/css/base.css?v=22" />
+  <link rel="stylesheet" href="/assets/css/roulette.css?v=22" />
   <link rel="stylesheet" href="/assets/css/home.css?v=22" />
 
   <!-- SEO/GEO — graphe JSON-LD unifié (organisation · salle · site · page · image). Faits réels uniquement — miroir de data.js. -->
@@ -404,6 +405,14 @@
         </div>
       </div>
     </section>
+
+    <!-- ============== LE CADRAN DES OFFRES (roulette.js) =============
+         Posé ici : le configurateur : la discipline est choisie, reste le prix. Le module remplit `[data-roulette]` ; sans
+         JavaScript, il n'y a rien — donc rien de cassé. -->
+    <div class="rdial-band">
+      <div class="wrap"><div data-roulette></div></div>
+    </div>
+
 
     <!-- ===================== TEASER COACHS ======================== -->
     <section class="section coachrow" aria-label="L’encadrement">

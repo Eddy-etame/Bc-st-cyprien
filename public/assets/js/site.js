@@ -7,6 +7,7 @@
 import { NAV, LINKS, SALLE, NETWORK, picture, pictureEl } from "./data.js?v=22";
 
 import { initPlaces } from "./places.js?v=22";
+import { mountRoulette } from "./roulette.js?v=22";
 /* ------------------------- MAILLAGE DE MARQUE ---------------------- *
  * Le réseau propriétaire est un maillage VOULU : les liens sortants vers
  * boxingcenter.fr, la boutique et les salles sœurs partent en target=_blank
@@ -592,6 +593,10 @@ initSmooth();
 hydrateMedia(document);
 magnetic(document);
 wireAnchors();
+/* Le cadran des offres — APRÈS mountFooter() : le flottant observe
+   #footer pour s’effacer en bas de page, et il faut donc que le pied
+   existe. Le module rappelle reveal() lui-même sur ce qu’il pose. */
+mountRoulette();
 syncPhone();
 watchPhone();
 armChatbot();

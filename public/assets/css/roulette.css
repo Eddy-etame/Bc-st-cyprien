@@ -1,0 +1,395 @@
+/* =====================================================================
+   SAINT-CYPRIEN · LE CADRAN DES OFFRES  (roulette promo)
+   ---------------------------------------------------------------------
+   Le PRINCIPE est celui d’une roulette : ça tourne, ça s’arrête sur une
+   offre, et TOUT suit la case gagnante — le prix, le titre, le détail et
+   la destination du lien.
+
+   La FORME, elle, est celle de cette salle-ci. Pas de disque à quartiers
+   colorés : ici la DA pose la LUMIÈRE comme objet (chrome sur presque
+   noir, cf. base.css). Le cadran est donc un INSTRUMENT — une couronne
+   de graduations usinées, une bague chromée, un faisceau qui balaie, un
+   index blanc-chaud à midi. On lit un prix sur un appareil de précision,
+   pas sur une kermesse.
+
+   Tout est bâti sur les jetons existants : --paper-2/-3, --line, --spark,
+   --chrome, --radius, --ease-spring, --f-display, --f-mono. Aucune
+   couleur nouvelle n’entre dans le site par ce fichier.
+   ===================================================================== */
+
+/* ------------------------------------------------------------------ *
+   1. LE BLOC — panneau surélevé, exactement comme les cartes du site.
+ * ------------------------------------------------------------------ */
+.rdial {
+  --rdial-stage: 92px;          /* diamètre du cadran, redéfini plus bas */
+  --rdial-price: 1.35rem;
+}
+
+.rdial__link {
+  display: grid;
+  grid-template-areas:
+    "flag  flag"
+    "stage copy"
+    "tick  tick";
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: .55rem clamp(.85rem, 2vw, 1.3rem);
+  padding: clamp(.85rem, 2vw, 1.05rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(168deg, var(--paper-2), var(--paper));
+  box-shadow: var(--shadow);
+  color: var(--ink);
+  overflow: hidden;
+  position: relative;
+  isolation: isolate;
+  transition: transform .3s var(--ease-spring), border-color .35s var(--ease),
+              box-shadow .4s var(--ease);
+}
+.rdial__link:hover {
+  transform: translateY(-2px);
+  border-color: var(--spark);
+  box-shadow: var(--shadow), var(--glow);
+}
+.rdial__link:active { transform: translateY(1px) scale(.995); }
+.rdial__link:focus-visible { outline: 2px solid var(--spark); outline-offset: 3px; }
+
+/* le filet chromé du haut — la signature du site (cf. .tint / --chrome) */
+.rdial__link::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: var(--chrome);
+  opacity: .55;
+}
+
+/* ------------------------------------------------------------------ *
+   2. L’ÉTIQUETTE — un .eyebrow, à l’identique du reste du site.
+ * ------------------------------------------------------------------ */
+.rdial__flag {
+  grid-area: flag;
+  display: inline-flex;
+  align-items: center;
+  gap: .7ch;
+  font: 600 .62rem/1 var(--f-mono);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--spark);
+}
+.rdial__flag::before {
+  content: "";
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--spark);
+  box-shadow: 0 0 0 0 rgba(246, 248, 252, .55);
+  animation: rdialPulse 2.8s var(--ease-out) infinite;
+}
+
+/* ------------------------------------------------------------------ *
+   3. LE CADRAN — bague + graduations + faisceau + index + noyau.
+ * ------------------------------------------------------------------ */
+.rdial__stage {
+  grid-area: stage;
+  position: relative;
+  width: var(--rdial-stage);
+  height: var(--rdial-stage);
+  flex: none;
+  display: block;
+}
+
+/* la bague chromée, fixe : le corps de l’instrument */
+.rdial__bezel {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--chrome);
+  opacity: .8;
+  -webkit-mask: radial-gradient(closest-side, transparent 0 85%, #000 87%, #000 99%, transparent 100%);
+          mask: radial-gradient(closest-side, transparent 0 85%, #000 87%, #000 99%, transparent 100%);
+}
+
+/* LA COURONNE DE GRADUATIONS — c’est ELLE qui tourne.
+   24 traits taillés au repeating-conic-gradient : aucune image, aucun
+   SVG, et une rotation que le compositeur gère seul. */
+.rdial__ticks {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: repeating-conic-gradient(from 0deg,
+      var(--spark) 0deg 1.1deg, transparent 1.1deg 15deg);
+  opacity: .42;
+  -webkit-mask: radial-gradient(closest-side, transparent 0 63%, #000 66%, #000 81%, transparent 84%);
+          mask: radial-gradient(closest-side, transparent 0 63%, #000 66%, #000 81%, transparent 84%);
+  animation: rdialSpin 7.2s cubic-bezier(.22, .86, .22, 1) infinite;
+  will-change: transform;
+}
+
+/* LE FAISCEAU — la lumière qui balaie la couronne. C’est le pendant du
+   « reflet » d’une roulette classique, dit dans la langue de cette DA. */
+.rdial__beam {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg,
+      rgba(246, 248, 252, 0) 0deg,
+      rgba(246, 248, 252, .38) 24deg,
+      rgba(246, 248, 252, 0) 58deg);
+  -webkit-mask: radial-gradient(closest-side, transparent 0 58%, #000 62%, #000 95%, transparent 100%);
+          mask: radial-gradient(closest-side, transparent 0 58%, #000 62%, #000 95%, transparent 100%);
+  animation: rdialBeam 4.6s linear infinite;
+  will-change: transform;
+}
+
+/* L’INDEX à midi — le repère fixe sur lequel l’offre s’arrête. */
+.rdial__index {
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  width: 2px;
+  height: 11px;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  background: var(--spark);
+  box-shadow: 0 0 12px rgba(246, 248, 252, .75);
+}
+
+/* LE NOYAU — le prix. Chrome sur creux, comme .reviews__rating. */
+.rdial__core {
+  position: absolute;
+  inset: 21%;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 50% 32%, var(--paper-3), var(--void));
+  border: 1px solid var(--line);
+  box-shadow: inset 0 1px 0 rgba(246, 248, 252, .1),
+              0 10px 26px -14px #000;
+}
+.rdial__price {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: var(--rdial-price);
+  line-height: 1;
+  letter-spacing: -.02em;
+  background: var(--chrome);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  transition: opacity .2s var(--ease), transform .38s var(--ease-spring);
+}
+
+/* ------------------------------------------------------------------ *
+   4. LE TEXTE — police d’affichage pour le nom, mono pour le reste.
+ * ------------------------------------------------------------------ */
+.rdial__copy {
+  grid-area: copy;
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  min-width: 0;
+}
+.rdial__name {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(.98rem, 1.6vw, 1.12rem);
+  line-height: 1.15;
+  letter-spacing: -.01em;
+  color: var(--ink);
+}
+.rdial__detail {
+  font: 400 .76rem/1.35 var(--f-ui);
+  color: var(--muted);
+}
+.rdial__name, .rdial__detail {
+  transition: opacity .22s var(--ease);
+}
+.rdial__go {
+  display: inline-flex;
+  align-items: center;
+  gap: .6ch;
+  margin-top: .18rem;
+  font: 600 .66rem/1 var(--f-mono);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--spark);
+}
+.rdial__go i {
+  font-style: normal;
+  transition: transform .35s var(--ease-out);
+}
+.rdial__link:hover .rdial__go i { transform: translateX(4px); }
+
+/* ------------------------------------------------------------------ *
+   5. LE RUBAN — les faits des AUTRES offres défilent en continu :
+      arrêté sur une case, le cadran dit qu’il en existe d’autres.
+ * ------------------------------------------------------------------ */
+.rdial__ticker {
+  grid-area: tick;
+  position: relative;
+  margin-top: .1rem;
+  padding-top: .55rem;
+  border-top: 1px solid var(--line-soft);
+  overflow: hidden;
+  -webkit-mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+          mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.rdial__ticker-track {
+  display: inline-flex;
+  gap: 1.8rem;
+  white-space: nowrap;
+  animation: rdialTicker 15s linear infinite;
+  will-change: transform;
+}
+.rdial__ticker-track span {
+  display: inline-flex;
+  align-items: baseline;
+  gap: .6ch;
+  font: 500 .6rem/1 var(--f-mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.rdial__ticker-track b {
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+
+/* ------------------------------------------------------------------ *
+   6. LE TOUR — l’instant où la roulette tourne pour de bon.
+      La couronne s’emballe, le prix s’efface, le texte se retire ; la
+      valeur est échangée AU MILIEU du tour (voir roulette.js), puis tout
+      revient d’un coup de ressort. On ne montre pas la bascule : on la
+      fait.
+ * ------------------------------------------------------------------ */
+.rdial.is-spinning .rdial__ticks {
+  animation-duration: .5s;
+  animation-timing-function: linear;
+  opacity: .72;
+}
+.rdial.is-spinning .rdial__beam { animation-duration: 1.1s; }
+.rdial.is-spinning .rdial__price { opacity: 0; transform: scale(.78); }
+.rdial.is-spinning .rdial__name,
+.rdial.is-spinning .rdial__detail { opacity: .22; }
+
+/* survol : l’instrument s’anime, il ne s’affole pas */
+.rdial__link:hover .rdial__ticks { animation-duration: 3.4s; opacity: .6; }
+.rdial__link:hover .rdial__bezel { opacity: 1; }
+
+/* ------------------------------------------------------------------ *
+   7. LA FORME FLOTTANTE — le rappel permanent.
+      À GAUCHE, et ce n’est pas un caprice : la pastille de l’assistant
+      occupe déjà le coin bas-droit (base.css:293) et la bulle d’amorce
+      remonte au-dessus. Deux objets flottants dans le même coin, c’est
+      un objet de trop.
+ * ------------------------------------------------------------------ */
+aside.rdial {
+  position: fixed;
+  left: clamp(1rem, 2.5vw, 2rem);
+  bottom: clamp(1rem, 2.5vw, 2rem);
+  z-index: 7000;                 /* sous le menu plein écran (7990) et la nav */
+  width: min(330px, calc(100vw - 2rem));
+  transform: translateX(calc(-100% - 2.5rem));
+  opacity: 0;
+  pointer-events: none;
+  transition: transform .6s var(--ease-out), opacity .35s var(--ease-out);
+}
+aside.rdial.is-in {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ------------------------------------------------------------------ *
+   8. LA FORME INTÉGRÉE — posée dans le flux, là où la page vient de
+      donner une raison et où le prix devient la question suivante.
+ * ------------------------------------------------------------------ */
+.rdial--inline {
+  --rdial-stage: clamp(112px, 16vw, 148px);
+  --rdial-price: clamp(1.6rem, 2.6vw, 2.15rem);
+  width: min(100%, 720px);
+  margin-inline: auto;
+}
+.rdial--inline .rdial__link {
+  grid-template-areas:
+    "flag  flag"
+    "stage copy"
+    "tick  tick";
+  gap: .8rem clamp(1.2rem, 3vw, 2.2rem);
+  padding: clamp(1.3rem, 3vw, 2rem);
+}
+.rdial--inline .rdial__flag { font-size: .68rem; }
+.rdial--inline .rdial__name { font-size: clamp(1.25rem, 2.4vw, 1.75rem); }
+.rdial--inline .rdial__detail { font-size: clamp(.84rem, 1.4vw, .94rem); }
+.rdial--inline .rdial__go { font-size: .7rem; margin-top: .5rem; }
+.rdial--inline .rdial__ticker { padding-top: .8rem; margin-top: .35rem; }
+.rdial--inline .rdial__ticker-track span { font-size: .64rem; }
+
+/* la bande qui porte le cadran intégré : une respiration, pas une
+   section de plus — le rythme vertical du site vient de --sec. */
+.rdial-band {
+  padding-block: clamp(2.4rem, 5vw, 4rem);
+}
+
+/* ------------------------------------------------------------------ *
+   9. LES IMAGES ANIMÉES
+ * ------------------------------------------------------------------ */
+@keyframes rdialSpin {
+  0%, 17%   { transform: rotate(0deg); }
+  34%, 51%  { transform: rotate(112deg); }
+  68%, 85%  { transform: rotate(243deg); }
+  100%      { transform: rotate(360deg); }
+}
+@keyframes rdialBeam {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes rdialTicker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes rdialPulse {
+  0%        { box-shadow: 0 0 0 0 rgba(246, 248, 252, .5); }
+  70%, 100% { box-shadow: 0 0 0 7px rgba(246, 248, 252, 0); }
+}
+
+/* ------------------------------------------------------------------ *
+   10. PETITS ÉCRANS — le cadran flottant se resserre sans se casser.
+ * ------------------------------------------------------------------ */
+@media (max-width: 560px) {
+  aside.rdial {
+    --rdial-stage: 74px;
+    --rdial-price: 1.15rem;
+    left: .7rem;
+    right: .7rem;
+    bottom: calc(.7rem + env(safe-area-inset-bottom));
+    width: auto;
+    /* la pastille de l’assistant fait 54px + sa marge : on lui laisse
+       sa place plutôt que de passer dessous. */
+    max-width: calc(100vw - 54px - 2.4rem);
+  }
+  .rdial--inline .rdial__link {
+    grid-template-areas:
+      "flag  flag"
+      "stage copy"
+      "tick  tick";
+  }
+}
+
+/* ------------------------------------------------------------------ *
+   11. MOUVEMENT RÉDUIT — l’offre reste, le mouvement s’en va.
+       Le cadran ne tourne plus : roulette.js échange les offres sans
+       animation (voir `reduce` dans le module).
+ * ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  .rdial__ticks,
+  .rdial__beam,
+  .rdial__ticker-track,
+  .rdial__flag::before {
+    animation: none !important;
+  }
+  .rdial__ticker-track { white-space: normal; }
+  aside.rdial { transition: opacity .2s linear; transform: none; }
+  aside.rdial:not(.is-in) { display: none; }
+  .rdial__price { transition: none; }
+}
