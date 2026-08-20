@@ -6,7 +6,7 @@
     "dev": "astro dev",
     "prebuild": "node scripts/apply-content.mjs && node scripts/build-avif.mjs && node scripts/build-sitemap.mjs",
     "build": "astro build",
-    "postbuild": "node scripts/cuire-galerie.mjs",
+    "postbuild": "node scripts/cuire-galerie.mjs && node scripts/cuire-pages.mjs",
     "preview": "astro preview"
   },
   "dependencies": {
