@@ -50,7 +50,7 @@ function mountNav() {
           ${ext(LINKS.groupe, "Le réseau", "Boxing Center — le site du groupe")}
           ${ext(LINKS.boutique, "Boutique", "La boutique Boxing Center")}
         </div>
-        <a class="btn btn--primary nav__cta" data-magnetic href="${LINKS.essai}"><span>Essai · 10€</span></a>
+        <a class="btn btn--primary nav__cta" data-magnetic href="${LINKS.rentree}"><span>Ma place · 29€</span></a>
         <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </nav>`;
