@@ -35,17 +35,17 @@ body[data-page="premiere-seance"] .phero__mark {
 }
 body[data-page="premiere-seance"] .phero__mark::after {
   content: ""; position: absolute; left: 27%; bottom: 0; width: 46%; height: 62%;
-  background: linear-gradient(180deg, transparent, rgba(246,248,252,.30));
+  background: linear-gradient(180deg, transparent, rgba(var(--spark-rgb),.30));
   -webkit-mask-image: linear-gradient(180deg, transparent, #000);
   mask-image: linear-gradient(180deg, transparent, #000);
 }
 body[data-page="premiere-seance"] .phero__mark::before {
   content: ""; position: absolute; left: 27%; bottom: 0; width: 46%; height: 2px;
-  background: var(--spark); box-shadow: 0 0 18px rgba(246,248,252,.8);
+  background: var(--spark); box-shadow: 0 0 18px rgba(var(--spark-rgb),.8);
 }
 body[data-page="premiere-seance"] .phero::before { background:
-  radial-gradient(58% 92% at 26% -16%, rgba(246,248,252,.16), transparent 62%),
-  linear-gradient(112deg, transparent 44%, rgba(246,248,252,.06) 50%, transparent 57%); }
+  radial-gradient(58% 92% at 26% -16%, rgba(var(--spark-rgb),.16), transparent 62%),
+  linear-gradient(112deg, transparent 44%, rgba(var(--spark-rgb),.06) 50%, transparent 57%); }
 
 /* ------------------------- LE REPÈRE, EN TÊTE ---------------------- */
 .repere { display: grid; gap: .7rem; grid-template-columns: 1fr; margin-top: clamp(1.6rem,4vw,2.4rem); }
@@ -63,7 +63,7 @@ body[data-page="premiere-seance"] .phero::before { background:
 .peur__item { border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper-2);
   padding: clamp(1.2rem,2.4vw,1.7rem); display: flex; flex-direction: column; gap: .7rem;
   transition: transform .45s var(--ease-out), box-shadow .45s var(--ease), border-color .4s; }
-.peur__item:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: rgba(233,236,244,.3); }
+.peur__item:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: rgba(var(--ink-rgb),.3); }
 .peur__q { font-family: var(--f-display); font-weight: 700; font-size: var(--step-1); line-height: 1.15;
   letter-spacing: -.015em; color: var(--muted); }
 .peur__q::before { content: "« "; }
@@ -78,9 +78,9 @@ body[data-page="premiere-seance"] .phero::before { background:
 .etape { position: relative; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper-2);
   padding: clamp(1.2rem,2.4vw,1.6rem); display: flex; flex-direction: column; gap: .55rem;
   transition: transform .45s var(--ease-out), box-shadow .45s var(--ease), border-color .4s; }
-.etape:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: rgba(233,236,244,.3); }
+.etape:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: rgba(var(--ink-rgb),.3); }
 .etape::after { content: ""; position: absolute; top: -1px; left: 12%; width: 76%; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(246,248,252,.4), transparent); opacity: 0; transition: opacity .6s var(--ease); }
+  background: linear-gradient(90deg, transparent, rgba(var(--spark-rgb),.4), transparent); opacity: 0; transition: opacity .6s var(--ease); }
 .etape:hover::after, .etape.is-inview::after { opacity: 1; }
 @media (max-width: 759.98px){ .etape::after { display: none; } }
 .etape__n { font: 600 .62rem/1 var(--f-mono); letter-spacing: .18em; color: var(--spark); }

@@ -30,7 +30,7 @@
 .station.is-lit .station__media img { filter: contrast(1.08) brightness(.98) saturate(.96); }
 /* the beam itself — a white-hot wash that turns on at contact */
 .station__glow { position: absolute; inset: 0; z-index: 2; pointer-events: none; mix-blend-mode: screen; opacity: 0; transition: opacity .8s var(--ease);
-  background: radial-gradient(80% 60% at 50% -8%, rgba(246,248,252,.28), rgba(246,248,252,.06) 42%, transparent 68%); }
+  background: radial-gradient(80% 60% at 50% -8%, rgba(var(--spark-rgb),.28), rgba(var(--spark-rgb),.06) 42%, transparent 68%); }
 .station.is-lit .station__glow { opacity: 1; }
 /* keep the mono pill (data-label) legible over the dim photo */
 .station__media::after { z-index: 3; }
@@ -41,8 +41,8 @@
 .station__t { font-family: var(--f-display); font-weight: 700; letter-spacing: -.02em; font-size: clamp(1.6rem,1rem+2vw,2.6rem); color: var(--ink); margin-top: .5rem; }
 .station__d { margin-top: .9rem; color: var(--ink-soft); font-size: var(--step-0); line-height: 1.66; }
 .station__specs { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.1rem; }
-.station__specs li { display: inline-flex; align-items: center; gap: .55ch; font: 600 .66rem/1.4 var(--f-mono); letter-spacing: .05em; color: var(--ink); background: rgba(18,21,31,.7); border: 1px solid var(--line); border-radius: 100px; padding: .5em .9em; }
-.station__specs li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--spark); box-shadow: 0 0 9px rgba(246,248,252,.7); }
+.station__specs li { display: inline-flex; align-items: center; gap: .55ch; font: 600 .66rem/1.4 var(--f-mono); letter-spacing: .05em; color: var(--ink); background: rgba(var(--paper-2-rgb),.7); border: 1px solid var(--line); border-radius: 100px; padding: .5em .9em; }
+.station__specs li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--spark); box-shadow: 0 0 9px rgba(var(--spark-rgb),.7); }
 
 /* ========================= LE CODE ============================== */
 .code-sec__title { margin-top: 1rem; font-size: clamp(1.9rem,1rem+2.4vw,3rem); }
@@ -50,7 +50,7 @@
 @media (min-width: 620px){ .code { grid-template-columns: repeat(2,1fr); } }
 @media (min-width: 1000px){ .code { grid-template-columns: repeat(4,1fr); } }
 .codecard { border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper-2); padding: clamp(1.3rem,2.4vw,1.8rem); display: flex; flex-direction: column; gap: .6rem; min-height: 12rem; transition: transform .35s var(--ease-spring), box-shadow .35s, border-color .3s; }
-.codecard:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: rgba(233,236,244,.3); }
+.codecard:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: rgba(var(--ink-rgb),.3); }
 .codecard__n { font: 600 .66rem/1 var(--f-mono); letter-spacing: .18em; color: var(--spark); }
 .codecard__t { font-family: var(--f-display); font-weight: 700; font-size: var(--step-1); letter-spacing: -.01em; color: var(--ink); }
 /* vraie prose → --ink-soft (~11:1). --muted reste aux labels/meta (loi corps ~15:1) */
@@ -61,7 +61,7 @@
 .reseau-sec__lead { margin-top: .9rem; max-width: 52ch; color: var(--ink-soft); }
 .lineage { display: flex; flex-direction: column; gap: .6rem; margin-top: clamp(1.8rem,4vw,2.8rem); counter-reset: none; }
 .sister { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: clamp(1rem,2.5vw,1.8rem); border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper-2); padding: clamp(1.1rem,2.4vw,1.6rem) clamp(1.2rem,2.6vw,1.8rem); transition: transform .35s var(--ease-spring), border-color .3s, background .3s; }
-.sister:hover { transform: translateX(6px); border-color: rgba(233,236,244,.3); }
+.sister:hover { transform: translateX(6px); border-color: rgba(var(--ink-rgb),.3); }
 .sister__i { font: 600 .8rem/1 var(--f-mono); letter-spacing: .1em; color: var(--muted); }
 .sister__tag { font: 600 .6rem/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--spark); }
 .sister__name { font-family: var(--f-display); font-weight: 700; font-size: clamp(1.3rem,1rem+1.4vw,2rem); letter-spacing: -.01em; color: var(--ink); margin-top: .35rem; }
@@ -70,11 +70,11 @@
 .sister__link:hover { border-color: var(--spark); color: var(--spark); transform: translateY(-2px); }
 /* la dernière-née = la salle allumée (le bout de la lignée) */
 .sister--self { background: var(--spark); border-color: var(--spark); box-shadow: var(--glow), var(--shadow); }
-.sister--self .sister__i { color: rgba(6,7,11,.6); }
-.sister--self .sister__tag { color: #2a2f45; }
-.sister--self .sister__name { color: var(--void); }
-.sister--self .sister__feat { color: #3c4368; }
-.sister__here { font: 600 .62rem/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--void); background: rgba(6,7,11,.12); border: 1px solid rgba(6,7,11,.25); border-radius: 100px; padding: .55em .9em; white-space: nowrap; }
+.sister--self .sister__i { color: rgba(var(--void-rgb),.6); }
+.sister--self .sister__tag { color: var(--navy); }
+.sister--self .sister__name { color: var(--navy); }
+.sister--self .sister__feat { color: rgba(var(--navy-rgb),.78); }
+.sister__here { font: 600 .62rem/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--navy); background: rgba(var(--navy-rgb),.1); border: 1px solid rgba(var(--navy-rgb),.22); border-radius: 100px; padding: .55em .9em; white-space: nowrap; }
 
 /* ===================== INFOS PRATIQUES ========================= */
 .infos__grid { display: grid; gap: clamp(1.8rem,4vw,3.4rem); grid-template-columns: 1fr; align-items: center; }
@@ -106,13 +106,13 @@
 /* Collant sous la barre : la visite se pilote au lieu de se subir. */
 .plan { position: sticky; top: 4.6rem; z-index: 30; display: flex; gap: .45rem; overflow-x: auto; scrollbar-width: none;
   margin-bottom: clamp(1.6rem,3.5vw,2.4rem); padding: .55rem; border: 1px solid var(--line); border-radius: 100px;
-  background: rgba(11,13,20,.86); backdrop-filter: blur(12px); box-shadow: var(--shadow); }
+  background: rgba(var(--paper-rgb),.86); backdrop-filter: blur(12px); box-shadow: var(--shadow); }
 .plan::-webkit-scrollbar { display: none; }
 .planbtn { display: inline-flex; align-items: center; gap: .75ch; flex: 0 0 auto; min-height: 44px; padding: .5em 1em; border-radius: 100px;
   border: 1px solid transparent; color: var(--ink-soft); transition: color .3s, background .3s, border-color .3s, transform .2s var(--ease-spring); }
 .planbtn:hover { color: var(--ink); border-color: var(--line); }
 .planbtn:active { transform: scale(.95); }
-.planbtn.is-on { background: var(--spark); color: var(--void); border-color: var(--spark); }
+.planbtn.is-on { background: var(--spark); color: var(--on-spark); border-color: var(--spark); }
 .planbtn:focus-visible { outline: 2px solid var(--spark); outline-offset: 2px; }
 .planbtn__n { font: 600 .62rem/1 var(--f-mono); letter-spacing: .08em; opacity: .8; }
 .planbtn__t { font: 600 var(--step--1)/1 var(--f-ui); white-space: nowrap; }
@@ -127,10 +127,10 @@
 @media (min-width: 1100px){ .deroule { grid-template-columns: repeat(4,1fr); } }
 .dstep { position: relative; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper-2); padding: clamp(1.2rem,2.4vw,1.6rem);
   display: flex; flex-direction: column; gap: .55rem; transition: transform .35s var(--ease-spring), box-shadow .35s, border-color .3s; }
-.dstep:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: rgba(233,236,244,.3); }
+.dstep:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: rgba(var(--ink-rgb),.3); }
 /* le trait de lumière qui court d'une étape à l'autre : la chronologie
    se voit avant d'être lue (masqué en une colonne, où l'ordre suffit). */
-.dstep::after { content: ""; position: absolute; top: -1px; left: 12%; width: 76%; height: 1px; background: linear-gradient(90deg, transparent, rgba(246,248,252,.4), transparent); opacity: 0; transition: opacity .6s var(--ease); }
+.dstep::after { content: ""; position: absolute; top: -1px; left: 12%; width: 76%; height: 1px; background: linear-gradient(90deg, transparent, rgba(var(--spark-rgb),.4), transparent); opacity: 0; transition: opacity .6s var(--ease); }
 .dstep:hover::after, .dstep.is-inview::after { opacity: 1; }
 @media (max-width: 719px){ .dstep::after { display: none; } }
 .dstep__k { font: 600 .62rem/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--spark); }

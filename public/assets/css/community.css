@@ -13,17 +13,17 @@
    ===================================================================== */
 .club__item { position: relative; aspect-ratio: 4/4.4; overflow: hidden; border-radius: var(--radius);
   border: 1px solid var(--line); background: var(--paper-2); transition: transform .35s var(--ease-spring), border-color .3s, box-shadow .35s; }
-.club__item:hover { transform: translateY(-4px); border-color: rgba(233,236,244,.3); box-shadow: var(--shadow); }
+.club__item:hover { transform: translateY(-4px); border-color: rgba(var(--ink-rgb),.3); box-shadow: var(--shadow); }
 .club__item img, .club__item video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
   filter: contrast(1.06) brightness(.94) saturate(.94); }
 /* le voile : la légende ne joue JAMAIS contre l'image nue (loi n°1) */
 .club__item::after { content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(180deg, transparent 46%, rgba(6,7,11,.88)); }
+  background: linear-gradient(180deg, transparent 46%, rgba(var(--void-rgb),.88)); }
 .club__cap { position: absolute; left: .75rem; right: .75rem; bottom: .7rem; z-index: 2;
   font: 600 .66rem/1.35 var(--f-mono); letter-spacing: .04em; color: var(--ink);
   overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
 .club__play { position: absolute; right: .7rem; top: .7rem; z-index: 2; width: 26px; height: 26px; display: grid; place-items: center;
-  font-size: .6rem; color: var(--void); background: var(--spark); border-radius: 50%; box-shadow: var(--glow); }
+  font-size: .6rem; color: var(--on-spark); background: var(--spark); border-radius: 50%; box-shadow: var(--glow); }
 
 /* --- les états : « rien encore » a l'air VOULU, jamais cassé --- */
 .club__empty { grid-column: 1 / -1; padding: clamp(1.6rem,4vw,2.4rem); text-align: center; color: var(--ink-soft);
@@ -37,7 +37,7 @@
 /* --- le dépôt --- */
 .club__form-slot { margin-top: clamp(1.6rem,3.4vw,2.4rem); }
 .club__form { margin-top: 1.2rem; padding: clamp(1.3rem,3vw,2rem); border: 1px solid var(--line);
-  border-radius: calc(var(--radius) + 6px); background: rgba(18,21,31,.72); backdrop-filter: blur(12px); box-shadow: var(--shadow); }
+  border-radius: calc(var(--radius) + 6px); background: rgba(var(--paper-2-rgb),.72); backdrop-filter: blur(12px); box-shadow: var(--shadow); }
 .club__formlede { color: var(--ink-soft); font-size: var(--step--1); line-height: 1.6; max-width: 56ch; }
 .club__formlede b { color: var(--spark); font-weight: 650; }
 .club__note { margin-top: 1.2rem; padding-left: .9rem; border-left: 2px solid var(--spark-2);
@@ -50,7 +50,7 @@
 .club__field input { min-height: 46px; padding: .7em .95em; border-radius: 10px; border: 1px solid var(--line);
   background: var(--void); color: var(--ink); font: 450 var(--step--1)/1.4 var(--f-ui); transition: border-color .25s, box-shadow .25s; }
 .club__field input::placeholder { color: var(--muted); }
-.club__field input:focus-visible { outline: none; border-color: var(--spark); box-shadow: 0 0 0 3px rgba(246,248,252,.14); }
+.club__field input:focus-visible { outline: none; border-color: var(--spark); box-shadow: 0 0 0 3px rgba(var(--spark-rgb),.14); }
 
 .club__file { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; margin-top: 1.1rem; }
 .club__file input[type="file"] { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }

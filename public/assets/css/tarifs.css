@@ -10,10 +10,33 @@
 .promos { display: grid; gap: .8rem; grid-template-columns: 1fr; }
 @media (min-width: 760px){ .promos { grid-template-columns: 1.08fr 1fr; } }
 .promo { position: relative; border: 1px solid var(--line); border-radius: calc(var(--radius) + 4px); padding: clamp(1.7rem,3vw,2.3rem); background: var(--paper-2); display: flex; flex-direction: column; gap: .9rem; transition: transform .35s var(--ease-spring), box-shadow .35s, border-color .3s; }
-.promo:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: rgba(233,236,244,.3); }
+.promo:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: rgba(var(--ink-rgb),.3); }
 /* le Duo = prioritaire = la carte allumée */
-.promo--duo { background: radial-gradient(120% 120% at 100% 0%, rgba(246,248,252,.10), transparent 55%), var(--paper-2); border-color: rgba(246,248,252,.28); box-shadow: var(--glow), var(--shadow); }
-.promo__flag { position: absolute; top: -.72em; left: 1.4rem; background: var(--spark); color: var(--void); font: 600 .6rem/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; padding: .55em .9em; border-radius: 100px; }
+.promo--duo { background: radial-gradient(120% 120% at 100% 0%, rgba(var(--spark-rgb),.10), transparent 55%), var(--paper-2); border-color: rgba(var(--spark-rgb),.28); box-shadow: var(--glow), var(--shadow); }
+/* ---- LA CARTE PRIORITAIRE, SUR BANDE CLAIRE ----
+   Elle ne crie pas plus fort : elle change de registre. Les jetons sont
+   rebascules en sombre A L'INTERIEUR de la carte, donc .btn, .promo__flag
+   et le prix se re-skinnent seuls — aucune regle en double. */
+.band-light .promo--duo {
+  --paper-2:  var(--navy);
+  --white:    var(--navy);
+  --ink:      #f7f5f9;
+  --ink-soft: #d5d2d8;
+  --muted:    #a9a5b8;
+  --spark:    #f7f5f9;
+  --spark-2:  #d5d2d8;
+  --on-spark: #272845;
+  --ink-rgb:     247, 245, 249;
+  --spark-rgb:   247, 245, 249;
+  --line:     rgba(var(--spark-rgb),.24);
+  background: var(--navy);
+  border-color: var(--navy);
+  color: var(--ink);
+  box-shadow: 0 26px 64px -28px rgba(var(--navy-rgb),.6);
+}
+.band-light .promo--duo:hover { border-color: var(--navy); box-shadow: 0 34px 74px -30px rgba(var(--navy-rgb),.7); }
+
+.promo__flag { position: absolute; top: -.72em; left: 1.4rem; background: var(--spark); color: var(--on-spark); font: 600 .6rem/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; padding: .55em .9em; border-radius: 100px; }
 .promo__name { font-family: var(--f-display); font-weight: 700; font-size: var(--step-1); letter-spacing: -.01em; color: var(--ink); }
 .promo__price { display: flex; align-items: baseline; gap: .7ch; flex-wrap: wrap; }
 .promo__price b { font-family: var(--f-display); font-weight: 700; font-size: clamp(2.4rem,5vw,3.4rem); letter-spacing: -.02em; color: var(--ink); }

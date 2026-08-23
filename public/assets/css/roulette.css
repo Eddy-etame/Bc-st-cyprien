@@ -82,7 +82,7 @@
   width: 5px; height: 5px;
   border-radius: 50%;
   background: var(--spark);
-  box-shadow: 0 0 0 0 rgba(246, 248, 252, .55);
+  box-shadow: 0 0 0 0 rgba(var(--spark-rgb), .55);
   animation: rdialPulse 2.8s var(--ease-out) infinite;
 }
 
@@ -132,9 +132,9 @@
   inset: 0;
   border-radius: 50%;
   background: conic-gradient(from 0deg,
-      rgba(246, 248, 252, 0) 0deg,
-      rgba(246, 248, 252, .38) 24deg,
-      rgba(246, 248, 252, 0) 58deg);
+      rgba(var(--spark-rgb), 0) 0deg,
+      rgba(var(--spark-rgb), .38) 24deg,
+      rgba(var(--spark-rgb), 0) 58deg);
   -webkit-mask: radial-gradient(closest-side, transparent 0 58%, #000 62%, #000 95%, transparent 100%);
           mask: radial-gradient(closest-side, transparent 0 58%, #000 62%, #000 95%, transparent 100%);
   animation: rdialBeam 4.6s linear infinite;
@@ -151,7 +151,7 @@
   transform: translateX(-50%);
   border-radius: 2px;
   background: var(--spark);
-  box-shadow: 0 0 12px rgba(246, 248, 252, .75);
+  box-shadow: 0 0 12px rgba(var(--spark-rgb), .75);
 }
 
 /* LE NOYAU — le prix. Chrome sur creux, comme .reviews__rating. */
@@ -163,7 +163,7 @@
   place-items: center;
   background: radial-gradient(circle at 50% 32%, var(--paper-3), var(--void));
   border: 1px solid var(--line);
-  box-shadow: inset 0 1px 0 rgba(246, 248, 252, .1),
+  box-shadow: inset 0 1px 0 rgba(var(--spark-rgb), .1),
               0 10px 26px -14px #000;
 }
 .rdial__price {
@@ -300,6 +300,22 @@ aside.rdial.is-in {
   pointer-events: auto;
 }
 
+/* SUR /tarifs/, PAS DE CADRAN FLOTTANT.
+   La page EST la grille des offres. Un rappel flottant qui vient se poser
+   PAR-DESSUS les cartes de prix ne rappelle rien : il cache ce qu'il est
+   censé vendre. Le cadran intégré, plus bas, suffit. */
+body[data-page="tarifs"] aside.rdial { display: none; }
+
+/* EN DESSOUS DE 700px, PAS DE CADRAN FLOTTANT NON PLUS.
+   Sur un écran de téléphone, la pastille occupe le tiers bas de la page et
+   recouvre le contenu — ce n'est plus un rappel, c'est un obstacle. Les
+   cadrans intégrés sont posés dans le flux : ils ne cachent jamais rien,
+   et ils sont sur les 10 pages. Réduire au lieu de réorganiser, c'est
+   exactement ce qu'il ne faut pas faire en responsive. */
+@media (max-width: 700px) {
+  aside.rdial { display: none; }
+}
+
 /* ------------------------------------------------------------------ *
    8. LA FORME INTÉGRÉE — posée dans le flux, là où la page vient de
       donner une raison et où le prix devient la question suivante.
@@ -349,8 +365,8 @@ aside.rdial.is-in {
   to   { transform: translateX(-50%); }
 }
 @keyframes rdialPulse {
-  0%        { box-shadow: 0 0 0 0 rgba(246, 248, 252, .5); }
-  70%, 100% { box-shadow: 0 0 0 7px rgba(246, 248, 252, 0); }
+  0%        { box-shadow: 0 0 0 0 rgba(var(--spark-rgb), .5); }
+  70%, 100% { box-shadow: 0 0 0 7px rgba(var(--spark-rgb), 0); }
 }
 
 /* ------------------------------------------------------------------ *

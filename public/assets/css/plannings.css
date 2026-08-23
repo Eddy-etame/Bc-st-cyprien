@@ -14,7 +14,7 @@
 .chip { display: inline-flex; align-items: center; min-height: 44px; font: 600 var(--step--1)/1 var(--f-ui); padding: .58em 1.05em; border-radius: 100px; border: 1.5px solid var(--line); color: var(--ink-soft); background: var(--paper-2); transition: border-color .3s, color .3s, background .3s, transform .2s var(--ease-spring); }
 .chip:hover { border-color: var(--spark); color: var(--ink); transform: translateY(-1px); }
 .chip:active { transform: scale(.94); border-color: var(--spark); color: var(--ink); }
-.chip.is-on { background: var(--spark); border-color: var(--spark); color: var(--void); }
+.chip.is-on { background: var(--spark); border-color: var(--spark); color: var(--on-spark); }
 .chip:focus-visible { outline: 2px solid var(--spark); outline-offset: 2px; }
 
 /* --------------------------- LA GRILLE ---------------------------- */
@@ -24,11 +24,12 @@
 .pday { border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper-2); overflow: hidden; align-self: start; }
 .pday__h { font-family: var(--f-display); font-weight: 700; font-size: var(--step-1); letter-spacing: -.01em; color: var(--ink); padding: 1rem 1.15rem .75rem; border-bottom: 1px solid var(--line); }
 .pday__list { display: grid; }
-.slot { display: grid; grid-template-columns: auto 1fr; gap: .95rem; align-items: baseline; padding: .8rem 1.15rem; border-bottom: 1px solid var(--line-soft); transition: background .3s, box-shadow .3s; }
+.slot { display: grid; grid-template-columns: 3.1rem 1fr; gap: .95rem; align-items: baseline; padding: .8rem 1.15rem; border-bottom: 1px solid var(--line-soft); transition: background .3s, box-shadow .3s; }
 .slot:last-child { border-bottom: 0; }
+.slot:nth-child(even) { background: rgba(var(--spark-rgb),.028); }
 /* les lignes s'allument au survol — la lumière sur le créneau */
 .slot:hover { background: var(--paper-3); box-shadow: inset 3px 0 0 var(--spark); }
-.slot__t { font: 600 .82rem/1.2 var(--f-mono); color: var(--spark); white-space: nowrap; }
+.slot__t { font: 600 .84rem/1.2 var(--f-mono); color: var(--spark); white-space: nowrap; font-variant-numeric: tabular-nums; }
 .slot__body { display: flex; flex-direction: column; gap: .2rem; min-width: 0; }
 .slot__name { font-size: var(--step-0); color: var(--ink); font-weight: 600; }
 /* coach + niveau = l'info que l'on vient chercher, pas de la déco → --ink-soft */
@@ -39,19 +40,19 @@
 .pl-poster { display: block; position: relative; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: transform .35s var(--ease-spring), box-shadow .35s; }
 .pl-poster:hover { transform: translateY(-3px); box-shadow: var(--glow), var(--shadow); }
 .pl-poster img { width: 100%; height: auto; display: block; filter: none; }   /* EN COULEUR — loi §5 */
-.pl-poster::after { content: "Ouvrir en grand ↗"; position: absolute; right: .9rem; bottom: .9rem; font: 600 .68rem/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--void); background: var(--spark); padding: .6em .95em; border-radius: 100px; box-shadow: var(--shadow); }
+.pl-poster::after { content: "Ouvrir en grand ↗"; position: absolute; right: .9rem; bottom: .9rem; font: 600 .68rem/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--on-spark); background: var(--spark); padding: .6em .95em; border-radius: 100px; box-shadow: var(--shadow); }
 
 /* ------------------------ NOTES PRATIQUES ------------------------- */
 .pnotes { display: grid; gap: .7rem; grid-template-columns: 1fr; }
 @media (min-width: 560px){ .pnotes { grid-template-columns: repeat(2,1fr); } }
 @media (min-width: 920px){ .pnotes { grid-template-columns: repeat(4,1fr); } }
 .pnote { border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper-2); padding: 1.15rem 1.25rem; transition: transform .35s var(--ease-spring), border-color .3s; }
-.pnote:hover { transform: translateY(-3px); border-color: rgba(233,236,244,.3); }
+.pnote:hover { transform: translateY(-3px); border-color: rgba(var(--ink-rgb),.3); }
 .pnote b { display: block; font-family: var(--f-display); font-weight: 700; color: var(--ink); font-size: var(--step-0); margin-bottom: .4rem; }
 .pnote span { font-size: .82rem; color: var(--ink-soft); line-height: 1.5; }
 
 /* --------- Le créneau sans encadrant nommé : marqué, pas caché ------ */
-.slot--tbd { background: linear-gradient(90deg, rgba(174,183,204,.06), transparent 60%); }
+.slot--tbd { background: linear-gradient(90deg, rgba(var(--spark-2-rgb),.06), transparent 60%); }
 .slot--tbd .slot__meta { display: inline-flex; align-items: center; gap: .7ch; flex-wrap: wrap; }
 
 /* ------------------- LA SEMAINE EN CHIFFRES ----------------------- *

@@ -26,11 +26,11 @@
 .gitem:hover img { transform: scale(1.04); filter: brightness(1.02) saturate(1) contrast(1.08); }
 /* the beam that lands as it develops */
 .gitem__glow { position: absolute; inset: 0; z-index: 1; pointer-events: none; mix-blend-mode: screen; opacity: 0; transition: opacity 1s var(--ease);
-  background: radial-gradient(70% 55% at 50% -6%, rgba(246,248,252,.22), rgba(246,248,252,.04) 46%, transparent 72%); }
+  background: radial-gradient(70% 55% at 50% -6%, rgba(var(--spark-rgb),.22), rgba(var(--spark-rgb),.04) 46%, transparent 72%); }
 .gitem.is-in .gitem__glow { opacity: 1; }
 /* the floor fade keeps the caption legible */
-.gitem::after { content: ""; position: absolute; inset: auto 0 0 0; height: 46%; z-index: 1; pointer-events: none; background: linear-gradient(180deg, transparent, rgba(6,7,11,.72)); }
-.gitem__cap { position: absolute; left: .8rem; bottom: .75rem; z-index: 2; font: 600 .64rem/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink); background: rgba(6,7,11,.6); border: 1px solid var(--line); border-radius: 100px; padding: .5em .85em; backdrop-filter: blur(4px); transform: translateY(6px); opacity: 0; transition: opacity .6s var(--ease) .1s, transform .6s var(--ease) .1s; }
+.gitem::after { content: ""; position: absolute; inset: auto 0 0 0; height: 46%; z-index: 1; pointer-events: none; background: linear-gradient(180deg, transparent, rgba(var(--void-rgb),.72)); }
+.gitem__cap { position: absolute; left: .8rem; bottom: .75rem; z-index: 2; font: 600 .64rem/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink); background: rgba(var(--void-rgb),.6); border: 1px solid var(--line); border-radius: 100px; padding: .5em .85em; backdrop-filter: blur(4px); transform: translateY(6px); opacity: 0; transition: opacity .6s var(--ease) .1s, transform .6s var(--ease) .1s; }
 .gitem.is-in .gitem__cap { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce){
@@ -47,11 +47,11 @@
 /* ==================== L'INDEX DES ZONES ======================== */
 .gindex { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: clamp(1.4rem,3vw,2rem); }
 .gchip { display: inline-flex; align-items: center; gap: .75ch; min-height: 44px; padding: .55em 1em; border-radius: 100px;
-  border: 1px solid var(--line); background: rgba(18,21,31,.7); color: var(--ink-soft);
+  border: 1px solid var(--line); background: rgba(var(--paper-2-rgb),.7); color: var(--ink-soft);
   font: 600 var(--step--1)/1 var(--f-ui); transition: color .3s, background .3s, border-color .3s, transform .2s var(--ease-spring); }
 .gchip:hover { color: var(--ink); border-color: var(--spark); transform: translateY(-2px); }
 .gchip:active { transform: scale(.94); }
-.gchip.is-on { background: var(--spark); border-color: var(--spark); color: var(--void); }
+.gchip.is-on { background: var(--spark); border-color: var(--spark); color: var(--on-spark); }
 .gchip:focus-visible { outline: 2px solid var(--spark); outline-offset: 2px; }
 .gchip__n { font: 600 .62rem/1 var(--f-mono); opacity: .75; border-left: 1px solid currentColor; padding-left: .75ch; }
 
@@ -63,7 +63,7 @@
 .gitem__btn { display: block; position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
 .gitem__btn:focus-visible { outline: 2px solid var(--spark); outline-offset: -3px; }
 .gitem__zoom { position: absolute; right: .8rem; top: .75rem; z-index: 3; font: 600 .6rem/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase;
-  color: var(--void); background: var(--spark); border-radius: 100px; padding: .5em .85em; opacity: 0; transform: translateY(-6px);
+  color: var(--on-spark); background: var(--spark); border-radius: 100px; padding: .5em .85em; opacity: 0; transform: translateY(-6px);
   transition: opacity .35s var(--ease), transform .35s var(--ease); pointer-events: none; }
 .gitem:hover .gitem__zoom, .gitem__btn:focus-visible .gitem__zoom { opacity: 1; transform: none; }
 /* tactile : pas de survol → la pastille se montre quand la photo est développée */
@@ -72,7 +72,7 @@
 /* ==================== LA VISIONNEUSE =========================== */
 .glight { position: fixed; inset: 0; z-index: 9500; display: grid; place-items: center; padding: clamp(.8rem,3vw,2rem); }
 .glight[hidden] { display: none; }
-.glight__scrim { position: absolute; inset: 0; background: rgba(6,7,11,.94); backdrop-filter: blur(10px); cursor: zoom-out; }
+.glight__scrim { position: absolute; inset: 0; background: rgba(var(--void-rgb),.94); backdrop-filter: blur(10px); cursor: zoom-out; }
 .glight__inner { position: relative; z-index: 1; width: min(96vw, 1180px); max-height: 92vh; display: flex; flex-direction: column; align-items: center; }
 .glight__fig { display: flex; flex-direction: column; gap: .9rem; align-items: center; max-height: 92vh; }
 .glight__fig img { max-width: 100%; max-height: 74vh; width: auto; height: auto; object-fit: contain; border-radius: var(--radius);
@@ -82,14 +82,14 @@
 .glight__label { font-size: var(--step-0); color: var(--ink); }
 .glight__count { font: 600 .64rem/1 var(--f-mono); letter-spacing: .1em; color: var(--muted); }
 .glight__nav { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; width: 52px; height: 52px; display: grid; place-items: center;
-  font-size: 2rem; line-height: 0; color: var(--ink); border: 1px solid var(--line); border-radius: 50%; background: rgba(18,21,31,.86);
+  font-size: 2rem; line-height: 0; color: var(--ink); border: 1px solid var(--line); border-radius: 50%; background: rgba(var(--paper-2-rgb),.86);
   transition: background .3s, border-color .3s, color .3s; }
-.glight__nav:hover { background: var(--spark); color: var(--void); border-color: var(--spark); }
+.glight__nav:hover { background: var(--spark); color: var(--on-spark); border-color: var(--spark); }
 .glight__nav:focus-visible { outline: 2px solid var(--spark); outline-offset: 3px; }
 .glight__nav--prev { left: max(-6px, -3vw); }
 .glight__nav--next { right: max(-6px, -3vw); }
 .glight__close { position: absolute; top: -.2rem; right: 0; z-index: 2; display: inline-flex; align-items: center; gap: .7ch; min-height: 44px; padding: .5em 1em;
-  font: 600 var(--step--1)/1 var(--f-ui); color: var(--ink); border: 1px solid var(--line); border-radius: 100px; background: rgba(18,21,31,.86); transition: border-color .3s, color .3s; }
+  font: 600 var(--step--1)/1 var(--f-ui); color: var(--ink); border: 1px solid var(--line); border-radius: 100px; background: rgba(var(--paper-2-rgb),.86); transition: border-color .3s, color .3s; }
 .glight__close:hover { border-color: var(--spark); color: var(--spark); }
 .glight__close:focus-visible { outline: 2px solid var(--spark); outline-offset: 2px; }
 @media (max-width: 700px){
