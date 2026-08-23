@@ -159,3 +159,41 @@ body[data-page="premiere-seance"] .phero::before { background:
   padding-block: .95rem; margin-block: -.95rem;
   position: relative; z-index: 1;
 }
+
+/* ------------------- LES FAITS D'UNE ÉTAPE ------------------------ *
+ * Chaque étape tenait dans un paragraphe de 45 à 56 mots : on lisait la
+ * page ou on ne la lisait pas. Les faits concrets — ceux qui rassurent
+ * vraiment — étaient noyés dans la phrase. Ils en sortent.
+ *
+ * EN LIGNE, PAS EN CARTES. Tout mettre en cartes fabrique six blocs qui
+ * se ressemblent et un rythme plat ; une ligne de faits séparés par un
+ * point d'argent se scanne d'un coup d'œil et ne pèse rien à l'écran. */
+.etape__faits {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .35rem 1.1rem;
+  margin-top: .7rem;
+}
+.etape__faits li {
+  position: relative;
+  font: 500 .78rem/1.35 var(--f-mono);
+  letter-spacing: .02em;
+  color: var(--ink-soft);
+}
+/* le séparateur est posé AVANT chaque élément sauf le premier : pas de
+   point orphelin en fin de ligne quand ça passe à la ligne suivante */
+.etape__faits li + li::before {
+  content: "";
+  position: absolute;
+  left: -.62rem;
+  top: .52em;
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: var(--spark-2);
+  opacity: .6;
+}
+@media (max-width: 520px) {
+  .etape__faits { gap: .3rem .9rem; }
+  .etape__faits li { font-size: .74rem; }
+}

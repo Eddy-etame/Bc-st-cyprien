@@ -346,13 +346,26 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 .nav__right { display: flex; align-items: center; gap: .8rem; flex: 0 0 auto; }
 .nav__cta { display: none; }
 .nav__cta span { white-space: nowrap; }
-/* Le seuil est passé de 1100px à 1200px le jour où « 1re séance » est entrée
-   dans la barre : mesuré au navigateur à 1100px, les NEUF pastilles + le
-   bouton d'essai réclamaient 1 159px de large pour 1 085px disponibles — le
-   bouton « Essai · 10€ » sortait de l'écran. Sous 1200px, c'est le menu
-   plein écran qui prend le relais : aucun lien perdu. */
-/* 1240 px : sous ce seuil la barre se chevauchait — le menu prend le relais. */
-@media (min-width: 1240px){ .nav__links { display: flex; } .nav__cta { display: inline-flex; } }
+/* LE SEUIL DESKTOP — 1120px, remesuré au navigateur.
+   L'ancien seuil (1240px) datait d'une barre à NEUF pastilles. Il en reste
+   SEPT (« La salle » et « Galerie » sont passées en top:false) et la mesure
+   réelle à 1280px donne : marque 236 + liens 551 + colonne droite 130
+   (burger retiré) + gaps 31 + gouttières 90 = 1038px. À 1120px il reste
+   82px de marge — la barre ne se chevauche toujours pas, et les portables
+   de 1100-1240px cessent de n'avoir qu'un burger pour toute navigation.
+
+   ET LE BURGER DISPARAÎT ICI. Il n'avait aucune media query : il s'affichait
+   à TOUTES les largeurs, donc en doublon des sept liens sur desktop. Deux
+   navigations pour le même site, dont une redondante. */
+@media (min-width: 1120px){
+  .nav__links { display: flex; }
+  .nav__cta { display: inline-flex; }
+  /* filet de sécurité : si le menu plein écran était ouvert au moment du
+     passage en desktop, il ne doit plus rien recouvrir (site.js le ferme
+     aussi, ceci tient même sans JavaScript). */
+  .menu { display: none; }
+  html.is-menu-open .nav { opacity: 1; visibility: visible; pointer-events: auto; }
+}
 /* Sous 1480px, les neuf pastilles doivent tenir dans la barre : on resserre
    l'air HORIZONTALE — jamais la cible tactile, qui reste à 44px de haut. */
 @media (max-width: 1479.98px){
@@ -365,6 +378,10 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 .is-menu-open .burger span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
 .is-menu-open .burger span:nth-child(2){ opacity: 0; }
 .is-menu-open .burger span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+/* LE BURGER N EXISTE PAS EN DESKTOP. Posee ICI, apres .burger : a
+   specificite egale, c est le dernier declare qui gagne — la meme regle
+   placee plus haut etait ecrasee par .burger{display:inline-flex}. */
+@media (min-width: 1120px){ .burger { display: none; } }
 
 /* ---------------------- FULL-SCREEN MENU -------------------------- */
 .menu { position: fixed; inset: 0; z-index: 7990; background: var(--paper); color: var(--ink); display: grid; grid-template-rows: auto 1fr auto; padding: clamp(1.2rem,3vw,2rem) var(--gut) clamp(1.5rem,3vw,2.4rem); clip-path: inset(0 0 100% 0); pointer-events: none; transition: clip-path .65s var(--ease-out); }
@@ -742,3 +759,25 @@ a:hover > .ext, a:hover .ext { opacity: 1; transform: translate(1px, -1px); }
    Partout ou 29 EUR est ecrit, le prix qu'il remplace est ecrit a cote. */
 .was { opacity: .55; text-decoration: line-through; text-decoration-thickness: 2px; font-weight: 600; }
 @media (prefers-reduced-motion: reduce) { .places::before { animation: none; } }
+
+/* =====================================================================
+   LA MESURE DE LECTURE — une loi, pas un réglage page par page.
+   ---------------------------------------------------------------------
+   Une ligne de 110 caractères oblige l'œil à chercher le début de la
+   suivante : on relit, on décroche. La typographie tient entre 45 et
+   75 caractères ; le site plafonne à 68ch pour le texte courant et 54ch
+   pour les chapôs, qui sont plus gros donc plus vite trop larges.
+
+   Posé sur les CONTENEURS de texte, jamais sur .wrap : une grille de
+   cartes ou une galerie ne doit surtout pas être bridée à 68ch.
+   ===================================================================== */
+.lead { max-width: 54ch; }
+.section p:not(.lead):not([class*="__"]):not(.eyebrow) { max-width: 68ch; }
+
+/* L'ESPACE ENTRE LES IDÉES. Deux paragraphes collés se lisent comme un
+   bloc ; l'air entre eux est ce qui dit « nouvelle idée ». */
+.section p + p { margin-top: 1.05em; }
+
+/* Les chapôs centrés (gong, manifeste) se recentrent : max-width seul
+   les colle à gauche. */
+.gong .lead, .manifesto p, [style*="text-align:center"] .lead { margin-inline: auto; }

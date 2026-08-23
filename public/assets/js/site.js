@@ -99,6 +99,16 @@ function mountNav() {
   menu.querySelectorAll(".menu__link, .menu__foot a").forEach((a) => a.addEventListener("click", () => setOpen(false)));
   addEventListener("keydown", (e) => { if (e.key === "Escape") setOpen(false); });
 
+  /* PASSER EN DESKTOP FERME LE MENU.
+     Le burger disparaît à 1120px (voir base.css) : si le menu plein écran
+     était ouvert au moment où l'on élargit la fenêtre — ou où l'on bascule
+     une tablette en paysage — il resterait ouvert SANS bouton pour le
+     fermer, et le défilement resterait verrouillé. Le seuil est lu une
+     fois, pas à chaque pixel de redimensionnement. */
+  const grandEcran = matchMedia("(min-width: 1120px)");
+  const surGrandEcran = (e) => { if (e.matches) setOpen(false); };
+  grandEcran.addEventListener?.("change", surGrandEcran);
+
   let last = 0;
   ScrollTrigger?.create({
     start: 0, end: "max",
@@ -182,17 +192,19 @@ function initSmooth() {
 }
 
 /* ----------------------------- MAGNETIC --------------------------- */
-function magnetic(scope = document) {
-  if (reduce || !gsap || window.matchMedia("(hover: none)").matches) return;
-  scope.querySelectorAll("[data-magnetic]").forEach((el) => {
-    if (el.dataset.magBound) return; el.dataset.magBound = "1";
-    el.addEventListener("mousemove", (e) => {
-      const r = el.getBoundingClientRect();
-      gsap.to(el, { x: (e.clientX - r.left - r.width / 2) * 0.3, y: (e.clientY - r.top - r.height / 2) * 0.3, duration: 0.5, ease: "power3.out" });
-    });
-    el.addEventListener("mouseleave", () => gsap.to(el, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1,0.4)" }));
-  });
-}
+/* LES BOUTONS AIMANTÉS SONT RETIRÉS — volontairement.
+   Ils déclenchaient un gsap.to() à CHAQUE mousemove sur chaque CTA, puis
+   un rebond `elastic.out` au relâchement. Trois raisons de les enlever :
+   un CTA qui fuit sous le curseur est plus dur à cliquer qu'un bouton
+   immobile ; le rebond élastique lit « gadget », pas « premium » ; et
+   c'était une animation qui attirait l'attention sans rien servir.
+   Le survol reste — .btn:hover fait sa translation de 2px et son halo en
+   CSS, sans une ligne de JavaScript.
+
+   La fonction reste exportée et ne fait plus rien : six pages appellent
+   BC.magnetic(), elles continuent de fonctionner sans être touchées, et
+   `data-magnetic` reste un marqueur inoffensif dans le markup. */
+function magnetic() { /* volontairement vide — voir ci-dessus */ }
 
 /* ----------------------------- SPLIT / SCRAMBLE -------------------- */
 function split(el) {
