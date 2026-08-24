@@ -1,0 +1,384 @@
+/* =====================================================================
+   SAINT-CYPRIEN · photos.css — LA BOÎTE À OUTILS PHOTO
+   ---------------------------------------------------------------------
+   Le site avait 96 clichés professionnels et ne s'en servait pas : la
+   page qui convertit (/premiere-seance/) faisait 9 263 px de haut avec
+   ZÉRO image. On expliquait par écrit ce qu'une photo dit en une seconde.
+
+   Ce fichier ne contient pas « une grille d'images ». Il contient DIX
+   dispositions distinctes, parce qu'un site ne devient beau que si la
+   photo change de rôle en descendant la page : tantôt elle porte
+   (bandeau), tantôt elle prouve (vis-à-vis), tantôt elle rythme
+   (mosaïque), tantôt elle respire (décalé). Une seule disposition
+   répétée dix fois, c'est un catalogue.
+
+   RÈGLE DE CADRAGE : on ne recadre jamais au fichier. Chaque photo est
+   exportée en pleine largeur et c'est le CSS qui décide du format
+   (aspect-ratio + object-fit: cover). Une même image sert donc un
+   bandeau 21/9, un portrait 4/5 et une vignette carrée — sans tripler
+   les fichiers.
+
+   LE VOILE EST BLEU NUIT, JAMAIS NOIR. Un voile noir sur une photo la
+   grise ; le voile #272845 la fait entrer dans l'identité du club.
+   ===================================================================== */
+
+/* ------------------------------------------------------------------ *
+   LE SOCLE — commun à toutes les dispositions
+ * ------------------------------------------------------------------ */
+.ph {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--paper-2);
+  isolation: isolate;
+}
+.ph > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  /* une photo qui apparaît d'un coup fait sauter la page ;
+     .35s de fondu suffisent à l'amortir sans qu'on l'attende */
+  transition: transform .7s var(--ease-out), filter .5s var(--ease);
+}
+/* le filet d'argent : il détache la photo du fond bleu nuit sans
+   l'encadrer comme un tableau */
+.ph::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px var(--line);
+  pointer-events: none;
+  z-index: 2;
+}
+/* survol : 3 % d'échelle. Au-delà on voit l'effet, pas la photo. */
+.ph--zoom:hover > img { transform: scale(1.035); }
+
+/* le voile bleu nuit — trois intensités, jamais improvisées */
+.ph--veil::before,
+.ph--veil-strong::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(180deg,
+    rgba(var(--navy-rgb), .15) 0%,
+    rgba(var(--navy-rgb), .55) 62%,
+    rgba(var(--navy-rgb), .92) 100%);
+}
+.ph--veil-strong::before {
+  background: linear-gradient(180deg,
+    rgba(var(--navy-rgb), .58) 0%,
+    rgba(var(--navy-rgb), .78) 55%,
+    rgba(var(--navy-rgb), .96) 100%);
+}
+
+/* les formats — c'est ici qu'une même photo change de rôle */
+.ph--21x9  { aspect-ratio: 21/9; }
+.ph--16x9  { aspect-ratio: 16/9; }
+.ph--3x2   { aspect-ratio: 3/2; }
+.ph--4x3   { aspect-ratio: 4/3; }
+.ph--1x1   { aspect-ratio: 1/1; }
+.ph--4x5   { aspect-ratio: 4/5; }
+.ph--3x4   { aspect-ratio: 3/4; }
+.ph--2x3   { aspect-ratio: 2/3; }
+
+/* la légende posée SUR la photo (jamais dessous : elle appartient à
+   l'image, elle n'est pas une note de bas de page) */
+.ph__cap {
+  position: absolute;
+  left: clamp(.9rem, 2vw, 1.5rem);
+  right: clamp(.9rem, 2vw, 1.5rem);
+  bottom: clamp(.85rem, 2vw, 1.3rem);
+  z-index: 3;
+  font: 600 .68rem/1.35 var(--f-mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--offwhite);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, .55);
+}
+
+/* ================================================================== *
+   1. LE BANDEAU PLEINE LARGEUR — la photo qui COUPE le flux.
+      Elle sort du wrap et touche les deux bords : c'est le seul moment
+      où la page cesse d'être une colonne de texte. À doser — deux par
+      page maximum, sinon l'effet s'annule.
+ * ================================================================== */
+.ph-band {
+  position: relative;
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+  margin-block: clamp(3rem, 7vw, 6rem);
+  overflow: hidden;
+}
+.ph-band .ph { border-radius: 0; aspect-ratio: 21/9; }
+.ph-band .ph::after { box-shadow: none; }
+.ph-band__say {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 3;
+  padding: clamp(1.4rem, 4vw, 3.2rem) var(--gut);
+}
+.ph-band__say .display { font-size: clamp(1.7rem, 4.5vw, 3.6rem); }
+@media (max-width: 700px) {
+  /* 21/9 sur un téléphone, c'est une fente : on repasse en 4/3 pour que
+     la photo raconte encore quelque chose. */
+  .ph-band .ph { aspect-ratio: 4/3; }
+}
+
+/* ================================================================== *
+   2. LE VIS-À-VIS — photo et texte à parts égales, alternés.
+      La disposition la plus utile du lot : elle donne à CHAQUE idée son
+      image, et l'alternance gauche/droite fabrique le rythme sans qu'on
+      ait à ajouter quoi que ce soit.
+ * ================================================================== */
+.ph-split {
+  display: grid;
+  gap: clamp(1.6rem, 4vw, 3.5rem);
+  align-items: center;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 860px) {
+  .ph-split { grid-template-columns: 1fr 1fr; }
+  /* --flip inverse l'ordre visuel SANS toucher à l'ordre du DOM :
+     un lecteur d'écran garde texte puis image, toujours dans cet ordre. */
+  .ph-split--flip > .ph { order: 2; }
+}
+.ph-split__txt { display: flex; flex-direction: column; gap: .9rem; }
+.ph-split__txt .display { font-size: clamp(1.6rem, 3.4vw, 2.6rem); }
+.ph-split__txt p { max-width: 46ch; }
+
+/* ================================================================== *
+   3. LA MOSAÏQUE — une grande, deux petites.
+      Asymétrique par construction : trois images de même taille se
+      lisent comme un tableau, une grande + deux petites se lit comme
+      une composition.
+ * ================================================================== */
+.ph-bento {
+  display: grid;
+  gap: clamp(.6rem, 1.4vw, 1rem);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 760px) {
+  .ph-bento {
+    grid-template-columns: 1.35fr 1fr;
+    grid-template-rows: repeat(2, 1fr);
+  }
+  .ph-bento > :first-child { grid-row: span 2; aspect-ratio: auto; }
+}
+
+/* ================================================================== *
+   4. LE DÉCALÉ — trois images qui ne s'alignent pas.
+      L'alignement parfait est ce qui fait « gabarit » ; 2 à 4 rem de
+      décalage vertical suffisent à faire respirer une rangée.
+ * ================================================================== */
+.ph-stagger {
+  display: grid;
+  gap: clamp(.8rem, 2vw, 1.4rem);
+  grid-template-columns: repeat(2, 1fr);
+  align-items: start;
+}
+@media (min-width: 860px) {
+  .ph-stagger { grid-template-columns: repeat(3, 1fr); }
+  .ph-stagger > :nth-child(2) { margin-top: clamp(2rem, 5vw, 4.5rem); }
+  .ph-stagger > :nth-child(3) { margin-top: clamp(1rem, 2.5vw, 2rem); }
+}
+
+/* ================================================================== *
+   5. LE CHEVAUCHEMENT — deux images qui se mordent.
+      Un seul par page : c'est un accent, pas une grammaire.
+ * ================================================================== */
+.ph-overlap { position: relative; display: grid; }
+@media (min-width: 760px) {
+  .ph-overlap { grid-template-columns: repeat(12, 1fr); align-items: center; }
+  .ph-overlap > :first-child { grid-column: 1 / 9; grid-row: 1; }
+  .ph-overlap > :last-child {
+    grid-column: 7 / 13; grid-row: 1;
+    margin-top: clamp(4rem, 12vw, 9rem);
+    z-index: 2;
+    box-shadow: 0 30px 70px -30px rgba(0, 0, 0, .8);
+  }
+}
+@media (max-width: 759.98px) {
+  .ph-overlap { gap: .8rem; }
+}
+
+/* ================================================================== *
+   6. LES PORTRAITS — la grille des coachs.
+      Format 4/5 (le portrait respire, le carré coupe les épaules), et
+      le nom monte au survol au lieu d'occuper la place en permanence.
+ * ================================================================== */
+.ph-portraits {
+  display: grid;
+  gap: clamp(.7rem, 1.6vw, 1.1rem);
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (min-width: 900px) { .ph-portraits { grid-template-columns: repeat(4, 1fr); } }
+.ph-portrait { aspect-ratio: 4/5; }
+.ph-portrait > img { filter: saturate(.92); }
+.ph-portrait:hover > img { filter: saturate(1); transform: scale(1.04); }
+.ph-portrait__id {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 3;
+  padding: clamp(.9rem, 2vw, 1.2rem);
+  background: linear-gradient(180deg, transparent, rgba(var(--navy-rgb), .93));
+}
+.ph-portrait__n {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  color: var(--offwhite);
+  display: block;
+}
+.ph-portrait__r {
+  font: 600 .62rem/1.3 var(--f-mono);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--silver);
+  /* le rôle n'apparaît qu'au survol : le nom suffit à la lecture rapide */
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height .35s var(--ease-out), opacity .3s var(--ease), margin-top .35s var(--ease-out);
+}
+.ph-portrait:hover .ph-portrait__r,
+.ph-portrait:focus-within .ph-portrait__r { max-height: 3em; opacity: 1; margin-top: .3rem; }
+@media (hover: none) {
+  /* au doigt il n'y a pas de survol : le rôle est simplement toujours là */
+  .ph-portrait__r { max-height: 3em; opacity: 1; margin-top: .3rem; }
+}
+
+/* ================================================================== *
+   7. LE RUBAN — une file d'images qu'on pousse au doigt.
+      Sur mobile c'est la meilleure façon de montrer huit photos sans
+      fabriquer huit écrans de défilement.
+ * ================================================================== */
+.ph-strip {
+  display: flex;
+  gap: clamp(.6rem, 1.4vw, 1rem);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: .6rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+.ph-strip > .ph {
+  flex: 0 0 clamp(220px, 34vw, 380px);
+  aspect-ratio: 3/4;
+  scroll-snap-align: start;
+}
+.ph-strip::-webkit-scrollbar { height: 6px; }
+.ph-strip::-webkit-scrollbar-thumb { background: var(--line); border-radius: 100px; }
+
+/* ================================================================== *
+   8. LA PHOTO DE FOND — l'image passe DERRIÈRE le texte.
+      Réservée aux sections où le texte prime : la photo donne le lieu,
+      elle ne demande pas à être regardée. Voile fort, obligatoire.
+ * ================================================================== */
+.ph-bg { position: relative; isolation: isolate; overflow: hidden; }
+.ph-bg > img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+.ph-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg,
+    rgba(var(--navy-rgb), .93), rgba(var(--paper-rgb), .97));
+}
+
+/* ================================================================== *
+   9. LE CHIFFRE SUR L'IMAGE — la preuve posée sur le lieu.
+      1 200 m² écrit dans un tableau, c'est une donnée ; écrit sur la
+      photo du plateau, c'est une preuve.
+ * ================================================================== */
+.ph-figure { position: relative; }
+.ph-figure__v {
+  position: absolute;
+  left: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  z-index: 3;
+}
+.ph-figure__n {
+  display: block;
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(2.4rem, 7vw, 5rem);
+  line-height: .9;
+  letter-spacing: -.03em;
+  color: var(--offwhite);
+  text-shadow: 0 2px 24px rgba(0, 0, 0, .5);
+}
+.ph-figure__k {
+  font: 600 .66rem/1.3 var(--f-mono);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--silver);
+}
+
+/* ================================================================== *
+   10. LE DIPTYQUE SERRÉ — deux images collées, sans gouttière.
+       Deux moments du même geste. Le trait d'argent entre les deux
+       remplace l'espace : ça se lit comme une seule image en deux temps.
+ * ================================================================== */
+.ph-duo {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  background: var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+@media (min-width: 700px) { .ph-duo { grid-template-columns: 1fr 1fr; } }
+.ph-duo > .ph { border-radius: 0; }
+.ph-duo > .ph::after { box-shadow: none; }
+
+/* ================================================================== *
+   MOUVEMENT — volontairement pauvre.
+   Fondu + 14 px de montée, rien d'autre. Pas de parallaxe au scroll :
+   c'est ce qui coûte le plus cher en rendu pour ce que ça rapporte.
+ * ================================================================== */
+html.fx .ph[data-reveal] { opacity: 0; transform: translateY(14px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ph > img,
+  .ph-portrait__r { transition: none !important; }
+  .ph--zoom:hover > img,
+  .ph-portrait:hover > img { transform: none; }
+  .ph-strip { scroll-snap-type: none; }
+}
+
+/* ------------------- LES FAITS D'UNE SECTION ---------------------- *
+ * Le pendant textuel des dispositions ci-dessus : quand un paragraphe
+ * empile cinq informations, elles sortent en liste de faits. Le chiffre
+ * d'abord (c'est lui qu'on cherche), la précision ensuite. */
+.faits { display: grid; gap: .55rem; margin-top: 1.1rem; }
+.faits li {
+  display: flex;
+  align-items: baseline;
+  gap: .9ch;
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.faits li::before {
+  content: "";
+  flex: 0 0 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--spark);
+  transform: translateY(-.15em);
+}
+.faits b {
+  font-family: var(--f-display);
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -.01em;
+}
