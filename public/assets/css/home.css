@@ -85,7 +85,9 @@
 /* ================= LE CONFIGURATEUR — the instrument ============== *
    The core of the site: full-width dark stage, the active discipline's
    photo fills the stage behind; the list is BIG (you play it). */
-.config { position: relative; background: var(--void); border-block: 1px solid var(--line); overflow: hidden; }
+/* le fond vient de la BANDE (bleue), plus d'une couleur en dur : c'est la
+   bande qui decide du registre, la section n'a qu'a suivre */
+.config { position: relative; background: var(--paper); border-block: 1px solid var(--line); overflow: hidden; }
 /* full-bleed backdrop: active discipline photo, dimmed to keep text law */
 .config__bg { position: absolute; inset: 0; z-index: 0; }
 .config__bg .media { position: absolute; inset: 0; border-radius: 0; opacity: 0; transition: opacity .8s var(--ease); }
@@ -190,7 +192,9 @@
 @media (max-width: 520px){ .essai__cta { flex-direction: row; flex-wrap: wrap; } }
 
 /* ==================== QUARTIER / ACCÈS =========================== */
-.quartier { border-top: 1px solid var(--line); background: var(--void); }
+/* le quartier revient au clair : le noir doit rester rare (hero + gong),
+   sinon il ne cogne plus */
+.quartier { border-top: 1px solid var(--line); background: var(--paper); }
 .quartier__grid { display: grid; gap: clamp(1.8rem,4vw,3.4rem); grid-template-columns: 1fr; align-items: center; }
 @media (min-width: 900px){ .quartier__grid { grid-template-columns: 1fr .9fr; } }
 .quartier__title { margin-top: 1rem; font-size: clamp(2rem,1rem+3vw,3.4rem); }

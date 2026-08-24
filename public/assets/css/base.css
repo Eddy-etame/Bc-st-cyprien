@@ -97,24 +97,35 @@
    BOXING CENTER — SAINT-CYPRIEN · "LA NOUVELLE GÉNÉRATION"
    base.css — le design system.
 
-   LA SALLE, DE NUIT. Bleu nuit comme pièce, argent comme métal, blanc
-   cassé comme lumière, noir comme profondeur. Le club a maintenant une
-   couleur : #272845. Elle n'est pas posée sur le site, elle le porte —
-   les fonds, les panneaux, les états actifs en descendent tous.
-   Précision de lancement produit (Space Grotesk / Inter / IBM Plex Mono),
-   à l'opposé du grunge des Minimes et du monument du Colosse.
+   LA PHOTO D'ABORD. Le site est CLAIR, et ce n'est pas un goût : les 48
+   clichés du club sont des intérieurs sombres. Sur un fond sombre leurs
+   bords disparaissent et la photo se fond dans la page ; sur blanc cassé
+   elle retrouve un bord, une masse, une valeur. Le site cesse d'essayer
+   d'être impressionnant et laisse les photos l'être.
 
-   TROIS REGISTRES, jamais plus : bleu nuit (le corps), blanc cassé
-   (la respiration, .band-light), noir (le coup de poing, .band-black).
+   LE BLEU EST MESURÉ, PAS CHOISI. On a échantillonné les pixels bleus de
+   trois clichés où le ring occupe le cadre : le ring, les bâches et les
+   murs portent l'identité physique du club. Les bleus qui dominent
+   réellement la salle tombent entre 201° et 214°. Toute l'échelle est
+   calée sur 211°. L'ancien #272845 était à 238° — un indigo violacé qui
+   jurait avec chaque photo du ring.
+
+   TROIS REGISTRES, jamais plus, et dans cette proportion :
+     blanc cassé  ~65 %  le corps, là où l'on lit
+     bleu plein   ~25 %  l'identité (.band-blue, .config, .footer)
+     noir         ~10 %  le coup de poing (.band-dark, hero, gong)
+   Le noir est rare par construction : c'est ce qui lui garde sa force.
 
    LOI DE LISIBILITÉ — vérifiée au calcul, pas à l'œil :
-     texte #f2f0f5 sur bleu nuit #12132a ...... 16,1:1
-     argenté #d5d2d8 sur bleu nuit ............ 12,2:1
-     étiquettes #9591a6 sur bleu nuit .......... 6,0:1
-     étiquettes sur bleu nuit plein #272845 .... 4,7:1  (le point le plus serré)
-     bleu nuit sur blanc cassé (bande claire) . 13,1:1
-   Tout passe AA. L'accent #f7f5f9 sert la LUMIÈRE (faisceaux, CTA,
-   chrome) — jamais du petit texte qu'il ne porterait pas.
+     texte #12141c sur blanc cassé ............ 17,0:1
+     texte secondaire #3f4554 ................. 8,9:1
+     étiquettes #5e6475 ....................... 5,5:1
+     LE BLEU #2360a0 sur blanc cassé .......... 6,0:1
+     CTA : blanc cassé sur le bleu ............ 6,0:1
+     texte clair sur bleu plein #1b4877 ....... 8,3:1
+     texte clair sur noir #0a0b0e ............ 17,4:1
+   Tout passe AA. Une réserve : le bleu sur le noir ne fait que 3,1:1 —
+   réservé aux grands titres et aux filets, jamais au petit texte.
    ===================================================================== */
 
 /* ----------------------------- TOKENS ----------------------------- */
@@ -123,50 +134,67 @@
    OBJECT, dark as the room. Distinct from Minimes (red), Colosse (bronze/
    steel + navy), Portet (silver on navy): St-Cyprien's metal is WHITE LIGHT. */
 :root {
-  /* ---- LES QUATRE COULEURS. Rien d'autre n'entre dans le site. ---- */
-  --navy:     #272845;   /* BLEU NUIT — la couleur du club */
-  --offwhite: #f7f5f9;   /* BLANC CASSÉ — la lumière, les respirations */
-  --silver:   #d5d2d8;   /* GRIS ARGENTÉ — filets, détails, séparations */
-  --black:    #000000;   /* NOIR — la profondeur, les sections fortes */
+  /* ---- LE BLEU DU CLUB, MESURÉ — pas choisi ----
+     On a échantillonné les pixels franchement bleus de trois clichés où
+     le ring occupe le cadre : le ring, les bâches et les murs portent
+     l'identité PHYSIQUE du club. Les bleus qui dominent réellement la
+     salle tombent entre 201° et 214° de teinte — un bleu royal franc.
+     L'ancien #272845 était à 238°, un indigo qui tire sur le violet :
+     posé derrière une photo du ring, le fond paraissait mauve. Toute
+     l'échelle ci-dessous est calée sur 211°. */
+  --blue:     #2360a0;   /* LE BLEU — 211°, celui du ring */
+  --offwhite: #f7f5f9;   /* BLANC CASSÉ — le fond, la respiration */
+  --silver:   #d5d2d8;   /* ARGENT — filets et détails sur fond sombre */
+  --black:    #0a0b0e;   /* NOIR — la profondeur, les bandes fortes */
 
-  /* ---- L'ÉCHELLE DE PROFONDEUR ----
-     Le bleu nuit descendu vers le noir, puis remonté à pleine force sur
-     les surfaces. Règle : le fond de page doit LIRE BLEU, jamais gris —
-     #12132a garde la teinte de #272845 (238°), il ne fait que baisser la
-     lumière. Le noir pur est réservé aux sections fortes : s'il servait
-     de fond partout, le bleu nuit ne serait plus une identité, juste une
-     nuance qu'on ne voit pas. */
-  --void:     #000000;   /* le noir — sections fortes, en-têtes */
-  --paper:    #12132a;   /* base — bleu nuit profond */
-  --paper-2:  #1c1d38;   /* panneau surélevé */
-  --paper-3:  #272845;   /* pressé / actif — LE bleu nuit, à pleine force */
-  --white:    #1c1d38;   /* alias historique — surface surélevée sur sombre */
+  --blue-800: #14375c;
+  --blue-700: #1b4877;
+  --blue-600: #2360a0;   /* la référence */
+  --blue-200: #c3d5e8;
 
-  --ink:      #f2f0f5;   /* texte courant */
-  --ink-soft: #d5d2d8;   /* l'argenté — texte secondaire */
-  --muted:    #9591a6;   /* étiquettes, mentions */
-  --spark:    #f7f5f9;   /* L'ACCENT — le blanc cassé */
-  --spark-2:  #d5d2d8;   /* argent — l'étage sous l'accent */
-  --on-spark: #000000;   /* ce qui s'écrit SUR l'accent : CTA, sélection */
+  /* ---- LE SITE EST CLAIR, ET C'EST LA DÉCISION CENTRALE ----
+     Les 48 clichés sont des intérieurs sombres : charpente noire, murs
+     gris, lumière rasante. Sur un fond sombre, leurs bords disparaissent
+     et la photo se fond dans la page — elle redevient du décor. Sur
+     blanc cassé, chaque cliché retrouve un bord, une masse, une valeur :
+     il redevient une photographie. Le site cesse d'essayer d'être
+     impressionnant et laisse les photos l'être. */
+  --void:     #0a0b0e;   /* le noir — hero, bandes fortes, CTA final */
+  --paper:    #f7f5f9;   /* base — blanc cassé */
+  --paper-2:  #ffffff;   /* panneau surélevé */
+  --paper-3:  #eceaf1;   /* pressé / teinte */
+  --white:    #ffffff;   /* alias historique — la surface haute */
 
-  /* triplets : indispensables pour que TOUTE transparence du site suive
-     la palette. Sans eux, 186 rgba() écrits en dur échappaient aux
-     jetons et une re-teinte laissait des halos de l'ancienne identité. */
-  --void-rgb:    0, 0, 0;
-  --paper-rgb:   18, 19, 42;
-  --paper-2-rgb: 28, 29, 56;
-  --ink-rgb:     242, 240, 245;
-  --spark-rgb:   247, 245, 249;
-  --spark-2-rgb: 213, 210, 216;
-  --navy-rgb:    39, 40, 69;
+  --ink:      #12141c;   /* texte courant — 17,0:1 */
+  --ink-soft: #3f4554;   /* texte secondaire — 8,9:1 */
+  --muted:    #5e6475;   /* étiquettes — 5,5:1 */
+  --spark:    #2360a0;   /* L'ACCENT EST LE BLEU DU CLUB — 6,0:1 */
+  --spark-2:  #1b4877;   /* l'étage sous l'accent — 8,7:1 */
+  --on-spark: #f7f5f9;   /* ce qui s'écrit SUR le bleu : CTA, sélection */
 
-  --line:     rgba(var(--spark-2-rgb),.17);   /* separations */
-  --line-ctl: rgba(var(--spark-2-rgb),.38);   /* contours de controles : un bouton doit SE VOIR */
-  --line-soft:rgba(var(--spark-2-rgb),.08);
-  --shadow:   0 22px 60px -20px rgba(0,0,0,.75);
-  --glow:     0 0 34px rgba(var(--spark-rgb),.15);
-  /* le chrome du club : argent sur bleu nuit, jamais un arc-en-ciel */
-  --chrome:   linear-gradient(115deg, #f7f5f9 8%, #a9a5b8 38%, #f2f0f5 55%, #8e8aa2 78%, #f7f5f9 100%);
+  /* triplets : indispensables pour que TOUTE transparence suive la
+     palette. Sans eux, 186 rgba() écrits en dur y échappaient. */
+  --void-rgb:    10, 11, 14;
+  --paper-rgb:   247, 245, 249;
+  --paper-2-rgb: 255, 255, 255;
+  --ink-rgb:     18, 20, 28;
+  --spark-rgb:   35, 96, 160;
+  --spark-2-rgb: 27, 72, 119;
+  --blue-rgb:    35, 96, 160;
+  /* conservé : la boîte à outils photo s'en sert pour ses voiles, et un
+     voile doit rester BLEU même quand la page est claire. */
+  --navy-rgb:    20, 55, 92;
+
+  --line:     rgba(var(--ink-rgb),.14);   /* separations */
+  --line-ctl: rgba(var(--ink-rgb),.30);   /* contours de controles : un bouton doit SE VOIR */
+  --line-soft:rgba(var(--ink-rgb),.07);
+  /* sur fond clair, une ombre noire salit : elle est teintée du bleu */
+  --shadow:   0 22px 60px -26px rgba(var(--blue-rgb),.34);
+  --glow:     0 0 34px rgba(var(--blue-rgb),.18);
+  /* plus de chrome : le chrome était le métal d'une DA sombre. Sur clair,
+     un dégradé métallique sur du texte le rend illisible. L'accent est
+     plein, et c'est le bleu. */
+  --chrome:   linear-gradient(115deg, #2360a0 0%, #1b4877 52%, #2360a0 100%);
 
   --bg: var(--paper);
   --fg: var(--ink);
@@ -231,14 +259,16 @@ html.is-locked, html.is-locked body { overflow: hidden; height: 100%; }
 .section { padding-block: var(--sec); position: relative; }
 
 /* ------------------- LES BANDES — le rythme vertical ---------------- *
- * Le site est sombre : c'est son ADN. Mais dix écrans de bleu nuit
- * d'affilée, c'est un tunnel — l'œil ne sait plus où il en est et la
- * page la plus importante (les tarifs) a la même valeur que la moins
- * importante. D'où trois registres, et TROIS SEULEMENT :
+ * Le site est CLAIR : c'est le fond sur lequel une photographie sombre
+ * atteint son contraste maximum. Mais dix écrans de blanc d'affilée,
+ * c'est un catalogue. D'où trois registres, et TROIS SEULEMENT :
  *
- *   (défaut)      bleu nuit  — le corps du site
- *   .band-light   blanc cassé — la respiration : on souffle, on lit
- *   .band-black   noir       — le coup de poing : on s'arrête
+ *   (défaut)      blanc cassé — le corps du site, là où l'on lit
+ *   .band-blue    bleu plein  — l'identité : on est chez eux
+ *   .band-dark    noir        — le coup de poing : on s'arrête
+ *
+ * PROPORTION VISÉE : 65 % clair, 25 % bleu, 10 % noir. Le noir est rare
+ * par construction — c'est ce qui lui garde sa force.
  *
  * MÉCANIQUE : une bande ne restyle RIEN. Elle redéfinit les jetons pour
  * ses enfants, et les composants déjà écrits (.btn, .eyebrow, .display,
@@ -247,45 +277,90 @@ html.is-locked, html.is-locked body { overflow: hidden; height: 100%; }
  * components re-skin cleanly »). Aucun composant n'a besoin de savoir
  * sur quel fond il est posé. */
 
-.band-light, .band-black { position: relative; }
+.band-blue, .band-dark, .band-tint { position: relative; }
 
-.band-light {
-  --void:     #f7f5f9;
-  --paper:    #f7f5f9;
-  --paper-2:  #ffffff;
-  --paper-3:  #eceaf1;
-  --white:    #ffffff;
-  --ink:      #14152a;
-  --ink-soft: #3a3b57;
-  --muted:    #5c5a72;
-  --spark:    #272845;   /* sur fond clair, l'accent EST le bleu nuit */
-  --spark-2:  #6e6b85;
-  --on-spark: #f7f5f9;   /* ce qui s'écrit SUR l'accent s'inverse aussi */
-  --void-rgb:    247, 245, 249;
-  --paper-rgb:   247, 245, 249;
-  --paper-2-rgb: 255, 255, 255;
-  --ink-rgb:     20, 21, 42;
-  --spark-rgb:   39, 40, 69;
-  --spark-2-rgb: 110, 107, 133;
-  --line:     rgba(var(--navy-rgb),.18);
-  --line-soft:rgba(var(--navy-rgb),.09);
-  --line-ctl: rgba(var(--navy-rgb),.42);
-  --shadow:   0 22px 60px -26px rgba(var(--navy-rgb),.3);
-  --glow:     0 0 30px rgba(var(--navy-rgb),.14);
-  --chrome:   linear-gradient(115deg, #272845 8%, #5d5b7d 38%, #272845 55%, #4a4868 78%, #272845 100%);
+/* --- LA BANDE BLEUE : l'identité, à pleine force ---
+       Le configurateur et le pied de page la rejoignent. Le pied
+       surtout : la dernière chose que l'on voit doit être la couleur du
+       club, pas un gris. Et le configurateur, posé au milieu du parcours,
+       donne au bleu sa part des 25 % — sans lui, le site n'aurait que du
+       noir et du blanc, et la couleur du club n'existerait nulle part. */
+.band-blue, .config, .footer {
+  --void:     #0a0b0e;
+  --paper:    #1b4877;
+  --paper-2:  #14375c;
+  --paper-3:  #2360a0;
+  --white:    #14375c;
+  --ink:      #f2f0f5;   /* 8,3:1 */
+  --ink-soft: #d5d2d8;   /* 6,3:1 */
+  --muted:    #c3d5e8;   /* 6,3:1 */
+  --spark:    #f7f5f9;   /* sur le bleu, l'accent redevient la lumière */
+  --spark-2:  #c3d5e8;
+  --on-spark: #1b4877;
+  --paper-rgb:   27, 72, 119;
+  --paper-2-rgb: 20, 55, 92;
+  --ink-rgb:     242, 240, 245;
+  --spark-rgb:   247, 245, 249;
+  --spark-2-rgb: 195, 213, 232;
+  --line:     rgba(var(--spark-rgb),.22);
+  --line-soft:rgba(var(--spark-rgb),.10);
+  --line-ctl: rgba(var(--spark-rgb),.45);
+  --shadow:   0 22px 60px -22px rgba(0,0,0,.5);
+  --glow:     0 0 34px rgba(var(--spark-rgb),.18);
+  --chrome:   linear-gradient(115deg, #f7f5f9 0%, #c3d5e8 52%, #f7f5f9 100%);
   background: var(--paper);
   color: var(--ink);
 }
 
-.band-black {
-  --paper:    #000000;
-  --paper-2:  #0c0d1a;
-  --paper-3:  #1c1d38;
-  --white:    #0c0d1a;
-  --paper-rgb:   0, 0, 0;
-  --paper-2-rgb: 12, 13, 26;
+/* --- LA BANDE NOIRE : le hero et le CTA final ---
+       .band-black est l'alias de l'ancienne DA : des pages la portent
+       encore, elle doit désigner exactement le même registre.
+
+       ET SURTOUT — les sept sections qui posaient DÉJÀ un fond sombre en
+       dur (`background: var(--void)`) sont rattachées ici. Sans ça, la
+       bascule en clair leur donnait un texte sombre sur fond noir : le
+       héros de sept pages et le CTA final de toutes les pages seraient
+       devenus illisibles. Une section qui choisit son fond doit choisir
+       ses jetons avec — c'est la contrepartie de la mécanique de bandes. */
+.band-dark, .band-black,
+.hero, .phero, .gong, .club, .jamais__item {
+  --paper:    #0a0b0e;
+  --paper-2:  #14161c;
+  --paper-3:  #1b4877;
+  --white:    #14161c;
+  --ink:      #f2f0f5;   /* 17,4:1 */
+  --ink-soft: #d5d2d8;   /* 13,2:1 */
+  --muted:    #a8adbb;   /* 8,8:1 */
+  --spark:    #f7f5f9;
+  --spark-2:  #c3d5e8;
+  --on-spark: #0a0b0e;
+  --paper-rgb:   10, 11, 14;
+  --paper-2-rgb: 20, 22, 28;
+  --ink-rgb:     242, 240, 245;
+  --spark-rgb:   247, 245, 249;
+  --spark-2-rgb: 195, 213, 232;
+  --line:     rgba(var(--spark-rgb),.16);
+  --line-soft:rgba(var(--spark-rgb),.07);
+  --line-ctl: rgba(var(--spark-rgb),.38);
+  --shadow:   0 22px 60px -20px rgba(0,0,0,.8);
+  --glow:     0 0 34px rgba(var(--spark-rgb),.14);
+  --chrome:   linear-gradient(115deg, #f7f5f9 0%, #c3d5e8 52%, #f7f5f9 100%);
   background: var(--paper);
+  color: var(--ink);
 }
+
+/* --- LA TEINTE : une respiration DANS le clair, pas un registre.
+       Sert à séparer deux sections claires successives sans casser le
+       rythme. Aucun jeton de texte ne change : seul le fond descend. --- */
+.band-tint { background: var(--paper-3); }
+
+/* .band-light vient de l'ancienne DA sombre, où elle servait à créer une
+   respiration CLAIRE. Le site étant désormais clair de bout en bout, elle
+   n'a plus rien à éclaircir : elle devient une simple teinte. Les pages
+   qui la portent encore restent donc cohérentes. */
+.band-light { background: var(--paper-3); }
+
+.band-blue, .band-dark, .band-black { position: relative; }
 
 /* La couture entre deux registres : un filet d'argent, pas une rupture
    sèche. Une bande claire posée sur du bleu nuit sans couture donne
@@ -396,9 +471,15 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 .menu__link:hover { color: var(--spark); transform: translateX(14px); }
 .menu__link:active { color: var(--spark); transform: translateX(14px) scale(.985); }
 .menu__foot { display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; align-items: center; border-top: 1px solid var(--line); padding-top: 1.4rem; }
-.menu__foot a { display: inline-flex; align-items: center; min-height: 44px; font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); transition: color .3s; }
-.menu__foot a:hover { color: var(--spark); }
-.menu__foot a:active { color: var(--ink); }
+/* `:not(.btn)` — le pied du menu contient AUSSI le CTA d'essai. Sans
+   cette exclusion, `.menu__foot a` (0,1,1) battait `.btn--primary`
+   (0,1,0) et repeignait le bouton en gris d'étiquette : mesuré à 1,09:1
+   sur son fond bleu, illisible. Le bogue préexistait à la bascule en
+   clair (2,4:1 sur l'ancienne palette) — elle l'a seulement rendu
+   flagrant. Même idiome que `.footer__col a:not(.btn)` plus bas. */
+.menu__foot a:not(.btn) { display: inline-flex; align-items: center; min-height: 44px; font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); transition: color .3s; }
+.menu__foot a:not(.btn):hover { color: var(--spark); }
+.menu__foot a:not(.btn):active { color: var(--ink); }
 
 /* --------------------------- TICKER ------------------------------- */
 .marquee { overflow: hidden; border-block: 1px solid var(--line); padding-block: .85rem; background: var(--white); }
@@ -430,7 +511,7 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 }
 
 /* ------------------- FOOTER — la fiche technique ------------------ */
-.footer { background: var(--paper-3); border-top: 1px solid var(--line); padding-block: clamp(3rem,6vw,4.5rem) 2rem; }
+.footer { background: var(--paper); border-top: 1px solid var(--line); padding-block: clamp(3rem,6vw,4.5rem) 2rem; }
 .footer__head { display: grid; gap: 1.6rem; grid-template-columns: 1fr; align-items: end; }
 @media (min-width: 820px){ .footer__head { grid-template-columns: 1fr auto; } }
 .footer__cut { font-size: clamp(2rem,5vw,3.8rem); margin-top: 1rem; }

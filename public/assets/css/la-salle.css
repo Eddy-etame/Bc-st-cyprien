@@ -71,10 +71,10 @@
 /* la dernière-née = la salle allumée (le bout de la lignée) */
 .sister--self { background: var(--spark); border-color: var(--spark); box-shadow: var(--glow), var(--shadow); }
 .sister--self .sister__i { color: rgba(var(--void-rgb),.6); }
-.sister--self .sister__tag { color: var(--navy); }
-.sister--self .sister__name { color: var(--navy); }
-.sister--self .sister__feat { color: rgba(var(--navy-rgb),.78); }
-.sister__here { font: 600 .62rem/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--navy); background: rgba(var(--navy-rgb),.1); border: 1px solid rgba(var(--navy-rgb),.22); border-radius: 100px; padding: .55em .9em; white-space: nowrap; }
+.sister--self .sister__tag { color: var(--on-spark); }
+.sister--self .sister__name { color: var(--on-spark); }
+.sister--self .sister__feat { color: rgba(var(--spark-rgb),.82); }
+.sister__here { font: 600 .62rem/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--on-spark); background: rgba(var(--spark-rgb),.16); border: 1px solid rgba(var(--spark-rgb),.34); border-radius: 100px; padding: .55em .9em; white-space: nowrap; }
 
 /* ===================== INFOS PRATIQUES ========================= */
 .infos__grid { display: grid; gap: clamp(1.8rem,4vw,3.4rem); grid-template-columns: 1fr; align-items: center; }
