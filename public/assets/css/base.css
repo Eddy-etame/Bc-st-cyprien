@@ -323,7 +323,11 @@ html.is-locked, html.is-locked body { overflow: hidden; height: 100%; }
        devenus illisibles. Une section qui choisit son fond doit choisir
        ses jetons avec — c'est la contrepartie de la mécanique de bandes. */
 .band-dark, .band-black,
-.hero, .phero, .gong, .club, .jamais__item {
+.hero, .phero, .gong, .club, .jamais__item,
+/* `.libre` pose une photo et un voile sombre par-dessus : elle choisit
+   donc son fond, elle doit choisir ses jetons avec. Sans cette ligne,
+   son titre sortait en #12141c sur le voile — 1,12:1, illisible. */
+.libre {
   --paper:    #0a0b0e;
   --paper-2:  #14161c;
   --paper-3:  #1b4877;
