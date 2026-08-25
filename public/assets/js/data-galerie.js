@@ -36,7 +36,7 @@ export const GALLERY = [
   },
   {
     id: "pieds-poings", zone: "Le pieds-poings", spec: "Thaï · K1",
-    lede: "Cinq créneaux tenus à deux : Tawee le midi, Victor G le soir — le sixième, samedi 18h, attend son encadrant. Les tibias et les genoux entrent dans le jeu, la technique ne baisse pas d’un cran.",
+    lede: "Le tapis pieds-poings — le sixième, samedi 18h, attend son encadrant. Les tibias et les genoux entrent dans le jeu, la technique ne baisse pas d’un cran.",
     shots: [
       { f: "thai-2.webp", feat: "wide", cap: "Aux sacs", alt: "Le groupe aux sacs pendant un cours pieds-poings, chacun sur son sac le long de la charpente" },
       { f: "thai.webp", cap: "Tibias, genoux", alt: "Une pratiquante lance un coup de pied haut dans la cage, appui planté et garde tenue" },
@@ -52,7 +52,7 @@ export const GALLERY = [
   },
   {
     id: "moteur", zone: "Le moteur", spec: "Hyrox · cross · muscu",
-    lede: "La zone qui porte tout le reste : charges, rameurs, circuits. Hicham y tient l’Hyrox le mercredi et le cross deux fois par semaine — la caisse se construit ici, pas sur le ring.",
+    lede: "La zone qui porte tout le reste : charges, rameurs, circuits. La caisse se construit ici, pas sur le ring.",
     shots: [
       { f: "muscu.webp", feat: "wide", cap: "Charges", alt: "La salle de charge : cage à squat, bancs inclinés et machines alignées sur sol caoutchouc" },
       { f: "cross.webp", cap: "Cross-training", alt: "La zone moteur : rameurs alignés au premier plan, bancs et racks derrière, bannière Boxing Center au mur" },

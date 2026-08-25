@@ -1,18 +1,17 @@
 # Boxing Center Saint-Cyprien
 
-> Salle de boxe de 1 200 m² sur un seul niveau au 11 rue Sainte-Lucie, 31300 Toulouse (quartier Saint-Cyprien, rive gauche), à 4 minutes à pied du métro ligne A (Saint-Cyprien République). Premier Boxing Center rive gauche et dernière-née des 5 salles du réseau Boxing Center. Boxe anglaise, boxe thaï/K1, grappling, Hyrox & cross-training, Lady Punch, boxing camp et école enfants dès 3 ans. Ouvert lundi–samedi 10h00–21h15, séance d’essai 10 €.
+> Salle de boxe au 11 rue Sainte-Lucie, 31300 Toulouse (quartier Saint-Cyprien, rive gauche), à 4 minutes à pied du métro ligne A (Saint-Cyprien République). Premier Boxing Center rive gauche et dernière-née des 5 salles du réseau Boxing Center. Boxe anglaise, boxe thaï/K1, grappling, Hyrox & cross-training, Lady Punch, boxing camp et école enfants dès 3 ans. Ouvert lundi–samedi 10h00–21h15, séance d’essai 10 €.
 
 Le détail factuel page par page est dans [llms-full.txt](https://bc-st-cyprien.vercel.app/llms-full.txt).
 
 ## Pages
 
-- [Accueil](https://bc-st-cyprien.vercel.app/): présentation de la salle — 1 200 m² rive gauche, 7 disciplines et 29 cours par semaine, 4 coachs nommés au planning, métro A à 4 min, séance d’essai 10 €.
-- [Ta première séance](https://bc-st-cyprien.vercel.app/premiere-seance/): le déroulé réel d’une première séance — le repère (11 rue Sainte-Lucie, métro A à 4 min), arriver 10 minutes avant, dire que c’est sa première fois, gants et protections prêtés, échauffement d’un quart d’heure, un point technique, le sac ; ce qu’on ne fait PAS (aucun sparring imposé, aucun test d’entrée, aucun engagement à la sortie) ; la tenue (t-shirt, short ou legging, baskets propres, bouteille d’eau) ; essai 10 €.
+- [Accueil](https://bc-st-cyprien.vercel.app/): présentation de la salle — 7 disciplines et 29 cours par semaine, trois coachs, métro A à 4 min, séance d’essai 10 €.
 - [La salle](https://bc-st-cyprien.vercel.app/la-salle/): la visite en six postes (plateau, ring d’anglaise, surface pieds-poings thaï/K1, zone cross & muscu, école, collectif), le déroulé d’une séance de la porte au tapis, et la lignée des 5 clubs du réseau.
-- [Activités](https://bc-st-cyprien.vercel.app/activites/): catalogue des disciplines avec coach, niveau et créneaux — boxe anglaise, thaï/K1, grappling, Hyrox & cross, Lady Punch, boxe éducative dès 3 ans, boxing camp ; plus un aiguillage « par où commencer » (cinq intentions → une discipline) et trois semaines-types montées avec de vrais créneaux du planning.
-- [Coachs](https://bc-st-cyprien.vercel.app/coachs/): l’encadrement — Dadi (anglaise, Lady Punch, école, 12 créneaux/semaine), Tawee (thaï/K1, 2), Hicham (Hyrox, cross, camp, 5), Victor G (thaï/K1, 3) ; la semaine réelle de chaque coach, la méthode d’encadrement, et l’état assumé du grappling (aucun encadrant nommé à ce jour).
+- [Activités](https://bc-st-cyprien.vercel.app/activites/): catalogue des disciplines avec niveau et créneaux — boxe anglaise, thaï/K1, grappling, Hyrox & cross, Lady Punch, boxe éducative dès 3 ans, boxing camp ; plus un aiguillage « par où commencer » (cinq intentions → une discipline) et trois semaines-types montées avec de vrais créneaux du planning.
+- [Coachs](https://bc-st-cyprien.vercel.app/coachs/): l’encadrement — Dadi (anglaise, Lady Punch, école), Tawee (thaï/K1), Hicham (Hyrox, cross, camp) ; pour chacun, sa photo, sa discipline et le planning de cette discipline. Qui encadre quel créneau n’est pas publié.
 - [Galerie](https://bc-st-cyprien.vercel.app/galerie/): 16 photos réelles de la salle en 7 zones (plateau, ring, pieds-poings, sol, moteur, Lady Punch, école), consultables en grand dans une visionneuse.
-- [Planning](https://bc-st-cyprien.vercel.app/plannings/): 29 cours par semaine sur 6 jours (13 en journée, 16 dès 18h, 7 disciplines) ; la grille hebdomadaire filtrable (jour, discipline, coach) et le poster officiel de la saison qui fait foi.
+- [Planning](https://bc-st-cyprien.vercel.app/plannings/): 29 cours par semaine sur 6 jours (13 en journée, 16 dès 18h, 7 disciplines) ; la grille hebdomadaire filtrable (jour, discipline) et le poster officiel de la saison qui fait foi.
 - [Tarifs](https://bc-st-cyprien.vercel.app/tarifs/): offre Rentrée 29 € par personne, offre Saison 259 € les 12 mois, abonnement classique 44,99 € adulte / 36,99 € étudiant par échéance de 4 semaines, école 295 €/an t-shirt inclus (baby 250 €), essai 10 € en dernier, conditions en clair et avis Google (4,0/5, 97 avis).
 - [Contact](https://bc-st-cyprien.vercel.app/contact/): adresse, horaires, téléphone, carte, itinéraire métro et questions fréquentes.
 
@@ -29,14 +28,14 @@ Une pastille en bas à droite de chaque page ouvre un assistant conversationnel.
 - Téléphone : 05 62 24 46 82 (+33562244682)
 - E-mail : boxingcenter31@gmail.com
 - Horaires : lundi–samedi 10h00–21h15 ; dimanche fermé (dernier cours 20h–21h15 selon les jours)
-- Surface : 1 200 m² sur un seul niveau
+- Équipement : Sacs de frappe, espace tatamis et ring ; musculation, cardio et cross-training en accès libre. La page officielle de Saint-Cyprien ne donne aucune surface — les 1 200 m² sont ceux de Toulouse États-Unis, ne jamais les attribuer à cette salle.
 - Fédérations : FFBoxe, FFKMDA, FMMAF
 - Réseau : 5 clubs — Portet, Minimes, États-Unis, Saint-Cyprien, Ramonville (accès libre aux 5 clubs avec l’offre Saison)
 - Sites du réseau : site mère https://boxingcenter.fr/ · Portet https://www.boxing-center-portet.fr/ · Minimes https://bc-minimes.vercel.app/ · Ramonville https://bc-ramonville.vercel.app/ · boutique https://boutique.boxingcenter.fr/ · inscriptions et réservations https://boutique.boxingcenter.fr/
-- Chaque salle du réseau a sa propre page d’accueil et ses propres horaires : ne jamais reporter un créneau, un coach ou un tarif d’une salle sur une autre. Ce document ne décrit QUE Saint-Cyprien.
+- Chaque salle du réseau a sa propre page d’accueil et ses propres horaires : ne jamais reporter un créneau, un coach, une surface ou un tarif d’une salle sur une autre. Ce document ne décrit QUE Saint-Cyprien.
 - Le backoffice /admin/ et les fonctions /api/ ne sont pas indexables (noindex + interdits dans robots.txt) : ne pas les citer ni les suivre.
-- Disciplines : boxe anglaise (coach Dadi) ; boxe thaï/K1 (coachs Tawee et Victor G) ; grappling ; Hyrox & cross-training (coach Hicham) ; Lady Punch 100 % féminin (coach Dadi) ; boxe éducative & Baby Boxe dès 3 ans — Baby 3/6, éducative 7/11, ados 12/16, compétiteurs (coach Dadi) ; boxing camp (coachs Dadi et Hicham)
-- Coachs : Dadi (anglaise, Lady Punch, école — le pilier, 15 créneaux/semaine), Tawee (thaï/K1, 2), Hicham (Hyrox, cross, camp, 5), Victor G (thaï/K1, 3). Quatre créneaux du poster ne portent aucun nom (lundi 12h40 Boxing Camp, mardi et jeudi 19h Grappling, samedi 18h Boxe Pieds-Poings) : ne leur attribuer aucun coach.
+- Disciplines : boxe anglaise ; boxe thaï/K1 ; grappling ; Hyrox & cross-training ; Lady Punch 100 % féminin ; boxe éducative & Baby Boxe dès 3 ans — Baby 3/6, éducative 7/11, ados 12/16, compétiteurs ; boxing camp
+- Coachs : Dadi (anglaise, Lady Punch, école), Tawee (thaï/K1), Hicham (Hyrox, cross, Boxing Camp). QUI ENCADRE QUEL CRÉNEAU N’EST PAS PUBLIÉ : c’est interne au club. Ne jamais attribuer un coach à un jour ou à une heure, ni le déduire — cela se demande au 05 62 24 46 82.
 - Séance d’essai : 10 € — toutes disciplines, gants et matériel prêtés, sans engagement — réservation https://boutique.boxingcenter.fr/seance-essai
 - Offre Rentrée : 29 € par personne (jamais « 29 € pour deux ») — 4 semaines, cours illimités, sans engagement (au lieu de 44,99 €)
 - Offre Saison : 259 € les 12 mois — payable en 4× sans frais, accès libre aux 5 clubs du réseau

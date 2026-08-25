@@ -17,11 +17,11 @@
 export const ENCADREMENT = [
   {
     n: "01", t: "Un fil rouge, pas un roulement",
-    d: "Dadi tient l’anglaise, la Lady Punch et l’école entière — Baby Boxe, 7/11, 12/16, compétiteurs. Ton enfant garde le même coach du premier déplacement au premier combat, et toi le même œil du midi au créneau de 20h.",
+    d: "Dadi tient l’anglaise, la Lady Punch et l’école entière — Baby Boxe, 7/11, 12/16, compétiteurs. Ton enfant garde le même coach du premier déplacement au premier combat, et toi le même œil d’une séance à l’autre.",
   },
   {
     n: "02", t: "Une surface, un spécialiste",
-    d: "Le pieds-poings à Tawee et Victor G, le moteur à Hicham. Personne ne fait semblant de couvrir une discipline qui n’est pas la sienne : quatre noms qui tiennent leur poste valent mieux que dix qui tournent.",
+    d: "L’anglaise et l’école à Dadi, le pieds-poings à Tawee, le moteur à Hicham. Personne ne fait semblant de couvrir une discipline qui n’est pas la sienne : quatre noms qui tiennent leur poste valent mieux que dix qui tournent.",
   },
   {
     n: "03", t: "Un visage seulement s’il est prouvé",

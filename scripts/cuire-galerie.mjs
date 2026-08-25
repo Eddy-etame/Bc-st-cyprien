@@ -6,7 +6,7 @@
        <div id="galerie"></div>
 
    Zéro balise <img> dans toute la page. La seule page du site dont l'objet
-   est de MONTRER les 1 200 m² ne montrait rien à un robot. Google Images
+   est de MONTRER la salle ne montrait rien à un robot. Google Images
    n'indexe que ce qu'il lit dans le HTML — seize clichés, aucun déclaré.
    Et les robots des assistants (GPTBot, ClaudeBot, PerplexityBot)
    n'exécutent pas le JavaScript : pour eux, la salle n'avait pas de visage.

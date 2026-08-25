@@ -34,7 +34,7 @@ const COMMON = ["public/assets/js/data.js", "public/content.json", "public/asset
    par page, et six pages sur neuf montraient la même.
 
    Chaque photo reçoit donc son titre et sa légende, écrits avec les mots
-   de Saint-Cyprien : les 1 200 m² d'un seul tenant, la rive gauche, la rue
+   de Saint-Cyprien : le plateau, la rive gauche, la rue
    Sainte-Lucie. Recopier la légende d'une salle sœur ferait du contenu
    dupliqué pour le moteur — et une phrase fausse pour le lecteur.
 
@@ -44,7 +44,7 @@ const COMMON = ["public/assets/js/data.js", "public/content.json", "public/asset
    --------------------------------------------------------------------- */
 const CLUB = "Boxing Center Saint-Cyprien";
 const I = {
-  salle:     ["/assets/img/sc/salle-1.webp", `Le plateau de 1 200 m² d'un seul tenant — ${CLUB}`, "La salle du Boxing Center Saint-Cyprien vue depuis la porte : les sacs, le ring et la cage au fond, sur un seul niveau."],
+  salle:     ["/assets/img/sc/salle-1.webp", `Le plateau, vu depuis la porte — ${CLUB}`, "La salle du Boxing Center Saint-Cyprien vue depuis la porte : les sacs, le ring et la cage au fond."],
   anglaise:  ["/assets/img/sc/anglaise-header.webp", `Boxe anglaise, le noble art — ${CLUB}`, "Cours de boxe anglaise au Boxing Center Saint-Cyprien, rive gauche de Toulouse."],
   anglaise2: ["/assets/img/sc/anglaise.webp", `Sur le ring en boxe anglaise — ${CLUB}`, "Travail au ring pendant un cours de boxe anglaise, 11 rue Sainte-Lucie à Toulouse."],
   thai:      ["/assets/img/sc/thai.webp", `Boxe thaï — ${CLUB}`, "Cours de boxe thaï au Boxing Center Saint-Cyprien : coudes, genoux, tibias."],

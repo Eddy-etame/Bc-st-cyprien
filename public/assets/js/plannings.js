@@ -44,7 +44,10 @@ function renderPulse() {
 function renderFilters() {
   const box = $("#filters");
   if (!box) return;
-  const coaches = [...new Set(SCHEDULE.map((s) => s.coach))].filter((c) => !NON_COACH.has(c));
+  /* Le filtre par coach a ete retire : il publiait qui encadre quoi, ce
+     que le club garde pour lui. La grille se filtre par jour et par
+     discipline — c'est ce qu'un visiteur cherche de toute facon. */
+  const coaches = [];
   const chip = (f, v, label, on) =>
     `<button class="chip${on ? " is-on" : ""}" type="button" data-f="${f}" data-v="${v}" aria-pressed="${on}">${label}</button>`;
   box.innerHTML = `
@@ -84,7 +87,8 @@ function renderGrid() {
             // le créneau sans encadrant nommé porte sa marque : c’est un état
             // assumé, pas une ligne oubliée (cf. COACH_TBD dans data.js).
             const tbd = s.coach === COACH_TBD;
-            const meta = tbd ? `<i class="tbd">${COACH_TBD_SHORT}</i> · ${s.lvl}` : `${s.coach} · ${s.lvl}`;
+            /* plus de nom d encadrant sur le creneau : seul le niveau reste */
+            const meta = s.lvl;
             return `<li class="slot${tbd ? " slot--tbd" : ""}" data-day="${s.day}" data-key="${s.key}" data-coach="${s.coach}">
           <span class="slot__t">${s.time}</span>
           <span class="slot__body"><b class="slot__name">${s.name}</b><span class="slot__meta">${meta}</span></span>

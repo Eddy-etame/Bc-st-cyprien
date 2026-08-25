@@ -17,7 +17,9 @@ export const STATS = [
      de cours de la semaine, calculé depuis SCHEDULE au rendu (`from`), et
      jamais recopié à la main. */
   { from: "cours", suffix: "", l: "cours par semaine, du lundi au samedi" },
-  { v: 4, suffix: "", l: "coachs spécialisés au planning" },
+  /* trois coachs — et on ne dit pas « au planning » : ce que chacun
+     enseigne est public, quand il l'enseigne ne l'est pas. */
+  { v: 3, suffix: "", l: "coachs spécialisés" },
 ];
 
 /* ------------------------------------------------------------------ *

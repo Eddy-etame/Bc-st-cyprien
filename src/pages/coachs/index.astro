@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Coachs sport de combat | Boxing Center Saint-Cyprien</title>
-  <meta name="description" content="Dadi à l’anglaise, la Lady Punch et l’école ; Tawee et Victor G au pieds-poings thaï/K1 ; Hicham au Hyrox et au camp. Des noms tirés du planning officiel." />
+  <meta name="description" content="Dadi à l’anglaise, la Lady Punch et l’école ; Tawee au pieds-poings thaï/K1 ; Hicham au Hyrox, au cross et au Boxing Camp." />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/space-grotesk-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin />
   <meta name="keywords" content="coach boxe Toulouse, coach boxe Saint-Cyprien, Dadi boxing center, coach boxe thaï Toulouse, coach Hyrox Toulouse, entraîneur boxe rive gauche, boxing gym Toulouse, boxing club Toulouse, boxing lessons Toulouse, boxing classes Toulouse rive gauche, MMA gym Toulouse, kickboxing Toulouse, muay thai Toulouse, martial arts gym Toulouse, kids boxing Toulouse, women boxing Toulouse, gym near Saint-Cyprien" />
@@ -26,7 +26,7 @@
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Boxing Center Saint-Cyprien" />
   <meta property="og:title" content="Les coachs | Boxing Center Saint-Cyprien" />
-  <meta property="og:description" content="Dadi : anglaise, Lady Punch, école. Tawee et Victor G au pieds-poings, Hicham au moteur. Des noms tirés du planning officiel. Rive gauche, Toulouse." />
+  <meta property="og:description" content="Dadi : anglaise, Lady Punch, école. Tawee au pieds-poings, Hicham au moteur. Rive gauche, Toulouse." />
   <meta property="og:url" content="https://bc-st-cyprien.vercel.app/coachs/" />
   <meta property="og:image" content="https://bc-st-cyprien.vercel.app/assets/img/sc/salle-1.webp" />
   <meta property="og:image:type" content="image/webp" />
@@ -37,18 +37,18 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Les coachs | Boxing Center Saint-Cyprien" />
-  <meta name="twitter:description" content="Dadi : anglaise, Lady Punch, école. Tawee et Victor G au pieds-poings, Hicham au moteur. Rive gauche, Toulouse." />
+  <meta name="twitter:description" content="Dadi : anglaise, Lady Punch, école. Tawee au pieds-poings, Hicham au moteur. Rive gauche, Toulouse." />
   <meta name="twitter:image" content="https://bc-st-cyprien.vercel.app/assets/img/sc/salle-1.webp" />
 
-  <!-- LCP : le portrait du pilier (Dadi) est injecté par coachs.js dans un #coachlead vide,
-       donc invisible au preload scanner — on le précharge explicitement. -->
+  <!-- Les cartes coachs sont injectées par coachs.js dans un #roster vide :
+       leurs photos échappent au preload scanner. On précharge la première. -->
   <link rel="preload" as="image" href="/assets/img/sc/coach-dadi.webp" fetchpriority="high" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=35" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=37" />
   <link rel="stylesheet" href="/assets/css/roulette.css?v=22" />
   <link rel="stylesheet" href="/assets/css/photos.css?v=22" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=22" />
-  <link rel="stylesheet" href="/assets/css/coachs.css?v=22" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=37" />
+  <link rel="stylesheet" href="/assets/css/coachs.css?v=25" />
 
   <!-- SEO/GEO — graphe JSON-LD unifié (organisation · salle · site · page · image ·
        fil d’Ariane · coachs). Faits réels uniquement — miroir de data.js. -->
@@ -303,8 +303,8 @@
         "@type": "WebPage",
         "@id": "https://bc-st-cyprien.vercel.app/coachs/#webpage",
         "url": "https://bc-st-cyprien.vercel.app/coachs/",
-        "name": "Les coachs — Boxing Center Saint-Cyprien, Toulouse rive gauche (Dadi, Tawee, Hicham, Victor G)",
-        "description": "L’encadrement de Boxing Center Saint-Cyprien : Dadi — anglaise, Lady Punch et toute l’école ; Tawee et Victor G au pieds-poings thaï/K1 ; Hicham au moteur Hyrox & camp. Des noms tirés du planning officiel, rive gauche à Toulouse.",
+        "name": "Les coachs — Boxing Center Saint-Cyprien, Toulouse rive gauche (Dadi, Tawee, Hicham)",
+        "description": "L’encadrement de Boxing Center Saint-Cyprien : Dadi — anglaise, Lady Punch et toute l’école ; Tawee au pieds-poings thaï/K1 ; Hicham au moteur Hyrox & camp. Rive gauche à Toulouse.",
         "isPartOf": {
           "@id": "https://bc-st-cyprien.vercel.app/#website"
         },
@@ -365,15 +365,6 @@
         "worksFor": {
           "@id": "https://bc-st-cyprien.vercel.app/#salle"
         }
-      },
-      {
-        "@type": "Person",
-        "@id": "https://bc-st-cyprien.vercel.app/coachs/#victor-g",
-        "name": "Victor G",
-        "jobTitle": "Coach : boxe thaï / K1",
-        "worksFor": {
-          "@id": "https://bc-st-cyprien.vercel.app/#salle"
-        }
       }
     ]
   }
@@ -391,56 +382,24 @@
 
     <!-- ========================= EN-TÊTE ========================== -->
     <header class="phero" aria-label="Les coachs">
-      <img class="phero__bg" src="/assets/img/sc/coach-ring.webp" alt="Un coach au bord du ring" loading="eager" decoding="async" />
+      <img class="phero__bg" src="/assets/img/sc/coachs-header.webp" alt="Un coach en casquette et sweat Boxing Center tient le sac de frappe pendant qu'une pratiquante travaille ses coups" loading="eager" fetchpriority="high" decoding="async" />
       <div class="phero__spot" aria-hidden="true"></div>
       <div class="wrap">
-        <p class="eyebrow" data-reveal style="margin-top:1.1rem">L’encadrement · 4 noms au planning</p>
+        <p class="eyebrow" data-reveal style="margin-top:1.1rem">L’encadrement · trois coachs</p>
         <h1 class="display"><span class="reveal-mask"><span>Les coachs</span></span><span class="reveal-mask"><span class="tint">de Saint-Cyprien.</span></span></h1>
         <div class="phero__mark" aria-hidden="true"></div>
       </div>
     </header>
 
-    <!-- ==================== LE PILIER — Dadi ====================== -->
-    <section class="section coachlead-sec" aria-label="Dadi — le pilier">
-      <div class="wrap">
-        <div class="coachlead" id="coachlead"></div>
-      </div>
-    </section>
-
-    <!-- ==================== LES SPÉCIALISTES ====================== -->
-    <section class="section roster-sec" aria-label="Les spécialistes">
+    <!-- ======================== L’ÉQUIPE ========================== -->
+    <section class="section roster-sec" aria-label="L’équipe">
       <div class="wrap">
         <div class="roster-sec__head" data-reveal>
-          <span class="eyebrow">Les spécialistes</span>
-          <h2 class="display roster-sec__title">Le faisceau passe d’un coach à l’autre.</h2>
-          <p class="roster-sec__lead">Trois noms du planning, chacun sur sa surface. Pas de photo tant qu’on ne peut pas la prouver — la lumière, elle, ne triche pas.</p>
+          <span class="eyebrow">L’équipe</span>
+          <h2 class="display roster-sec__title">Trois coachs, <span class="tint">trois surfaces.</span></h2>
+          <p class="roster-sec__lead">Un visage, ce qu’il enseigne, et le planning de sa discipline.</p>
         </div>
         <div class="roster" id="roster"></div>
-        <p class="roster__note" data-reveal>Les portraits arrivent au fur et à mesure. On ne met jamais un visage sous un nom qu’on ne peut pas garantir.</p>
-      </div>
-    </section>
-
-    <!-- ============ LA SEMAINE, COACH PAR COACH (dérivée) ========= -->
-    <section class="section semaine-sec" aria-label="La semaine coach par coach">
-      <div class="wrap">
-        <div class="semaine-sec__head" data-reveal>
-          <span class="eyebrow">Qui tu auras en face</span>
-          <h2 class="display semaine-sec__title"><span class="reveal-mask"><span>Ouvre un nom.</span></span><span class="reveal-mask"><span class="tint">Tu vois sa semaine.</span></span></h2>
-          <p class="semaine-sec__lead">Les créneaux ci-dessous sortent du même planning que la page Planning — pas d’une deuxième liste tenue à la main. Si le poster change, ceci change.</p>
-        </div>
-        <div class="wtabs" id="semaine-tabs" role="tablist" aria-label="Choisir un coach"></div>
-        <div class="wsheet" id="semaine-panel" role="tabpanel" aria-live="polite" data-reveal></div>
-      </div>
-    </section>
-
-    <!-- =========== LE TAPIS SANS NOM — l’état assumé ============== -->
-    <section class="section tbd-sec" aria-label="Le créneau dont l’encadrant n’est pas encore nommé">
-      <div class="wrap">
-        <div class="tbd-sec__head" data-reveal>
-          <span class="eyebrow">La case qu’on laisse vide</span>
-          <h2 class="display tbd-sec__title">Ce qu’on n’écrit pas encore.</h2>
-        </div>
-        <div class="tbdcard" id="tbd" data-reveal></div>
       </div>
     </section>
 
@@ -510,6 +469,6 @@
        une seule requête same-origin au lieu de trois vers un CDN tiers. -->
   <script is:inline defer src="/assets/js/vendor.min.js?v=22"></script>
   <script is:inline type="module" src="/assets/js/site.js?v=22"></script>
-  <script is:inline type="module" src="/assets/js/coachs.js?v=22"></script>
+  <script is:inline type="module" src="/assets/js/coachs.js?v=24"></script>
 </body>
 </html>

@@ -195,6 +195,7 @@
      un dégradé métallique sur du texte le rend illisible. L'accent est
      plein, et c'est le bleu. */
   --chrome:   linear-gradient(115deg, #2360a0 0%, #1b4877 52%, #2360a0 100%);
+  --tint:     #1b4877;   /* le bleu des mots accentues, sur fond clair */
 
   --bg: var(--paper);
   --fg: var(--ink);
@@ -308,6 +309,9 @@ html.is-locked, html.is-locked body { overflow: hidden; height: 100%; }
   --shadow:   0 22px 60px -22px rgba(0,0,0,.5);
   --glow:     0 0 34px rgba(var(--spark-rgb),.18);
   --chrome:   linear-gradient(115deg, #f7f5f9 0%, #c3d5e8 52%, #f7f5f9 100%);
+  /* Sur le bleu plein, un accent bleu se noierait dans son propre fond :
+     le .tint monte dun cran de clarte (6,99:1) et reste du bleu. */
+  --tint:     #cfe0f6;
   background: var(--paper);
   color: var(--ink);
 }
@@ -350,6 +354,7 @@ html.is-locked, html.is-locked body { overflow: hidden; height: 100%; }
   --shadow:   0 22px 60px -20px rgba(0,0,0,.8);
   --glow:     0 0 34px rgba(var(--spark-rgb),.14);
   --chrome:   linear-gradient(115deg, #f7f5f9 0%, #c3d5e8 52%, #f7f5f9 100%);
+  --tint:     #8cbbf2;   /* le meme bleu, eclairci pour le fond sombre */
   background: var(--paper);
   color: var(--ink);
 }
@@ -383,7 +388,7 @@ html.is-locked, html.is-locked body { overflow: hidden; height: 100%; }
 
 .display { font-family: var(--f-display); font-weight: 700; line-height: 1.0; letter-spacing: -.03em; font-size: var(--step-3); color: var(--ink); }
 /* the Neuf's metal is LIGHT: accent lines are cast in chrome */
-.tint { background: var(--chrome); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.tint { color: var(--tint); }
 .lead { font-size: var(--step-1); line-height: 1.45; color: var(--ink-soft); font-weight: 450; letter-spacing: -.01em; }
 .reveal-mask { display: block; overflow: hidden;
   /* de la place pour les jambages et les accents : sans ca, .display

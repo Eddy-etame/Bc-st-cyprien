@@ -64,7 +64,6 @@ function renderConfig() {
   mediaBox.innerHTML = DISCIPLINES.map((d, i) => `<div class="media ${i === 0 ? "is-active" : ""}" data-img="${d.img}" data-alt="${esc(d.alt)}" data-label="${d.name}"></div>`).join("");
   const sheet = (d) => `
     <div class="config__facts">
-      <span${d.coachTbd ? ' class="is-tbd"' : ""}><b>Coach</b> ${d.coachTbd ? `<i class="tbd">${COACH_TBD_SHORT}</i>` : d.coach}</span>
       <span><b>Jours</b> ${d.jours}</span>
       <span><b>Niveau</b> ${d.niveau}</span>
     </div>

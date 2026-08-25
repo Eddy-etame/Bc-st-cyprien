@@ -29,9 +29,14 @@
     "verdict": "webp"
   },
   "sc/coach-dadi.webp": {
-    "octets": 71694,
+    "octets": 84652,
     "verdict": "avif",
     "q": 60
+  },
+  "sc/coach-hicham.webp": {
+    "octets": 35876,
+    "verdict": "avif",
+    "q": 45
   },
   "sc/coach-portrait-1.webp": {
     "octets": 131154,
@@ -56,6 +61,16 @@
   "sc/coach-ring.webp": {
     "octets": 114218,
     "verdict": "webp"
+  },
+  "sc/coach-tawee.webp": {
+    "octets": 81328,
+    "verdict": "avif",
+    "q": 60
+  },
+  "sc/coachs-header.webp": {
+    "octets": 103234,
+    "verdict": "avif",
+    "q": 55
   },
   "sc/cours-garde.webp": {
     "octets": 141058,

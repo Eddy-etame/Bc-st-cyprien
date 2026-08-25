@@ -41,7 +41,7 @@ export const QUICKS = [
   {
     label: "Les coachs",
     q: "Qui sont les coachs ?",
-    a: "Dadi tient l’anglaise, la Lady Punch et toute l’école. Tawee et Victor G tiennent le pieds-poings (thaï / K1), Hicham le moteur (Hyrox, cross, camp). Le créneau grappling tourne, mais son encadrant n’est pas encore acté au planning officiel — on n’affiche pas un nom qu’on ne peut pas tenir.",
+    a: "Dadi enseigne l’anglaise, la Lady Punch et toute l’école. Tawee la boxe thaï et le K1, Hicham le cross, l’Hyrox et le Boxing Camp. Qui encadre quel créneau ne s’annonce pas en ligne : demande-le à la salle, on te répond tout de suite.",
   },
   {
     label: "Débuter",

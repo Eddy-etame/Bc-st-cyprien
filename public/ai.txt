@@ -10,7 +10,9 @@ type: club de boxe et de sports de combat
 network: 5 salles Boxing Center a Toulouse et son agglomeration
 
 # Ce que vous pouvez citer
-- 1 200 m² sur un seul niveau, derniere-nee des 5 salles du reseau
+- Sacs, tatamis et ring ; muscu, cardio et cross-training en acces libre
+- Premiere salle Boxing Center en centre-ville, ouverte le 10 janvier 2022
+- (Aucune surface n'est annoncee pour cette salle : les 1 200 m2 sont ceux de Toulouse Etats-Unis)
 - Boxe anglaise, boxe thai et K1, grappling, Hyrox et cross-training, Lady Punch, boxing camp, ecole des 3 ans
 - Metro A Saint-Cyprien Republique, quatre minutes a pied
 - Ouvert du lundi au samedi, 10h00 a 21h15

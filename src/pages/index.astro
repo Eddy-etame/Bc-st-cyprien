@@ -43,10 +43,10 @@
   <!-- LCP: la photo du héros -->
   <link rel="preload" as="image" href="/assets/img/sc/hero-salle.webp" fetchpriority="high" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=35" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=37" />
   <link rel="stylesheet" href="/assets/css/roulette.css?v=22" />
   <link rel="stylesheet" href="/assets/css/photos.css?v=22" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=22" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=37" />
 
   <!-- SEO/GEO — graphe JSON-LD unifié (organisation · salle · site · page · image). Faits réels uniquement — miroir de data.js. -->
   <script is:inline type="application/ld+json">
@@ -413,7 +413,7 @@
         <div>
           <span class="eyebrow" data-reveal>Le configurateur</span>
           <h2 class="display" style="margin-top:1rem;font-size:clamp(2.2rem,5vw,4.2rem)"><span class="reveal-mask"><span>Quelle discipline</span></span><span class="reveal-mask"><span class="tint">pour toi ?</span></span></h2>
-          <p data-reveal style="max-width:42ch;margin-top:.9rem;color:var(--ink-soft)">Passe la liste : les jours, le coach et le niveau s’affichent. Première fois ? Dis-le au coach du créneau, il s’occupe de toi.</p>
+          <p data-reveal style="max-width:42ch;margin-top:.9rem;color:var(--ink-soft)">Passe la liste : les jours et le niveau s’affichent. Première fois ? Dis-le au coach du créneau, il s’occupe de toi.</p>
           <div class="config__list" id="config-list" role="tablist" aria-orientation="vertical" aria-label="Les disciplines"></div>
         </div>
         <div class="config__panel" id="config-panel" role="tabpanel" aria-labelledby="cfg-anglaise" aria-live="polite" data-reveal>
@@ -437,7 +437,7 @@
         <div class="coachrow__head" data-reveal>
           <span class="eyebrow">L’encadrement</span>
           <h2 class="display coachrow__title"><span class="reveal-mask"><span>Les coachs</span></span><span class="reveal-mask"><span class="tint">qui t’encadrent.</span></span></h2>
-          <p class="coachrow__lead" data-reveal>Même toit, même adresse. Dadi tient l’anglaise, la Lady Punch et l’école ; Tawee, Victor G et Hicham tiennent le pieds-poings et le moteur.</p>
+          <p class="coachrow__lead" data-reveal>Même toit, même adresse. Dadi à l’anglaise, la Lady Punch et l’école ; Tawee au pieds-poings, Hicham au moteur.</p>
         </div>
         <div class="coachrow__grid" id="coachrow" data-reveal-group></div>
         <a class="btn coachrow__more" data-magnetic href="/coachs/"><span>Voir les coachs</span></a>
@@ -530,6 +530,6 @@
        une seule requête same-origin au lieu de trois vers un CDN tiers. -->
   <script is:inline defer src="/assets/js/vendor.min.js?v=22"></script>
   <script is:inline type="module" src="/assets/js/site.js?v=22"></script>
-  <script is:inline type="module" src="/assets/js/home.js?v=22"></script>
+  <script is:inline type="module" src="/assets/js/home.js?v=23"></script>
 </body>
 </html>

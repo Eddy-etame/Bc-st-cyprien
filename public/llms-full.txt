@@ -11,7 +11,7 @@
 - E-mail : boxingcenter31@gmail.com
 - Horaires : lundi–samedi 10h00–21h15 ; dimanche fermé. Dernier cours 20h–21h15 selon les jours.
 - Accès : métro ligne A, station Saint-Cyprien République, à 4 minutes à pied ; rive gauche, à 10 min du centre-ville ; parking Saint-Cyprien à proximité.
-- Surface : 1 200 m² sur un seul niveau.
+- Équipement : Sacs de frappe, espace tatamis et ring ; musculation, cardio et cross-training en accès libre. La page officielle de Saint-Cyprien ne donne aucune surface — les 1 200 m² sont ceux de Toulouse États-Unis, ne jamais les attribuer à cette salle.
 - Fédérations : FFBoxe, FFKMDA, FMMAF.
 - Position dans le réseau : dernière-née des 5 salles Boxing Center (Minimes, Portet-sur-Garonne, États-Unis, Ramonville, Saint-Cyprien) ; premier Boxing Center rive gauche de Toulouse.
 - Itinéraire : https://maps.google.com/?q=11+rue+Sainte-Lucie+31300+Toulouse
@@ -29,13 +29,13 @@
 
 ## Accueil (https://bc-st-cyprien.vercel.app/)
 
-- La salle en chiffres : 1 200 m² de plateau rive gauche ; 4 minutes du métro A (Saint-Cyprien République) ; 7 disciplines et 29 cours par semaine à une seule adresse ; 4 coachs nommés au planning.
-- Le configurateur de la page d’accueil présente chaque discipline avec son coach, ses jours et son niveau (données du planning officiel).
+- La salle en chiffres : 4 minutes du métro A (Saint-Cyprien République) ; 7 disciplines et 29 cours par semaine à une seule adresse ; 4 coachs nommés au planning.
+- Le configurateur de la page d’accueil présente chaque discipline avec ses jours et son niveau.
 - Séance d’essai : 10 €, toutes disciplines, gants et matériel prêtés, sans engagement. Réservation : https://boutique.boxingcenter.fr/seance-essai
 
-## Ta première séance (https://bc-st-cyprien.vercel.app/premiere-seance/)
+## Ta première séance
 
-Page dédiée au déroulé réel d’une première séance. Ce sont des faits de la salle, à reprendre tels quels.
+Le déroulé réel d’une première séance. Ce sont des faits de la salle, à reprendre tels quels. Il n’y a PAS de page dédiée sur le site : répondre directement, ne renvoyer vers aucune URL de première séance.
 
 Avant de venir :
 - Le repère : 11 rue Sainte-Lucie, rive gauche, quartier Saint-Cyprien ; métro ligne A, station Saint-Cyprien République, 4 minutes à pied.
@@ -44,7 +44,7 @@ Avant de venir :
 
 Le déroulé, dans l’ordre (environ 1h15) :
 1. Passer la porte — un seul niveau, la ligne de sacs, le tapis, le ring au fond, la cage à droite.
-2. Dire que c’est sa première fois — la seule phrase à préparer. Le coach du créneau (Dadi, Tawee, Victor G ou Hicham selon l’heure) prend le relais.
+2. Dire que c’est sa première fois — la seule phrase à préparer. Le coach du créneau prend le relais.
 3. Les gants et les protections sont PRÊTÉS pour la première séance ; le coach montre le vestiaire et la zone de travail.
 4. Échauffement collectif d’environ 15 minutes : corde, déplacements, mobilité. Le coach cale la suite sur le niveau observé.
 5. Un seul point technique par cours — la garde, le souffle ou les appuis — travaillé jusqu’à ce qu’il tienne.
@@ -63,11 +63,11 @@ Question avant de venir : 05 62 24 46 82.
 ## La salle (https://bc-st-cyprien.vercel.app/la-salle/)
 
 Six postes sur un seul niveau :
-1. Le plateau — 1 200 m², un seul niveau, rive gauche ; le ring visible depuis l’entrée.
-2. L’anglaise — ring de boxe anglaise ; poste de Dadi ; 6 créneaux par semaine.
-3. Le pieds-poings — surface thaï/K1 ; Tawee et Victor G ; 5 créneaux par semaine.
-4. La zone cross & muscu — machines, charges, sacs ; Hyrox, cross-training et HIIT avec Hicham.
-5. L’école — Baby Boxe 3/6 le samedi, éducative 7/11, ados 12/16, compétiteurs ; encadrée par Dadi.
+1. Le plateau — rive gauche ; le ring visible depuis l’entrée.
+2. L’anglaise — le ring de boxe anglaise.
+3. Le pieds-poings — la surface thaï / K1.
+4. La zone cross & muscu — machines, charges, sacs ; Hyrox, cross-training et HIIT.
+5. L’école — Baby Boxe 3/6 le samedi, éducative 7/11, ados 12/16, compétiteurs.
 6. Le collectif — Lady Punch mardi et jeudi, boxing camp 3 créneaux par semaine.
 
 Déroulé d’une séance (affiché sur la page) : accueil et présentation au coach en arrivant ; environ 15 minutes d’échauffement collectif (corde, déplacements, mobilité) pendant lesquelles le coach cale la suite sur ton niveau ; le cœur de séance sur un seul point technique (garde, souffle ou appuis) puis son application aux sacs ou aux pattes ; retour au calme (gainage, étirements) et point du coach sur ce qui a progressé. Gants et protections prêtés pour la première séance : venir en tenue de sport.
@@ -78,69 +78,68 @@ La lignée du réseau (ordre d’arrivée) : Minimes (le berceau, la salle histo
 
 Aiguillage « par où commencer » — cinq intentions courantes et la discipline vers laquelle la salle oriente :
 - « Je n’ai jamais mis de gants » → Boxing camp (4 créneaux/semaine) : aucun acquis demandé.
-- « Je veux une technique, pas une séance de fitness » → Boxe anglaise (5 créneaux/semaine, coach Dadi).
-- « Je veux d’abord construire le souffle » → Hyrox & cross (3 créneaux/semaine, coach Hicham).
-- « Je préfère commencer sans galerie derrière moi » → Lady Punch (2 créneaux/semaine, 100 % féminin, coach Dadi).
-- « C’est pour mon enfant » → Boxe éducative (3 créneaux/semaine, dès 3 ans, coach Dadi).
+- « Je veux une technique, pas une séance de fitness » → Boxe anglaise (5 créneaux/semaine).
+- « Je veux d’abord construire le souffle » → Hyrox & cross (3 créneaux/semaine).
+- « Je préfère commencer sans galerie derrière moi » → Lady Punch (2 créneaux/semaine, 100 % féminin).
+- « C’est pour mon enfant » → Boxe éducative (3 créneaux/semaine, dès 3 ans).
 La boxe thaï et le grappling ne figurent pas dans cet aiguillage : la salle considère qu’on ne les choisit pas par hasard. Ils restent accessibles aux mêmes conditions.
 
 Semaines-types proposées à titre d’exemple (créneaux réels du planning, ce ne sont pas des formules commerciales) :
-- 2× par semaine : lundi 18h20 Boxing Camp (Hicham) + mercredi 20h00 Boxe Anglaise (Dadi).
-- 3× par semaine : lundi 20h00 Boxe Anglaise (Dadi) + mardi 20h00 Boxe Thaï · K1 (Victor G) + jeudi 19h00 Grappling (encadrant non nommé).
-- 4× par semaine : lundi 19h00 Cross-Training (Hicham) + mardi 20h00 Boxe Thaï · K1 (Victor G) + mercredi 18h20 Hyrox (Hicham) + vendredi 18h20 Boxing Camp (Dadi).
+- 2× par semaine : lundi 18h20 Boxing Camp + mercredi 20h00 Boxe Anglaise.
+- 3× par semaine : lundi 20h00 Boxe Anglaise + mardi 20h00 Boxe Thaï · K1 + jeudi 19h00 Grappling.
+- 4× par semaine : lundi 19h00 Cross-Training + mardi 20h00 Boxe Thaï · K1 + mercredi 18h20 Hyrox + vendredi 18h20 Boxing Camp.
 
-- Boxe anglaise — coach Dadi ; midi mer. et ven., soirs lun./mer./ven. 20h ; 5 créneaux ; débutant à confirmé.
-- Boxe thaï · K1 — coachs Tawee et Victor G ; midi mar. et jeu., soirs mar./jeu. 20h, ven. 19h ; plus un créneau samedi 18h sans encadrant nommé ; 6 créneaux ; tous niveaux.
+- Boxe anglaise — midi mer. et ven., soirs lun./mer./ven. 20h ; 5 créneaux ; débutant à confirmé.
+- Boxe thaï · K1 — midi mar. et jeu., soirs mar./jeu. 20h, ven. 19h ; plus un créneau samedi 18h sans encadrant nommé ; 6 créneaux ; tous niveaux.
 - Grappling — mardi et jeudi 19h–20h ; tous niveaux. Aucun encadrant nommé à ce jour : le poster officiel n’en porte pas et le site n’en invente pas (état affiché « nom à venir »).
-- Hyrox & cross — coach Hicham ; Hyrox mer. 18h20, cross lun. et mer. 19h.
-- Lady Punch — 100 % féminin ; coach Dadi ; mardi et jeudi 18h20–19h ; zéro prérequis.
-- Boxe éducative — dès 3 ans ; coach Dadi ; Baby 3/6 le samedi, 7/11 et 12/16 mercredi + samedi, compétiteurs mercredi/samedi.
-- Boxing camp — coachs Dadi et Hicham ; lun. 12h40 (sans encadrant nommé), lun. et ven. 18h20, sam. 11h ; 4 créneaux ; technique + cardio + sacs, tous niveaux.
+- Hyrox & cross — Hyrox mer. 18h20, cross lun. et mer. 19h.
+- Lady Punch — 100 % féminin ; mardi et jeudi 18h20–19h ; zéro prérequis.
+- Boxe éducative — dès 3 ans ; Baby 3/6 le samedi, 7/11 et 12/16 mercredi + samedi, compétiteurs mercredi/samedi.
+- Boxing camp — lun. 12h40 (sans encadrant nommé), lun. et ven. 18h20, sam. 11h ; 4 créneaux ; technique + cardio + sacs, tous niveaux.
 
 Paliers de l’école, âge par âge :
 - Baby Boxe, 3 à 6 ans — samedi 14h15 : coordination, jeu, premiers déplacements.
 - Éducative enfants, 7 à 11 ans — mercredi et samedi 15h : la technique par le jeu, le cadre par le respect.
 - Éducative ados, 12 à 16 ans — mercredi et samedi 15h : gestuelle propre, premiers assauts encadrés.
-- Compétiteurs — mercredi et samedi : préparation, sparring, corner ; encadré par Dadi.
+- Compétiteurs — mercredi et samedi : préparation, sparring, corner .
 
 ## Coachs (https://bc-st-cyprien.vercel.app/coachs/)
 
-- Dadi — le pilier : boxe anglaise, Lady Punch et toute l’école enfants, du Baby Boxe aux compétiteurs. 15 créneaux par semaine à son nom. Seul coach dont la photo est publiée, parce que la source officielle du réseau associe son nom à son visage.
-- Tawee — boxe thaï / K1 : 2 créneaux par semaine (mardi et jeudi 12h40).
-- Hicham — Hyrox, cross-training et boxing camp : 5 créneaux par semaine.
-- Victor G — boxe thaï / K1 : 3 créneaux par semaine (mardi 20h, jeudi 20h, vendredi 19h).
-Les noms viennent du planning officiel de la salle. La page affiche, pour chaque coach, la liste de ses créneaux réels regroupés par jour, dérivée de la même grille que la page Planning.
+- Dadi — boxe anglaise, Lady Punch et toute l’école enfants, du Baby Boxe aux compétiteurs.
+- Tawee — boxe thaï et K1.
+- Hicham — Hyrox, cross-training et Boxing Camp.
+La page présente chaque coach avec sa photo et la discipline qu’il enseigne, et renvoie au planning de cette discipline. QUI ENCADRE QUEL CRÉNEAU N’EST PAS PUBLIÉ : c’est une information interne au club. Ne jamais l’inventer ni la déduire — elle se demande au 05 62 24 46 82.
 
 Encadrement du grappling : AUCUN coach n’est nommé pour le grappling. Le créneau existe et tourne (mardi et jeudi 19h–20h), mais le poster officiel ne porte pas de nom d’encadrant, et le site n’en invente pas. La page l’affiche comme un état assumé (« nom à venir ») avec la raison écrite et le téléphone de la salle pour obtenir l’information. Ne pas déduire de nom pour ce créneau.
 
 Méthode d’encadrement (trois règles affichées sur la page) :
-1. Un fil rouge, pas un roulement — Dadi tient l’anglaise, la Lady Punch et l’école entière, donc le même coach du premier déplacement au premier combat.
-2. Une surface, un spécialiste — le pieds-poings à Tawee et Victor G, le moteur à Hicham ; aucun coach ne couvre une discipline qui n’est pas la sienne.
+1. Un fil rouge, pas un roulement — l’anglaise, la Lady Punch et l’école entière sont tenues par le même coach, du premier déplacement au premier combat.
+2. Une surface, un spécialiste — le pieds-poings à Tawee, le moteur à Hicham ; aucun coach ne couvre une discipline qui n’est pas la sienne.
 3. Un visage seulement s’il est prouvé — une photo n’est publiée sous un nom que si la source officielle du réseau associe les deux ; sinon une tuile, jamais une banque d’images.
 
 ## Galerie (https://bc-st-cyprien.vercel.app/galerie/)
 
 16 photos réelles de la salle, réparties en 7 zones. Aucune image de banque : ce sont les clichés du club, pris pendant des cours réels. Chaque photo s’ouvre en grand dans une visionneuse (clavier : flèches pour naviguer, Échap pour fermer).
-- Le plateau (1 photo) — 1 200 m² sur un seul niveau ; depuis la porte on voit les sacs, le ring et la cage.
-- L’anglaise (2 photos) — le ring ; 6 créneaux par semaine, poste de Dadi.
-- Le pieds-poings (3 photos) — surface thaï/K1 ; 5 créneaux tenus par Tawee (midi) et Victor G (soir).
+- Le plateau (1 photo) — depuis la porte on voit les sacs, le ring et la cage.
+- L’anglaise (2 photos) — le ring.
+- Le pieds-poings (3 photos) — la surface thaï / K1.
 - Le sol (1 photo) — grappling dans la cage, mardi et jeudi.
-- Le moteur (4 photos) — muscu, charges, rameurs, cross-training, Hyrox, boxing camp ; zone d’Hicham.
+- Le moteur (4 photos) — muscu, charges, rameurs, cross-training, Hyrox, boxing camp.
 - Lady Punch (2 photos) — créneau 100 % féminin, mardi et jeudi 18h20.
 - L’école (3 photos) — Baby Boxe, éducative 7/11, ados 12/16, compétiteurs.
 
 ## Planning (https://bc-st-cyprien.vercel.app/plannings/)
 
 La semaine en chiffres (comptée sur la grille ci-dessous) : 29 cours par semaine, 6 jours ouverts (dimanche fermé), 13 cours en journée, 16 cours du soir à partir de 18h, 7 disciplines au planning.
-La grille de la page est filtrable par jour, par discipline et par coach, avec le nombre de créneaux retenus affiché en direct et une remise à zéro.
+La grille de la page est filtrable par jour et par discipline, avec le nombre de créneaux retenus affiché en direct et une remise à zéro.
 
 Grille hebdomadaire (le poster officiel de la saison, affiché sur la page, fait foi) :
-- Lundi : 12h40 Boxing Camp (coach à confirmer) ; 18h20 Boxing Camp (Hicham) ; 19h00 Cross-Training (Hicham) ; 20h00 Boxe Anglaise (Dadi).
-- Mardi : 12h40 Boxe Thaï · K1 (Tawee) ; 18h20 Lady Punch (Dadi) ; 19h00 Grappling (coach à confirmer) ; 20h00 Boxe Thaï · K1 (Victor G).
-- Mercredi : 12h40 Boxe Anglaise (Dadi) ; 15h00 Éducative 7/11, 16h00 Éducative 12/16, 17h00 Éducative compétiteurs (Dadi) ; 18h20 Hyrox (Hicham) ; 19h00 Cross-Training (Hicham) ; 20h00 Boxe Anglaise (Dadi).
-- Jeudi : 12h40 Boxe Thaï · K1 (Tawee) ; 18h20 Lady Punch (Dadi) ; 19h00 Grappling (coach à confirmer) ; 20h00 Boxe Thaï · K1 (Victor G).
-- Vendredi : 12h40 Boxe Anglaise (Dadi) ; 18h20 Boxing Camp (Dadi) ; 19h00 Boxe Thaï · K1 (Victor G) ; 20h00 Boxe Anglaise (Dadi).
-- Samedi : 11h00 Boxing Camp (Hicham) ; 14h15 Baby Boxe 3/6 (Dadi) ; 15h00 Éducative 7/11, 16h00 Éducative 12/16, 17h00 Éducative compétiteurs (Dadi) ; 18h00 Boxe Pieds-Poings (coach à confirmer).
+- Lundi : 12h40 Boxing Camp ; 18h20 Boxing Camp ; 19h00 Cross-Training ; 20h00 Boxe Anglaise.
+- Mardi : 12h40 Boxe Thaï · K1 ; 18h20 Lady Punch ; 19h00 Grappling ; 20h00 Boxe Thaï · K1.
+- Mercredi : 12h40 Boxe Anglaise ; 15h00 Éducative 7/11, 16h00 Éducative 12/16, 17h00 Éducative compétiteurs ; 18h20 Hyrox ; 19h00 Cross-Training ; 20h00 Boxe Anglaise.
+- Jeudi : 12h40 Boxe Thaï · K1 ; 18h20 Lady Punch ; 19h00 Grappling ; 20h00 Boxe Thaï · K1.
+- Vendredi : 12h40 Boxe Anglaise ; 18h20 Boxing Camp ; 19h00 Boxe Thaï · K1 ; 20h00 Boxe Anglaise.
+- Samedi : 11h00 Boxing Camp ; 14h15 Baby Boxe 3/6 ; 15h00 Éducative 7/11, 16h00 Éducative 12/16, 17h00 Éducative compétiteurs ; 18h00 Boxe Pieds-Poings.
 - Dimanche : fermé.
 Conseils pratiques : arriver 10 minutes avant ; gants et protections prêtés pour la première séance ; en cas de doute sur un créneau, appeler le 05 62 24 46 82.
 
@@ -164,7 +163,7 @@ Conseils pratiques : arriver 10 minutes avant ; gants et protections prêtés po
 - Horaires : lundi–vendredi 10h00–21h15 ; samedi 10h00–21h15 ; dimanche fermé.
 - Questions fréquentes :
   - Où se trouve la salle ? Au 11 rue Sainte-Lucie, 31300 Toulouse, quartier Saint-Cyprien rive gauche, à 4 minutes à pied du métro ligne A (Saint-Cyprien République).
-  - Comment se passe la première séance ? Arriver 10 minutes avant, en tenue de sport ; dire que c’est sa première fois ; gants et matériel prêtés ; échauffement, technique, sac, à son rythme ; aucun sparring imposé et aucun test ; la séance d’essai coûte 10 €, toutes disciplines. Déroulé complet : https://bc-st-cyprien.vercel.app/premiere-seance/
+  - Comment se passe la première séance ? Arriver 10 minutes avant, en tenue de sport ; dire que c’est sa première fois ; gants et matériel prêtés ; échauffement, technique, sac, à son rythme ; aucun sparring imposé et aucun test ; la séance d’essai coûte 10 €, toutes disciplines.
   - Peut-on venir sans avoir jamais boxé ? Oui — la plupart des créneaux sont tous niveaux ; le Boxing Camp est le meilleur point d’entrée.
   - Quelles disciplines ? Boxe anglaise, boxe thaï/K1, grappling, Hyrox, cross-training, Lady Punch, boxing camp et l’école enfants du Baby Boxe (3/6 ans) aux compétiteurs.
   - Des cours pour enfants ? Oui, dès 3 ans : Baby Boxe le samedi, éducative 7/11 et ados 12/16 le mercredi et le samedi, un créneau compétiteurs encadré par Dadi.

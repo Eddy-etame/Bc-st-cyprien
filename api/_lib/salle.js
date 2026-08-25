@@ -16,18 +16,18 @@ export const FACTS = {
   adresse: "11 rue Sainte-Lucie, 31300 Toulouse",
   quartier: "Saint-Cyprien, Toulouse rive gauche",
   acces: "Métro ligne A — Saint-Cyprien République, à 4 minutes à pied. Parking Saint-Cyprien à proximité.",
-  surface: "1 200 m² sur un seul niveau",
+  surface: "Sacs de frappe, espace tatamis et ring ; musculation, cardio et cross-training en accès libre. (La page officielle de Saint-Cyprien ne donne AUCUNE surface — les 1 200 m² sont ceux de Toulouse États-Unis, ne jamais les attribuer à cette salle.)",
   telephone: "05 62 24 46 82",
   email: "boxingcenter31@gmail.com",
   horaires: "Du lundi au samedi, 10h00 – 21h15. Fermé le dimanche.",
   disciplines:
     "Boxe anglaise, boxe thaï / K1, grappling, Hyrox & cross-training, Lady Punch (100 % féminin), Boxing Camp, et l’école enfants dès 3 ans (Baby Boxe 3/6, éducative 7/11, ados 12/16, compétiteurs).",
   coachs:
-    "Dadi (anglaise, Lady Punch et toute l’école — le pilier de la semaine), Tawee (thaï / K1), Victor G (thaï / K1 le soir), Hicham (Hyrox, cross, camp). Le créneau grappling du mardi et du jeudi tourne, mais l’encadrant n’est pas encore acté au planning officiel : on ne donne pas de nom tant qu’il ne l’est pas.",
+    "Trois coachs : Dadi (anglaise, Lady Punch et toute l’école), Tawee (thaï / K1), Hicham (Hyrox, cross, Boxing Camp). RÈGLE : ne JAMAIS dire qui encadre quel créneau, ni quel jour ni à quelle heure — c’est interne au club. Si on te le demande, réponds que le détail se donne à la salle, au 05 62 24 46 82.",
   offres:
     "Dans l’ordre où on les propose : offre RENTRÉE 29€ PAR PERSONNE pour 4 semaines de cours illimités, sans engagement (au lieu de 44€). Offre Saison 259€ les 12 mois, payable en 4× sans frais, accès libre aux 5 clubs du réseau. Hors promotion, abonnement classique 44€ adulte et 36€ étudiant par échéance de 4 semaines, accès aux 5 salles (c’est un tarif, jamais barré — c’est lui qui est barré sur l’offre de rentrée). École 295€ / an t-shirt du club inclus, Baby Boxe 250€. Séance d’essai 10€ EN DERNIER (toutes disciplines, matériel prêté, sans engagement).",
   planning:
-    "29 cours sur 6 jours. Lun 12h40 Boxing Camp (encadrant non acté) / 18h20 Boxing Camp / 19h cross / 20h anglaise ; Mar 12h40 thaï / 18h20 Lady Punch / 19h grappling / 20h thaï ; Mer 12h40 anglaise / 15h éducative 7-11, 16h 12-16, 17h compétiteurs / 18h20 Hyrox / 19h cross / 20h anglaise ; Jeu 12h40 thaï / 18h20 Lady Punch / 19h grappling / 20h thaï ; Ven 12h40 anglaise / 18h20 Boxing Camp / 19h thaï / 20h anglaise ; Sam 11h Boxing Camp / 14h15 Baby Boxe / 15h éducative 7-11, 16h 12-16, 17h compétiteurs / 18h pieds-poings (encadrant non acté).",
+    "29 cours sur 6 jours. Lun 12h40 Boxing Camp / 18h20 Boxing Camp / 19h cross / 20h anglaise ; Mar 12h40 thaï / 18h20 Lady Punch / 19h grappling / 20h thaï ; Mer 12h40 anglaise / 15h éducative 7-11, 16h 12-16, 17h compétiteurs / 18h20 Hyrox / 19h cross / 20h anglaise ; Jeu 12h40 thaï / 18h20 Lady Punch / 19h grappling / 20h thaï ; Ven 12h40 anglaise / 18h20 Boxing Camp / 19h thaï / 20h anglaise ; Sam 11h Boxing Camp / 14h15 Baby Boxe / 15h éducative 7-11, 16h 12-16, 17h compétiteurs / 18h pieds-poings.",
   avis: "Note Google 4,0/5 sur 97 avis (relevé du 2026-08-06). C’est la vraie note : ne jamais l’embellir.",
   premiere:
     "Le déroulé réel d’une première séance (la page dédiée a été retirée : réponds directement, ne renvoie vers aucune URL) : arriver 10 minutes avant, dire que c’est sa première fois, gants et protections PRÊTÉS, échauffement d’un quart d’heure, un point technique, le sac — à son rythme. Aucun sparring imposé (personne ne monte sur le ring sans en avoir envie), aucun test d’entrée, aucun engagement, aucun certificat médical pour l’essai. Tenue : t-shirt, short ou legging, baskets propres, bouteille d’eau.",
@@ -61,7 +61,8 @@ export function liveFacts() {
 export function factsBlock() {
   const f = liveFacts();
   return [
-    `- ${f.nom} : ${f.surface}, ${f.quartier}. Le premier Boxing Center rive gauche.`,
+    `- ${f.nom} : ${f.quartier}. Le premier Boxing Center en centre-ville, ouvert le 10 janvier 2022.`,
+    `- Équipement : ${f.surface}`,
     `- Adresse : ${f.adresse}. Téléphone : ${f.telephone}. Email : ${f.email}.`,
     `- Accès : ${f.acces}`,
     `- Horaires : ${f.horaires}`,

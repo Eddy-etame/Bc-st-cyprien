@@ -108,7 +108,7 @@
 .cfg:active .cfg__name { color: var(--ink); }
 .cfg.is-active { padding-left: .7rem; }
 .cfg.is-active .cfg__n { color: var(--spark); }
-.cfg.is-active .cfg__name { background: var(--chrome); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.cfg.is-active .cfg__name { color: var(--tint); }
 .cfg.is-active .cfg__tag { color: var(--spark); opacity: 1; }
 .cfg:focus-visible { outline: 2px solid var(--spark); outline-offset: 2px; border-radius: 6px; }
 /* the sheet — a lit glass card */
@@ -269,7 +269,6 @@
   .club__play { font-size: .75rem !important; }
   .cmap-link { font-size: .75rem !important; }
   .coachcard__tag { font-size: .75rem !important; }
-  .coachlead__chips li { font-size: .75rem !important; }
   .codecard__n { font-size: .75rem !important; }
   .config__facts b { font-size: .75rem !important; }
   .config__facts span { font-size: .75rem !important; }
@@ -303,9 +302,6 @@
   .sister__tag { font-size: .75rem !important; }
   .station__specs li { font-size: .75rem !important; }
   .tbd-note__k { font-size: .75rem !important; }
-  .tbdcard__slots b { font-size: .75rem !important; }
-  .tbdcard__slots i { font-size: .75rem !important; }
-  .tbdcard__tag { font-size: .75rem !important; }
   .wday__k { font-size: .75rem !important; }
   .week__link { font-size: .75rem !important; }
   .wrow__coach { font-size: .75rem !important; }

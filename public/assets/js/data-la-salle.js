@@ -36,10 +36,10 @@ export const VISITE = [
     n: "03",
     t: "Le pieds-poings",
     tag: "Thaï · K1",
-    d: "Le tapis pieds-poings, sous son propre faisceau. Tawee et Victor G y passent cinq fois par semaine ; le sixième créneau, samedi 18h, attend son encadrant.",
+    d: "Le tapis pieds-poings, sous son propre faisceau. Les coachs y passent cinq fois par semaine ; le sixième créneau, samedi 18h, attend son encadrant.",
     img: "/assets/img/sc/thai-2.webp",
     alt: "Le groupe aux sacs pendant un cours pieds-poings, chacun sur son sac le long de la charpente",
-    specs: ["Coachs · Tawee, Victor G", "6 créneaux / sem."],
+    specs: ["Boxe thaï · K1", "Tous niveaux"],
   },
   {
     n: "04",
