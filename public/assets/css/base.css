@@ -412,19 +412,18 @@ html.fx [data-reveal] { opacity: 0; transform: translateY(30px); }
    en deux lignes et débordait sur la pastille « Accueil ». La loi tient en
    quatre lignes : un gap qui interdit le contact, une marque qui ne se
    comprime pas, des mots qui ne se cassent pas, une colonne droite entière. */
-.nav { position: fixed; inset: 0 0 auto 0; z-index: 8000; display: flex; align-items: center; justify-content: space-between; gap: clamp(.6rem,1.2vw,1.4rem); padding: clamp(.8rem,1.8vw,1.1rem) var(--gut); transition: transform .5s var(--ease), background .4s, box-shadow .4s; }
-.nav.is-scrolled { background: rgba(10, 11, 14, .82); backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--line); }
-/* En haut de page la barre est transparente et flotte sur la photo : un
-   voile discret garantit la lisibilite des liens meme sur un cliche
-   clair, sans donner l impression d une barre pleine. */
-.nav:not(.is-scrolled)::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 -1rem 0;
-  z-index: -1;
-  pointer-events: none;
-  background: linear-gradient(180deg, rgba(10, 11, 14, .58), transparent);
+.nav { background: transparent; position: fixed; inset: 0 0 auto 0; z-index: 8000; display: flex; align-items: center; justify-content: space-between; gap: clamp(.6rem,1.2vw,1.4rem); padding: clamp(.8rem,1.8vw,1.1rem) var(--gut); transition: transform .5s var(--ease), background .4s, box-shadow .4s; }
+.nav:not(.is-scrolled) .nav__links a,
+.nav:not(.is-scrolled) .nav__salle,
+.nav:not(.is-scrolled) .nav__ext a {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, .9), 0 0 14px rgba(0, 0, 0, .6);
 }
+.nav:not(.is-scrolled) .nav__logo { filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .8)); }
+.nav.is-scrolled { background: rgba(10, 11, 14, .82); backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--line); }
+/* PAS DE BANDE EN HAUT DE PHOTO. Un degrade sous la barre restait une
+   barre : il assombrissait le premier tiers du cliche. La lisibilite des
+   liens ne vient donc plus d un fond mais d un HALO porte par le texte
+   lui-meme — il suit les lettres, il ne salit pas l image autour. */
 .nav.is-hidden { transform: translateY(-110%); }
 html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; transition: none; }
 /* official white logo, transparent, straight on the dark room — no filter */
@@ -597,6 +596,21 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 /* (1) LA COMPOSITION TYPO — chaque page a sa propre mesure */
 .phero h1 { margin: 1rem 0 1.1rem; font-size: clamp(2.6rem, 2rem + 5vw, 5.4rem); }
 .phero .lead { max-width: 54ch; }
+
+/* LE TEXTE PORTE SON PROPRE CONTRASTE. Le voile a ete retire pour que la
+   photo se voie ; le texte doit donc tenir seul, y compris sur les zones
+   claires du cliche. Halo serre : il epouse les lettres au lieu de
+   poser un rectangle sombre. */
+.phero h1,
+.phero .lead,
+.phero .eyebrow,
+.phero__note {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, .85), 0 0 18px rgba(0, 0, 0, .55);
+}
+/* la note est la plus petite et la plus pale : elle remonte d un cran.
+   Specificite 0,2,0 : la regle .phero__note declaree plus bas dans le
+   fichier gagnait a specificite egale. */
+.phero .phero__note { color: var(--ink-soft); }
 body[data-page="la-salle"]  .phero h1 { font-size: clamp(2.7rem, 1.9rem + 5.4vw, 5.9rem); letter-spacing: -.035em; }  /* la pièce */
 body[data-page="activites"] .phero h1 { font-size: clamp(2.3rem, 1.7rem + 3.8vw, 4.4rem); }                          /* un index */
 body[data-page="coachs"]    .phero h1 { font-size: clamp(2.6rem, 1.9rem + 5.1vw, 5.6rem); line-height: .95; }        /* un portrait */
