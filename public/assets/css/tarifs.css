@@ -47,8 +47,6 @@
 .promo__price s { font-family: var(--f-mono); font-size: var(--step--1); color: var(--muted); }
 .promo__detail { color: var(--ink-soft); font-size: var(--step--1); line-height: 1.6; }
 .promo .btn { margin-top: auto; align-self: flex-start; }
-.promo-bonus { margin-top: clamp(1.1rem,2.4vw,1.5rem); font: 600 var(--step--1)/1.5 var(--f-mono); letter-spacing: .04em; color: var(--spark); display: inline-flex; align-items: baseline; gap: .8ch; }
-.promo-bonus::before { content: "★"; }
 
 /* ----------------------- CONDITIONS EN CLAIR ---------------------- */
 .cond { display: grid; gap: .7rem; max-width: 72ch; }

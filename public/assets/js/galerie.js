@@ -10,7 +10,7 @@
    VISIONNEUSE (on regarde une photo en grand, on avance au clavier). Une
    galerie où l’on ne peut pas agrandir une photo n’est pas une galerie.
    ===================================================================== */
-import { picture } from "./data.js?v=22";
+import { picture } from "./data.js?v=25";
 import { GALLERY } from "./data-galerie.js?v=22";
 
 const $ = (s, r = document) => r.querySelector(s);

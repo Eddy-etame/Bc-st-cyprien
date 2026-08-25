@@ -12,7 +12,7 @@
    LA MÉTHODE ferme la page : trois règles vérifiables, pas de biographie
    inventée.
    ===================================================================== */
-import { COACHES, picture } from "./data.js?v=24";
+import { COACHES, picture } from "./data.js?v=25";
 import { ENCADREMENT } from "./data-coachs.js?v=22";
 
 const $ = (s, r = document) => r.querySelector(s);

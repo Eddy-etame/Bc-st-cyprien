@@ -5,9 +5,9 @@
    La home positionne + route : configurateur → /plannings/ · /activites/ ·
    box-plus. Tout est rendu depuis data.js (planning réel rentrée 2026).
    ===================================================================== */
-import { DISCIPLINES, COACHES, LINKS, COACH_TBD_SHORT, COACH_TBD_WHY_SHORT } from "./data.js?v=22";
+import { DISCIPLINES, COACHES, LINKS, COACH_TBD_SHORT, COACH_TBD_WHY_SHORT } from "./data.js?v=25";
 import { STATS } from "./data-home.js?v=22";
-import { SCHEDULE } from "./data.js?v=22";
+import { SCHEDULE } from "./data.js?v=25";
 
 /* Un chiffre de la bande d’accueil est DÉRIVÉ du planning : il ne peut donc
    pas diverger du poster quand le vestiaire publie une grille différente. */

@@ -354,7 +354,6 @@ export const COACHES = [
 export const PROMOS = {
   saison: SEASON,
   label: SEASON_LABEL,
-  bonus: "Inscription enfant : le t-shirt Boxing Center est inclus — pour tous.",
   essai: {
     name: "Séance d’essai",
     price: "10€",
