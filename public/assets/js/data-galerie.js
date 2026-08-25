@@ -40,14 +40,14 @@ export const GALLERY = [
     shots: [
       { f: "thai-2.webp", feat: "wide", cap: "Aux sacs", alt: "Le groupe aux sacs pendant un cours pieds-poings, chacun sur son sac le long de la charpente" },
       { f: "thai.webp", cap: "Tibias, genoux", alt: "Une pratiquante lance un coup de pied haut dans la cage, appui planté et garde tenue" },
-      { f: "thai-1.webp", cap: "K1", alt: "Deux pratiquants, protège-tibias aux jambes, travaillent au sac sous la bannière Boxing Center" },
+      { f: "thai-1.webp", cap: "K1", alt: "Un pratiquant place un coup de pied haut ; son partenaire, casque et gants, pare des avant-bras, devant la rangée de sacs" },
     ],
   },
   {
     id: "sol", zone: "Le sol", spec: "Grappling · mardi & jeudi",
     lede: "Une heure au sol, deux soirs par semaine, dans la cage : projections, contrôle, soumissions. Le complément qui manque à la plupart des boxeurs.",
     shots: [
-      { f: "grappling.webp", feat: "wide", cap: "Dans la cage", alt: "Deux pratiquantes gantées échangent dans la cage grillagée, garde haute" },
+      { f: "grappling.webp", feat: "wide", cap: "Au sol", alt: "Deux pratiquants au sol sur le tapis bleu : l’un contrôle l’autre, au pied du ring" },
     ],
   },
   {
@@ -64,7 +64,7 @@ export const GALLERY = [
     id: "lady", zone: "Lady Punch", spec: "100 % féminin · mar. & jeu.",
     lede: "Mardi et jeudi à 18h20, le créneau est à elles. Zéro prérequis, zéro galerie qui regarde : la boxe pour la forme, le cardio et la confiance.",
     shots: [
-      { f: "lady-2.webp", feat: "wide", cap: "100 % féminin", alt: "Un coach corrige la position d’une pratiquante devant un sac, pendant un cours Lady Punch" },
+      { f: "lady-2.webp", feat: "wide", cap: "100 % féminin", alt: "Deux pratiquantes en garde, mains bandées, pendant un cours Lady Punch" },
       { f: "lady.webp", cap: "Cardio & confiance", alt: "Un cours Lady Punch : plusieurs pratiquantes travaillent aux sacs le long du plateau" },
     ],
   },

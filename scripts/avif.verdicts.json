@@ -119,8 +119,9 @@
     "verdict": "webp"
   },
   "sc/grappling.webp": {
-    "octets": 115846,
-    "verdict": "webp"
+    "octets": 100714,
+    "verdict": "avif",
+    "q": 65
   },
   "sc/hero-salle.webp": {
     "octets": 215896,
@@ -149,9 +150,9 @@
     "verdict": "webp"
   },
   "sc/lady-2.webp": {
-    "octets": 66924,
+    "octets": 55144,
     "verdict": "avif",
-    "q": 60
+    "q": 50
   },
   "sc/lady-cage.webp": {
     "octets": 81552,
@@ -288,9 +289,8 @@
     "q": 65
   },
   "sc/thai-1.webp": {
-    "octets": 65880,
-    "verdict": "avif",
-    "q": 60
+    "octets": 176962,
+    "verdict": "webp"
   },
   "sc/thai-2.webp": {
     "octets": 89270,

@@ -388,7 +388,7 @@ html.is-locked, html.is-locked body { overflow: hidden; height: 100%; }
 
 .display { font-family: var(--f-display); font-weight: 700; line-height: 1.0; letter-spacing: -.03em; font-size: var(--step-3); color: var(--ink); }
 /* the Neuf's metal is LIGHT: accent lines are cast in chrome */
-.tint { color: var(--tint); }
+.tint, .tint.tint { color: var(--tint); }
 .lead { font-size: var(--step-1); line-height: 1.45; color: var(--ink-soft); font-weight: 450; letter-spacing: -.01em; }
 .reveal-mask { display: block; overflow: hidden;
   /* de la place pour les jambages et les accents : sans ca, .display

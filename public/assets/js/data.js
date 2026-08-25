@@ -47,6 +47,7 @@ const AVIF = new Set([
   "/assets/img/sc/coachs-header.webp",
   "/assets/img/sc/cours-nb.webp",
   "/assets/img/sc/cross-barre.webp",
+  "/assets/img/sc/grappling.webp",
   "/assets/img/sc/k1-coup-pied.webp",
   "/assets/img/sc/k1-duo.webp",
   "/assets/img/sc/lady-2.webp",
@@ -60,7 +61,6 @@ const AVIF = new Set([
   "/assets/img/sc/planning-2026-800.webp",
   "/assets/img/sc/sacs-rangee.webp",
   "/assets/img/sc/sol-grappling.webp",
-  "/assets/img/sc/thai-1.webp",
   "/assets/img/sc/training.webp",
   /* AVIF:FIN */
 ]);
@@ -203,7 +203,7 @@ export const DISCIPLINES = [
     desc: "Tibias, genoux, coudes — la boxe la plus complète, avec un enseignement dans les règles de l’art. Six créneaux par semaine, du midi au soir.",
     teaser: "Poings, tibias, genoux, coudes. Rien ne reste dehors.",
     img: "/assets/img/sc/thai-1.webp",
-    alt: "Deux pratiquants, protège-tibias aux jambes, travaillent au sac sous la bannière Boxing Center",
+    alt: "Un pratiquant place un coup de pied haut ; son partenaire, casque et gants, pare des avant-bras, devant la rangée de sacs",
   },
   {
     key: "grappling",
@@ -217,7 +217,7 @@ export const DISCIPLINES = [
     desc: "Projections, contrôle, soumissions. Le complément sol qui apprend au boxeur ce que le debout ne montre jamais — on tombe, on sort, on recommence. Tous niveaux, mardi et jeudi 19h.",
     teaser: "Là où la boxe s’arrête, le sol commence.",
     img: "/assets/img/sc/grappling.webp",
-    alt: "Deux pratiquantes gantées échangent dans la cage grillagée, garde haute",
+    alt: "Deux pratiquants au sol sur le tapis bleu : l’un contrôle l’autre, au pied du ring",
   },
   {
     key: "hyrox",
@@ -243,7 +243,7 @@ export const DISCIPLINES = [
     desc: "Un créneau à elles, mardi et jeudi 18h20 : cardio, technique, sac — aucun prérequis, aucune galerie qui te regarde. Beaucoup y mettent leurs premiers gants ; certaines rejoignent ensuite les cours mixtes. Les deux sont très bien.",
     teaser: "Un créneau à elles, du premier gant au sac qui claque.",
     img: "/assets/img/sc/lady-2.webp",
-    alt: "Un coach corrige la position d’une pratiquante devant un sac, pendant un cours Lady Punch",
+    alt: "Deux pratiquantes en garde, mains bandées, pendant un cours Lady Punch",
   },
   {
     key: "kids",
