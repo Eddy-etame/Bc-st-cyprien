@@ -447,6 +447,13 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 .nav__right { display: flex; align-items: center; gap: .8rem; flex: 0 0 auto; }
 .nav__cta { display: none; }
 .nav__cta span { white-space: nowrap; }
+/* Le bouton permanent de la barre vend l'offre a 29 EUR (ordre d'Eddy,
+   21/08). Il doit rester visible sur telephone : mesure au navigateur, il
+   tient des 360px. Sans cette ligne, notre seuil desktop plus bas serait
+   le seul a l'afficher, et le seul chemin d'achat permanent disparaitrait
+   de l'appareil qui fait l'essentiel du trafic. */
+@media (min-width: 360px){ .nav__cta { display: inline-flex; } }
+
 /* LE SEUIL DESKTOP — 1120px, remesuré au navigateur.
    L'ancien seuil (1240px) datait d'une barre à NEUF pastilles. Il en reste
    SEPT (« La salle » et « Galerie » sont passées en top:false) et la mesure

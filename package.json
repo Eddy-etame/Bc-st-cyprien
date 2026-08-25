@@ -3,10 +3,12 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "_note_prepare": "npm install branche le crochet qui retire les signatures d'outil des messages de commit (voir .githooks/commit-msg)",
+    "prepare": "git config core.hooksPath .githooks",
     "dev": "astro dev",
     "prebuild": "node scripts/apply-content.mjs && node scripts/build-avif.mjs && node scripts/build-sitemap.mjs",
     "build": "astro build",
-    "postbuild": "node scripts/cuire-galerie.mjs",
+    "postbuild": "node scripts/cuire-galerie.mjs && node scripts/cuire-pages.mjs",
     "preview": "astro preview"
   },
   "dependencies": {
