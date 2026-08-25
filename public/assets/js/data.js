@@ -26,9 +26,31 @@ const AVIF = new Set([
   /* AVIF:DEBUT */
   "/assets/img/logo-white.webp",
   "/assets/img/sc/anglaise-header.webp",
-  "/assets/img/sc/lady.webp",
+  "/assets/img/sc/anglaise.webp",
+  "/assets/img/sc/anneaux.webp",
+  "/assets/img/sc/appuis-tapis.webp",
+  "/assets/img/sc/coach-dadi.webp",
+  "/assets/img/sc/coach-portrait-1.webp",
+  "/assets/img/sc/coach-portrait-2.webp",
+  "/assets/img/sc/coach-portrait-3.webp",
+  "/assets/img/sc/coach-portrait-4.webp",
+  "/assets/img/sc/cours-nb.webp",
+  "/assets/img/sc/cross-barre.webp",
+  "/assets/img/sc/k1-coup-pied.webp",
+  "/assets/img/sc/k1-duo.webp",
+  "/assets/img/sc/lady-2.webp",
+  "/assets/img/sc/lady-duo-2.webp",
+  "/assets/img/sc/lady-duo.webp",
+  "/assets/img/sc/lady-gants.webp",
+  "/assets/img/sc/lady-sac-2.webp",
+  "/assets/img/sc/lady-technique.webp",
+  "/assets/img/sc/pattes-murales.webp",
   "/assets/img/sc/planning-2026-1600.webp",
   "/assets/img/sc/planning-2026-800.webp",
+  "/assets/img/sc/sacs-rangee.webp",
+  "/assets/img/sc/sol-grappling.webp",
+  "/assets/img/sc/thai-1.webp",
+  "/assets/img/sc/training.webp",
   /* AVIF:FIN */
 ]);
 
@@ -158,7 +180,7 @@ export const DISCIPLINES = [
     desc: "Jab, esquive, jeu de jambes : le noble art enseigné proprement, du premier gant au gant de compétition. Les deux midis pour la pause active, les trois soirs de 20h pour le vrai travail — cinq passages par semaine, le même œil au bord des cordes.",
     teaser: "Le pied avant, le jab, la sortie d’axe. Tout part de là.",
     img: "/assets/img/sc/anglaise-header.webp",
-    alt: "Un boxeur en casque et gants, garde haute et appui avant marqué, au milieu d’un cours d’anglaise sur le ring ; d’autres binômes travaillent derrière les cordes",
+    alt: "Un cours en plein travail : les pratiquants frappent des boucliers ronds tenus par leurs binômes, entre les sacs suspendus",
   },
   {
     key: "thai",
@@ -171,7 +193,7 @@ export const DISCIPLINES = [
     desc: "Tibias, genoux, coudes — la boxe la plus complète, avec un enseignement dans les règles de l’art. Six créneaux par semaine, cinq tenus par Tawee et Victor G ; celui du samedi 18h attend encore son encadrant.",
     teaser: "Poings, tibias, genoux, coudes. Rien ne reste dehors.",
     img: "/assets/img/sc/thai-1.webp",
-    alt: "Deux pratiquants de boxe thaï face à face au bord du ring : l’un tient les pattes d’ours, mains bandées de rouge, l’autre s’apprête à frapper",
+    alt: "Deux pratiquants, protège-tibias aux jambes, travaillent au sac sous la bannière Boxing Center",
   },
   {
     key: "grappling",
@@ -185,7 +207,7 @@ export const DISCIPLINES = [
     desc: "Projections, contrôle, soumissions. Le complément sol qui apprend au boxeur ce que le debout ne montre jamais — on tombe, on sort, on recommence. Tous niveaux, mardi et jeudi 19h.",
     teaser: "Là où la boxe s’arrête, le sol commence.",
     img: "/assets/img/sc/grappling.webp",
-    alt: "Vue plongeante sur la cage : plusieurs binômes travaillent au sol, contrôles et sorties, pendant qu’un pratiquant debout observe la position",
+    alt: "Deux pratiquantes gantées échangent dans la cage grillagée, garde haute",
   },
   {
     key: "hyrox",
@@ -198,7 +220,7 @@ export const DISCIPLINES = [
     desc: "Circuits Hyrox et cross-training : le cardio et la force qui portent tes gants. La zone moteur tourne toute la semaine.",
     teaser: "Le moteur d’abord : le souffle qui tient les trois dernières reprises.",
     img: "/assets/img/sc/hyrox.webp",
-    alt: "Un groupe de pratiquants court en peloton sur une route de campagne, foulée soutenue — le travail de caisse derrière l’Hyrox et le cross",
+    alt: "Travail en circuit au pied du ring : montées sur step, gainage au sol et banc, plusieurs ateliers en parallèle",
   },
   {
     key: "lady",
@@ -211,7 +233,7 @@ export const DISCIPLINES = [
     desc: "Un créneau à elles, mardi et jeudi 18h20 : cardio, technique, sac — aucun prérequis, aucune galerie qui te regarde. Beaucoup y mettent leurs premiers gants ; certaines rejoignent ensuite les cours mixtes. Les deux sont très bien.",
     teaser: "Un créneau à elles, du premier gant au sac qui claque.",
     img: "/assets/img/sc/lady-2.webp",
-    alt: "Une boxeuse en gants, garde serrée, frappe un sac de frappe pendant un cours Lady Punch ; d’autres pratiquantes travaillent aux sacs derrière elle",
+    alt: "Un coach corrige la position d’une pratiquante devant un sac, pendant un cours Lady Punch",
   },
   {
     key: "kids",
@@ -237,7 +259,7 @@ export const DISCIPLINES = [
     desc: "Le format signature Boxing Center : technique + cardio + sacs en une séance dense. Le meilleur point d’entrée si tu hésites.",
     teaser: "Le format maison : rien à choisir, tout y passe.",
     img: "/assets/img/sc/training.webp",
-    alt: "Sur le tapis, un pratiquant lance un coup de pied haut pendant que le groupe travaille en binômes, gants et protège-tibias aux jambes",
+    alt: "Un coach donne la consigne à un groupe monté sur le ring, gants aux mains",
   },
 ];
 
@@ -300,7 +322,7 @@ export const COACHES = [
     note: "Anglaise, Lady Punch et toute l’école, du Baby Boxe aux compétiteurs : Dadi tient la semaine d’un bout à l’autre. Premier cours ? Dis-lui que tu n’as jamais boxé — c’est exactement là que son travail commence.",
     img: "/assets/img/sc/coach-dadi.webp",
     // alt écrit d’après le cliché — jamais dérivé du nom ni du tag
-    alt: "Le coach Dadi, casquette et t-shirt Boxing Center rouge, poing serré devant lui, debout sur le tapis au bord du ring de la salle" },
+    alt: "Le coach Dadi, casquette et t-shirt Boxing Center rouge, bras croisés devant le ring de la salle" },
   { name: "Tawee", role: "Boxe Thaï · K1", tag: "L’art thaï", note: "La thaï enseignée comme elle se boxe là-bas — les tibias avant les mots. Et pour ta première : on apprend la touche avant la puissance." },
   { name: "Hicham", role: "Hyrox · Cross · Camp", tag: "Le moteur", note: "Les circuits qui construisent la caisse. Tu repars vidé, tu reviens plus fort." },
   { name: "Victor G", role: "Boxe Thaï · K1", tag: "La relève", note: "Les créneaux thaï/K1 du soir — l’intensité montante de la semaine." },
@@ -328,7 +350,7 @@ export const PROMOS = {
     unit: "par personne",
     was: "44€",
     detail: "4 semaines, cours illimités, sans engagement. Encore mieux à deux — 29€ chacun.",
-    cta: "Je prends ma place — 29€",
+    cta: "Je profite de l’offre — 29€",
     href: LINKS.promos,
   },
   saisonOffer: {
@@ -373,7 +395,7 @@ export const ROULETTE = [
     was: "44€",
     cut: "-34%",
     href: LINKS.promos,
-    cta: "Je prends ma place",
+    cta: "Je profite de l’offre",
   },
   {
     key: "saison",
@@ -395,7 +417,7 @@ export const TARIFS = [
     period: "par personne · 4 semaines",
     feature: "Cours illimités, toutes disciplines — encore mieux à deux",
     items: ["29€ par personne (au lieu de 44€)", "Toutes les disciplines", "Sans engagement"],
-    cta: "Je prends ma place — 29€",
+    cta: "Je profite de l’offre — 29€",
     href: LINKS.promos,
     highlight: true,
   },

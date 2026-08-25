@@ -23,49 +23,49 @@ export const GALLERY = [
     id: "plateau", zone: "Le plateau", spec: "1 200 m² · un seul niveau",
     lede: "Un seul niveau : depuis la porte tu vois déjà les sacs, le ring et la cage. Rien n’est planqué derrière une cloison, aucune mezzanine à monter — c’est tout l’argument.",
     shots: [
-      { f: "salle-1.webp", feat: "wide", cap: "Depuis l’entrée", alt: "Le plateau vu depuis la porte : la ligne de sacs suspendus à la charpente, le tapis bleu, le ring au fond et la cage grillagée sur la droite" },
+      { f: "salle-1.webp", feat: "wide", cap: "Le plateau", alt: "Le plateau vu dans sa longueur : bancs et racks au premier plan, tapis bleu et rouge, bannière Boxing Center au fond sous la charpente métallique" },
     ],
   },
   {
     id: "anglaise", zone: "L’anglaise", spec: "Le noble art · le ring",
     lede: "Cinq créneaux par semaine sur le même ring : deux midis, trois soirs. C’est le poste de Dadi, du premier jab au sparring encadré.",
     shots: [
-      { f: "anglaise-header.webp", feat: "wide", cap: "Le ring", alt: "Un boxeur en casque et gants, garde haute et appui avant marqué, au milieu d’un cours d’anglaise sur le ring" },
-      { f: "anglaise.webp", cap: "Au travail", alt: "Un cours d’anglaise en plein travail : jeunes et adultes gantés de part et d’autre des cordes, sacs et poires de vitesse en arrière-plan" },
+      { f: "anglaise-header.webp", feat: "wide", cap: "Aux boucliers", alt: "Un cours en plein travail : les pratiquants frappent des boucliers ronds tenus par leurs binômes, entre les sacs suspendus" },
+      { f: "anglaise.webp", cap: "Au travail", alt: "Une boxeuse en garde, poings fermés devant le visage, concentrée, devant le mur peint de la salle" },
     ],
   },
   {
     id: "pieds-poings", zone: "Le pieds-poings", spec: "Thaï · K1",
     lede: "Cinq créneaux tenus à deux : Tawee le midi, Victor G le soir — le sixième, samedi 18h, attend son encadrant. Les tibias et les genoux entrent dans le jeu, la technique ne baisse pas d’un cran.",
     shots: [
-      { f: "thai-2.webp", feat: "wide", cap: "La surface thaï", alt: "Un pratiquant lance un genou face à un coach qui tient la patte d’ours, sur le tapis bleu au pied du ring" },
-      { f: "thai.webp", cap: "Tibias, genoux", alt: "Travail de boxe thaï aux sacs, protège-tibias aux jambes, sous la lumière de la salle" },
-      { f: "thai-1.webp", cap: "K1", alt: "Deux pratiquants face à face au bord du ring : l’un tient les pattes d’ours, mains bandées de rouge, l’autre s’apprête à frapper" },
+      { f: "thai-2.webp", feat: "wide", cap: "Aux sacs", alt: "Le groupe aux sacs pendant un cours pieds-poings, chacun sur son sac le long de la charpente" },
+      { f: "thai.webp", cap: "Tibias, genoux", alt: "Une pratiquante lance un coup de pied haut dans la cage, appui planté et garde tenue" },
+      { f: "thai-1.webp", cap: "K1", alt: "Deux pratiquants, protège-tibias aux jambes, travaillent au sac sous la bannière Boxing Center" },
     ],
   },
   {
     id: "sol", zone: "Le sol", spec: "Grappling · mardi & jeudi",
     lede: "Une heure au sol, deux soirs par semaine, dans la cage : projections, contrôle, soumissions. Le complément qui manque à la plupart des boxeurs.",
     shots: [
-      { f: "grappling.webp", feat: "wide", cap: "Contrôle & soumissions", alt: "Vue plongeante sur la cage : plusieurs binômes travaillent au sol, contrôles et sorties, pendant qu’un pratiquant debout observe la position" },
+      { f: "grappling.webp", feat: "wide", cap: "Dans la cage", alt: "Deux pratiquantes gantées échangent dans la cage grillagée, garde haute" },
     ],
   },
   {
     id: "moteur", zone: "Le moteur", spec: "Hyrox · cross · muscu",
     lede: "La zone qui porte tout le reste : charges, rameurs, circuits. Hicham y tient l’Hyrox le mercredi et le cross deux fois par semaine — la caisse se construit ici, pas sur le ring.",
     shots: [
-      { f: "muscu.webp", feat: "wide", cap: "Charges & sacs", alt: "La zone moteur : rameurs au premier plan, cage à squat, bancs inclinés et machines de charge sur sol caoutchouc" },
-      { f: "cross.webp", cap: "Cross-training", alt: "Circuit de cross-training en cours, matériel de conditionnement disposé au sol" },
-      { f: "hyrox.webp", cap: "Hyrox", alt: "Un groupe de pratiquants court en peloton sur une route de campagne, foulée soutenue — le travail de caisse derrière l’Hyrox" },
-      { f: "training.webp", cap: "Boxing camp", alt: "Sur le tapis, un pratiquant lance un coup de pied haut pendant que le groupe travaille en binômes, gants et protège-tibias aux jambes" },
+      { f: "muscu.webp", feat: "wide", cap: "Charges", alt: "La salle de charge : cage à squat, bancs inclinés et machines alignées sur sol caoutchouc" },
+      { f: "cross.webp", cap: "Cross-training", alt: "La zone moteur : rameurs alignés au premier plan, bancs et racks derrière, bannière Boxing Center au mur" },
+      { f: "hyrox.webp", cap: "Hyrox", alt: "Travail en circuit au pied du ring : montées sur step, gainage au sol et banc, plusieurs ateliers en parallèle" },
+      { f: "training.webp", cap: "Boxing camp", alt: "Un coach donne la consigne à un groupe monté sur le ring, gants aux mains" },
     ],
   },
   {
     id: "lady", zone: "Lady Punch", spec: "100 % féminin · mar. & jeu.",
     lede: "Mardi et jeudi à 18h20, le créneau est à elles. Zéro prérequis, zéro galerie qui regarde : la boxe pour la forme, le cardio et la confiance.",
     shots: [
-      { f: "lady-2.webp", feat: "wide", cap: "100 % féminin", alt: "Une boxeuse en gants, garde serrée, frappe un sac de frappe pendant un cours Lady Punch ; d’autres pratiquantes travaillent aux sacs derrière elle" },
-      { f: "lady.webp", cap: "Cardio & confiance", alt: "Cours de Lady Punch aux sacs, plusieurs pratiquantes gantées en travail de cardio" },
+      { f: "lady-2.webp", feat: "wide", cap: "100 % féminin", alt: "Un coach corrige la position d’une pratiquante devant un sac, pendant un cours Lady Punch" },
+      { f: "lady.webp", cap: "Cardio & confiance", alt: "Un cours Lady Punch : plusieurs pratiquantes travaillent aux sacs le long du plateau" },
     ],
   },
   {
@@ -74,7 +74,7 @@ export const GALLERY = [
     shots: [
       { f: "educative.webp", feat: "wide", cap: "Boxe éducative", alt: "Un jeune boxeur en casque frappe un sac sous la charpente métallique, vu depuis le coin du ring" },
       { f: "educative-1.webp", cap: "7 → 16 ans", alt: "Deux jeunes boxeurs en casque et gants s’échangent des touches en assaut encadré, devant un mur peint de la salle" },
-      { f: "tous-niveaux.webp", cap: "Tous niveaux", alt: "Un pratiquant, gants aux poings, attend son tour au bord du ring pendant que le groupe s’échauffe derrière les cordes" },
+      { f: "tous-niveaux.webp", cap: "Tous niveaux", alt: "Un groupe mêlé, adultes et plus jeunes, travaille aux sacs et aux cibles murales pendant le même cours" },
     ],
   },
 ];

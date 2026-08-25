@@ -20,7 +20,7 @@ export const VISITE = [
     tag: "1 200 m² · rive gauche",
     d: "Un seul niveau, mille deux cents mètres carrés, rive gauche. Tu entres et tu vois déjà où tu vas travailler : le ring au fond, les sacs à droite, rien de planqué.",
     img: "/assets/img/sc/salle-1.webp",
-    alt: "Le plateau vu depuis l’entrée : la ligne de sacs suspendus à la charpente, le tapis bleu, le ring au fond et la cage grillagée sur la droite",
+    alt: "Le plateau vu dans sa longueur : bancs et racks au premier plan, tapis bleu et rouge, bannière Boxing Center au fond sous la charpente métallique",
     specs: ["1 200 m²", "Un seul niveau"],
   },
   {
@@ -29,7 +29,7 @@ export const VISITE = [
     tag: "Le noble art",
     d: "Ring, cordes tendues, coin bleu, coin rouge. C’est le poste de Dadi : le jab, la garde, le déplacement, cinq fois par semaine.",
     img: "/assets/img/sc/anglaise.webp",
-    alt: "Un cours d’anglaise en plein travail : jeunes et adultes gantés de part et d’autre des cordes, sacs et poires de vitesse en arrière-plan",
+    alt: "Une boxeuse en garde, poings fermés devant le visage, concentrée, devant le mur peint de la salle",
     specs: ["Coach · Dadi", "5 créneaux / sem."],
   },
   {
@@ -38,7 +38,7 @@ export const VISITE = [
     tag: "Thaï · K1",
     d: "Le tapis pieds-poings, sous son propre faisceau. Tawee et Victor G y passent cinq fois par semaine ; le sixième créneau, samedi 18h, attend son encadrant.",
     img: "/assets/img/sc/thai-2.webp",
-    alt: "Un pratiquant lance un genou face à un coach qui tient la patte d’ours, sur le tapis bleu au pied du ring",
+    alt: "Le groupe aux sacs pendant un cours pieds-poings, chacun sur son sac le long de la charpente",
     specs: ["Coachs · Tawee, Victor G", "6 créneaux / sem."],
   },
   {
@@ -47,7 +47,7 @@ export const VISITE = [
     tag: "Le moteur",
     d: "Machines, charges, sacs : la salle des moteurs. Hyrox le mercredi, cross lundi et mercredi avec Hicham — la caisse derrière chaque discipline.",
     img: "/assets/img/sc/muscu.webp",
-    alt: "La zone moteur : rameurs au premier plan, cage à squat, bancs inclinés et machines de charge sur sol caoutchouc",
+    alt: "La salle de charge : cage à squat, bancs inclinés et machines alignées sur sol caoutchouc",
     specs: ["Coach · Hicham", "Hyrox · Cross · HIIT"],
   },
   {
@@ -65,7 +65,7 @@ export const VISITE = [
     tag: "Tous niveaux",
     d: "Lady Punch le mardi et le jeudi, boxing camp quatre fois par semaine : les créneaux où l’on transpire ensemble, tous niveaux confondus.",
     img: "/assets/img/sc/tous-niveaux.webp",
-    alt: "Un pratiquant, gants aux poings, attend son tour au bord du ring pendant que le groupe s’échauffe derrière les cordes",
+    alt: "Un groupe mêlé, adultes et plus jeunes, travaille aux sacs et aux cibles murales pendant le même cours",
     specs: ["Lady Punch · 100 % féminin", "Camp · 4 créneaux"],
   },
 ];

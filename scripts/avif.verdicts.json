@@ -5,20 +5,94 @@
     "q": 40
   },
   "sc/anglaise-header.webp": {
-    "octets": 106784,
+    "octets": 123564,
+    "verdict": "avif",
+    "q": 60
+  },
+  "sc/anglaise.webp": {
+    "octets": 49486,
     "verdict": "avif",
     "q": 55
   },
-  "sc/anglaise.webp": {
-    "octets": 81242,
+  "sc/anneaux.webp": {
+    "octets": 76300,
+    "verdict": "avif",
+    "q": 65
+  },
+  "sc/appuis-tapis.webp": {
+    "octets": 144446,
+    "verdict": "avif",
+    "q": 60
+  },
+  "sc/charpente-contrejour.webp": {
+    "octets": 250532,
     "verdict": "webp"
   },
   "sc/coach-dadi.webp": {
-    "octets": 32122,
+    "octets": 71694,
+    "verdict": "avif",
+    "q": 60
+  },
+  "sc/coach-portrait-1.webp": {
+    "octets": 131154,
+    "verdict": "avif",
+    "q": 65
+  },
+  "sc/coach-portrait-2.webp": {
+    "octets": 139940,
+    "verdict": "avif",
+    "q": 60
+  },
+  "sc/coach-portrait-3.webp": {
+    "octets": 131304,
+    "verdict": "avif",
+    "q": 60
+  },
+  "sc/coach-portrait-4.webp": {
+    "octets": 76606,
+    "verdict": "avif",
+    "q": 60
+  },
+  "sc/coach-ring.webp": {
+    "octets": 114218,
+    "verdict": "webp"
+  },
+  "sc/cours-garde.webp": {
+    "octets": 141058,
+    "verdict": "webp"
+  },
+  "sc/cours-large.webp": {
+    "octets": 145972,
+    "verdict": "webp"
+  },
+  "sc/cours-nb.webp": {
+    "octets": 199766,
+    "verdict": "avif",
+    "q": 60
+  },
+  "sc/cours-plateau.webp": {
+    "octets": 387858,
+    "verdict": "webp"
+  },
+  "sc/cours-sacs.webp": {
+    "octets": 89270,
+    "verdict": "webp"
+  },
+  "sc/cross-barre.webp": {
+    "octets": 114158,
+    "verdict": "avif",
+    "q": 65
+  },
+  "sc/cross-circuit.webp": {
+    "octets": 135802,
+    "verdict": "webp"
+  },
+  "sc/cross-groupe.webp": {
+    "octets": 96594,
     "verdict": "webp"
   },
   "sc/cross.webp": {
-    "octets": 51256,
+    "octets": 119852,
     "verdict": "webp"
   },
   "sc/educative-1.webp": {
@@ -30,25 +104,97 @@
     "verdict": "webp"
   },
   "sc/grappling.webp": {
-    "octets": 70268,
+    "octets": 115846,
     "verdict": "webp"
   },
   "sc/hyrox.webp": {
-    "octets": 98804,
+    "octets": 109660,
     "verdict": "webp"
   },
-  "sc/lady-2.webp": {
-    "octets": 30154,
-    "verdict": "webp"
+  "sc/k1-coup-pied.webp": {
+    "octets": 57064,
+    "verdict": "avif",
+    "q": 55
   },
-  "sc/lady.webp": {
-    "octets": 58756,
+  "sc/k1-duo.webp": {
+    "octets": 69716,
     "verdict": "avif",
     "q": 60
   },
-  "sc/muscu.webp": {
-    "octets": 47260,
+  "sc/kettlebells-rangee.webp": {
+    "octets": 110836,
     "verdict": "webp"
+  },
+  "sc/kettlebells.webp": {
+    "octets": 138572,
+    "verdict": "webp"
+  },
+  "sc/lady-2.webp": {
+    "octets": 66924,
+    "verdict": "avif",
+    "q": 60
+  },
+  "sc/lady-cage.webp": {
+    "octets": 81552,
+    "verdict": "webp"
+  },
+  "sc/lady-duo-2.webp": {
+    "octets": 43032,
+    "verdict": "avif",
+    "q": 55
+  },
+  "sc/lady-duo.webp": {
+    "octets": 66820,
+    "verdict": "avif",
+    "q": 60
+  },
+  "sc/lady-gants.webp": {
+    "octets": 46704,
+    "verdict": "avif",
+    "q": 60
+  },
+  "sc/lady-garde.webp": {
+    "octets": 68308,
+    "verdict": "webp"
+  },
+  "sc/lady-sac-2.webp": {
+    "octets": 64182,
+    "verdict": "avif",
+    "q": 60
+  },
+  "sc/lady-sac.webp": {
+    "octets": 86348,
+    "verdict": "webp"
+  },
+  "sc/lady-technique.webp": {
+    "octets": 69834,
+    "verdict": "avif",
+    "q": 60
+  },
+  "sc/lady.webp": {
+    "octets": 123222,
+    "verdict": "webp"
+  },
+  "sc/mma-cage.webp": {
+    "octets": 120676,
+    "verdict": "webp"
+  },
+  "sc/muscu-detail.webp": {
+    "octets": 178776,
+    "verdict": "webp"
+  },
+  "sc/muscu-machines.webp": {
+    "octets": 148270,
+    "verdict": "webp"
+  },
+  "sc/muscu.webp": {
+    "octets": 159324,
+    "verdict": "webp"
+  },
+  "sc/pattes-murales.webp": {
+    "octets": 69042,
+    "verdict": "avif",
+    "q": 60
   },
   "sc/planning-2026-1600.webp": {
     "octets": 128934,
@@ -60,28 +206,96 @@
     "verdict": "avif",
     "q": 60
   },
-  "sc/salle-1.webp": {
-    "octets": 62124,
+  "sc/plateau-large.webp": {
+    "octets": 287644,
     "verdict": "webp"
+  },
+  "sc/ring-boxing.webp": {
+    "octets": 447944,
+    "verdict": "webp"
+  },
+  "sc/ring-seul.webp": {
+    "octets": 413780,
+    "verdict": "webp"
+  },
+  "sc/sacs-alignes.webp": {
+    "octets": 367024,
+    "verdict": "webp"
+  },
+  "sc/sacs-nb-serre.webp": {
+    "octets": 297496,
+    "verdict": "webp"
+  },
+  "sc/sacs-rangee-2.webp": {
+    "octets": 140264,
+    "verdict": "webp"
+  },
+  "sc/sacs-rangee.webp": {
+    "octets": 65490,
+    "verdict": "avif",
+    "q": 60
+  },
+  "sc/salle-1.webp": {
+    "octets": 220976,
+    "verdict": "webp"
+  },
+  "sc/salle-contrejour.webp": {
+    "octets": 117422,
+    "verdict": "webp"
+  },
+  "sc/salle-cross.webp": {
+    "octets": 129250,
+    "verdict": "webp"
+  },
+  "sc/salle-ring-large.webp": {
+    "octets": 425346,
+    "verdict": "webp"
+  },
+  "sc/salle-sacs-tapis.webp": {
+    "octets": 151312,
+    "verdict": "webp"
+  },
+  "sc/salle-tapis-2.webp": {
+    "octets": 156714,
+    "verdict": "webp"
+  },
+  "sc/salle-tapis.webp": {
+    "octets": 133098,
+    "verdict": "webp"
+  },
+  "sc/sol-grappling.webp": {
+    "octets": 68468,
+    "verdict": "avif",
+    "q": 65
   },
   "sc/thai-1.webp": {
-    "octets": 30342,
-    "verdict": "webp"
+    "octets": 65880,
+    "verdict": "avif",
+    "q": 60
   },
   "sc/thai-2.webp": {
-    "octets": 26386,
+    "octets": 89270,
+    "verdict": "webp"
+  },
+  "sc/thai-genou.webp": {
+    "octets": 89776,
+    "verdict": "webp"
+  },
+  "sc/thai-sac.webp": {
+    "octets": 108272,
     "verdict": "webp"
   },
   "sc/thai.webp": {
-    "octets": 97636,
+    "octets": 80876,
     "verdict": "webp"
   },
   "sc/tous-niveaux.webp": {
-    "octets": 34544,
+    "octets": 84510,
     "verdict": "webp"
   },
   "sc/training.webp": {
-    "octets": 39206,
-    "verdict": "webp"
+    "octets": 45450,
+    "verdict": "avif",
+    "q": 55
   }
 }
