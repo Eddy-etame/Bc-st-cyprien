@@ -41,7 +41,7 @@
   <meta name="twitter:image" content="https://bc-st-cyprien.vercel.app/assets/img/sc/salle-1.webp" />
 
   <!-- LCP: la photo du héros -->
-  <link rel="preload" as="image" href="/assets/img/sc/salle-1.webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="/assets/img/sc/hero-salle.webp" fetchpriority="high" />
 
   <link rel="stylesheet" href="/assets/css/base.css?v=22" />
   <link rel="stylesheet" href="/assets/css/roulette.css?v=22" />
@@ -343,38 +343,54 @@
          Ici la photo ne peut plus glisser — elle commence là où la parole
          commence. -->
     <header class="hero" aria-label="Boxing Center Saint-Cyprien">
-      <div class="hero__spot" aria-hidden="true"></div>
+      <!-- LA SALLE EN FOND. Photo reelle, pas un decor : c'est ce que
+           le visiteur verra en poussant la porte. Voile bleu nuit
+           par-dessus — un voile noir grisait la photo, le bleu la fait
+           entrer dans l'identite du club. -->
+      <img class="hero__bg" src="/assets/img/sc/hero-salle.webp"
+           alt="Le plateau Boxing Center Saint-Cyprien : la ligne de sacs, le ring bleu au centre, la cage et les tapis"
+           width="1647" height="955" fetchpriority="high" decoding="async" />
+
       <div class="wrap hero__inner">
-
-        <!-- 1. L’ACCROCHE — pleine largeur, calibrée pour tenir en deux lignes -->
-        <p class="eyebrow" data-reveal>Saint-Cyprien · Toulouse rive gauche</p>
-        <h1 class="display hero__title"><span class="reveal-mask"><span>Viens boxer</span></span><span class="reveal-mask"><span class="tint">quand ça t’arrange.</span></span></h1>
-
-        <!-- 2. LA LIGNE DE FRONT — la parole et la salle, même départ -->
-        <div class="hero__front">
-          <div class="hero__say">
-            <p class="lead hero__sub" data-reveal>Anglaise, thaï, K1, cross-training, muscu et cardio — au 11 rue Sainte-Lucie, rive gauche. Accès libre 7 j/7 et cours collectifs sans réservation, du premier cours à la compétition.</p>
-            <div class="hero__cta" data-reveal>
-              <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/inscription?product=offre-duo&step=1&utm_source=site&utm_medium=cta&utm_campaign=bc-st-cyprien"><span>Je profite de l’offre — 29€</span></a>
-              <a class="btn" data-magnetic href="#configurateur"><span>Voir les cours</span></a>
-            </div>
-            <p data-reveal style="margin-top:.55rem;font-size:.78rem;letter-spacing:.06em;color:var(--ink-soft)">29€ les 4 semaines · sans engagement · gants prêtés</p>
-          </div>
-          <div class="hero__media" data-reveal>
-            <div class="media hero__photo" data-img="/assets/img/sc/salle-1.webp" data-label="La salle · rive gauche" data-alt="Le plateau Boxing Center Saint-Cyprien : la ligne de sacs, le ring au fond, un seul niveau" data-eager></div>
-            <!-- les repères passent SOUS la photo : ils la légendent au lieu de
-                 rallonger la colonne de texte. -->
-            <div class="hero__badges" data-reveal>
-              <span>Accès libre 7 j/7</span>
-              <span>1 200 m²</span>
-              <span>Métro A · 4 min</span>
-              <span>Dès 3 ans</span>
-            </div>
-          </div>
+        <div class="hero__lockup" data-reveal>
+          <img class="hero__logo" src="/assets/img/logo-white.webp" alt="Boxing Center"
+               width="384" height="179" fetchpriority="high" />
+          <span class="hero__salle">Saint-Cyprien</span>
         </div>
 
-        <!-- 3. LA MARCHE — les chiffres ferment le héros et appellent la suite -->
-        <div class="hero__stats" id="stats" data-reveal-group aria-label="La salle en chiffres"></div>
+        <!-- L'accroche dit A QUI c'est, pas ce qu'on ressentira. -->
+        <p class="hero__claim" data-reveal>Débutants · Loisir · Compétition</p>
+
+        <p class="hero__sub" data-reveal>Boxe anglaise, K1, Muay Thaï, cross-training et préparation physique.<br />Un club ouvert 7 j/7, pour tous les niveaux.</p>
+
+        <div class="hero__cta" data-reveal>
+          <a class="btn btn--primary" href="https://boutique.boxingcenter.fr/inscription?product=offre-duo&amp;step=1&amp;utm_source=site&amp;utm_medium=cta&amp;utm_campaign=bc-st-cyprien"><span>Je profite de l’offre — 29€</span></a>
+          <a class="btn" href="#configurateur"><span>Découvrir les cours</span></a>
+        </div>
+      </div>
+
+      <!-- LES TROIS REPERES. Ils repondent aux trois questions muettes :
+           ou c'est, quand je peux venir, est-ce que c'est pour moi. -->
+      <div class="hero__foot">
+      <ul class="hero__facts" data-reveal>
+        <li class="hfact">
+          <svg class="hfact__i" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.6" stroke="currentColor" stroke-width="1.6"/></svg>
+          <span><b>11 rue Sainte-Lucie</b>Toulouse — Saint-Cyprien</span>
+        </li>
+        <li class="hfact">
+          <svg class="hfact__i" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.6" stroke="currentColor" stroke-width="1.6"/><path d="M12 7v5.3l3.4 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span><b>Ouvert 7 j/7</b>Accès libre, cours sans réservation</span>
+        </li>
+        <li class="hfact">
+          <svg class="hfact__i" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="9" cy="8.4" r="3.1" stroke="currentColor" stroke-width="1.6"/><path d="M3.6 19.4c0-3 2.4-5.2 5.4-5.2s5.4 2.2 5.4 5.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M16.2 6.2a3 3 0 0 1 0 5.9M17.6 14.6c2.1.5 3.6 2.3 3.6 4.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <span><b>Débutants bienvenus</b>Coachs diplômés, gants prêtés</span>
+        </li>
+      </ul>
+
+      <a class="hero__scroll" href="#configurateur">
+        <span class="hero__scroll-m" aria-hidden="true"></span>
+        Découvrir la salle
+      </a>
       </div>
     </header>
 

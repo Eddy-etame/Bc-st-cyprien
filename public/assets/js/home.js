@@ -24,7 +24,11 @@ const esc = (s = "") => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace
 
 /* --------------------------- RENDER ------------------------------- */
 function renderStats() {
-  $("#stats").innerHTML = STATS.map(
+  /* le bloc est optionnel : toutes les compositions de heros ne le
+     portent pas. Absent, on ne rend rien — on ne leve pas. */
+  const cible = $("#stats");
+  if (!cible) return;
+  cible.innerHTML = STATS.map(
     (s0) => { const s = s0.from ? { ...s0, v: CHIFFRES_VIVANTS[s0.from]?.() ?? s0.v } : s0; return `<div class="stat">
       <div class="stat__v"><span data-count="${s.v}" ${s.raw ? "data-raw" : ""}>${s.raw ? s.v : 0}</span>${s.suffix ? `<span class="stat__u">${s.suffix.trim()}</span>` : ""}</div>
       <div class="stat__l">${s.l}</div>
@@ -33,9 +37,11 @@ function renderStats() {
 }
 function renderTicker() {
   // items inusables (aucune date, aucun "neuf")
-  const items = ["La nouvelle génération", "Rive gauche", "1 200 m²", "Anglaise", "Thaï · K1", "Grappling", "Hyrox", "Lady Punch", "Dès 3 ans", "Métro A · 4 min"];
+  const items = ["Ouvert 7 j/7", "Sans réservation", "1 200 m²", "Anglaise", "Thaï · K1", "Grappling", "Hyrox", "Lady Punch", "Dès 3 ans", "Métro A · 4 min"];
   const row = items.map((i) => `<span>${i}</span>`).join("");
-  const t = $("#marquee"); t.innerHTML = row + row; t.dataset.speed = "0.6";
+  const t = $("#marquee");
+  if (!t) return;                 // meme regle : optionnel, jamais fatal
+  t.innerHTML = row + row; t.dataset.speed = "0.6";
 }
 
 /* LE CONFIGURATEUR — big list + lit sheet + FULL-BLEED backdrop that follows.

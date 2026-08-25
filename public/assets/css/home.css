@@ -345,3 +345,225 @@
   .hero__round-k, .oleg__n, .octa__now-tag, .cursor__label,
   .stat__l, .value__n { font-size: .78rem !important; }
 }
+
+/* =====================================================================
+   LE HÉROS — composition reprise de la maquette du club.
+   ---------------------------------------------------------------------
+   Verrou logo centré, accroche, deux lignes de fait, deux boutons, un
+   bandeau de trois repères, un appel au défilement. Tout est axé sur
+   la verticale centrale : c'est ce qui donne l'effet « affiche ».
+
+   DEUX ÉCARTS ASSUMÉS PAR RAPPORT À LA MAQUETTE :
+   · la maquette était rouge — ici c'est la palette du site (bleu nuit,
+     blanc cassé, argent). Le rouge aurait été une sixième couleur ;
+   · le logo de la maquette était inventé (des gants, « Saint-Cyprien »
+     en rouge). On sert le vrai fichier du club, et le nom de la salle
+     est composé dessous en mono espacé — pas dessiné dans l'image.
+   ===================================================================== */
+.hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: clamp(6.5rem, 13vh, 9rem);
+  padding-bottom: clamp(8rem, 16vh, 11rem);
+  background: var(--void);
+}
+
+/* LA SALLE EN FOND — une vraie photo, pas un décor. */
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 58%;   /* on garde le ring et les sacs, pas la charpente */
+  z-index: 0;
+}
+/* Le voile est BLEU NUIT, jamais noir : un voile noir grise la photo,
+   celui-ci la fait entrer dans l'identité. Plus dense en bas, pour que
+   le bandeau de repères et le pied de section restent lisibles. */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(78% 62% at 50% 42%, rgba(var(--navy-rgb), .38), transparent 72%),
+    linear-gradient(180deg,
+      rgba(var(--void-rgb), .74) 0%,
+      rgba(var(--navy-rgb), .70) 34%,
+      rgba(var(--navy-rgb), .84) 68%,
+      rgba(var(--paper-rgb), .97) 100%);
+  animation: none;
+}
+.hero::after { content: none; }
+
+.hero__inner {
+  position: relative;
+  z-index: 2;
+  align-items: center;
+  gap: 0;
+}
+
+/* ---- LE VERROU : le logo, puis le nom de la salle ---- */
+.hero__lockup { display: flex; flex-direction: column; align-items: center; gap: .75rem; }
+.hero__logo {
+  width: clamp(230px, 34vw, 430px);
+  height: auto;
+  filter: drop-shadow(0 6px 30px rgba(0, 0, 0, .6));
+}
+.hero__salle {
+  font: 600 clamp(.72rem, 1.5vw, 1rem)/1 var(--f-mono);
+  letter-spacing: .42em;      /* l'espacement fait le blason */
+  text-transform: uppercase;
+  color: var(--spark-2);
+  padding-left: .42em;        /* compense l'espacement sur le dernier signe */
+}
+
+/* ---- L'ACCROCHE : à qui ça s'adresse, pas ce qu'on ressentira ---- */
+.hero__claim {
+  margin-top: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(1.05rem, 2.4vw, 1.6rem);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.hero__sub {
+  margin-top: .85rem;
+  max-width: 56ch;
+  margin-inline: auto;
+  color: var(--ink-soft);
+  font-size: clamp(.95rem, 1.5vw, 1.08rem);
+  line-height: 1.55;
+}
+
+.hero__cta {
+  justify-content: center;
+  margin-top: clamp(1.7rem, 3.5vw, 2.5rem);
+  gap: .9rem;
+}
+.hero__cta .btn { min-width: clamp(200px, 26vw, 260px); }
+/* le CTA secondaire doit se lire SUR une photo : le fond translucide
+   lui donne son assise sans en faire un second bouton plein */
+.hero__cta .btn:not(.btn--primary) {
+  background: rgba(var(--void-rgb), .34);
+  backdrop-filter: blur(8px);
+  border-color: rgba(var(--spark-rgb), .45);
+}
+.hero__cta .btn:not(.btn--primary):hover { background: rgba(var(--void-rgb), .5); }
+
+/* ---- LES TROIS REPÈRES ---- */
+/* LE PIED DU HEROS. Le bandeau et l appel au defilement etaient deux
+   elements absolus poses chacun a sa hauteur : a 1440x900 ils se
+   mordaient de 2 px, et chaque correction de clamp deplacait le probleme
+   sur une autre taille d ecran. Empiles dans UN conteneur, ils ne
+   peuvent plus se chevaucher — a aucune hauteur de fenetre. */
+.hero__foot {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(1.1rem, 2.6vh, 1.8rem);
+  transform: translateX(-50%);
+  z-index: 2;
+  width: min(92vw, 1080px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(.8rem, 1.8vh, 1.3rem);
+}
+
+.hero__facts {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  background: var(--line-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+@media (min-width: 780px) { .hero__facts { grid-template-columns: repeat(3, 1fr); } }
+.hfact {
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  text-align: left;
+  padding: clamp(.85rem, 1.8vw, 1.1rem) clamp(1rem, 2vw, 1.4rem);
+  background: rgba(var(--paper-rgb), .62);
+}
+.hfact__i { width: 26px; height: 26px; flex: none; color: var(--spark); }
+.hfact span { display: flex; flex-direction: column; gap: .12rem; min-width: 0; }
+.hfact b {
+  font: 600 .74rem/1.3 var(--f-mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.hfact span { font-size: .8rem; line-height: 1.35; color: var(--muted); }
+
+/* ---- L'APPEL AU DÉFILEMENT ---- */
+.hero__scroll {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  font: 600 .6rem/1 var(--f-mono);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color .3s;
+}
+.hero__scroll:hover { color: var(--ink); }
+.hero__scroll-m {
+  width: 20px; height: 30px;
+  border: 1.5px solid currentColor;
+  border-radius: 100px;
+  position: relative;
+}
+.hero__scroll-m::after {
+  content: "";
+  position: absolute;
+  left: 50%; top: 6px;
+  width: 2px; height: 5px;
+  border-radius: 2px;
+  background: currentColor;
+  transform: translateX(-50%);
+  animation: heroMolette 1.9s var(--ease-out) infinite;
+}
+@keyframes heroMolette {
+  0%   { opacity: 0; transform: translate(-50%, -3px); }
+  35%  { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%, 9px); }
+}
+
+/* ---- PETITS ÉCRANS : le bandeau repasse EN FLUX ----
+   En absolu il chevauchait les boutons dès que la hauteur manquait. */
+@media (max-width: 779.98px) {
+  .hero { padding-bottom: clamp(2rem, 5vh, 3rem); }
+  .hero__foot { position: static; transform: none; width: 100%; margin-top: clamp(2rem, 5vw, 2.6rem); }
+  .hero__scroll { display: none; }
+  .hero__cta { flex-direction: column; align-items: stretch; width: min(100%, 340px); margin-inline: auto; }
+  .hero__cta .btn { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__scroll-m::after { animation: none; opacity: 1; }
+}
+
+/* FENÊTRE BASSE — le bandeau repasse EN FLUX.
+   Mesuré : à 1440x900 il reste 28 px entre le bandeau et l'appel au
+   défilement. En dessous de 720 px de haut la marge disparaît et les
+   deux se mordent, quelle que soit la largeur. On arrête alors de les
+   empiler en absolu. */
+@media (max-height: 720px) and (min-width: 780px) {
+  .hero { padding-bottom: clamp(2.5rem, 6vh, 3.5rem); }
+  .hero__foot { position: static; transform: none; margin-top: clamp(1.6rem, 3.5vh, 2.4rem); }
+  .hero__scroll { display: none; }
+}
