@@ -8,12 +8,8 @@
    CE QU'ON NE PUBLIE PAS : la semaine d'un coach, et qui tient quel
    créneau. C'est interne au club — ça se demande au 05 62 24 46 82. La
    grille de /plannings/ ne porte d'ailleurs plus aucun nom.
-
-   LA MÉTHODE ferme la page : trois règles vérifiables, pas de biographie
-   inventée.
    ===================================================================== */
 import { COACHES, picture } from "./data.js?v=27";
-import { ENCADREMENT } from "./data-coachs.js?v=23";
 
 const $ = (s, r = document) => r.querySelector(s);
 const esc = (s = "") => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -61,18 +57,6 @@ function renderRoster() {
 }
 
 
-/* LA MÉTHODE — trois règles vérifiables (ENCADREMENT), aucune biographie. */
-function renderMethode() {
-  const el = $("#methode");
-  if (!el) return;
-  el.innerHTML = ENCADREMENT.map(
-    (r) => `<article class="mrule">
-      <span class="mrule__n">${r.n}</span>
-      <h3 class="mrule__t">${r.t}</h3>
-      <p class="mrule__d">${r.d}</p>
-    </article>`
-  ).join("");
-}
 
 /* LE FAISCEAU — il passe d’un coach à l’autre. Interval sobre ; il se cale
    sur la tuile survolée et repart quand le curseur s’en va. CSS-only visual,
@@ -100,7 +84,6 @@ function beam() {
 /* ------------------------------ BOOT ------------------------------ */
 function boot() {
   renderRoster();
-  renderMethode();
 
   window.BC.reveal(document);
   window.BC.magnetic(document);

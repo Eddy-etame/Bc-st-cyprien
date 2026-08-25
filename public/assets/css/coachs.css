@@ -75,16 +75,6 @@
 /* ================= LE TAPIS SANS NOM — l'état assumé ============= */
 .tbd-sec__title { margin-top: 1rem; font-size: clamp(1.6rem,1rem+2.2vw,2.6rem); }
 
-/* ==================== LA MÉTHODE — 3 règles ===================== */
-.methode-sec__title { margin-top: 1rem; font-size: clamp(1.6rem,1rem+2.2vw,2.6rem); }
-.methode-sec__lead { margin-top: .9rem; max-width: 56ch; color: var(--ink-soft); }
-.methode { display: grid; gap: .7rem; grid-template-columns: 1fr; margin-top: clamp(1.8rem,4vw,2.6rem); }
-@media (min-width: 900px){ .methode { grid-template-columns: repeat(3,1fr); } }
-.mrule { border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper-2); padding: clamp(1.2rem,2.4vw,1.7rem); transition: transform .35s var(--ease-spring), box-shadow .35s, border-color .3s; }
-.mrule:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: rgba(var(--ink-rgb),.3); }
-.mrule__n { font: 600 .68rem/1 var(--f-mono); letter-spacing: .14em; color: var(--spark); }
-.mrule__t { font-family: var(--f-display); font-weight: 700; font-size: var(--step-1); letter-spacing: -.01em; color: var(--ink); margin-top: .55rem; }
-.mrule__d { color: var(--ink-soft); font-size: var(--step--1); line-height: 1.62; margin-top: .7rem; }
 
 @media (max-width: 820px){
 }

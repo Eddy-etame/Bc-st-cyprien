@@ -96,9 +96,3 @@ export const SEMAINES = [
   },
 ];
 
-/* ------------------------------------------------------------------ *
- *  LA MÉTHODE D’ENCADREMENT — trois règles VÉRIFIABLES, chacune adossée
- *  à un fait du poster officiel ou à la politique photo du site. Aucune
- *  biographie, aucun palmarès, aucun diplôme : rien qu’on ne puisse
- *  prouver ligne à ligne.
- * ------------------------------------------------------------------ */
