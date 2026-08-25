@@ -95,20 +95,20 @@
     "octets": 119852,
     "verdict": "webp"
   },
-  "sc/ecole-medailles.webp": {
-    "octets": 42760,
-    "verdict": "webp"
-  },
   "sc/educative-1.webp": {
-    "octets": 38602,
+    "octets": 46780,
     "verdict": "webp"
   },
   "sc/educative.webp": {
-    "octets": 82144,
+    "octets": 46780,
     "verdict": "webp"
   },
   "sc/grappling.webp": {
     "octets": 115846,
+    "verdict": "webp"
+  },
+  "sc/hero-salle.webp": {
+    "octets": 215896,
     "verdict": "webp"
   },
   "sc/hyrox.webp": {

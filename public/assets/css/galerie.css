@@ -142,4 +142,4 @@
  *
  * Le sélecteur vaut pour tout cliché vertical qu'on ajoutera ensuite :
  * il suffit de nommer le fichier et de l'ajouter ici. */
-.gitem img[src*="ecole-medailles"] { object-position: 50% 0%; }
+.gitem img[src*="educative"] { object-position: 50% 0%; }

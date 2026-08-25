@@ -56,7 +56,7 @@ export const VISITE = [
     tag: "Dès 3 ans",
     d: "Baby Boxe le samedi, éducative 7/11, ados 12/16, compétiteurs : l’école complète tient son propre créneau, encadrée par Dadi du plus petit au ring.",
     img: "/assets/img/sc/educative.webp",
-    alt: "Un jeune boxeur en casque frappe un sac sous la charpente métallique, vu depuis le coin du ring",
+    alt: "Deux jeunes licenciées en maillot Boxing Center, médaille aux dents, après une compétition",
     specs: ["Baby 3/6 · 7/11 · 12/16", "Coach · Dadi"],
   },
   {

@@ -567,3 +567,11 @@
   .hero__foot { position: static; transform: none; margin-top: clamp(1.6rem, 3.5vh, 2.4rem); }
   .hero__scroll { display: none; }
 }
+
+/* LA PHOTO DE L'ÉCOLE EST EN PORTRAIT, la vignette du configurateur en
+   paysage (16/8.6). Sans ancrage, `cover` coupe moitié en haut et moitié
+   en bas : les deux gamines perdaient la tête. Ancré en haut, il ne
+   saute que le bitume — les visages, les médailles et le maillot
+   restent. Vérifié en simulant le recadrage avant de trancher. */
+.config__media img[src*="educative"],
+.media img[src*="educative"] { object-position: 50% 0%; }

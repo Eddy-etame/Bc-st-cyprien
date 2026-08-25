@@ -72,9 +72,7 @@ export const GALLERY = [
     id: "ecole", zone: "L’école", spec: "Dès 3 ans → compétiteurs",
     lede: "Baby Boxe le samedi, éducative 7/11 et ados 12/16 le mercredi et le samedi, compétiteurs dans la foulée. Le même coach du bac à sable au premier combat.",
     shots: [
-      { f: "educative.webp", feat: "wide", cap: "Boxe éducative", alt: "Un jeune boxeur en casque frappe un sac sous la charpente métallique, vu depuis le coin du ring" },
-      { f: "educative-1.webp", cap: "7 → 16 ans", alt: "Deux jeunes boxeurs en casque et gants s’échangent des touches en assaut encadré, devant un mur peint de la salle" },
-      { f: "ecole-medailles.webp", cap: "Les compétitrices", alt: "Deux jeunes licenciées en maillot Boxing Center mordent leur médaille après une compétition, en extérieur" },
+      { f: "educative.webp", cap: "L’école en compétition", alt: "Deux jeunes licenciées en maillot Boxing Center, médaille aux dents, après une compétition" },
       { f: "tous-niveaux.webp", cap: "Tous niveaux", alt: "Un groupe mêlé, adultes et plus jeunes, travaille aux sacs et aux cibles murales pendant le même cours" },
     ],
   },

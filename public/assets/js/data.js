@@ -254,7 +254,7 @@ export const DISCIPLINES = [
     desc: "On touche, on ne frappe pas — règle fédérale, non négociable. Du Baby Boxe (dès 3 ans) aux compétiteurs : motricité, concentration, respect, et le même coach — Dadi — à chaque palier. Il n’y a personne à qui réexpliquer ton gamin.",
     teaser: "De 3 ans au premier combat, une seule école et une seule ligne.",
     img: "/assets/img/sc/educative-1.webp",
-    alt: "Deux jeunes boxeurs en casque et gants s’échangent des touches en assaut encadré, devant un mur peint de la salle",
+    alt: "Deux jeunes licenciées en maillot Boxing Center, médaille aux dents, après une compétition",
   },
   {
     key: "camp",
