@@ -483,7 +483,12 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 
 /* --------------------------- TICKER ------------------------------- */
 .marquee { overflow: hidden; border-block: 1px solid var(--line); padding-block: .85rem; background: var(--white); }
-.marquee__track { display: inline-flex; gap: 2.4rem; white-space: nowrap; will-change: transform; }
+/* la durée est posée par site.js d'après la largeur réelle du contenu ;
+   la valeur de repli sert si le JavaScript ne passe pas */
+.marquee__track { display: inline-flex; gap: 2.4rem; white-space: nowrap; will-change: transform;
+  animation: marqueeGlisse var(--marquee-duree, 42s) linear infinite; }
+@keyframes marqueeGlisse { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .marquee__track { animation: none; } }
 .marquee__track span { font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); display: inline-flex; align-items: center; gap: 2.4rem; }
 .marquee__track span::after { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--spark); }
 

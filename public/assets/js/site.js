@@ -303,21 +303,34 @@ function hydrateMedia(scope = document) {
 
 /* --------------------- VELOCITY: ticker drift --------------------- */
 let kineticsOn = false;
+/* LE BANDEAU DÉFILANT PASSE EN CSS.
+   Il tournait dans un gsap.ticker : une fonction rappelée À CHAQUE FRAME,
+   indéfiniment, tant que la page était ouverte — y compris quand le
+   bandeau était à dix écrans de là. Elle écrivait un style inline par
+   piste et par frame. C'était, de loin, le coût permanent le plus lourd
+   du site, pour une bande décorative.
+
+   Une animation CSS fait exactement la même chose : le compositeur la
+   joue sans repasser par le fil principal, le navigateur la met en pause
+   tout seul quand l'onglet passe en arrière-plan, et
+   `prefers-reduced-motion` la coupe sans une ligne de JavaScript.
+
+   Ce qui est perdu : la vitesse ne réagit plus à celle du scroll. C'était
+   joli sur le papier ; à l'usage, personne ne regarde un bandeau pendant
+   qu'il fait défiler la page.
+
+   La durée est proportionnelle à la LARGEUR du contenu — sinon une piste
+   longue défile vite et une courte rampe. On la mesure une fois. */
 function initKinetics() {
-  if (reduce || !gsap || kineticsOn) return; kineticsOn = true;
-  const tracks = [...document.querySelectorAll(".marquee__track")].map((t) => {
-    const half = t.scrollWidth / 2 || 1;
-    return { el: t, half, x: 0, base: parseFloat(t.dataset.speed || "0.6") };
-  });
-  gsap.ticker.add(() => {
-    let smooth = velocity * 0.2;
-    tracks.forEach((m) => {
-      m.x -= m.base + Math.abs(smooth) * 0.3;
-      if (m.x <= -m.half) m.x += m.half;
-      m.el.style.transform = `translateX(${m.x}px)`;
-    });
-    velocity *= 0.9;
-  });
+  if (kineticsOn) return; kineticsOn = true;
+  for (const t of document.querySelectorAll(".marquee__track")) {
+    /* le contenu est écrit deux fois : la boucle translate de -50 % et
+       doit retomber sur une copie identique. */
+    const demi = t.scrollWidth / 2;
+    if (!demi) continue;
+    const vitesse = parseFloat(t.dataset.speed || "0.6") * 60;   // px/seconde
+    t.style.setProperty("--marquee-duree", (demi / vitesse).toFixed(1) + "s");
+  }
 }
 
 /* Toutes les pages rendent leur contenu en JS APRÈS le boot de Lenis :
@@ -437,25 +450,40 @@ function wireAnchors() {
  * hero, brightening whatever it passes. Reusable on every page header
  * (home hero + page heros). rAF-throttled; first contact positions it
  * synchronously so the light never glows at a stale default. */
-function spotlight(heroSel = ".hero", spotSel = ".hero__spot") {
-  if (reduce || window.matchMedia("(hover: none)").matches) return;
-  const hero = typeof heroSel === "string" ? document.querySelector(heroSel) : heroSel;
-  if (!hero) return;
-  const spot = hero.querySelector(spotSel);
-  if (!spot) return;
-  let raf = 0, ev = null, first = true;
-  const apply = () => {
-    raf = 0; if (!ev) return;
-    const r = hero.getBoundingClientRect();
-    spot.style.setProperty("--sx", (((ev.clientX - r.left) / r.width) * 100).toFixed(1) + "%");
-    spot.style.setProperty("--sy", (((ev.clientY - r.top) / r.height) * 100).toFixed(1) + "%");
-  };
-  hero.addEventListener("pointermove", (e) => {
-    ev = e; hero.classList.add("is-lit");
-    if (first) { first = false; apply(); return; }
-    if (!raf) raf = requestAnimationFrame(apply);
-  }, { passive: true });
-  hero.addEventListener("pointerleave", () => hero.classList.remove("is-lit"));
+/* LE SPOTLIGHT AU CURSEUR EST RETIRÉ — il appartenait à l'autre DA.
+   Il venait du concept « la salle de nuit, la lumière comme objet » : une
+   tache de lumière qui suivait la souris sur un fond presque noir. Le site
+   est clair maintenant, et une tache claire sur du clair ne dit plus rien
+   — elle ne fait que salir la photo qu'elle traverse.
+
+   Il coûtait aussi un pointermove + un requestAnimationFrame par page, pour
+   un effet que personne ne remarque et que le tactile ne voit jamais.
+
+   La fonction reste exportée et vide : six pages appellent BC.spotlight(),
+   elles continuent de fonctionner sans être touchées. Le `.hero__spot` et
+   le `.phero__spot` restent dans le markup, inertes et invisibles. */
+function spotlight() { /* volontairement vide — voir ci-dessus */ }
+
+/* LE DÉVOILEMENT DES PHOTOS.
+   Un observateur, une classe, et c'est le CSS qui joue (voir photos.css :
+   le cadre s'ouvre pendant que l'image se pose). On n'observe qu'une fois
+   par élément : une photo déjà dévoilée n'a plus rien à raconter, et la
+   re-jouer au retour du scroll donnerait un site nerveux. */
+function revealPhotos(scope = document) {
+  const cibles = scope.querySelectorAll(".ph--reveal:not([data-vu]), .ph-band:not([data-vu])");
+  if (!cibles.length) return;
+  if (reduce || !("IntersectionObserver" in window)) {
+    cibles.forEach((el) => { el.dataset.vu = "1"; el.classList.add("is-seen"); });
+    return;
+  }
+  const io = new IntersectionObserver((entrees) => {
+    for (const e of entrees) {
+      if (!e.isIntersecting) continue;
+      e.target.classList.add("is-seen");
+      io.unobserve(e.target);
+    }
+  }, { threshold: 0.18, rootMargin: "0px 0px -8% 0px" });
+  cibles.forEach((el) => { el.dataset.vu = "1"; io.observe(el); });
 }
 
 /* --------------------------- TOUCH-LIFE --------------------------- *
@@ -598,7 +626,7 @@ function presentationAssistant() {
 }
 
 /* ------------------------------ BOOT ------------------------------ */
-window.BC = { reveal, magnetic, refresh, syncPhone, media: hydrateMedia, split, scramble, spotlight, touchLife, initKinetics, scrollToEl, get lenis() { return lenis; }, get velocity() { return velocity; } };
+window.BC = { reveal, revealPhotos, magnetic, refresh, syncPhone, media: hydrateMedia, split, scramble, spotlight, touchLife, initKinetics, scrollToEl, get lenis() { return lenis; }, get velocity() { return velocity; } };
 mountNav();
 mountFooter();
 initSmooth();
@@ -609,6 +637,10 @@ wireAnchors();
    #footer pour s’effacer en bas de page, et il faut donc que le pied
    existe. Le module rappelle reveal() lui-même sur ce qu’il pose. */
 mountRoulette();
+/* Le dévoilement des photos — APRÈS mountRoulette() : les cadrans posent
+   eux aussi du markup, et l'observateur ne passe qu'une fois. Les pages
+   qui injectent des images plus tard rappellent BC.revealPhotos(). */
+revealPhotos();
 syncPhone();
 watchPhone();
 armChatbot();

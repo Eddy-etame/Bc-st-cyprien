@@ -382,3 +382,52 @@ html.fx .ph[data-reveal] { opacity: 0; transform: translateY(14px); }
   color: var(--ink);
   letter-spacing: -.01em;
 }
+
+/* ================================================================== *
+   LE DÉVOILEMENT — la photo EST l'animation.
+   ------------------------------------------------------------------
+   Un fondu applique un effet À une image ; ici c'est l'image qui joue.
+   Deux gestes simultanés, et rien d'autre :
+
+     le CADRE s'ouvre du bas vers le haut  (clip-path)
+     l'IMAGE se pose de 106 % à 100 %      (transform)
+
+   Le second dure plus longtemps que le premier : le cadre a fini de
+   s'ouvrir que la photo bouge encore un peu. C'est ce décalage qui donne
+   la profondeur — sans lui on voit deux animations, avec lui on voit un
+   mouvement de caméra.
+
+   POURQUOI PAS DE PARALLAXE AU SCROLL : elle oblige à recalculer une
+   transformation à chaque frame pendant toute la traversée de l'écran.
+   Ici tout se joue en 1,1 s, une seule fois, sur deux propriétés que le
+   compositeur gère seul. Le rendu est le même, le coût n'a rien à voir.
+ * ================================================================== */
+.ph--reveal { clip-path: inset(0 0 100% 0); }
+.ph--reveal > img { transform: scale(1.06); transform-origin: 50% 55%; }
+
+.ph--reveal.is-seen { animation: phVolet .85s var(--ease-out) forwards; }
+.ph--reveal.is-seen > img { animation: phPose 1.35s var(--ease-out) forwards; }
+
+@keyframes phVolet { to { clip-path: inset(0 0 0 0); } }
+@keyframes phPose  { to { transform: scale(1); } }
+
+/* Le texte qui accompagne un dévoilement monte PENDANT que le cadre
+   s'ouvre, pas après : les deux appartiennent au même geste. */
+.ph-band__say > * { opacity: 0; transform: translateY(16px); }
+.ph-band.is-seen .ph-band__say > * {
+  animation: phMonte .8s var(--ease-out) .18s forwards;
+}
+@keyframes phMonte { to { opacity: 1; transform: none; } }
+
+/* Le recadrage au survol — pas un zoom : l'image se DÉPLACE vers son
+   sujet. Trois pixels et 2 % d'échelle : on ne voit pas l'effet, on voit
+   que l'image a bougé. Réservé aux photos cliquables. */
+.ph--cadrage > img { transition: transform .55s var(--ease-out); }
+.ph--cadrage:hover > img { transform: scale(1.02) translateY(-3px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ph--reveal,
+  .ph--reveal > img,
+  .ph-band__say > * { clip-path: none !important; transform: none !important; opacity: 1 !important; animation: none !important; }
+  .ph--cadrage:hover > img { transform: none; }
+}
