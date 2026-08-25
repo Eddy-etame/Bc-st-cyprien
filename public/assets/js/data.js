@@ -1,17 +1,25 @@
 /* =====================================================================
-   BOXING CENTER — SAINT-CYPRIEN · "LA NOUVELLE GÉNÉRATION"
-   Content source of truth (maquette). Plain ES module → Astro/Next.
+   BOXING CENTER — SAINT-CYPRIEN
+   La source de vérité du contenu. Module ES simple → Astro/Next.
 
-   Identity anchor: la salle que le réseau a dessinée en DERNIER. On ne
-   vend pas un état ("neuve" — ça périme au bout de deux ans), on vend une
-   POSITION dans une lignée (permanent) : Minimes a ouvert la voie (le
-   berceau), Portet a vu grand (le vaisseau amiral), États-Unis a bâti le
-   colosse, Ramonville a ouvert le ciel — Saint-Cyprien a tout retenu.
-   1 200 m² rive gauche, le premier Boxing Center rive gauche.
-   La DA reste le SHOWROOM au noir : la lumière n’éclaire pas du matériel,
-   elle isole LE GESTE (ta garde, ton souffle, tes appuis). Le configurateur
-   = "choisis ce que la lumière éclaire cette semaine".
-   Staff & créneaux = le planning officiel rentrée 2026 (poster du club).
+   CE QU'ON DIT, ET SUR QUOI ON S'APPUIE.
+   Les faits de cette salle sont vérifiables sur boxingcenter.fr (page
+   réseau + page Saint-Cyprien) : ouverte le 10 janvier 2022, cinquième
+   salle du réseau et la première en centre-ville, au 11 rue Sainte-Lucie
+   près du rond-point du Fer à Cheval. Sacs, tatamis et ring ; muscu,
+   charges libres, cross-training et cardio. Accès libre 7 j/7 aux cinq
+   salles, cours collectifs sans réservation. Affiliations FFBoxe et
+   FFKMDA. Staff & créneaux = le planning officiel rentrée 2026.
+
+   LA RÈGLE : rien ici ne s'invente. Un prix, un horaire, un nom de coach
+   ou une caractéristique de la salle qui ne figure ni sur boxingcenter.fr
+   ni sur le poster officiel n'entre pas dans ce fichier. Le ton est celui
+   du club qui présente sa salle — direct, concret, sans superlatif qu'on
+   ne pourrait pas prouver.
+
+   (L'ancienne direction artistique — « le showroom au noir, la lumière
+   comme objet » — a été abandonnée. Si vous croisez encore une formule
+   qui parle de lumière ou de geste isolé, c'est un reste à nettoyer.)
    ===================================================================== */
 
 import { OVERRIDES } from "./content-overrides.js";
