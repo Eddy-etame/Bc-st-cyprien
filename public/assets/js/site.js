@@ -35,7 +35,8 @@ function currentPath() {
 }
 function mountNav() {
   const path = currentPath();
-  const links = NAV.filter((n) => n.top !== false).map(
+  const principales = NAV.filter((n) => n.top !== false);
+  const links = principales.map(
     (n) => `<a href="${n.href}"${n.href === path ? ' aria-current="page"' : ""}>${n.label}</a>`
   ).join("");
   document.getElementById("nav").innerHTML = `
@@ -55,7 +56,7 @@ function mountNav() {
       </div>
     </nav>`;
 
-  const menuLinks = NAV.map(
+  const menuLinks = principales.map(
     (n, i) => `<a class="menu__link" href="${n.href}"><span class="n">${String(i + 1).padStart(2, "0")}</span>${n.label}</a>`
   ).join("");
   document.getElementById("drawer").innerHTML = `
