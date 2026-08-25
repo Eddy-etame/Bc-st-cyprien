@@ -625,7 +625,6 @@ body[data-page="plannings"] .phero h1 { font-size: clamp(2.2rem, 1.7rem + 3.3vw,
 body[data-page="tarifs"]    .phero h1 { font-size: clamp(2.6rem, 2rem + 4.7vw, 5.2rem); }                            /* sans détour */
 body[data-page="contact"]   .phero h1 { font-size: clamp(2.4rem, 1.8rem + 3.9vw, 4.6rem); }                          /* un panneau */
 body[data-page="galerie"]   .phero .lead { max-width: 46ch; }
-body[data-page="plannings"] .phero .lead { max-width: 50ch; }
 body[data-page="tarifs"]    .phero .lead { max-width: 50ch; }
 
 /* (2) L'OBJET ALLUMÉ — l'instrument de la page.
