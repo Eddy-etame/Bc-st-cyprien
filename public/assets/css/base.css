@@ -412,7 +412,7 @@ html.fx [data-reveal] { opacity: 0; transform: translateY(30px); }
    en deux lignes et débordait sur la pastille « Accueil ». La loi tient en
    quatre lignes : un gap qui interdit le contact, une marque qui ne se
    comprime pas, des mots qui ne se cassent pas, une colonne droite entière. */
-.nav { background: transparent; position: fixed; inset: 0 0 auto 0; z-index: 8000; display: flex; align-items: center; justify-content: space-between; gap: clamp(.6rem,1.2vw,1.4rem); padding: clamp(.8rem,1.8vw,1.1rem) var(--gut); transition: transform .5s var(--ease), background .4s, box-shadow .4s; }
+.nav { background: transparent; position: fixed; inset: 0 0 auto 0; z-index: 8000; display: flex; align-items: center; justify-content: space-between; gap: clamp(.6rem,1.2vw,1.4rem); padding: clamp(.55rem,1.1vw,.8rem) var(--gut); transition: transform .5s var(--ease), background .4s, box-shadow .4s; }
 .nav:not(.is-scrolled) .nav__links a,
 .nav:not(.is-scrolled) .nav__salle,
 .nav:not(.is-scrolled) .nav__ext a {
@@ -427,7 +427,11 @@ html.fx [data-reveal] { opacity: 0; transform: translateY(30px); }
 .nav.is-hidden { transform: translateY(-110%); }
 html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; transition: none; }
 /* official white logo, transparent, straight on the dark room — no filter */
-.nav__logo { height: clamp(24px, 3vw, 32px); width: auto; transition: opacity .3s; }
+.nav__logo { height: clamp(20px, 2.2vw, 26px); width: auto; transition: opacity .3s; }
+/* la marque tient sur UNE ligne, toujours : en display:block le logo et
+   le nom de la salle se separaient et la barre doublait de hauteur.
+   min-height 44px = la cible tactile, le logo etant court. */
+.nav__brand { display: inline-flex; align-items: center; min-height: 44px; gap: .9ch; flex: 0 0 auto; white-space: nowrap; }
 .nav__brand:hover .nav__logo { opacity: .75; }
 .nav__salle { font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--spark); padding-left: .9ch; border-left: 1px solid var(--line); white-space: nowrap; }
 .nav__links { display: none; gap: clamp(.2rem,1vw,.6rem); flex: 0 1 auto; flex-wrap: nowrap; }
@@ -563,11 +567,9 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
  * A slimmer header than the home hero, spotlight-ready (BC.spotlight).
  * Self-contained (own beam keyframe) so it works without home.css. */
 .phero { position: relative; overflow: hidden; background: var(--void); border-bottom: 1px solid var(--line); padding-top: clamp(7.5rem,15vh,10.5rem); padding-bottom: clamp(2.4rem,6vw,4rem); }
-.phero::before { content: ""; position: absolute; inset: -12% -20% auto -20%; height: 130%; z-index: 0; pointer-events: none;
-  background:
-    radial-gradient(60% 90% at 50% -16%, rgba(var(--spark-rgb),.15), transparent 62%),
-    linear-gradient(112deg, transparent 44%, rgba(var(--spark-rgb),.06) 50%, transparent 57%);
-  animation: pbeams 9s var(--ease) infinite alternate; }
+/* le faisceau anime a ete retire : il lavait la photo de l en-tete et
+   son bord tracait une ligne en travers. */
+.phero::before { content: none; }
 @keyframes pbeams { from { transform: translateX(-1.5%); opacity: .85; } to { transform: translateX(1.5%); opacity: 1; } }
 @media (prefers-reduced-motion: reduce){ .phero::before { animation: none; } }
 .phero::after { content: ""; position: absolute; inset: auto 0 0 0; height: 40%; z-index: 0; background: linear-gradient(180deg, transparent, var(--paper)); pointer-events: none; }
@@ -939,7 +941,7 @@ a:hover > .ext, a:hover .ext { opacity: 1; transform: translate(1px, -1px); }
   background: linear-gradient(0deg, rgba(var(--void-rgb), .94) 0%, rgba(var(--void-rgb), .52) 28%, transparent 58%);
 }
 /* l'ancien halo animé passait AU-DESSUS de la photo et la lavait */
-.phero::before { opacity: .16; }
+
 
 /* ------------------------- LA MARQUE ------------------------------ */
 .gong { position: relative; isolation: isolate; overflow: hidden; }
