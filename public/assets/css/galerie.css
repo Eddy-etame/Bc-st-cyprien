@@ -128,3 +128,18 @@
 .club__grid { display: grid; gap: .7rem; grid-template-columns: repeat(2,1fr); margin-top: clamp(1.8rem,4vw,2.6rem); }
 @media (min-width: 700px){ .club__grid { grid-template-columns: repeat(3,1fr); } }
 @media (min-width: 1040px){ .club__grid { grid-template-columns: repeat(4,1fr); } }
+
+/* ---------------- LES CLICHÉS EN PORTRAIT ------------------------- *
+ * La tuile est en 4/3.4 — presque carrée, légèrement paysage. Une photo
+ * verticale y perd 35 % de sa hauteur au recadrage, et `cover` prend ce
+ * qu'il coupe MOITIÉ EN HAUT, moitié en bas : sur la photo de l'école,
+ * ça sectionnait le haut du crâne d'une des deux gamines.
+ *
+ * On ancre donc le cadrage en haut : ce qui saute est le bas (herbe et
+ * jambes), ce qui reste est ce qui compte — les visages, les médailles
+ * et le maillot du club. Vérifié en simulant le recadrage aux deux
+ * positions avant de trancher.
+ *
+ * Le sélecteur vaut pour tout cliché vertical qu'on ajoutera ensuite :
+ * il suffit de nommer le fichier et de l'ajouter ici. */
+.gitem img[src*="ecole-medailles"] { object-position: 50% 0%; }

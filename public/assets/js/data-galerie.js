@@ -74,6 +74,7 @@ export const GALLERY = [
     shots: [
       { f: "educative.webp", feat: "wide", cap: "Boxe éducative", alt: "Un jeune boxeur en casque frappe un sac sous la charpente métallique, vu depuis le coin du ring" },
       { f: "educative-1.webp", cap: "7 → 16 ans", alt: "Deux jeunes boxeurs en casque et gants s’échangent des touches en assaut encadré, devant un mur peint de la salle" },
+      { f: "ecole-medailles.webp", cap: "Les compétitrices", alt: "Deux jeunes licenciées en maillot Boxing Center mordent leur médaille après une compétition, en extérieur" },
       { f: "tous-niveaux.webp", cap: "Tous niveaux", alt: "Un groupe mêlé, adultes et plus jeunes, travaille aux sacs et aux cibles murales pendant le même cours" },
     ],
   },
