@@ -125,3 +125,201 @@
   padding: .6em .9em;
   background: var(--paper-2);
 }
+
+/* =====================================================================
+   LES RANGÉES D'ACTIVITÉS — la page se construit au défilement.
+   ---------------------------------------------------------------------
+   Une rangée = une image + un bloc texte, alternés gauche/droite. Ce
+   n'est PAS la carte entière qui se déplace : chaque élément arrive
+   séparément, dans l'ordre — image, puis numéro, titre, description,
+   étiquette. C'est ce décalage qui donne l'impression que la carte se
+   compose, au lieu de coulisser d'un bloc.
+
+   TROIS DIRECTIONS, jamais plus, pour que le rythme change sans devenir
+   décoratif :
+     g   image depuis la gauche, texte depuis la droite
+     d   image depuis la droite, texte depuis la gauche
+     x   arrivée diagonale — l'accent, une rangée sur trois
+
+   ENTRÉE → POSITIONNEMENT → STABILITÉ. Aucune animation infinie :
+   l'observateur relâche l'élément dès qu'il est arrivé, et plus rien ne
+   bouge. Une page qui continue de flotter fatigue au deuxième écran.
+   ===================================================================== */
+.arows {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3.5rem, 9vw, 8rem);
+  margin-top: clamp(2rem, 5vw, 3.5rem);
+}
+
+.arow {
+  display: grid;
+  gap: clamp(1.4rem, 4vw, 3.5rem);
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .arow { grid-template-columns: 1.05fr .95fr; }
+  /* l'image passe à droite SANS toucher à l'ordre du DOM : un lecteur
+     d'écran garde toujours image puis texte. */
+  .arow[data-dir="d"] > .arow__ph { order: 2; }
+}
+
+.arow__ph { width: 100%; }
+.arow__txt { display: flex; flex-direction: column; gap: .55rem; }
+.arow__n {
+  font: 700 .72rem/1 var(--f-mono);
+  letter-spacing: .16em;
+  color: var(--spark-2);
+}
+.arow__t {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 3.4vw, 2.5rem);
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  color: var(--ink);
+}
+.arow__d {
+  font-size: clamp(.95rem, 1.5vw, 1.08rem);
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 42ch;
+}
+.arow__tag {
+  align-self: flex-start;
+  margin-top: .5rem;
+  font: 600 .64rem/1 var(--f-mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--spark);
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  padding: .55em .9em;
+}
+
+/* ---------------- L'ÉTAT DE DÉPART ---------------------------------
+   Posé sur [data-act="on"] et non sur la classe : c'est le script qui
+   arme le mouvement. Sans JavaScript, rien n'est masqué — la page reste
+   entièrement lisible. */
+[data-act="on"] .arow__ph,
+[data-act="on"] .arow__n,
+[data-act="on"] .arow__t,
+[data-act="on"] .arow__d,
+[data-act="on"] .arow__tag {
+  opacity: 0;
+  transition: opacity .75s var(--ease-out), transform .95s var(--ease-out);
+}
+
+[data-act="on"][data-dir="g"] .arow__ph { transform: translateX(-90px) scale(.94) rotate(-1deg); }
+[data-act="on"][data-dir="g"] .arow__n,
+[data-act="on"][data-dir="g"] .arow__t,
+[data-act="on"][data-dir="g"] .arow__d,
+[data-act="on"][data-dir="g"] .arow__tag { transform: translateX(70px); }
+
+[data-act="on"][data-dir="d"] .arow__ph { transform: translateX(90px) scale(.94) rotate(1deg); }
+[data-act="on"][data-dir="d"] .arow__n,
+[data-act="on"][data-dir="d"] .arow__t,
+[data-act="on"][data-dir="d"] .arow__d,
+[data-act="on"][data-dir="d"] .arow__tag { transform: translateX(-70px); }
+
+[data-act="on"][data-dir="x"] .arow__ph { transform: translate(-38px, 70px) scale(.94) rotate(-.8deg); }
+[data-act="on"][data-dir="x"] .arow__n,
+[data-act="on"][data-dir="x"] .arow__t,
+[data-act="on"][data-dir="x"] .arow__d,
+[data-act="on"][data-dir="x"] .arow__tag { transform: translate(38px, -34px); }
+
+/* ---------------- L'ARRIVÉE, DANS L'ORDRE --------------------------
+   L'image part la première, le reste la suit. Les retards ne sont posés
+   que sur l'état d'arrivée : au départ tout est déjà en place, sinon
+   une sortie du champ rejouerait le décalage à l'envers. */
+[data-act="on"].is-in .arow__ph,
+[data-act="on"].is-in .arow__n,
+[data-act="on"].is-in .arow__t,
+[data-act="on"].is-in .arow__d,
+[data-act="on"].is-in .arow__tag {
+  opacity: 1;
+  transform: none;
+}
+[data-act="on"].is-in .arow__ph  { transition-delay: 0ms; }
+[data-act="on"].is-in .arow__n   { transition-delay: 110ms; }
+[data-act="on"].is-in .arow__t   { transition-delay: 150ms; }
+[data-act="on"].is-in .arow__d   { transition-delay: 240ms; }
+[data-act="on"].is-in .arow__tag { transition-delay: 340ms; }
+
+/* ---------------- LES BLOCS NUMÉROTÉS ET LE GONG -------------------
+   Même grammaire, mais en montée verticale : la fin de page se pose au
+   lieu de glisser. C'est ce qui la fait sentir comme une fin. */
+.alibre li { position: relative; }
+.alibre__n {
+  font: 700 .68rem/1 var(--f-mono);
+  letter-spacing: .16em;
+  color: var(--spark);
+  margin-bottom: .15rem;
+}
+.alibre__d { font-size: var(--step--1); line-height: 1.45; color: var(--muted); }
+
+[data-act="on"][data-dir="n"] .alibre__n,
+[data-act="on"][data-dir="n"] b,
+[data-act="on"][data-dir="n"] .alibre__d,
+[data-act="on"][data-dir="n"] .eyebrow,
+[data-act="on"][data-dir="n"] .display,
+[data-act="on"][data-dir="n"] .lead,
+[data-act="on"][data-dir="n"] .gong__cta {
+  opacity: 0;
+  transition: opacity .7s var(--ease-out), transform .8s var(--ease-out);
+}
+[data-act="on"][data-dir="n"] .alibre__n { transform: translateY(30px); }
+[data-act="on"][data-dir="n"] b          { transform: translateY(26px); }
+[data-act="on"][data-dir="n"] .alibre__d { transform: translateY(22px); }
+[data-act="on"][data-dir="n"] .eyebrow   { transform: translateY(30px); }
+[data-act="on"][data-dir="n"] .display   { transform: translateY(40px); }
+[data-act="on"][data-dir="n"] .lead      { transform: translateY(30px); }
+[data-act="on"][data-dir="n"] .gong__cta { transform: translateY(20px); }
+
+[data-act="on"][data-dir="n"].is-in .alibre__n,
+[data-act="on"][data-dir="n"].is-in b,
+[data-act="on"][data-dir="n"].is-in .alibre__d,
+[data-act="on"][data-dir="n"].is-in .eyebrow,
+[data-act="on"][data-dir="n"].is-in .display,
+[data-act="on"][data-dir="n"].is-in .lead,
+[data-act="on"][data-dir="n"].is-in .gong__cta { opacity: 1; transform: none; }
+
+[data-act="on"][data-dir="n"].is-in .alibre__n { transition-delay: 0ms; }
+[data-act="on"][data-dir="n"].is-in b          { transition-delay: 110ms; }
+[data-act="on"][data-dir="n"].is-in .alibre__d { transition-delay: 220ms; }
+[data-act="on"][data-dir="n"].is-in .eyebrow   { transition-delay: 0ms; }
+[data-act="on"][data-dir="n"].is-in .display   { transition-delay: 90ms; }
+[data-act="on"][data-dir="n"].is-in .lead      { transition-delay: 190ms; }
+[data-act="on"][data-dir="n"].is-in .gong__cta { transition-delay: 300ms; }
+
+/* ---------------- MOBILE : QUE DU VERTICAL -------------------------
+   90 px de déplacement horizontal sur un écran de 375 px pousse le
+   document et fabrique un défilement latéral. Tout repasse en
+   translateY, avec des amplitudes plus courtes. */
+@media (max-width: 899.98px) {
+  [data-act="on"][data-dir] .arow__ph  { transform: translateY(60px) scale(.96); }
+  [data-act="on"][data-dir] .arow__n   { transform: translateY(44px); }
+  [data-act="on"][data-dir] .arow__t   { transform: translateY(40px); }
+  [data-act="on"][data-dir] .arow__d   { transform: translateY(32px); }
+  [data-act="on"][data-dir] .arow__tag { transform: translateY(26px); }
+  [data-act="on"].is-in .arow__ph,
+  [data-act="on"].is-in .arow__n,
+  [data-act="on"].is-in .arow__t,
+  [data-act="on"].is-in .arow__d,
+  [data-act="on"].is-in .arow__tag { transform: none; }
+}
+
+/* ---------------- MOUVEMENT RÉDUIT --------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  [data-act="on"] .arow__ph,
+  [data-act="on"] .arow__n,
+  [data-act="on"] .arow__t,
+  [data-act="on"] .arow__d,
+  [data-act="on"] .arow__tag,
+  [data-act="on"][data-dir="n"] * {
+    transform: none !important;
+    transition: opacity .3s linear !important;
+    transition-delay: 0ms !important;
+  }
+}
