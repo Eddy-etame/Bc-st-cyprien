@@ -323,3 +323,295 @@
     transition-delay: 0ms !important;
   }
 }
+
+/* =====================================================================
+   LA FIN DE PAGE — composition reprise de la maquette du club.
+   ---------------------------------------------------------------------
+   Quatre temps : l'accès libre sur la photo de la salle, une respiration
+   claire qui annonce les formules, les deux offres sur fond sombre, puis
+   le gong. C'est un crescendo : on montre, on annonce, on chiffre, on
+   demande.
+
+   L'ORANGE DE LA MAQUETTE N'ENTRE PAS. Le site tient sur quatre couleurs
+   (bleu nuit, blanc cassé, argent, noir) ; une cinquième pour deux
+   boutons aurait cassé l'identité pour rien. L'accent reste le blanc
+   chaud, et c'est le CONTRASTE — carte pleine contre carte creuse — qui
+   désigne l'offre principale, pas une couleur d'alerte.
+   ===================================================================== */
+
+/* ------------------- 1. L'ACCÈS LIBRE, SUR LA SALLE ---------------- */
+.libre {
+  position: relative;
+  isolation: isolate;
+  padding-block: clamp(4rem, 9vw, 7rem) clamp(3rem, 7vw, 5rem);
+  overflow: hidden;
+}
+.libre__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: 50% 45%;
+  z-index: -2;
+}
+/* voile bleu nuit — la photo doit rester lisible sous le texte, sans
+   virer au gris comme le ferait un voile noir */
+.libre::before {
+  content: "";
+  position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg,
+    rgba(var(--void-rgb), .82) 0%,
+    rgba(var(--navy-rgb), .86) 45%,
+    rgba(var(--paper-rgb), .96) 100%);
+}
+.libre__say { text-align: center; }
+.libre__say .eyebrow { justify-content: center; }
+.libre__say .display {
+  font-size: clamp(1.7rem, 4.2vw, 3rem);
+  margin-top: 1rem;
+}
+.libre__say .lead { margin: .9rem auto 0; max-width: 44ch; }
+
+/* les quatre cartes, posées EN CHEVAUCHEMENT sur la photo — c'est ce
+   décalage qui donne la profondeur de la maquette */
+.libre__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  margin-top: clamp(2.2rem, 5vw, 3.4rem);
+  background: var(--line-soft);
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) + 4px);
+  overflow: hidden;
+  box-shadow: 0 30px 70px -30px rgba(0, 0, 0, .7);
+}
+@media (min-width: 620px) { .libre__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .libre__grid { grid-template-columns: repeat(4, 1fr); } }
+.libre__grid > li {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  padding: clamp(1.2rem, 2.4vw, 1.7rem);
+  background: rgba(var(--paper-2-rgb), .92);
+  backdrop-filter: blur(10px);
+}
+.libre__n {
+  font: 700 .68rem/1 var(--f-mono);
+  letter-spacing: .16em;
+  color: var(--spark);
+}
+.libre__i { width: 30px; height: 30px; color: var(--spark-2); margin-block: .3rem; }
+.libre__grid b {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: 1.02rem;
+  color: var(--ink);
+}
+.libre__d { font-size: var(--step--1); line-height: 1.45; color: var(--muted); }
+
+.libre .equip { justify-content: center; margin-top: clamp(1.6rem, 3.5vw, 2.4rem); }
+
+/* ------------------- 2. LA RESPIRATION CLAIRE --------------------- */
+.formules {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(4.5rem, 11vw, 9rem);
+  text-align: center;
+}
+/* le filigrane : le nom du club en très grand, très pâle, DERRIÈRE le
+   titre. Il donne l'échelle sans rien réclamer. */
+.formules__mark {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(4rem, 15vw, 12rem);
+  line-height: .82;
+  letter-spacing: -.04em;
+  color: var(--ink);
+  opacity: .055;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+.formules__say { position: relative; z-index: 1; }
+.formules__say .eyebrow { justify-content: center; }
+.formules__say .display {
+  font-size: clamp(1.9rem, 5vw, 3.6rem);
+  margin-top: 1.1rem;
+}
+/* le trait sous le titre, comme sur la maquette */
+.formules__say .display::after {
+  content: "";
+  display: block;
+  width: 74px; height: 3px;
+  margin: clamp(1.4rem, 3vw, 2rem) auto 0;
+  border-radius: 3px;
+  background: var(--spark);
+}
+
+/* ---------------------- 3. LES DEUX OFFRES ------------------------ */
+.offres {
+  background: var(--void);
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+.offres__grid {
+  display: grid;
+  gap: clamp(1rem, 2.4vw, 1.6rem);
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+@media (min-width: 860px) { .offres__grid { grid-template-columns: repeat(2, 1fr); } }
+
+.offre {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding: clamp(1.5rem, 3.2vw, 2.4rem);
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) + 4px);
+  background: var(--paper-2);
+}
+/* L'OFFRE PRINCIPALE SE DÉSIGNE PAR LE CONTRASTE, pas par une couleur
+   d'alerte : cadre blanc chaud et halo, sur des cartes autrement sobres. */
+.offre--phare {
+  border-color: var(--spark);
+  box-shadow: var(--glow), 0 26px 60px -30px rgba(0, 0, 0, .8);
+}
+.offre__flag {
+  position: absolute;
+  top: -.75em; left: clamp(1.3rem, 3vw, 2rem);
+  background: var(--spark);
+  color: var(--on-spark);
+  font: 600 .6rem/1 var(--f-mono);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: .6em 1em;
+  border-radius: 100px;
+}
+.offre__head { display: flex; align-items: center; gap: clamp(.9rem, 2vw, 1.4rem); }
+/* le prix dans son disque — repris de la maquette, en argent */
+.offre__disc {
+  flex: none;
+  width: clamp(88px, 15vw, 116px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  display: grid;
+  place-content: center;
+  text-align: center;
+  gap: .1rem;
+}
+.offre--phare .offre__disc { border-color: var(--spark); }
+.offre__disc b {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1;
+  letter-spacing: -.02em;
+  color: var(--ink);
+}
+.offre__disc i {
+  font-style: normal;
+  font: 500 .58rem/1.2 var(--f-mono);
+  letter-spacing: .06em;
+  color: var(--muted);
+}
+.offre__n {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(1.2rem, 2.4vw, 1.6rem);
+  letter-spacing: -.01em;
+  color: var(--ink);
+}
+.offre__s {
+  margin-top: .3rem;
+  font: 600 .68rem/1.3 var(--f-mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--spark-2);
+}
+.offre__l { display: grid; gap: .65rem; }
+.offre__l li { display: flex; align-items: flex-start; gap: .8ch; }
+.offre__c { width: 19px; height: 19px; flex: none; margin-top: .1em; color: var(--spark-2); }
+.offre--phare .offre__c { color: var(--spark); }
+.offre__l span { font-size: var(--step--1); line-height: 1.45; color: var(--ink-soft); }
+.offre__cta { margin-top: auto; align-self: stretch; }
+
+/* ------------------- LE BANDEAU DE RÉASSURANCE -------------------- */
+.rassure {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  width: var(--wrap);
+  margin: clamp(1.6rem, 3.5vw, 2.4rem) auto 0;
+  background: var(--line-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+@media (min-width: 760px) { .rassure { grid-template-columns: repeat(3, 1fr); } }
+.rassure li {
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  padding: clamp(.9rem, 2vw, 1.2rem) clamp(1rem, 2vw, 1.4rem);
+  background: var(--paper);
+}
+.rassure__i { width: 26px; height: 26px; flex: none; color: var(--spark-2); }
+.rassure span { display: flex; flex-direction: column; gap: .12rem; }
+.rassure b {
+  font: 600 .72rem/1.3 var(--f-mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.rassure span { font-size: .78rem; line-height: 1.35; color: var(--muted); }
+
+/* ------------------- LE MOUVEMENT DE LA FIN DE PAGE ---------------
+   Même grammaire que les rangées d'activités : montée verticale, dans
+   l'ordre, puis stabilité. */
+[data-act="on"][data-dir="n"].libre__say > *,
+[data-act="on"][data-dir="n"].formules__say > *,
+[data-act="on"][data-dir="n"] .libre__n,
+[data-act="on"][data-dir="n"] .libre__i,
+[data-act="on"][data-dir="n"] .libre__d,
+[data-act="on"][data-dir="n"] .offre__flag,
+[data-act="on"][data-dir="n"] .offre__head,
+[data-act="on"][data-dir="n"] .offre__l,
+[data-act="on"][data-dir="n"] .offre__cta,
+[data-act="on"][data-dir="n"].equip > li,
+[data-act="on"][data-dir="n"].rassure > li {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity .7s var(--ease-out), transform .8s var(--ease-out);
+}
+[data-act="on"][data-dir="n"].is-in.libre__say > *,
+[data-act="on"][data-dir="n"].is-in.formules__say > *,
+[data-act="on"][data-dir="n"].is-in .libre__n,
+[data-act="on"][data-dir="n"].is-in .libre__i,
+[data-act="on"][data-dir="n"].is-in .libre__d,
+[data-act="on"][data-dir="n"].is-in .offre__flag,
+[data-act="on"][data-dir="n"].is-in .offre__head,
+[data-act="on"][data-dir="n"].is-in .offre__l,
+[data-act="on"][data-dir="n"].is-in .offre__cta,
+[data-act="on"][data-dir="n"].is-in.equip > li,
+[data-act="on"][data-dir="n"].is-in.rassure > li { opacity: 1; transform: none; }
+
+[data-act="on"][data-dir="n"].is-in .offre__flag { transition-delay: 0ms; }
+[data-act="on"][data-dir="n"].is-in .offre__head { transition-delay: 80ms; }
+[data-act="on"][data-dir="n"].is-in .offre__l    { transition-delay: 180ms; }
+[data-act="on"][data-dir="n"].is-in .offre__cta  { transition-delay: 280ms; }
+[data-act="on"][data-dir="n"].is-in .libre__i    { transition-delay: 90ms; }
+[data-act="on"][data-dir="n"].is-in .libre__d    { transition-delay: 180ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-act="on"][data-dir="n"] * {
+    transform: none !important;
+    transition: opacity .3s linear !important;
+    transition-delay: 0ms !important;
+  }
+}

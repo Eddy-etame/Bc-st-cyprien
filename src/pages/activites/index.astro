@@ -44,7 +44,7 @@
   <link rel="stylesheet" href="/assets/css/roulette.css?v=22" />
   <link rel="stylesheet" href="/assets/css/photos.css?v=22" />
   <link rel="stylesheet" href="/assets/css/home.css?v=22" />
-  <link rel="stylesheet" href="/assets/css/activites.css?v=24" />
+  <link rel="stylesheet" href="/assets/css/activites.css?v=25" />
 
   <!-- SEO/GEO — graphe JSON-LD unifié (organisation · salle · site · page · image ·
        fil d’Ariane · disciplines). Faits réels uniquement — miroir de data.js. -->
@@ -571,60 +571,79 @@
       </div>
     </section>
 
-    <section class="section band-light" aria-label="Les espaces en accès libre">
+    <!-- ============ L'ACCÈS LIBRE — la salle en fond ============= -->
+    <section class="libre" aria-label="Les espaces en accès libre">
+      <img class="libre__bg" src="/assets/img/sc/muscu.webp" alt="" loading="lazy" decoding="async" />
+      <div class="wrap libre__say" data-act data-dir="n">
+        <span class="eyebrow">Sans cours, sans réservation</span>
+        <h2 class="display">Vous préférez vous<br />entraîner librement ?</h2>
+        <p class="lead">Les espaces sont ouverts en accès libre, 7 jours sur 7.</p>
+      </div>
       <div class="wrap">
-        <span class="eyebrow" data-reveal>Sans cours, sans réservation</span>
-        <h2 class="display alibre__t" data-reveal>Vous préférez vous entraîner librement ?</h2>
-        <p class="alibre__l" data-reveal>Les espaces sont ouverts en accès libre, 7 jours sur 7.</p>
-        <ul class="alibre">
+        <ul class="libre__grid">
           <li data-act data-dir="n">
-            <span class="alibre__n">01</span>
+            <span class="libre__n">01</span>
+            <svg class="libre__i" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 9v6M8 7v10M20 9v6M16 7v10M8 12h8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
             <b>Musculation</b>
-            <span class="alibre__d">Machines, cages et charges libres.</span>
+            <span class="libre__d">Machines, cages et charges libres.</span>
           </li>
           <li data-act data-dir="n">
-            <span class="alibre__n">02</span>
+            <span class="libre__n">02</span>
+            <svg class="libre__i" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12.5h3.2l1.6-3.4 2.4 6.6 2-9 2 5.8 1.4-2h4.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
             <b>Cardio</b>
-            <span class="alibre__d">Tapis de course, vélos elliptiques.</span>
+            <span class="libre__d">Tapis de course, vélos elliptiques.</span>
           </li>
           <li data-act data-dir="n">
-            <span class="alibre__n">03</span>
+            <span class="libre__n">03</span>
+            <svg class="libre__i" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4.4a1.7 1.7 0 1 0 0 3.4 1.7 1.7 0 0 0 0-3.4Z" stroke="currentColor" stroke-width="1.6"/><path d="M5 10.5h14M8.6 10.5 7 19.6M15.4 10.5 17 19.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
             <b>Cross Training</b>
-            <span class="alibre__d">Matériel dédié et matériel olympique.</span>
+            <span class="libre__d">Matériel dédié et matériel olympique.</span>
           </li>
           <li data-act data-dir="n">
-            <span class="alibre__n">04</span>
+            <span class="libre__n">04</span>
+            <svg class="libre__i" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8.2" r="3.2" stroke="currentColor" stroke-width="1.6"/><path d="M5.6 19.6c0-3.3 2.9-5.8 6.4-5.8s6.4 2.5 6.4 5.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
             <b>Entraînement personnel</b>
-            <span class="alibre__d">Vous venez travailler seul, à votre heure.</span>
+            <span class="libre__d">Vous venez travailler seul, à votre heure.</span>
           </li>
+        </ul>
+        <ul class="equip" data-act data-dir="n">
+          <li>Sacs de frappe</li>
+          <li>Espace tatamis</li>
+          <li>Ring</li>
+          <li>Machines de musculation</li>
+          <li>Cages</li>
+          <li>Charges libres</li>
+          <li>Matériel Cross Training</li>
+          <li>Matériel olympique</li>
+          <li>Machines cardio</li>
         </ul>
       </div>
     </section>
 
-    <section class="section" style="padding-top:0" aria-label="Les équipements">
-      <div class="wrap">
-        <div class="ph-split" data-reveal>
-          <figure class="ph ph--4x3 ph--zoom">
-            <img src="/assets/img/sc/plateau-large.webp" alt="Le plateau : sacs suspendus, tapis et ring" loading="lazy" decoding="async" />
-          </figure>
-          <div class="ph-split__txt">
-            <h2 class="display">Un espace pensé pour votre entraînement</h2>
-            <ul class="equip">
-              <li>Sacs de frappe</li>
-              <li>Espace tatamis</li>
-              <li>Ring</li>
-              <li>Machines de musculation</li>
-              <li>Cages</li>
-              <li>Charges libres</li>
-              <li>Matériel Cross Training</li>
-              <li>Matériel olympique</li>
-              <li>Machines cardio</li>
-            </ul>
-          </div>
-        </div>
+    <!-- ========== LES FORMULES — la respiration claire ============ -->
+    <section class="formules band-light" aria-label="Choisissez votre formule">
+      <span class="formules__mark" aria-hidden="true">BOXING<br />CENTER</span>
+      <div class="wrap formules__say" data-act data-dir="n">
+        <span class="eyebrow">Choisissez votre formule</span>
+        <h2 class="display">Des formules simples<br />pour commencer<br />à votre rythme.</h2>
       </div>
     </section>
 
+    <!-- ================== LES DEUX OFFRES ======================== -->
+    <section class="offres" aria-label="Les offres">
+      <div class="wrap offres__grid">
+        <article class="offre offre--phare" data-act data-dir="n">          <span class="offre__flag">Offre à saisir</span>          <div class="offre__head">            <span class="offre__disc"><b>29€</b><i>par personne</i></span>            <div>              <h3 class="offre__n">L’offre Rentrée</h3>              <p class="offre__s">4 semaines illimitées</p>            </div>          </div>          <ul class="offre__l">            <li><svg class="offre__c" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.4" stroke="currentColor" stroke-width="1.5"/><path d="m8.4 12.2 2.5 2.5 4.7-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Accès à toutes les activités</span></li>            <li><svg class="offre__c" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.4" stroke="currentColor" stroke-width="1.5"/><path d="m8.4 12.2 2.5 2.5 4.7-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Sans engagement</span></li>            <li><svg class="offre__c" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.4" stroke="currentColor" stroke-width="1.5"/><path d="m8.4 12.2 2.5 2.5 4.7-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Accès libre 7 j/7 aux 5 salles</span></li>          </ul>          <a class="btn btn--primary offre__cta" href="https://boutique.boxingcenter.fr/offres-speciales"><span>Je profite de l’offre</span></a>        </article>
+        <article class="offre" data-act data-dir="n">          <div class="offre__head">            <span class="offre__disc"><b>259€</b><i>les 12 mois</i></span>            <div>              <h3 class="offre__n">La saison complète</h3>              <p class="offre__s">au lieu de 400€</p>            </div>          </div>          <ul class="offre__l">            <li><svg class="offre__c" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.4" stroke="currentColor" stroke-width="1.5"/><path d="m8.4 12.2 2.5 2.5 4.7-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Accès à toutes les activités</span></li>            <li><svg class="offre__c" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.4" stroke="currentColor" stroke-width="1.5"/><path d="m8.4 12.2 2.5 2.5 4.7-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Cours collectifs illimités, sans réservation</span></li>            <li><svg class="offre__c" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.4" stroke="currentColor" stroke-width="1.5"/><path d="m8.4 12.2 2.5 2.5 4.7-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Payable en 4× sans frais</span></li>          </ul>          <a class="btn  offre__cta" href="https://boutique.boxingcenter.fr/offres-speciales"><span>Je prends ma saison</span></a>        </article>
+      </div>
+
+      <ul class="rassure" data-act data-dir="n">
+        <li><svg class="rassure__i" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="5.6" width="16" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M4 10h16M8.6 3.8v3.4M15.4 3.8v3.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><b>Sans engagement</b>Sur les formules au mois</span></li>
+        <li><svg class="rassure__i" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M3.6 19.4c0-3 2.4-5.2 5.4-5.2s5.4 2.2 5.4 5.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M16.4 6.6a3 3 0 0 1 0 5.9M17.8 15c2.1.5 3.6 2.3 3.6 4.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span><b>Coachs diplômés</b>Encadrement à chaque créneau</span></li>
+        <li><svg class="rassure__i" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10.4" width="14" height="9.2" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8.4 10.4V7.8a3.6 3.6 0 0 1 7.2 0v2.6" stroke="currentColor" stroke-width="1.6"/></svg><span><b>Inscription en ligne</b>Sur la boutique du club</span></li>
+      </ul>
+    </section>
+
+    <!-- ========================= LE GONG ========================== -->
     <section class="gong" aria-label="Faire un essai">
       <div class="gong__inner" data-act data-dir="n">
         <span class="eyebrow">11 rue Sainte-Lucie</span>
@@ -636,7 +655,6 @@
         </div>
       </div>
     </section>
-
   </main>
 
   <div id="footer"><!-- LE MAILLAGE DE MARQUE, SERVI EN DUR ------------------------------
@@ -669,6 +687,6 @@
        une seule requête same-origin au lieu de trois vers un CDN tiers. -->
   <script is:inline defer src="/assets/js/vendor.min.js?v=22"></script>
   <script is:inline type="module" src="/assets/js/site.js?v=22"></script>
-  <script is:inline type="module" src="/assets/js/activites.js?v=24"></script>
+  <script is:inline type="module" src="/assets/js/activites.js?v=25"></script>
 </body>
 </html>

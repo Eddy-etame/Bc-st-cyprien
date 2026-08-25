@@ -44,6 +44,7 @@ function scene() {
     }
   }, { threshold: 0.15, rootMargin: "0px 0px -12% 0px" });
 
+  const armes = [];
   for (const el of cibles) {
     el.dataset.act = "on";              // arme les états de départ
     /* Ce qui est DÉJÀ à l'écran au chargement n'a pas à s'animer :
@@ -55,7 +56,44 @@ function scene() {
       continue;
     }
     vu.observe(el);
+    armes.push(el);
   }
+
+  /* ---- LE FILET ----------------------------------------------------
+     Un observateur peut ne jamais tirer : élément dans un conteneur
+     transformé, remesure ratée après un changement de mise en page,
+     défilement piloté par une librairie. Le résultat est le pire qui
+     soit — une section À OPACITÉ ZÉRO qui garde sa hauteur : le
+     visiteur voit un grand vide et ne saura jamais qu'il manque
+     quelque chose. C'est exactement ce qui est arrivé ici (les
+     équipements et le titre du gong).
+
+     On repasse donc derrière, au défilement : tout ce qui est armé,
+     entré dans l'écran, et toujours masqué, on le révèle. La liste se
+     vide au fur et à mesure, et le balayage s'arrête quand elle est
+     vide — pas de veille inutile. */
+  if (!armes.length) return;
+  let planifie = false;
+  const balayer = () => {
+    planifie = false;
+    for (let i = armes.length - 1; i >= 0; i--) {
+      const el = armes[i];
+      if (el.classList.contains("is-in")) { armes.splice(i, 1); continue; }
+      const r = el.getBoundingClientRect();
+      if (r.top < innerHeight * 0.92 && r.bottom > 0) {
+        el.classList.add("is-in");
+        vu.unobserve(el);
+        armes.splice(i, 1);
+      }
+    }
+    if (!armes.length) removeEventListener("scroll", surDefilement);
+  };
+  const surDefilement = () => {
+    if (planifie) return;
+    planifie = true;
+    requestAnimationFrame(balayer);
+  };
+  addEventListener("scroll", surDefilement, { passive: true });
 }
 
 if (reduit) {
