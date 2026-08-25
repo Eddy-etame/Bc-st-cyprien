@@ -13,7 +13,7 @@
    bloqué ⇒ la pastille d’origine appelle la salle. Rien ne régresse.
    ===================================================================== */
 import { QUICKS, fallbackAnswer, GENERIC } from "./chatbot-kb.js";
-import { SALLE } from "./data.js?v=25";
+import { SALLE } from "./data.js?v=27";
 
 /* ---------------------------- constantes -------------------------- */
 const EMAIL_RE = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i;
@@ -496,7 +496,7 @@ export function initChatbot() {
         "/tarifs/": ["Bonjour \u{1F44B} Vous \u00eates sur les tarifs.", "La rentr\u00e9e \u00e0 29\u20ac par personne est la formule la plus prise. Je vous aide \u00e0 choisir\u00a0?"],
         "/activites/": ["Bonjour \u{1F44B} Vous regardez les disciplines.", "Sept, de l\u2019anglaise au grappling. Dites-moi votre objectif, je vous oriente."],
         "/plannings/": ["Bonjour \u{1F44B} Vous cherchez un cr\u00e9neau.", "Ouvert du lundi au samedi, 10h\u201321h15. Donnez-moi vos dispos, je vous dis lequel prendre."],
-        "/coachs/": ["Bonjour \u{1F44B} Vous regardez l\u2019\u00e9quipe.", "Trois coachs\u00a0: Dadi, Tawee et Hicham. Une question sur l\u2019un d\u2019eux\u00a0?"],
+        "/coachs/": ["Bonjour \u{1F44B} Vous regardez l\u2019\u00e9quipe.", "Trois coachs\u00a0: Dadi, Tawee et Brice. Une question sur l\u2019un d\u2019eux\u00a0?"],
         "/la-salle/": ["Bonjour \u{1F44B} Vous d\u00e9couvrez la salle.", "Sacs, tatamis et ring, plus la muscu et le cardio en acc\u00e8s libre. Envie de passer\u00a0?"],
         "/galerie/": ["Bonjour \u{1F44B} Vous parcourez la galerie.", "Les cl\u00e9ich\u00e9s de la salle, zone par zone. Une question sur l\u2019une d\u2019elles\u00a0?"],
         "/activites/": ["Bonjour \u{1F44B} Vous regardez les activit\u00e9s.", "Gants pr\u00eat\u00e9s, aucun niveau demand\u00e9. Dites-moi ce qui vous tente\u00a0?"],

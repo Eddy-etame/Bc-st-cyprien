@@ -7,7 +7,7 @@
    réseau + page Saint-Cyprien) : ouverte le 10 janvier 2022, cinquième
    salle du réseau et la première en centre-ville, au 11 rue Sainte-Lucie
    près du rond-point du Fer à Cheval. Sacs, tatamis et ring ; muscu,
-   charges libres, cross-training et cardio. Accès libre 7 j/7 aux cinq
+   charges libres, cross-training et cardio. Accès libre 6 j/7 aux cinq
    salles, cours collectifs sans réservation. Affiliations FFBoxe et
    FFKMDA. Staff & créneaux = le planning officiel rentrée 2026.
 
@@ -37,8 +37,8 @@ const AVIF = new Set([
   "/assets/img/sc/anglaise.webp",
   "/assets/img/sc/anneaux.webp",
   "/assets/img/sc/appuis-tapis.webp",
+  "/assets/img/sc/coach-brice.webp",
   "/assets/img/sc/coach-dadi.webp",
-  "/assets/img/sc/coach-hicham.webp",
   "/assets/img/sc/coach-portrait-1.webp",
   "/assets/img/sc/coach-portrait-2.webp",
   "/assets/img/sc/coach-portrait-3.webp",
@@ -340,10 +340,10 @@ export const COACHES = [
     note: "La thaï enseignée comme elle se boxe là-bas — les tibias avant les mots. Et pour ta première : on apprend la touche avant la puissance.",
     img: "/assets/img/sc/coach-tawee.webp",
     alt: "Le coach Tawee, t-shirt Boxing Center noir, bras croisés devant le ring" },
-  { name: "Hicham", role: "Hyrox · Cross · Camp", tag: "Le moteur", keys: ["hyrox", "camp"],
+  { name: "Brice", role: "Hyrox · Cross · Camp", tag: "Le moteur", keys: ["hyrox", "camp"],
     note: "Les circuits qui construisent la caisse. Tu repars vidé, tu reviens plus fort.",
-    img: "/assets/img/sc/coach-hicham.webp",
-    alt: "Le coach Hicham, t-shirt Boxing Center noir, bras croisés" },
+    img: "/assets/img/sc/coach-brice.webp",
+    alt: "Le coach Brice, t-shirt Boxing Center noir, bras croisés devant le ring de la salle" },
 ];
 
 /* ------------------------------------------------------------------ *

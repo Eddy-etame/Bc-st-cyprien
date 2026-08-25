@@ -12,8 +12,8 @@
    LA MÉTHODE ferme la page : trois règles vérifiables, pas de biographie
    inventée.
    ===================================================================== */
-import { COACHES, picture } from "./data.js?v=25";
-import { ENCADREMENT } from "./data-coachs.js?v=22";
+import { COACHES, picture } from "./data.js?v=27";
+import { ENCADREMENT } from "./data-coachs.js?v=23";
 
 const $ = (s, r = document) => r.querySelector(s);
 const esc = (s = "") => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");

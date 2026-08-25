@@ -23,7 +23,7 @@ export const FACTS = {
   disciplines:
     "Boxe anglaise, boxe thaï / K1, grappling, Hyrox & cross-training, Lady Punch (100 % féminin), Boxing Camp, et l’école enfants dès 3 ans (Baby Boxe 3/6, éducative 7/11, ados 12/16, compétiteurs).",
   coachs:
-    "Trois coachs : Dadi (anglaise, Lady Punch et toute l’école), Tawee (thaï / K1), Hicham (Hyrox, cross, Boxing Camp). RÈGLE : ne JAMAIS dire qui encadre quel créneau, ni quel jour ni à quelle heure — c’est interne au club. Si on te le demande, réponds que le détail se donne à la salle, au 05 62 24 46 82.",
+    "Trois coachs : Dadi (anglaise, Lady Punch et toute l’école), Tawee (thaï / K1), Brice (Hyrox, cross, Boxing Camp). RÈGLE : ne JAMAIS dire qui encadre quel créneau, ni quel jour ni à quelle heure — c’est interne au club. Si on te le demande, réponds que le détail se donne à la salle, au 05 62 24 46 82.",
   offres:
     "Dans l’ordre où on les propose : offre RENTRÉE 29€ PAR PERSONNE pour 4 semaines de cours illimités, sans engagement (au lieu de 44€). Offre Saison 259€ les 12 mois, payable en 4× sans frais, accès libre aux 5 clubs du réseau. Hors promotion, abonnement classique 44€ adulte et 36€ étudiant par échéance de 4 semaines, accès aux 5 salles (c’est un tarif, jamais barré — c’est lui qui est barré sur l’offre de rentrée). École 295€ / an t-shirt du club inclus, Baby Boxe 250€. Séance d’essai 10€ EN DERNIER (toutes disciplines, matériel prêté, sans engagement).",
   planning:

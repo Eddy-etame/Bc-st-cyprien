@@ -28,15 +28,15 @@
     "octets": 250532,
     "verdict": "webp"
   },
+  "sc/coach-brice.webp": {
+    "octets": 30034,
+    "verdict": "avif",
+    "q": 60
+  },
   "sc/coach-dadi.webp": {
     "octets": 84652,
     "verdict": "avif",
     "q": 60
-  },
-  "sc/coach-hicham.webp": {
-    "octets": 35876,
-    "verdict": "avif",
-    "q": 45
   },
   "sc/coach-portrait-1.webp": {
     "octets": 131154,

@@ -4,7 +4,7 @@
    Same proven engine as the other salles, with the showroom’s restraint:
    no custom cursor, no grain — precision instead of texture.
    ===================================================================== */
-import { NAV, LINKS, SALLE, NETWORK, picture, pictureEl } from "./data.js?v=25";
+import { NAV, LINKS, SALLE, NETWORK, picture, pictureEl } from "./data.js?v=27";
 
 import { initPlaces } from "./places.js?v=22";
 import { mountRoulette } from "./roulette.js?v=22";

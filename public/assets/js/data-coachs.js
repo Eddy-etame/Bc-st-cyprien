@@ -21,7 +21,7 @@ export const ENCADREMENT = [
   },
   {
     n: "02", t: "Une surface, un spécialiste",
-    d: "L’anglaise et l’école à Dadi, le pieds-poings à Tawee, le moteur à Hicham. Personne ne fait semblant de couvrir une discipline qui n’est pas la sienne : quatre noms qui tiennent leur poste valent mieux que dix qui tournent.",
+    d: "L’anglaise et l’école à Dadi, le pieds-poings à Tawee, le moteur à Brice. Personne ne fait semblant de couvrir une discipline qui n’est pas la sienne : quatre noms qui tiennent leur poste valent mieux que dix qui tournent.",
   },
   {
     n: "03", t: "Un visage seulement s’il est prouvé",

@@ -21,7 +21,7 @@ export const VISITE = [
     d: "Un seul niveau, mille deux cents mètres carrés, rive gauche. Tu entres et tu vois déjà où tu vas travailler : le ring au fond, les sacs à droite, rien de planqué.",
     img: "/assets/img/sc/salle-1.webp",
     alt: "Le plateau vu dans sa longueur : bancs et racks au premier plan, tapis bleu et rouge, bannière Boxing Center au fond sous la charpente métallique",
-    specs: ["Centre-ville", "Accès libre 7 j/7"],
+    specs: ["Centre-ville", "Accès libre 6 j/7"],
   },
   {
     n: "02",
@@ -45,10 +45,10 @@ export const VISITE = [
     n: "04",
     t: "La zone cross & muscu",
     tag: "Le moteur",
-    d: "Machines, charges, sacs : la salle des moteurs. Hyrox le mercredi, cross lundi et mercredi avec Hicham — la caisse derrière chaque discipline.",
+    d: "Machines, charges, sacs : la salle des moteurs. Hyrox, cross-training et HIIT — la caisse derrière chaque discipline.",
     img: "/assets/img/sc/muscu.webp",
     alt: "La salle de charge : cage à squat, bancs inclinés et machines alignées sur sol caoutchouc",
-    specs: ["Coach · Hicham", "Hyrox · Cross · HIIT"],
+    specs: ["Coach · Brice", "Hyrox · Cross · HIIT"],
   },
   {
     n: "05",
