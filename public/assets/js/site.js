@@ -128,7 +128,7 @@ function mountFooter() {
   const fields = [
     { k: "Établissement", v: "Boxing Center — Saint-Cyprien", wide: true },
     { k: "Génération", v: "La dernière-née du réseau" },
-    { k: "Surface", v: "1 200 m²" },
+    { k: "Ouverte en", v: "Janvier 2022" },
     { k: "Adresse", v: SALLE.address.full, wide: true },
     { k: "Horaires", v: SALLE.hours },
     { k: "Téléphone", v: `<a href="tel:${SALLE.phoneHref}">${SALLE.phone}</a>` },

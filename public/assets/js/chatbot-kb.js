@@ -31,7 +31,7 @@ export const QUICKS = [
   {
     label: "Les disciplines",
     q: "Quelles disciplines proposez-vous ?",
-    a: "Boxe anglaise, thaï / K1, grappling, Hyrox et cross-training, Lady Punch (100 % féminin), Boxing Camp, et toute l’école enfants dès 3 ans. 1 200 m² sur un seul niveau : tout est sur le même plancher.",
+    a: "Boxe anglaise, thaï / K1, grappling, Hyrox et cross-training, Lady Punch (100 % féminin), Boxing Camp, et toute l’école enfants dès 3 ans. Tout est sur le même plancher.",
   },
   {
     label: "Pour les enfants",

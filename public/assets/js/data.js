@@ -94,7 +94,7 @@ export const SALLE = {
   short: "Saint-Cyprien",
   baseline: "La nouvelle génération Boxing Center, rive gauche.",
   opened: "Août 2025",          // fait daté — LD-JSON foundingDate uniquement, jamais en headline
-  surface: "1 200 m²",
+  surface: "",
   district: "Saint-Cyprien · Toulouse rive gauche",
 
   address: {
@@ -141,11 +141,10 @@ export const LINKS = {
 
 export const NAV = [
   { href: "/", label: "Accueil" },
-  /* Le levier de conversion : la question qui bloque vraiment n’est pas
-     « combien ça coûte » mais « il se passe quoi quand je pousse la porte ».
-     Elle a donc sa page, et elle est la première après l’accueil. */
-  { href: "/premiere-seance/", label: "1re séance" },
   { href: "/la-salle/", label: "La salle", top: false },
+  /* Les activités passent en tête : c’est la question qu’on se pose en
+     arrivant (« qu’est-ce que je peux pratiquer ici ? »), avant le prix
+     et avant les horaires. */
   { href: "/activites/", label: "Activités" },
   { href: "/coachs/", label: "Coachs" },
   { href: "/galerie/", label: "Galerie", top: false },

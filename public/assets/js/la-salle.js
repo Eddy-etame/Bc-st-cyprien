@@ -131,7 +131,7 @@ function renderLineage() {
       <div class="sister__body">
         <span class="sister__tag">La nouvelle génération</span>
         <h3 class="sister__name">Saint-Cyprien</h3>
-        <p class="sister__feat">1 200 m² un niveau · rive gauche · la somme des quatre autres</p>
+        <p class="sister__feat">Centre-ville · rive gauche · toutes les discipline autres</p>
       </div>
       <span class="sister__here" aria-hidden="true">Tu es ici</span>
     </li>`;

@@ -17,11 +17,11 @@ export const VISITE = [
   {
     n: "01",
     t: "Le plateau",
-    tag: "1 200 m² · rive gauche",
+    tag: "Centre-ville · rive gauche",
     d: "Un seul niveau, mille deux cents mètres carrés, rive gauche. Tu entres et tu vois déjà où tu vas travailler : le ring au fond, les sacs à droite, rien de planqué.",
     img: "/assets/img/sc/salle-1.webp",
     alt: "Le plateau vu dans sa longueur : bancs et racks au premier plan, tapis bleu et rouge, bannière Boxing Center au fond sous la charpente métallique",
-    specs: ["1 200 m²", "Un seul niveau"],
+    specs: ["Centre-ville", "Accès libre 7 j/7"],
   },
   {
     n: "02",

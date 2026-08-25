@@ -37,7 +37,7 @@ function renderStats() {
 }
 function renderTicker() {
   // items inusables (aucune date, aucun "neuf")
-  const items = ["Ouvert 7 j/7", "Sans réservation", "1 200 m²", "Anglaise", "Thaï · K1", "Grappling", "Hyrox", "Lady Punch", "Dès 3 ans", "Métro A · 4 min"];
+  const items = ["Ouvert 7 j/7", "Sans réservation", "Centre-ville", "Anglaise", "Thaï · K1", "Grappling", "Hyrox", "Lady Punch", "Dès 3 ans", "Métro A · 4 min"];
   const row = items.map((i) => `<span>${i}</span>`).join("");
   const t = $("#marquee");
   if (!t) return;                 // meme regle : optionnel, jamais fatal

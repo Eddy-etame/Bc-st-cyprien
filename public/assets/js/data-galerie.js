@@ -20,7 +20,7 @@
  * ------------------------------------------------------------------ */
 export const GALLERY = [
   {
-    id: "plateau", zone: "Le plateau", spec: "1 200 m² · un seul niveau",
+    id: "plateau", zone: "Le plateau", spec: "Sacs, tatamis et ring",
     lede: "Un seul niveau : depuis la porte tu vois déjà les sacs, le ring et la cage. Rien n’est planqué derrière une cloison, aucune mezzanine à monter — c’est tout l’argument.",
     shots: [
       { f: "salle-1.webp", feat: "wide", cap: "Le plateau", alt: "Le plateau vu dans sa longueur : bancs et racks au premier plan, tapis bleu et rouge, bannière Boxing Center au fond sous la charpente métallique" },

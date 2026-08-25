@@ -132,7 +132,9 @@ const ACTIONS = {
   abonnements: { label: "Voir les abonnements", href: "https://boutique.boxingcenter.fr/abonnements" },
   boutique:    { label: "La boutique du club", href: "https://boutique.boxingcenter.fr/" },
   tarifs:      { label: "Les tarifs en détail", href: "/tarifs/" },
-  premiere:    { label: "Comment se passe ta 1re séance", href: "/premiere-seance/" },
+  /* la clé « premiere » a été retirée avec la page /premiere-seance/ :
+     l’assistant enverrait vers une page morte. Le prompt système ne doit
+     donc plus la citer — voir api/chat.js. */
   planning:    { label: "Voir le planning", href: "/plannings/" },
   disciplines: { label: "Découvrir les cours", href: "/activites/" },
   salle:       { label: "Visiter la salle", href: "/la-salle/" },
@@ -495,9 +497,9 @@ export function initChatbot() {
         "/activites/": ["Bonjour \u{1F44B} Vous regardez les disciplines.", "Sept, de l\u2019anglaise au grappling. Dites-moi votre objectif, je vous oriente."],
         "/plannings/": ["Bonjour \u{1F44B} Vous cherchez un cr\u00e9neau.", "Ouvert du lundi au samedi, 10h\u201321h15. Donnez-moi vos dispos, je vous dis lequel prendre."],
         "/coachs/": ["Bonjour \u{1F44B} Vous regardez l\u2019\u00e9quipe.", "Quatre coachs\u00a0: Dadi, Tawee, Hicham et Victor G. Une question sur l\u2019un d\u2019eux\u00a0?"],
-        "/la-salle/": ["Bonjour \u{1F44B} Vous d\u00e9couvrez la salle.", "1\u202f200 m\u00b2 sur un seul niveau\u00a0: depuis la porte, vous voyez tout. Envie de passer\u00a0?"],
-        "/galerie/": ["Bonjour \u{1F44B} Vous parcourez la galerie.", "Seize cl\u00e9ich\u00e9s, sept zones de la salle. Une question sur l\u2019une d\u2019elles\u00a0?"],
-        "/premiere-seance/": ["Bonjour \u{1F44B} Vous pr\u00e9parez votre premi\u00e8re s\u00e9ance.", "Gants pr\u00eat\u00e9s, aucun niveau demand\u00e9, pas de sparring impos\u00e9. Une question\u00a0?"],
+        "/la-salle/": ["Bonjour \u{1F44B} Vous d\u00e9couvrez la salle.", "Sacs, tatamis et ring, plus la muscu et le cardio en acc\u00e8s libre. Envie de passer\u00a0?"],
+        "/galerie/": ["Bonjour \u{1F44B} Vous parcourez la galerie.", "Les cl\u00e9ich\u00e9s de la salle, zone par zone. Une question sur l\u2019une d\u2019elles\u00a0?"],
+        "/activites/": ["Bonjour \u{1F44B} Vous regardez les activit\u00e9s.", "Gants pr\u00eat\u00e9s, aucun niveau demand\u00e9. Dites-moi ce qui vous tente\u00a0?"],
         "/contact/": ["Bonjour \u{1F44B} Vous cherchez \u00e0 nous joindre.", "11 rue Sainte-Lucie, \u00e0 4 minutes du m\u00e9tro A. Ou laissez-moi votre num\u00e9ro."],
       };
       const _page = location.pathname.replace(/index\.html$/, "");
