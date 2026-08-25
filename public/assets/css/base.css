@@ -323,6 +323,7 @@ html.is-locked, html.is-locked body { overflow: hidden; height: 100%; }
        devenus illisibles. Une section qui choisit son fond doit choisir
        ses jetons avec — c'est la contrepartie de la mécanique de bandes. */
 .band-dark, .band-black,
+.nav, .menu,
 .hero, .phero, .gong, .club, .jamais__item,
 /* `.libre` pose une photo et un voile sombre par-dessus : elle choisit
    donc son fond, elle doit choisir ses jetons avec. Sans cette ligne,
@@ -412,7 +413,18 @@ html.fx [data-reveal] { opacity: 0; transform: translateY(30px); }
    quatre lignes : un gap qui interdit le contact, une marque qui ne se
    comprime pas, des mots qui ne se cassent pas, une colonne droite entière. */
 .nav { position: fixed; inset: 0 0 auto 0; z-index: 8000; display: flex; align-items: center; justify-content: space-between; gap: clamp(.6rem,1.2vw,1.4rem); padding: clamp(.8rem,1.8vw,1.1rem) var(--gut); transition: transform .5s var(--ease), background .4s, box-shadow .4s; }
-.nav.is-scrolled { background: rgba(var(--paper-rgb),.78); backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--line); }
+.nav.is-scrolled { background: rgba(10, 11, 14, .82); backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--line); }
+/* En haut de page la barre est transparente et flotte sur la photo : un
+   voile discret garantit la lisibilite des liens meme sur un cliche
+   clair, sans donner l impression d une barre pleine. */
+.nav:not(.is-scrolled)::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 -1.6rem 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(10, 11, 14, .62), transparent);
+}
 .nav.is-hidden { transform: translateY(-110%); }
 html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; transition: none; }
 /* ≥44px de cible tactile sur le lien maison persistant (le logo est court en hauteur) */
@@ -913,23 +925,24 @@ a:hover > .ext, a:hover .ext { opacity: 1; transform: translate(1px, -1px); }
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(180deg,
-    rgba(var(--void-rgb), .80) 0%,
-    rgba(var(--navy-rgb), .78) 42%,
-    rgba(var(--paper-rgb), .97) 100%);
+  background:
+    /* la barre de nav et le fil d Ariane, en haut */
+    linear-gradient(180deg, rgba(var(--void-rgb), .78) 0%, rgba(var(--void-rgb), .34) 26%, transparent 46%),
+    /* le raccord avec la suite de la page, en bas */
+    linear-gradient(0deg, rgba(var(--void-rgb), .94) 0%, rgba(var(--void-rgb), .58) 30%, transparent 62%);
 }
 /* l'ancien halo animé passait AU-DESSUS de la photo et la lavait */
-.phero::before { opacity: .35; }
+.phero::before { opacity: .16; }
 
 /* ------------------------- LA MARQUE ------------------------------ */
 .gong { position: relative; isolation: isolate; overflow: hidden; }
 .gong__mark {
   position: absolute;
-  inset: 50% auto auto 50%;
-  transform: translate(-50%, -50%);
+  inset: auto auto -.34em 50%;   /* ancree en bas, volontairement rognee */
+  transform: translateX(-50%);
   z-index: -1;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: center;
   gap: .1em;
   pointer-events: none;
@@ -945,14 +958,14 @@ a:hover > .ext, a:hover .ext { opacity: 1; transform: translate(1px, -1px); }
   text-transform: uppercase;
   /* évidé : le trait tient le fond sans concurrencer le bouton */
   color: transparent;
-  -webkit-text-stroke: 1.5px rgba(var(--spark-rgb), .34);
+  -webkit-text-stroke: 1.5px rgba(var(--spark-rgb), .2);
 }
 .gong__mark i {
   font-style: normal;
   font: 600 clamp(.62rem, 1.5vw, .95rem)/1 var(--f-mono);
   letter-spacing: .5em;
   text-transform: uppercase;
-  color: rgba(var(--spark-rgb), .3);
+  color: rgba(var(--spark-rgb), .26);
   padding-left: .5em;   /* compense l'espacement sur le dernier signe */
 }
 /* le contenu du gong repasse devant */
@@ -961,7 +974,7 @@ a:hover > .ext, a:hover .ext { opacity: 1; transform: translate(1px, -1px); }
 /* sur la section des offres, la marque descend d'un cran : les cartes
    sont hautes, la marque ne doit pas les traverser au milieu */
 .offres { position: relative; isolation: isolate; overflow: hidden; }
-.offres__mark { inset: 18% auto auto 50%; transform: translateX(-50%); }
+.offres__mark { inset: auto auto -.3em 50%; transform: translateX(-50%); }
 .offres__mark b { font-size: clamp(2.8rem, 10vw, 7.5rem); }
 .offres .wrap { position: relative; z-index: 1; }
 
