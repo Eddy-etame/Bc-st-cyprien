@@ -420,15 +420,13 @@ html.fx [data-reveal] { opacity: 0; transform: translateY(30px); }
 .nav:not(.is-scrolled)::before {
   content: "";
   position: absolute;
-  inset: 0 0 -1.6rem 0;
+  inset: 0 0 -1rem 0;
   z-index: -1;
   pointer-events: none;
-  background: linear-gradient(180deg, rgba(10, 11, 14, .62), transparent);
+  background: linear-gradient(180deg, rgba(10, 11, 14, .58), transparent);
 }
 .nav.is-hidden { transform: translateY(-110%); }
 html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; transition: none; }
-/* ≥44px de cible tactile sur le lien maison persistant (le logo est court en hauteur) */
-.nav__brand { display: inline-flex; align-items: center; min-height: 44px; gap: .9ch; flex: 0 0 auto; }
 /* official white logo, transparent, straight on the dark room — no filter */
 .nav__logo { height: clamp(24px, 3vw, 32px); width: auto; transition: opacity .3s; }
 .nav__brand:hover .nav__logo { opacity: .75; }
@@ -579,12 +577,7 @@ html.is-menu-open .nav { opacity: 0; visibility: hidden; pointer-events: none; t
 .phero.is-lit .phero__spot { opacity: 1; }
 @media (hover: none){ .phero__spot { display: none; } }
 .phero .wrap { position: relative; z-index: 2; }
-.crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: .5ch; font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .06em; color: var(--muted); }
 /* ≥44px tap target without disturbing the row rhythm (negative inline margin) */
-.crumbs a { display: inline-flex; align-items: center; min-height: 44px; padding-inline: .35rem; margin-inline: -.35rem; color: var(--muted); transition: color .3s; }
-.crumbs a:hover { color: var(--spark); }
-.crumbs a:active { color: var(--ink-soft); }
-.crumbs span[aria-current] { color: var(--ink); }
 
 /* ---------------- PER-PAGE HERO SIGNATURES ----------------------- *
  * Loi « semblables, jamais identiques ». L'ancienne signature (un filigrane
@@ -925,11 +918,11 @@ a:hover > .ext, a:hover .ext { opacity: 1; transform: translate(1px, -1px); }
   position: absolute;
   inset: 0;
   z-index: -1;
-  background:
-    /* la barre de nav et le fil d Ariane, en haut */
-    linear-gradient(180deg, rgba(var(--void-rgb), .78) 0%, rgba(var(--void-rgb), .34) 26%, transparent 46%),
-    /* le raccord avec la suite de la page, en bas */
-    linear-gradient(0deg, rgba(var(--void-rgb), .94) 0%, rgba(var(--void-rgb), .58) 30%, transparent 62%);
+  /* PLUS DE VOILE EN HAUT : la photo commence nette. Il ne reste que le
+     raccord du bas — ce n'est pas un voile mais la couture entre la
+     photo et la suite de la page ; sans lui la photo se coupe au couteau
+     en plein milieu du contenu. */
+  background: linear-gradient(0deg, rgba(var(--void-rgb), .94) 0%, rgba(var(--void-rgb), .52) 28%, transparent 58%);
 }
 /* l'ancien halo animé passait AU-DESSUS de la photo et la lavait */
 .phero::before { opacity: .16; }
