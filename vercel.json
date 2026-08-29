@@ -102,6 +102,24 @@
       "source": "/admin",
       "destination": "/admin/",
       "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "www.club-boxe-toulouse.com" }],
+      "destination": "https://club-boxe-toulouse.com/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.club-boxe-toulouse.com" }],
+      "destination": "https://club-boxe-toulouse.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "bc-st-cyprien.vercel.app" }],
+      "destination": "https://club-boxe-toulouse.com/:path*",
+      "permanent": true
     }
   ]
 }

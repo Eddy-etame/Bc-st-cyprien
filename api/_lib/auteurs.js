@@ -53,7 +53,7 @@ export const AUTEURS = [
 
 export const SITE = {
   nom: "Boxing Center Saint-Cyprien",
-  url: "https://st-cyprien.boxingcenter.fr",
+  url: "https://club-boxe-toulouse.com",
   quoi:
     "Salle de boxe et de sports de combat du quartier Saint-Cyprien, " +
     "Toulouse rive gauche : 11 rue Sainte-Lucie, 31300, à 4 minutes du métro A.",

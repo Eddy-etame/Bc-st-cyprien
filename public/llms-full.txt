@@ -1,7 +1,7 @@
 # Boxing Center Saint-Cyprien — contenu factuel complet
 
 > Version longue de llms.txt : les faits de chaque page du site, sans marketing.
-> Source : st-cyprien.boxingcenter.fr — salle du réseau Boxing Center (Toulouse).
+> Source : https://club-boxe-toulouse.com — salle du réseau Boxing Center (Toulouse).
 
 ## Établissement
 
@@ -15,7 +15,7 @@
 - Fédérations : FFBoxe, FFKMDA, FMMAF.
 - Position dans le réseau : dernière-née des 5 salles Boxing Center (Minimes, Portet-sur-Garonne, États-Unis, Ramonville, Saint-Cyprien) ; premier Boxing Center rive gauche de Toulouse.
 - Itinéraire : https://maps.google.com/?q=11+rue+Sainte-Lucie+31300+Toulouse
-- Sites du réseau : site mère https://boxingcenter.fr/ · Portet-sur-Garonne https://boxing-center-portet.fr/ · Minimes https://bc-minimes.vercel.app/ · Ramonville https://bc-ramonville.vercel.app/ · boutique https://boutique.boxingcenter.fr/ · inscriptions, abonnements et séance d’essai https://boutique.boxingcenter.fr/
+- Sites du réseau : site mère https://boxingcenter.fr/ · Portet-sur-Garonne https://boxing-center-portet.fr/ · Minimes https://boxe-toulouse.com/ · États-Unis https://clubmma.fr/ · Saint-Cyprien https://club-boxe-toulouse.com/ · Ramonville https://mmatoulouse.com/ · TMBC https://toulouse-minimes-boxing-club.fr/ · boutique https://boutique.boxingcenter.fr/ · inscriptions, abonnements et séance d’essai https://boutique.boxingcenter.fr/
 - Réseaux sociaux : https://www.instagram.com/boxingcentertoulouse/ · https://www.facebook.com/BoxingCenterToulouse/
 
 ## L’assistant du site
@@ -27,7 +27,7 @@
 - Son module n’est téléchargé qu’au moment où on ouvre le dialogue. Sans JavaScript, la pastille reste un simple lien d’appel vers la salle.
 - Zones non indexables, à ne pas citer ni suivre : /admin/ (le vestiaire, le backoffice éditorial) et /api/ (les fonctions). Elles sont en noindex et interdites dans robots.txt.
 
-## Accueil (https://bc-st-cyprien.vercel.app/)
+## Accueil (https://club-boxe-toulouse.com/)
 
 - La salle en chiffres : 4 minutes du métro A (Saint-Cyprien République) ; 7 disciplines et 29 cours par semaine à une seule adresse ; 4 coachs nommés au planning.
 - Le configurateur de la page d’accueil présente chaque discipline avec ses jours et son niveau.
@@ -60,7 +60,7 @@ La tenue : t-shirt, short ou legging, baskets propres réservées à l’intéri
 Prix : séance d’essai 10 €, toutes disciplines, matériel prêté, sans engagement — réservation https://boutique.boxingcenter.fr/seance-essai
 Question avant de venir : 05 62 24 46 82.
 
-## La salle (https://bc-st-cyprien.vercel.app/la-salle/)
+## La salle (https://club-boxe-toulouse.com/la-salle/)
 
 Six postes sur un seul niveau :
 1. Le plateau — rive gauche ; le ring visible depuis l’entrée.
@@ -74,7 +74,7 @@ Déroulé d’une séance (affiché sur la page) : accueil et présentation au c
 
 La lignée du réseau (ordre d’arrivée) : Minimes (le berceau, la salle historique, 3 rings, l’école), Portet-sur-Garonne (le vaisseau amiral, ring de boxe anglaise, cage MMA — https://boxing-center-portet.fr/), États-Unis (le colosse, 1 200 m², 3 zones, 2 rings, cage MMA), Ramonville (le ciel ouvert, octogone 7 m, ring de boxe anglaise, 300 m² extérieur), puis Saint-Cyprien.
 
-## Activités (https://bc-st-cyprien.vercel.app/activites/)
+## Activités (https://club-boxe-toulouse.com/activites/)
 
 Aiguillage « par où commencer » — cinq intentions courantes et la discipline vers laquelle la salle oriente :
 - « Je n’ai jamais mis de gants » → Boxing camp (4 créneaux/semaine) : aucun acquis demandé.
@@ -103,7 +103,7 @@ Paliers de l’école, âge par âge :
 - Éducative ados, 12 à 16 ans — mercredi et samedi 15h : gestuelle propre, premiers assauts encadrés.
 - Compétiteurs — mercredi et samedi : préparation, sparring, corner .
 
-## Coachs (https://bc-st-cyprien.vercel.app/coachs/)
+## Coachs (https://club-boxe-toulouse.com/coachs/)
 
 - Dadi — boxe anglaise, Lady Punch et toute l’école enfants, du Baby Boxe aux compétiteurs.
 - Tawee — boxe thaï et K1.
@@ -117,7 +117,7 @@ Méthode d’encadrement (trois règles affichées sur la page) :
 2. Une surface, un spécialiste — le pieds-poings à Tawee, le moteur à Brice ; aucun coach ne couvre une discipline qui n’est pas la sienne.
 3. Un visage seulement s’il est prouvé — une photo n’est publiée sous un nom que si la source officielle du réseau associe les deux ; sinon une tuile, jamais une banque d’images.
 
-## Galerie (https://bc-st-cyprien.vercel.app/galerie/)
+## Galerie (https://club-boxe-toulouse.com/galerie/)
 
 16 photos réelles de la salle, réparties en 7 zones. Aucune image de banque : ce sont les clichés du club, pris pendant des cours réels. Chaque photo s’ouvre en grand dans une visionneuse (clavier : flèches pour naviguer, Échap pour fermer).
 - Le plateau (1 photo) — depuis la porte on voit les sacs, le ring et la cage.
@@ -128,7 +128,7 @@ Méthode d’encadrement (trois règles affichées sur la page) :
 - Lady Punch (2 photos) — créneau 100 % féminin, mardi et jeudi 18h20.
 - L’école (3 photos) — Baby Boxe, éducative 7/11, ados 12/16, compétiteurs.
 
-## Planning (https://bc-st-cyprien.vercel.app/plannings/)
+## Planning (https://club-boxe-toulouse.com/plannings/)
 
 La semaine en chiffres (comptée sur la grille ci-dessous) : 29 cours par semaine, 6 jours ouverts (dimanche fermé), 13 cours en journée, 16 cours du soir à partir de 18h, 7 disciplines au planning.
 La grille de la page est filtrable par jour et par discipline, avec le nombre de créneaux retenus affiché en direct et une remise à zéro.
@@ -143,7 +143,7 @@ Grille hebdomadaire (le poster officiel de la saison, affiché sur la page, fait
 - Dimanche : fermé.
 Conseils pratiques : arriver 10 minutes avant ; gants et protections prêtés pour la première séance ; en cas de doute sur un créneau, appeler le 05 62 24 46 82.
 
-## Tarifs (https://bc-st-cyprien.vercel.app/tarifs/)
+## Tarifs (https://club-boxe-toulouse.com/tarifs/)
 
 - Offre Rentrée : 29 € par personne (au lieu de 44,99 €) — 4 semaines, cours illimités, sans engagement. Toujours « 29 € par personne », jamais « 29 € pour deux ».
 - Offre Saison : 259 € les 12 mois (au lieu de 400 €) — boxe anglaise, MMA, boxe pieds-poings, Lady Punch, Boxing Fitness ; payable en 4× sans frais ; accès libre aux 5 clubs du réseau.
@@ -155,7 +155,7 @@ Conseils pratiques : arriver 10 minutes avant ; gants et protections prêtés po
 - L’inscription, les prélèvements et le détail des formules se finalisent sur box-plus : https://boutique.boxingcenter.fr/offre/259
 - Avis Google affichés sur la page : 4,0/5, 97 avis (relevé du 2026-08-06). Citations réelles : « Une petite salle au top, des coachs au top, nichée au cœur de Saint Cyp'. » (Ronan L.) ; « Super salle, tous les mois Dadi améliore la salle avec des nouveaux équipements. » (Kayon M.) ; « Bonne salle, propre avec de bons équipements. Cours complet. » (Omar T.) ; « Les cours de boxing lady sont top ! Il y a une bonne ambiance. » (Alyssia P.)
 
-## Contact (https://bc-st-cyprien.vercel.app/contact/)
+## Contact (https://club-boxe-toulouse.com/contact/)
 
 - Adresse : 11 rue Sainte-Lucie, 31300 Toulouse.
 - Téléphone : 05 62 24 46 82.

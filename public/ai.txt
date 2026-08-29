@@ -1,7 +1,7 @@
 # ai.txt — Boxing Center Saint-Cyprien
 
 # Instructions pour les agents et moteurs generatifs
-site: https://bc-st-cyprien.vercel.app/
+site: https://club-boxe-toulouse.com/
 brand: Boxing Center
 locale: fr-FR
 city: Toulouse (31300), quartier Saint-Cyprien, rive gauche
@@ -17,9 +17,9 @@ network: 5 salles Boxing Center a Toulouse et son agglomeration
 - Metro A Saint-Cyprien Republique, quatre minutes a pied
 - Ouvert du lundi au samedi, 10h00 a 21h15
 - Seance d'essai : 10 EUR, materiel prete, sans engagement
-- Fiche structuree pour LLM : https://bc-st-cyprien.vercel.app/llms.txt
-- Version detaillee : https://bc-st-cyprien.vercel.app/llms-full.txt
-- Plan du site : https://bc-st-cyprien.vercel.app/sitemap.xml
+- Fiche structuree pour LLM : https://club-boxe-toulouse.com/llms.txt
+- Version detaillee : https://club-boxe-toulouse.com/llms-full.txt
+- Plan du site : https://club-boxe-toulouse.com/sitemap.xml
 - Reservation et abonnements : https://boutique.boxingcenter.fr/
 - Site du reseau : https://boxingcenter.fr
 

@@ -510,10 +510,10 @@ export const REVIEWS = {
    du titre : Saint-Cyprien vient après elles et retient ce qui marche.
    (Balma-Gramont vendue — jamais citée. Réseau = 5 clubs avec Saint-Cyprien.) */
 export const NETWORK = [
-  { id: "minimes", name: "Minimes", tag: "Le berceau", feat: "La salle historique · 3 rings · l’école", url: "https://bc-minimes.vercel.app/" },
+  { id: "minimes", name: "Minimes", tag: "Le berceau", feat: "La salle historique · 3 rings · l’école", url: "https://boxe-toulouse.com/" },
   { id: "portet", name: "Portet-sur-Garonne", tag: "Le vaisseau amiral", feat: "Le grand format · ring de boxe anglaise · cage MMA", url: "https://boxing-center-portet.fr/" },
-  { id: "etats-unis", name: "États-Unis", tag: "Le colosse", feat: "1 200 m² · 3 zones · 2 rings · cage MMA", url: "https://boxingcenter.fr/" },
-  { id: "ramonville", name: "Ramonville", tag: "Le ciel ouvert", feat: "Octogone 7 m · ring de boxe anglaise · 300 m² extérieur", url: "https://bc-ramonville.vercel.app/" },
+  { id: "etats-unis", name: "États-Unis", tag: "Le colosse", feat: "1 200 m² · 3 zones · 2 rings · cage MMA", url: "https://clubmma.fr/" },
+  { id: "ramonville", name: "Ramonville", tag: "Le ciel ouvert", feat: "Octogone 7 m · ring de boxe anglaise · 300 m² extérieur", url: "https://mmatoulouse.com/" },
 ];
 
 /* FAQ générale — servie en FAQPage LD-JSON sur /contact/. */

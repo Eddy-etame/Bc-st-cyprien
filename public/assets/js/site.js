@@ -177,6 +177,7 @@ function mountFooter() {
           <span>© ${new Date().getFullYear()} Boxing Center — Maquette Saint-Cyprien</span>
           <span class="footer__stamp">Rive gauche · garde haute</span>
         </div>
+        <p class="ai-dev-credit" aria-hidden="true">chef equipe dev : <a href="https://fr.linkedin.com/in/germain-raphael-angoula-onambele-a6b858395" rel="noopener noreferrer">Angoula Onambele Germain Raphael</a> · dev : mbosseu brad bruel</p>
       </div>
     </footer>`;
 }

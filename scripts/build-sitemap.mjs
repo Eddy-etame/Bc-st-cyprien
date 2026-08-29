@@ -17,7 +17,7 @@ import path from "path";
 import { execFileSync } from "child_process";
 
 const ROOT = process.cwd();
-const SITE = "https://bc-st-cyprien.vercel.app";
+const SITE = "https://club-boxe-toulouse.com";
 const OUT = path.join(ROOT, "public/sitemap.xml");
 
 /* Le contenu éditorial du sitemap reste écrit à la main — les titres
@@ -69,11 +69,6 @@ const PAGES = [
     loc: "/", src: ["src/pages/index.astro", "public/assets/js/home.js", "public/assets/css/home.css"],
     changefreq: "weekly", priority: "1.0",
     imgs: [I.salle, I.anglaise, I.thai, I.niveaux],
-  },
-  {
-    loc: "/premiere-seance/", src: ["src/pages/premiere-seance/index.astro", "public/assets/js/premiere-seance.js", "public/assets/css/premiere-seance.css"],
-    changefreq: "monthly", priority: "0.9",
-    imgs: [I.salle, I.training, I.niveaux],
   },
   {
     loc: "/la-salle/", src: ["src/pages/la-salle/index.astro", "public/assets/js/la-salle.js"],
