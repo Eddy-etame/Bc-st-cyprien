@@ -102,6 +102,12 @@
       "source": "/admin",
       "destination": "/admin/",
       "permanent": false
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "bc-st-cyprien.vercel.app" }],
+      "destination": "https://club-boxe-toulouse.com/:path*",
+      "permanent": true
     }
   ]
 }

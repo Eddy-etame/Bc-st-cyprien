@@ -2,18 +2,18 @@
 
 > Salle de boxe au 11 rue Sainte-Lucie, 31300 Toulouse (quartier Saint-Cyprien, rive gauche), à 4 minutes à pied du métro ligne A (Saint-Cyprien République). Premier Boxing Center rive gauche et dernière-née des 5 salles du réseau Boxing Center. Boxe anglaise, boxe thaï/K1, grappling, Hyrox & cross-training, Lady Punch, boxing camp et école enfants dès 3 ans. Ouvert lundi–samedi 10h00–21h15, séance d’essai 10 €.
 
-Le détail factuel page par page est dans [llms-full.txt](https://bc-st-cyprien.vercel.app/llms-full.txt).
+Le détail factuel page par page est dans [llms-full.txt](https://club-boxe-toulouse.com/llms-full.txt).
 
 ## Pages
 
-- [Accueil](https://bc-st-cyprien.vercel.app/): présentation de la salle — 7 disciplines et 29 cours par semaine, trois coachs, métro A à 4 min, séance d’essai 10 €.
-- [La salle](https://bc-st-cyprien.vercel.app/la-salle/): la visite en six postes (plateau, ring d’anglaise, surface pieds-poings thaï/K1, zone cross & muscu, école, collectif), le déroulé d’une séance de la porte au tapis, et la lignée des 5 clubs du réseau.
-- [Activités](https://bc-st-cyprien.vercel.app/activites/): catalogue des disciplines avec niveau et créneaux — boxe anglaise, thaï/K1, grappling, Hyrox & cross, Lady Punch, boxe éducative dès 3 ans, boxing camp ; plus un aiguillage « par où commencer » (cinq intentions → une discipline) et trois semaines-types montées avec de vrais créneaux du planning.
-- [Coachs](https://bc-st-cyprien.vercel.app/coachs/): l’encadrement — Dadi (anglaise, Lady Punch, école), Tawee (thaï/K1), Brice (Hyrox, cross, camp) ; pour chacun, sa photo, sa discipline et le planning de cette discipline. Qui encadre quel créneau n’est pas publié.
-- [Galerie](https://bc-st-cyprien.vercel.app/galerie/): 16 photos réelles de la salle en 7 zones (plateau, ring, pieds-poings, sol, moteur, Lady Punch, école), consultables en grand dans une visionneuse.
-- [Planning](https://bc-st-cyprien.vercel.app/plannings/): 29 cours par semaine sur 6 jours (13 en journée, 16 dès 18h, 7 disciplines) ; la grille hebdomadaire filtrable (jour, discipline) et le poster officiel de la saison qui fait foi.
-- [Tarifs](https://bc-st-cyprien.vercel.app/tarifs/): offre Rentrée 29 € par personne, offre Saison 259 € les 12 mois, abonnement classique 44,99 € adulte / 36,99 € étudiant par échéance de 4 semaines, école 295 €/an t-shirt inclus (baby 250 €), essai 10 € en dernier, conditions en clair et avis Google (4,0/5, 97 avis).
-- [Contact](https://bc-st-cyprien.vercel.app/contact/): adresse, horaires, téléphone, carte, itinéraire métro et questions fréquentes.
+- [Accueil](https://club-boxe-toulouse.com/): présentation de la salle — 7 disciplines et 29 cours par semaine, trois coachs, métro A à 4 min, séance d’essai 10 €.
+- [La salle](https://club-boxe-toulouse.com/la-salle/): la visite en six postes (plateau, ring d’anglaise, surface pieds-poings thaï/K1, zone cross & muscu, école, collectif), le déroulé d’une séance de la porte au tapis, et la lignée des 5 clubs du réseau.
+- [Activités](https://club-boxe-toulouse.com/activites/): catalogue des disciplines avec niveau et créneaux — boxe anglaise, thaï/K1, grappling, Hyrox & cross, Lady Punch, boxe éducative dès 3 ans, boxing camp ; plus un aiguillage « par où commencer » (cinq intentions → une discipline) et trois semaines-types montées avec de vrais créneaux du planning.
+- [Coachs](https://club-boxe-toulouse.com/coachs/): l’encadrement — Dadi (anglaise, Lady Punch, école), Tawee (thaï/K1), Brice (Hyrox, cross, camp) ; pour chacun, sa photo, sa discipline et le planning de cette discipline. Qui encadre quel créneau n’est pas publié.
+- [Galerie](https://club-boxe-toulouse.com/galerie/): 16 photos réelles de la salle en 7 zones (plateau, ring, pieds-poings, sol, moteur, Lady Punch, école), consultables en grand dans une visionneuse.
+- [Planning](https://club-boxe-toulouse.com/plannings/): 29 cours par semaine sur 6 jours (13 en journée, 16 dès 18h, 7 disciplines) ; la grille hebdomadaire filtrable (jour, discipline) et le poster officiel de la saison qui fait foi.
+- [Tarifs](https://club-boxe-toulouse.com/tarifs/): offre Rentrée 29 € par personne, offre Saison 259 € les 12 mois, abonnement classique 44,99 € adulte / 36,99 € étudiant par échéance de 4 semaines, école 295 €/an t-shirt inclus (baby 250 €), essai 10 € en dernier, conditions en clair et avis Google (4,0/5, 97 avis).
+- [Contact](https://club-boxe-toulouse.com/contact/): adresse, horaires, téléphone, carte, itinéraire métro et questions fréquentes.
 
 ## L’assistant du site
 
@@ -31,7 +31,7 @@ Une pastille en bas à droite de chaque page ouvre un assistant conversationnel.
 - Équipement : Sacs de frappe, espace tatamis et ring ; musculation, cardio et cross-training en accès libre. La page officielle de Saint-Cyprien ne donne aucune surface — les 1 200 m² sont ceux de Toulouse États-Unis, ne jamais les attribuer à cette salle.
 - Fédérations : FFBoxe, FFKMDA, FMMAF
 - Réseau : 5 clubs — Portet, Minimes, États-Unis, Saint-Cyprien, Ramonville (accès libre aux 5 clubs avec l’offre Saison)
-- Sites du réseau : site mère https://boxingcenter.fr/ · Portet https://www.boxing-center-portet.fr/ · Minimes https://bc-minimes.vercel.app/ · Ramonville https://bc-ramonville.vercel.app/ · boutique https://boutique.boxingcenter.fr/ · inscriptions et réservations https://boutique.boxingcenter.fr/
+- Sites du réseau : site mère https://boxingcenter.fr/ · Portet https://www.boxing-center-portet.fr/ · Minimes https://boxe-toulouse.com/ · États-Unis https://clubmma.fr/ · Saint-Cyprien https://club-boxe-toulouse.com/ · Ramonville https://mmatoulouse.com/ · TMBC https://toulouse-minimes-boxing-club.fr/ · boutique https://boutique.boxingcenter.fr/
 - Chaque salle du réseau a sa propre page d’accueil et ses propres horaires : ne jamais reporter un créneau, un coach, une surface ou un tarif d’une salle sur une autre. Ce document ne décrit QUE Saint-Cyprien.
 - Le backoffice /admin/ et les fonctions /api/ ne sont pas indexables (noindex + interdits dans robots.txt) : ne pas les citer ni les suivre.
 - Disciplines : boxe anglaise ; boxe thaï/K1 ; grappling ; Hyrox & cross-training ; Lady Punch 100 % féminin ; boxe éducative & Baby Boxe dès 3 ans — Baby 3/6, éducative 7/11, ados 12/16, compétiteurs ; boxing camp
