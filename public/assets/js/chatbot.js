@@ -492,26 +492,39 @@ export function initChatbot() {
          fait vrai sur cette page, une question ouverte. Le fait est ce
          qui separe un assistant d'un pop-up. Chiffres verifies dans
          data.js, un par un. */
+      /* TUTOIEMENT. api/chat.js impose « Français, tutoiement, ton de
+         coach » ; ces messages vouvoyaient. Le visiteur recevait donc un
+         bonjour au « vous » puis une réponse au « tu » — deux voix dans
+         la même conversation.
+         UNE SEULE CLÉ PAR PAGE : « /activites/ » était écrite DEUX fois.
+         En JavaScript la seconde écrase la première sans un mot, et le
+         message sur les disciplines n'a jamais été affiché à personne.
+         Les deux sont fondus ici en un seul. */
       const ACCUEILS = {
-        "/tarifs/": ["Bonjour \u{1F44B} Vous \u00eates sur les tarifs.", "La rentr\u00e9e \u00e0 29\u20ac par personne est la formule la plus prise. Je vous aide \u00e0 choisir\u00a0?"],
-        "/activites/": ["Bonjour \u{1F44B} Vous regardez les disciplines.", "Sept, de l\u2019anglaise au grappling. Dites-moi votre objectif, je vous oriente."],
-        "/plannings/": ["Bonjour \u{1F44B} Vous cherchez un cr\u00e9neau.", "Ouvert du lundi au samedi, 10h\u201321h15. Donnez-moi vos dispos, je vous dis lequel prendre."],
-        "/coachs/": ["Bonjour \u{1F44B} Vous regardez l\u2019\u00e9quipe.", "Trois coachs\u00a0: Dadi, Tawee et Brice. Une question sur l\u2019un d\u2019eux\u00a0?"],
-        "/la-salle/": ["Bonjour \u{1F44B} Vous d\u00e9couvrez la salle.", "Sacs, tatamis et ring, plus la muscu et le cardio en acc\u00e8s libre. Envie de passer\u00a0?"],
-        "/galerie/": ["Bonjour \u{1F44B} Vous parcourez la galerie.", "Les cl\u00e9ich\u00e9s de la salle, zone par zone. Une question sur l\u2019une d\u2019elles\u00a0?"],
-        "/activites/": ["Bonjour \u{1F44B} Vous regardez les activit\u00e9s.", "Gants pr\u00eat\u00e9s, aucun niveau demand\u00e9. Dites-moi ce qui vous tente\u00a0?"],
-        "/contact/": ["Bonjour \u{1F44B} Vous cherchez \u00e0 nous joindre.", "11 rue Sainte-Lucie, \u00e0 4 minutes du m\u00e9tro A. Ou laissez-moi votre num\u00e9ro."],
+        "/tarifs/": ["Bonjour \u{1F44B} Tu es sur les tarifs.", "La rentrée à 29€ par personne est la formule la plus prise. Je t’aide à choisir ?"],
+        "/activites/": ["Bonjour \u{1F44B} Tu regardes les disciplines.", "Sept, de l’anglaise au grappling, gants prêtés et aucun niveau demandé. Dis-moi ton objectif, je t’oriente."],
+        "/plannings/": ["Bonjour \u{1F44B} Tu cherches un créneau.", "Ouvert du lundi au samedi, 10h–21h15. Donne-moi tes dispos, je te dis lequel prendre."],
+        "/coachs/": ["Bonjour \u{1F44B} Tu regardes l’équipe.", "Trois coachs : Dadi, Tawee et Brice. Une question sur l’un d’eux ?"],
+        "/la-salle/": ["Bonjour \u{1F44B} Tu découvres la salle.", "Sacs, tatamis et ring, plus la muscu et le cardio en accès libre. Envie de passer ?"],
+        "/galerie/": ["Bonjour \u{1F44B} Tu parcours la galerie.", "Les clichés de la salle, zone par zone. Une question sur l’une d’elles ?"],
+        "/contact/": ["Bonjour \u{1F44B} Tu cherches à nous joindre.", "11 rue Sainte-Lucie, à 4 minutes du métro A. Ou laisse-moi ton numéro."],
       };
       const _page = location.pathname.replace(/index\.html$/, "");
-      const [_b, _s] = ACCUEILS[_page] || ["Bonjour \u{1F44B} Je suis l’assistant de Boxing Center Saint-Cyprien.", "Les cours, les créneaux, les tarifs — dites-moi ce que vous cherchez."];
+      const [_b, _s] = ACCUEILS[_page] || ["Bonjour \u{1F44B} Je suis l’assistant de Boxing Center Saint-Cyprien.", "Les cours, les créneaux, les tarifs — dis-moi ce que tu cherches."];
       await botSay(_b, 450);
-      await botSay(_s, 620, resolveActions(["offre", "essai"]));
+      /* LE 29 EUR SEUL A L'ACCUEIL. Le bouton « Je viens essayer · 10€ »
+           était posé ici, dans le deuxième message : l'essai était offert
+           avant même que l'offre ait été proposée. Le réseau vend le 29 €
+           d'abord ; le 10 € reste dans la grille tarifs et ne sort qu'après
+           un refus — c'est le prompt serveur qui choisit ce moment-là, pas
+           l'accueil. */
+        await botSay(_s, 620, resolveActions(["offre", "saison"]));
       /* Le prenom en TROISIEME bulle, apres deux messages qui ont deja
          rendu service. `expectName` etait armee sans que la question soit
          posee : un mot unique etait lu comme un prenom alors que personne
          n'avait rien demande. Maintenant elle est posee pour de bon. */
       expectName = true;
-      await botSay("Et vous, comment vous appelez-vous ?", 420);
+      await botSay("Et toi, comment tu t’appelles ?", 420);
       showChips();
     }
   }

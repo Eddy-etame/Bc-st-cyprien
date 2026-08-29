@@ -7,7 +7,7 @@
     "prepare": "git config core.hooksPath .githooks",
     "dev": "astro dev",
     "prebuild": "node scripts/apply-content.mjs && node scripts/build-avif.mjs && node scripts/build-sitemap.mjs",
-    "build": "astro build",
+    "build": "astro build && node scripts/garde-auteurs.mjs",
     "postbuild": "node scripts/cuire-galerie.mjs && node scripts/cuire-pages.mjs",
     "preview": "astro preview"
   },

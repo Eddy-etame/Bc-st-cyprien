@@ -15,7 +15,7 @@
 - Fédérations : FFBoxe, FFKMDA, FMMAF.
 - Position dans le réseau : dernière-née des 5 salles Boxing Center (Minimes, Portet-sur-Garonne, États-Unis, Ramonville, Saint-Cyprien) ; premier Boxing Center rive gauche de Toulouse.
 - Itinéraire : https://maps.google.com/?q=11+rue+Sainte-Lucie+31300+Toulouse
-- Sites du réseau : site mère https://boxingcenter.fr/ · Portet-sur-Garonne https://www.boxing-center-portet.fr/ · Minimes https://bc-minimes.vercel.app/ · Ramonville https://bc-ramonville.vercel.app/ · boutique https://boutique.boxingcenter.fr/ · inscriptions, abonnements et séance d’essai https://boutique.boxingcenter.fr/
+- Sites du réseau : site mère https://boxingcenter.fr/ · Portet-sur-Garonne https://boxing-center-portet.fr/ · Minimes https://bc-minimes.vercel.app/ · Ramonville https://bc-ramonville.vercel.app/ · boutique https://boutique.boxingcenter.fr/ · inscriptions, abonnements et séance d’essai https://boutique.boxingcenter.fr/
 - Réseaux sociaux : https://www.instagram.com/boxingcentertoulouse/ · https://www.facebook.com/BoxingCenterToulouse/
 
 ## L’assistant du site
@@ -72,7 +72,7 @@ Six postes sur un seul niveau :
 
 Déroulé d’une séance (affiché sur la page) : accueil et présentation au coach en arrivant ; environ 15 minutes d’échauffement collectif (corde, déplacements, mobilité) pendant lesquelles le coach cale la suite sur ton niveau ; le cœur de séance sur un seul point technique (garde, souffle ou appuis) puis son application aux sacs ou aux pattes ; retour au calme (gainage, étirements) et point du coach sur ce qui a progressé. Gants et protections prêtés pour la première séance : venir en tenue de sport.
 
-La lignée du réseau (ordre d’arrivée) : Minimes (le berceau, la salle historique, 3 rings, l’école), Portet-sur-Garonne (le vaisseau amiral, ring de boxe anglaise, cage MMA — https://www.boxing-center-portet.fr/), États-Unis (le colosse, 1 200 m², 3 zones, 2 rings, cage MMA), Ramonville (le ciel ouvert, octogone 7 m, ring de boxe anglaise, 300 m² extérieur), puis Saint-Cyprien.
+La lignée du réseau (ordre d’arrivée) : Minimes (le berceau, la salle historique, 3 rings, l’école), Portet-sur-Garonne (le vaisseau amiral, ring de boxe anglaise, cage MMA — https://boxing-center-portet.fr/), États-Unis (le colosse, 1 200 m², 3 zones, 2 rings, cage MMA), Ramonville (le ciel ouvert, octogone 7 m, ring de boxe anglaise, 300 m² extérieur), puis Saint-Cyprien.
 
 ## Activités (https://bc-st-cyprien.vercel.app/activites/)
 
