@@ -9,6 +9,16 @@
 
 export const QUICKS = [
   {
+    /* AJOUTÉE LE 30/08. En production, « il y a t il des clims a la salle ? »
+       tombait sur la phrase générique : le bot listait ce qu'il savait faire
+       au lieu de répondre. Un trou dans la base ne produit pas un « je ne
+       sais pas » utile, il produit une esquive — et le visiteur repart.
+       PAS DE `label` : ce n'est pas une question qu'on suggère, c'est un
+       fait que le bot doit connaître. */
+    q: "Il y a la clim ?",
+    a: "Oui, la salle est climatisée l'été et chauffée l'hiver — on s'entraîne à l'intérieur, toute l'année. Quand il fait lourd, les créneaux du midi et de fin de soirée sont les plus respirables. [boutons: planning, offre]",
+  },
+  {
     label: "La séance d’essai",
     q: "Comment se passe la séance d’essai ?",
     a: "10€ la séance, toutes disciplines, gants et matériel prêtés, sans engagement. Tu arrives 10 minutes avant en tenue de sport, tu dis que c’est ta première fois — c’est la seule phrase à préparer — puis échauffement, technique et sac, à ton rythme. Pas de sparring imposé, pas de test. [boutons: premiere, essai]",
@@ -51,18 +61,22 @@ export const QUICKS = [
 ];
 
 const RULES = [
-  [/essai|d[ée]couvr|tester|essayer|premi[èe]re s[ée]ance|1re/i, 0],
-  [/tarif|prix|co[ûu]te|combien|abonn|duo|saison|mensuel|annuel/i, 1],
-  [/horaire|ouvert|ferm|heure|dimanche|midi/i, 2],
+  /* EN TÊTE, et c'est voulu : « clim » et « il fait chaud » tombaient
+     sinon sur la règle des horaires (« heure », « midi ») ou sur celle
+     de l'accès. La question la plus précise passe en premier. */
+  [/clim|climatis|air.?conditionn|ventil|il fait (chaud|froid)|temp[ée]rature|canicule|chauff/i, 0],
+  [/essai|d[ée]couvr|tester|essayer|premi[èe]re s[ée]ance|1re/i, 1],
+  [/tarif|prix|co[ûu]te|combien|abonn|duo|saison|mensuel|annuel/i, 2],
+  [/horaire|ouvert|ferm|heure|dimanche|midi/i, 3],
   /* « \b » compte en ASCII : après le « ù » de « où » il n’y a PAS de frontière
      de mot, et « Où se trouve la salle ? » retombait sur la phrase générique
      alors que l’adresse est juste là. On borne à la main sur les lettres
      accentuées — même famille que le « où » de la liste STOP des prénoms. */
-  [/adresse|o[ùu](?![a-zà-öø-ÿ])|se trouve|situ|acc[èe]s|m[ée]tro|parking|venir|plan|rue|quartier/i, 3],
-  [/discipline|thai|tha[ïi]|k1|kick|mma|grappling|cross|hyrox|lady|camp|anglaise|cours/i, 4],
-  [/enfant|gosse|fils|fille|baby|[ée]ducative|ado|3 ans|jeune/i, 5],
-  [/coach|entra[îi]neur|prof|encadr|[ée]quipe|dadi|tawee|hicham|victor/i, 6],
-  [/d[ée]butant|jamais|niveau|commenc|nul|peur|timide/i, 7],
+  [/adresse|o[ùu](?![a-zà-öø-ÿ])|se trouve|situ|acc[èe]s|m[ée]tro|parking|venir|plan|rue|quartier/i, 4],
+  [/discipline|thai|tha[ïi]|k1|kick|mma|grappling|cross|hyrox|lady|camp|anglaise|cours/i, 5],
+  [/enfant|gosse|fils|fille|baby|[ée]ducative|ado|3 ans|jeune/i, 6],
+  [/coach|entra[îi]neur|prof|encadr|[ée]quipe|dadi|tawee|hicham|victor/i, 7],
+  [/d[ée]butant|jamais|niveau|commenc|nul|peur|timide/i, 8],
 ];
 
 /** La phrase de dernier recours — quand la question ne ressemble à rien de connu. */
