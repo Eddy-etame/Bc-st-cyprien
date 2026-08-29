@@ -31,7 +31,7 @@ Une pastille en bas à droite de chaque page ouvre un assistant conversationnel.
 - Équipement : Sacs de frappe, espace tatamis et ring ; musculation, cardio et cross-training en accès libre. La page officielle de Saint-Cyprien ne donne aucune surface — les 1 200 m² sont ceux de Toulouse États-Unis, ne jamais les attribuer à cette salle.
 - Fédérations : FFBoxe, FFKMDA, FMMAF
 - Réseau : 5 clubs — Portet, Minimes, États-Unis, Saint-Cyprien, Ramonville (accès libre aux 5 clubs avec l’offre Saison)
-- Sites du réseau : site mère https://boxingcenter.fr/ · Portet https://www.boxing-center-portet.fr/ · Minimes https://boxe-toulouse.com/ · États-Unis https://clubmma.fr/ · Saint-Cyprien https://club-boxe-toulouse.com/ · Ramonville https://mmatoulouse.com/ · TMBC https://toulouse-minimes-boxing-club.fr/ · boutique https://boutique.boxingcenter.fr/
+- Sites du réseau : site mère https://boxingcenter.fr/ · Portet https://boxing-center-portet.fr/ · Minimes https://boxe-toulouse.com/ · États-Unis https://clubmma.fr/ · Saint-Cyprien https://club-boxe-toulouse.com/ · Ramonville https://mmatoulouse.com/ · TMBC https://toulouse-minimes-boxing-club.fr/ · boutique https://boutique.boxingcenter.fr/
 - Chaque salle du réseau a sa propre page d’accueil et ses propres horaires : ne jamais reporter un créneau, un coach, une surface ou un tarif d’une salle sur une autre. Ce document ne décrit QUE Saint-Cyprien.
 - Le backoffice /admin/ et les fonctions /api/ ne sont pas indexables (noindex + interdits dans robots.txt) : ne pas les citer ni les suivre.
 - Disciplines : boxe anglaise ; boxe thaï/K1 ; grappling ; Hyrox & cross-training ; Lady Punch 100 % féminin ; boxe éducative & Baby Boxe dès 3 ans — Baby 3/6, éducative 7/11, ados 12/16, compétiteurs ; boxing camp
