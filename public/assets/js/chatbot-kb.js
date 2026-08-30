@@ -16,7 +16,7 @@ export const QUICKS = [
        PAS DE `label` : ce n'est pas une question qu'on suggère, c'est un
        fait que le bot doit connaître. */
     q: "Il y a la clim ?",
-    a: "Oui, la salle est climatisée l'été et chauffée l'hiver — on s'entraîne à l'intérieur, toute l'année. Quand il fait lourd, les créneaux du midi et de fin de soirée sont les plus respirables. [boutons: planning, offre]",
+    a: "Non — aucune de nos salles n’est climatisée, ni chauffée. Elles sont en revanche correctement isolées. On te dit les choses comme elles sont : tu viens en tenue légère l’été, tu t’échauffes moins longtemps l’hiver. [boutons: premiere, offre]",
   },
   {
     label: "La séance d’essai",
@@ -66,17 +66,17 @@ const RULES = [
      de l'accès. La question la plus précise passe en premier. */
   [/clim|climatis|air.?conditionn|ventil|il fait (chaud|froid)|temp[ée]rature|canicule|chauff/i, 0],
   [/essai|d[ée]couvr|tester|essayer|premi[èe]re s[ée]ance|1re/i, 1],
-  [/tarif|prix|co[ûu]te|combien|abonn|duo|saison|mensuel|annuel/i, 2],
-  [/horaire|ouvert|ferm|heure|dimanche|midi/i, 3],
+  [/tarif|prix|co[ûu]te|combien|abonn|duo|saison|mensuel|annuel|offre|promo|formule|rentr[ée]e|29|259|payer|paiement/i, 2],
+  [/horaire|ouvert|ferm|heure|dimanche|samedi|lundi|semaine|week.?end|midi|soir|matin|tard|t[ôo]t/i, 3],
   /* « \b » compte en ASCII : après le « ù » de « où » il n’y a PAS de frontière
      de mot, et « Où se trouve la salle ? » retombait sur la phrase générique
      alors que l’adresse est juste là. On borne à la main sur les lettres
      accentuées — même famille que le « où » de la liste STOP des prénoms. */
-  [/adresse|o[ùu](?![a-zà-öø-ÿ])|se trouve|situ|acc[èe]s|m[ée]tro|parking|venir|plan|rue|quartier/i, 4],
+  [/adresse|o[ùu](?![a-zà-öø-ÿ])|se trouve|situ|acc[èe]s|m[ée]tro|parking|venir|plan|rue|quartier|bus|v[ée]lo|garer/i, 4],
   [/discipline|thai|tha[ïi]|k1|kick|mma|grappling|cross|hyrox|lady|camp|anglaise|cours/i, 5],
   [/enfant|gosse|fils|fille|baby|[ée]ducative|ado|3 ans|jeune/i, 6],
   [/coach|entra[îi]neur|prof|encadr|[ée]quipe|dadi|tawee|hicham|victor/i, 7],
-  [/d[ée]butant|jamais|niveau|commenc|nul|peur|timide/i, 8],
+  [/d[ée]butant|jamais|niveau|commenc|nul|peur|timide|inscri|adh[ée]r|s.inscrire|dossier|certificat|licence/i, 8],
 ];
 
 /** La phrase de dernier recours — quand la question ne ressemble à rien de connu. */
