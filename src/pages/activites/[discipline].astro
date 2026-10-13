@@ -187,7 +187,6 @@ const OFFRES = cle === "kids"
     };
 /** « 29€ » → { n: "29", d: "" } ; « 44,99€ » → { n: "44", d: ",99" } : le chiffre, ses centimes, l'euro à part. */
 const chiffre = (s) => { const m = String(s).match(/^(\d+)(,\d+)?/); return { n: m[1], d: m[2] || "" }; };
-const enMots = (s) => String(s).replace("€", " euros");
 
 /* ------------------------------------------------------------------ */
 /* LE MATÉRIEL — chaque carte lit sa fiche dans src/produits.json et sa  */
@@ -509,7 +508,8 @@ const ldJson = JSON.stringify(ld).replace(/</g, "\\u003c");
           <article class="dp-offre" data-reveal aria-labelledby="t-offre">
             <p class="dp-offre__ruban mono">{OFFRES.phare.ruban}</p>
             <h3 class="dp-offre__nom" id="t-offre">{OFFRES.phare.nom}</h3>
-            <p class="dp-offre__prix" aria-label={`${enMots(OFFRES.phare.prix)}${OFFRES.phare.avant ? ` au lieu de ${enMots(OFFRES.phare.avant)}` : ""}`}>
+            <p class="dp-offre__prix">
+              <span class="sr-only">{`${OFFRES.phare.prix}${OFFRES.phare.avant ? ` au lieu de ${OFFRES.phare.avant}` : ""}`}</span>
               <span class="dp-offre__n" aria-hidden="true" data-compte={nombre(OFFRES.phare.prix)} data-depuis={OFFRES.phare.avant ? nombre(OFFRES.phare.avant) : 0}>{chiffre(OFFRES.phare.prix).n}{chiffre(OFFRES.phare.prix).d}</span><span class="dp-offre__eur" aria-hidden="true">€</span>
               {OFFRES.phare.avant && <s class="dp-offre__avant" aria-hidden="true">{OFFRES.phare.avant}</s>}
             </p>
@@ -585,7 +585,7 @@ const ldJson = JSON.stringify(ld).replace(/</g, "\\u003c");
     <section class="section dp-sources" aria-labelledby="t-sources">
       <div class="wrap">
         <p class="eyebrow" data-reveal>Sources</p>
-        <h2 class="display dp-h2 dp-h2--petit" id="t-sources">Les sources de cette page.</h2>
+        <h2 class="display dp-h2 dp-h2--petit" id="t-sources">{`D’où viennent les faits sur ${p.sujet}.`}</h2>
         <p class="dp-intro" set:html={html(p.sourcesIntro)}></p>
         <ul class="dp-sources__liste">
           {SOURCES.map((s) => (<li><a href={s.url}>{s.label}</a></li>))}
