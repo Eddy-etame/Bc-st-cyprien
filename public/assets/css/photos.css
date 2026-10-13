@@ -402,11 +402,14 @@ html.fx .ph[data-reveal] { opacity: 0; transform: translateY(14px); }
    Ici tout se joue en 1,1 s, une seule fois, sur deux propriétés que le
    compositeur gère seul. Le rendu est le même, le coût n'a rien à voir.
  * ================================================================== */
-.ph--reveal { clip-path: inset(0 0 100% 0); }
-.ph--reveal > img { transform: scale(1.06); transform-origin: 50% 55%; }
+/* Le volet ne se ferme que si le moteur tourne (html.fx, comme [data-reveal]
+   dans base.css) : si le JavaScript tombe, le filet de site.js retire `fx`
+   et les photos s'affichent, au lieu de rester masquées pour de bon. */
+html.fx .ph--reveal { clip-path: inset(0 0 100% 0); }
+html.fx .ph--reveal > img { transform: scale(1.06); transform-origin: 50% 55%; }
 
-.ph--reveal.is-seen { animation: phVolet .85s var(--ease-out) forwards; }
-.ph--reveal.is-seen > img { animation: phPose 1.35s var(--ease-out) forwards; }
+html.fx .ph--reveal.is-seen { animation: phVolet .85s var(--ease-out) forwards; }
+html.fx .ph--reveal.is-seen > img { animation: phPose 1.35s var(--ease-out) forwards; }
 
 @keyframes phVolet { to { clip-path: inset(0 0 0 0); } }
 @keyframes phPose  { to { transform: scale(1); } }

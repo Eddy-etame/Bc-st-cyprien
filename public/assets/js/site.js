@@ -583,8 +583,29 @@ function presentationAssistant() {
   const congedier = () => { if (bulle) { bulle.remove(); bulle = null; } };
   const ouvrir = () => pastille.click();
 
-  function poserBulle(texte) {
-    if (bulle) return;
+  /* La bulle est stylée par chatbot.css, que chatbot.js n'injecte qu'à
+     l'intention de parler : posée avant, elle sortait en texte brut collé
+     au bas de la page (constaté en production le 13/10/2026, sur toutes les
+     pages, depuis le 07/08). On charge donc la feuille — même id et même
+     adresse que chatbot.js, qui ne la doublera pas — et la bulle n'apparaît
+     qu'une fois la feuille appliquée ; si elle ne vient pas, pas de bulle. */
+  function feuilleChat() {
+    return new Promise((ok) => {
+      let l = document.getElementById("scchat-css");
+      if (l && l.sheet) return ok(true);
+      if (!l) {
+        l = document.createElement("link");
+        l.id = "scchat-css"; l.rel = "stylesheet"; l.href = "/assets/css/chatbot.css?v=1";
+        document.head.appendChild(l);
+      }
+      l.addEventListener("load", () => ok(true), { once: true });
+      l.addEventListener("error", () => ok(false), { once: true });
+      setTimeout(() => ok(!!l.sheet), 5000);
+    });
+  }
+
+  async function poserBulle(texte) {
+    if (bulle || !(await feuilleChat()) || bulle || dejaLa()) return;
     bulle = document.createElement("div");
     bulle.className = "bc-amorce";
     bulle.setAttribute("role", "status");
