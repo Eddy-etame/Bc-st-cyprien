@@ -67,6 +67,25 @@ const AVIF = new Set([
   "/assets/img/sc/pieds-poings-binome.webp",
   "/assets/img/sc/planning-2026-1600.webp",
   "/assets/img/sc/planning-2026-800.webp",
+  "/assets/img/sc/produits/bandes-2m50-mb120t-720.webp",
+  "/assets/img/sc/produits/bandes-4m-mb120bt-720.webp",
+  "/assets/img/sc/produits/debardeur-entrainement-metal-boxe-training-tank-360.webp",
+  "/assets/img/sc/produits/debardeur-entrainement-metal-boxe-training-tank-720.webp",
+  "/assets/img/sc/produits/ensemble-enfants-short-debardeur-360.webp",
+  "/assets/img/sc/produits/ensemble-enfants-short-debardeur-720.webp",
+  "/assets/img/sc/produits/gants-boxe-blade-noir-blanc-360.webp",
+  "/assets/img/sc/produits/gants-boxe-blade-noir-blanc-720.webp",
+  "/assets/img/sc/produits/gants-boxe-enfant-one-360.webp",
+  "/assets/img/sc/produits/gants-boxe-enfant-one-720.webp",
+  "/assets/img/sc/produits/gants-ergo-90-mbg301k14-360.webp",
+  "/assets/img/sc/produits/gants-ergo-90-mbg301k14-720.webp",
+  "/assets/img/sc/produits/gants-sparring-mbgan010n14-16oz-360.webp",
+  "/assets/img/sc/produits/gants-sparring-mbgan010n14-16oz-720.webp",
+  "/assets/img/sc/produits/protege-dents-adulte-mbpro458srt-720.webp",
+  "/assets/img/sc/produits/protege-dents-enfants-mb459jrw-360.webp",
+  "/assets/img/sc/produits/protege-dents-enfants-mb459jrw-720.webp",
+  "/assets/img/sc/produits/protege-tibias-pieds-coton-mb153wm-360.webp",
+  "/assets/img/sc/produits/protege-tibias-pieds-coton-mb153wm-720.webp",
   "/assets/img/sc/sacs-rangee.webp",
   "/assets/img/sc/sol-grappling.webp",
   "/assets/img/sc/training.webp",
@@ -196,9 +215,14 @@ export const COACH_TBD_WHY_SHORT =
  *  (ce qu’on voit, pas ce qu’on vend). Il ne dérive JAMAIS de `tag` ni de
  *  `name` — ceux-là ne servent qu’à la pastille mono (data-label).
  * ------------------------------------------------------------------ */
+/* `page` = la page de la discipline (/activites/<slug>/, ajoutée le 13/10/2026).
+   Son texte long vit dans src/disciplines-pages.json ; une discipline sans
+   `page` n’a pas de page, et ses liens retombent sur /activites/. Le
+   grappling n’en a pas : aucun encadrant n’est nommé au planning officiel. */
 export const DISCIPLINES = [
   {
     key: "anglaise",
+    page: "/activites/boxe-anglaise/",
     name: "Boxe Anglaise",
     tag: "Le noble art",
     cat: "adulte",
@@ -212,6 +236,7 @@ export const DISCIPLINES = [
   },
   {
     key: "thai",
+    page: "/activites/boxe-thai-k1/",
     name: "Boxe Thaï · K1",
     tag: "Pieds-poings",
     cat: "adulte",
@@ -239,6 +264,7 @@ export const DISCIPLINES = [
   },
   {
     key: "hyrox",
+    page: "/activites/hyrox-cross-training/",
     name: "Hyrox & Cross",
     tag: "Le moteur",
     cat: "adulte",
@@ -252,6 +278,7 @@ export const DISCIPLINES = [
   },
   {
     key: "lady",
+    page: "/activites/lady-punch/",
     name: "Lady Punch",
     tag: "100 % féminin",
     cat: "lady",
@@ -265,6 +292,7 @@ export const DISCIPLINES = [
   },
   {
     key: "kids",
+    page: "/activites/boxe-educative/",
     name: "Boxe Éducative",
     tag: "Dès 3 ans",
     cat: "ecole",
@@ -278,6 +306,7 @@ export const DISCIPLINES = [
   },
   {
     key: "camp",
+    page: "/activites/boxing-camp/",
     name: "Boxing Camp",
     tag: "Le condensé",
     cat: "adulte",
@@ -428,7 +457,9 @@ export const ROULETTE = [
        et périodicité de quatre semaines toujours explicites. */
     detail: "par personne · toutes les 4 semaines · illimité",
     was: "44,99€",
-    cut: "-34%",
+    /* 29 au lieu de 44,99 : −35,5 %, arrondi vers le bas. L'ancien « -34% »
+       avait été calculé sur 44 €, pas sur 44,99 € (corrigé le 13/10/2026). */
+    cut: "-35%",
     href: LINKS.rentree,
     cta: "Je profite de l’offre",
   },

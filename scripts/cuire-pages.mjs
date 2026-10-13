@@ -112,7 +112,7 @@ const configBody = `<div class="config__facts">
 <div class="config__cta">
   <a class="btn btn--primary" href="${href(LINKS.essai)}"><span>Essayer · 10€</span></a>
   <a class="btn" href="/plannings/#${e(premièreDiscipline.key)}"><span>Voir les créneaux</span></a>
-  <a class="btn config__link" href="/activites/#${e(premièreDiscipline.key)}"><span>En détail</span></a>
+  <a class="btn config__link" href="${href(premièreDiscipline.page || "/activites/")}"><span>En détail</span></a>
 </div>`;
 
 const coachrow = COACHES.map(

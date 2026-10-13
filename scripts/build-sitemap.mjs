@@ -11,14 +11,40 @@
    du fichier. Le sitemap ne peut donc plus vieillir tout seul.
 
    Usage : node scripts/build-sitemap.mjs
+
+   ---------------------------------------------------------------------
+   13/10/2026 — APRÈS LE BUILD, ET PAR EMPREINTE DE CONTENU.
+   L'audit du 12/10 a relevé la même date sur les huit URL : chaque page
+   comptait data.js, content.json et site.js dans ses sources, donc le
+   moindre commit sur le bot ou le pied de page re-datait tout le site.
+   Un lastmod qui bouge sans que la page bouge est un signal que les
+   moteurs apprennent à ignorer.
+
+   Désormais le script tourne en postbuild et lit le HTML RÉELLEMENT
+   servi : l'empreinte SHA-256 du <main> de chaque page (le pied et la
+   barre n'en font pas partie — un lien ajouté au pied ne re-date pas
+   quinze pages). Il la compare à scripts/sitemap-etat.json :
+     · même empreinte  → même date qu'avant ;
+     · empreinte neuve → la date du jour (Europe/Paris) ;
+     · page inconnue   → la date du dernier commit de ses propres sources.
+   L'état est versionné : c'est lui qui garde la mémoire des dates, pas
+   l'horloge de la machine de build. Il s'écrit seulement s'il change.
+   Le plan part dans dist/sitemap.xml (plus dans public/).
    ===================================================================== */
 import fs from "fs";
 import path from "path";
 import { execFileSync } from "child_process";
+import { createHash } from "crypto";
+import { pathToFileURL } from "url";
 
 const ROOT = process.cwd();
 const SITE = "https://club-boxe-toulouse.com";
-const OUT = path.join(ROOT, "public/sitemap.xml");
+const OUT = path.join(ROOT, "dist/sitemap.xml");
+const ETAT = path.join(ROOT, "scripts/sitemap-etat.json");
+/* L'ancien emplacement : un fichier ignoré par git qu'Astro recopiait dans
+   dist/. On le retire pour qu'il ne puisse plus jamais être servi à la place. */
+const ANCIEN = path.join(ROOT, "public/sitemap.xml");
+if (fs.existsSync(ANCIEN)) fs.rmSync(ANCIEN);
 
 /* Le contenu éditorial du sitemap reste écrit à la main — les titres
    d'images sont de la copie, pas des données. Seule la DATE est calculée. */
@@ -143,7 +169,31 @@ const PAGES = [
     changefreq: "monthly", priority: "0.8",
     imgs: [I.salle],
   },
+  /* Les mentions légales sont en index (une page en production se range
+     dans Google) : elles entrent donc aussi dans le plan. */
+  {
+    loc: "/mentions-legales/", src: ["src/pages/mentions-legales/index.astro"],
+    changefreq: "yearly", priority: "0.3",
+    imgs: [],
+  },
+  /* Une page par discipline (13/10/2026) : sa photo d'en-tête et ses photos
+     de plateau, avec le texte alternatif écrit d'après le cliché. */
+  ...await pagesDisciplines(),
 ];
+
+async function pagesDisciplines() {
+  const { DISCIPLINES } = await import(pathToFileURL(path.join(ROOT, "public/assets/js/data.js")).href);
+  const T = JSON.parse(fs.readFileSync(path.join(ROOT, "src/disciplines-pages.json"), "utf8")).pages;
+  return DISCIPLINES.filter((d) => d.page && T[d.key]).map((d) => {
+    const t = T[d.key];
+    const photos = [[t.photo.src, `${d.name} à Saint-Cyprien — ${CLUB}`, t.photo.alt],
+      ...[t.travail.figure, t.travail.figure2].filter(Boolean).map((f) => [f.src, `${f.legende} — ${CLUB}`, f.alt])];
+    return {
+      loc: d.page, src: ["src/pages/activites/[discipline].astro", "src/disciplines-pages.json", "public/assets/css/discipline.css"],
+      changefreq: "monthly", priority: "0.8", imgs: photos,
+    };
+  });
+}
 
 /** Date ISO (AAAA-MM-JJ) du dernier commit touchant l'un de ces fichiers. */
 function lastmod(files) {
@@ -161,14 +211,37 @@ function lastmod(files) {
     if (!stamp) stamp = fs.statSync(abs).mtimeMs;
     if (stamp > best) best = stamp;
   }
-  return new Date(best || Date.now()).toISOString().slice(0, 10);
+  /* La date de Paris, pas celle de Greenwich : à 1 h du matin, UTC est encore la veille. */
+  return new Intl.DateTimeFormat("fr-CA", { timeZone: "Europe/Paris" }).format(new Date(best || Date.now()));
 }
 
 const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
+/* `COMMON` (data.js, content.json, site.js) ne date plus les pages : ces
+   fichiers changent pour le bot ou le pied de page sans toucher au contenu.
+   L'empreinte du <main> le dit mieux qu'eux. */
+const aujourdhui = new Intl.DateTimeFormat("fr-CA", { timeZone: "Europe/Paris" }).format(new Date());
+const etat = fs.existsSync(ETAT) ? JSON.parse(fs.readFileSync(ETAT, "utf8")) : {};
+const neuf = {};
+let bouges = 0;
+function dater(p) {
+  const fichier = path.join(ROOT, "dist", p.loc, "index.html");
+  if (!fs.existsSync(fichier)) throw new Error(`sitemap.xml : ${p.loc} est au plan mais absente du build`);
+  const html = fs.readFileSync(fichier, "utf8");
+  const corps = (html.match(/<main[\s\S]*?<\/main>/) || [html])[0].replace(/<!--[\s\S]*?-->/g, "");
+  const empreinte = createHash("sha256").update(corps).digest("hex").slice(0, 16);
+  const avant = etat[p.loc];
+  let date;
+  if (avant && avant.empreinte === empreinte) date = avant.lastmod;
+  else if (avant) { date = aujourdhui; bouges++; }
+  else date = lastmod(p.src);
+  neuf[p.loc] = { empreinte, lastmod: date };
+  return date;
+}
+
 const body = PAGES.map((p) => `  <url>
     <loc>${SITE}${p.loc}</loc>
-    <lastmod>${lastmod([...p.src, ...COMMON])}</lastmod>
+    <lastmod>${dater(p)}</lastmod>
     <changefreq>${p.changefreq}</changefreq>
     <priority>${p.priority}</priority>
 ${p.imgs.map(([src, titre, legende]) => `    <image:image>
@@ -180,7 +253,7 @@ ${p.imgs.map(([src, titre, legende]) => `    <image:image>
 
 fs.writeFileSync(OUT, `<?xml version="1.0" encoding="UTF-8"?>
 <!-- Généré par scripts/build-sitemap.mjs — ne pas éditer à la main.
-     <lastmod> vient du dernier commit qui a touché les sources de chaque page. -->
+     <lastmod> change quand le contenu (<main>) de la page change : scripts/sitemap-etat.json. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${body}
@@ -194,4 +267,7 @@ if (duplicates.length) {
   console.error(`sitemap.xml : images répétées entre pages : ${[...new Set(duplicates)].join(", ")}`);
   process.exit(1);
 }
-console.log(`sitemap.xml : ${PAGES.length} URL datées depuis git · ${photos} images visibles et non répétées`);
+const etatTexte = JSON.stringify(neuf, null, 2) + "\n";
+if (!fs.existsSync(ETAT) || fs.readFileSync(ETAT, "utf8") !== etatTexte) fs.writeFileSync(ETAT, etatTexte);
+const dates = new Set(Object.values(neuf).map((x) => x.lastmod));
+console.log(`sitemap.xml : ${PAGES.length} URL · ${dates.size} dates distinctes · ${bouges} page(s) au contenu changé · ${photos} images visibles et non répétées`);

@@ -3,7 +3,7 @@
    Coordonnées + carte + horaires + FAQ visible. Tout depuis data.js ; pas de formulaire local, l’essai → box-plus,
    la pastille chatbot → tel réel.
    ===================================================================== */
-import { SALLE, FAQ, REVIEWS } from "./data.js?v=30";
+import { SALLE, FAQ, REVIEWS } from "./data.js?v=31";
 
 const $ = (s, r = document) => r.querySelector(s);
 

@@ -278,6 +278,113 @@
     "octets": 287644,
     "verdict": "webp"
   },
+  "sc/produits/bandes-2m50-mb120t-360.webp": {
+    "octets": 16250,
+    "verdict": "webp"
+  },
+  "sc/produits/bandes-2m50-mb120t-720.webp": {
+    "octets": 41198,
+    "verdict": "avif",
+    "q": 60
+  },
+  "sc/produits/bandes-4m-mb120bt-360.webp": {
+    "octets": 16480,
+    "verdict": "webp"
+  },
+  "sc/produits/bandes-4m-mb120bt-720.webp": {
+    "octets": 48366,
+    "verdict": "avif",
+    "q": 60
+  },
+  "sc/produits/debardeur-entrainement-metal-boxe-training-tank-360.webp": {
+    "octets": 13760,
+    "verdict": "avif",
+    "q": 60
+  },
+  "sc/produits/debardeur-entrainement-metal-boxe-training-tank-720.webp": {
+    "octets": 30446,
+    "verdict": "avif",
+    "q": 55
+  },
+  "sc/produits/ensemble-enfants-short-debardeur-360.webp": {
+    "octets": 9310,
+    "verdict": "avif",
+    "q": 55
+  },
+  "sc/produits/ensemble-enfants-short-debardeur-720.webp": {
+    "octets": 20136,
+    "verdict": "avif",
+    "q": 40
+  },
+  "sc/produits/gants-boxe-blade-noir-blanc-360.webp": {
+    "octets": 14698,
+    "verdict": "avif",
+    "q": 60
+  },
+  "sc/produits/gants-boxe-blade-noir-blanc-720.webp": {
+    "octets": 37690,
+    "verdict": "avif",
+    "q": 55
+  },
+  "sc/produits/gants-boxe-enfant-one-360.webp": {
+    "octets": 15522,
+    "verdict": "avif",
+    "q": 60
+  },
+  "sc/produits/gants-boxe-enfant-one-720.webp": {
+    "octets": 40630,
+    "verdict": "avif",
+    "q": 55
+  },
+  "sc/produits/gants-ergo-90-mbg301k14-360.webp": {
+    "octets": 17776,
+    "verdict": "avif",
+    "q": 65
+  },
+  "sc/produits/gants-ergo-90-mbg301k14-720.webp": {
+    "octets": 41150,
+    "verdict": "avif",
+    "q": 60
+  },
+  "sc/produits/gants-sparring-mbgan010n14-16oz-360.webp": {
+    "octets": 12904,
+    "verdict": "avif",
+    "q": 55
+  },
+  "sc/produits/gants-sparring-mbgan010n14-16oz-720.webp": {
+    "octets": 30746,
+    "verdict": "avif",
+    "q": 50
+  },
+  "sc/produits/protege-dents-adulte-mbpro458srt-360.webp": {
+    "octets": 7724,
+    "verdict": "webp"
+  },
+  "sc/produits/protege-dents-adulte-mbpro458srt-720.webp": {
+    "octets": 18382,
+    "verdict": "avif",
+    "q": 40
+  },
+  "sc/produits/protege-dents-enfants-mb459jrw-360.webp": {
+    "octets": 10750,
+    "verdict": "avif",
+    "q": 55
+  },
+  "sc/produits/protege-dents-enfants-mb459jrw-720.webp": {
+    "octets": 23338,
+    "verdict": "avif",
+    "q": 45
+  },
+  "sc/produits/protege-tibias-pieds-coton-mb153wm-360.webp": {
+    "octets": 11798,
+    "verdict": "avif",
+    "q": 55
+  },
+  "sc/produits/protege-tibias-pieds-coton-mb153wm-720.webp": {
+    "octets": 28048,
+    "verdict": "avif",
+    "q": 55
+  },
   "sc/ring-boxing.webp": {
     "octets": 447944,
     "verdict": "webp"

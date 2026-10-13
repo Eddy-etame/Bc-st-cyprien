@@ -1,0 +1,306 @@
+/* =====================================================================
+   SAINT-CYPRIEN · discipline.css — les pages /activites/<slug>/ (13/10/2026)
+
+   Aucun composant nouveau là où le site en a déjà un : l'en-tête est le
+   .phero des pages intérieures, les questions sont le .faq, la fin est le
+   .gong, les photos sont des .ph de photos.css, le rythme des bandes est
+   celui de base.css (clair · bleu · noir). Ce fichier ne pose que ce qui
+   est propre à une fiche de discipline : la grille des créneaux, les
+   cartes, les étapes, le bloc matériel, les tuiles de prix.
+
+   Mobile d'abord : tout tient à 320 px sans défilement horizontal — les
+   grilles passent par minmax(min(100%, …)), les titres longs se coupent.
+   ===================================================================== */
+
+/* Les listes ordonnées de la fiche portent leurs propres numéros (ou un jour
+   de la semaine) : la puce « 1. » du navigateur ne doit jamais s'y ajouter. */
+.dp-semaine, .dp-points, .dp-etapes { list-style: none; padding-left: 0; }
+
+/* ------------------------------ EN-TÊTE ----------------------------- */
+body[data-page="discipline"] .phero h1 { font-size: clamp(2.2rem, 1.6rem + 4vw, 4.8rem); line-height: .98; overflow-wrap: break-word; hyphens: manual; }
+.dp-hero { padding-bottom: clamp(2.6rem, 6vw, 4.4rem); }
+.dp-ariane { display: flex; flex-wrap: wrap; align-items: center; gap: .55ch; margin-bottom: 1.1rem; font: 600 var(--step--1)/1.4 var(--f-mono); letter-spacing: .06em; color: var(--ink-soft); text-shadow: 0 1px 3px rgba(0,0,0,.85); }
+.dp-ariane a { color: var(--ink); text-decoration: underline; text-decoration-color: rgba(var(--spark-rgb), .45); text-underline-offset: .25em; min-height: 44px; display: inline-flex; align-items: center; }
+.dp-ariane a:hover { text-decoration-color: currentColor; }
+.dp-ariane [aria-current] { color: var(--spark-2); }
+.dp-lead { max-width: 60ch; }
+.dp-puces { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.4rem; }
+.dp-puces li { font: 600 .72rem/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink); padding: .62em 1em; border: 1px solid rgba(var(--spark-rgb), .38); border-radius: 100px; background: rgba(10, 11, 14, .55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.dp-actions { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.6rem; }
+.dp-hero .phero__note { margin-top: 1.2rem; max-width: 58ch; font-size: var(--step--1); }
+
+/* ------------------------------ TITRES ------------------------------ */
+.dp-h2 { margin-top: 1rem; font-size: clamp(2rem, 1.4rem + 3.4vw, 3.9rem); overflow-wrap: break-word; }
+.dp-h2--long { font-size: clamp(1.7rem, 1.2rem + 2.6vw, 3rem); max-width: 22ch; }
+.dp-h2--petit { font-size: clamp(1.4rem, 1.1rem + 1.4vw, 2rem); }
+.dp-intro { margin-top: 1.1rem; font-size: var(--step-0); line-height: 1.65; color: var(--ink-soft); max-width: 64ch; }
+.dp-intro a, .dp-plus a, .dp-carte a, .dp-etapes a, .dp-coach__txt a, .faq__a a, .dp-produit p a {
+  color: var(--spark); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .22em;
+}
+.dp-intro a:hover, .dp-plus a:hover, .dp-carte a:hover, .dp-etapes a:hover, .dp-coach__txt a:hover, .faq__a a:hover { text-decoration-thickness: 2px; }
+.dp-plus { margin-top: 1.4rem; font: 600 var(--step--1)/1.5 var(--f-mono); letter-spacing: .04em; }
+.dp-plus--note { font-weight: 500; color: var(--muted); max-width: 70ch; }
+
+/* ------------------------ TEXTE + PHOTO (split) ---------------------- */
+.dp-split { display: grid; gap: clamp(1.8rem, 4vw, 3.6rem); align-items: center; }
+@media (min-width: 900px) { .dp-split { grid-template-columns: 1.05fr .95fr; } }
+.dp-split__txt { min-width: 0; }
+.dp-fig { margin: 0; min-width: 0; }
+.dp-fig figcaption { margin-top: .7rem; font: 600 .72rem/1.4 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.dp-fig--large { margin-top: clamp(2.4rem, 5vw, 3.6rem); }
+
+/* ----------------------- CE QUE TU TRAVAILLES ----------------------- */
+.dp-points { display: grid; gap: .9rem; margin-top: clamp(2rem, 4vw, 3rem); grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); counter-reset: none; }
+.dp-point { position: relative; padding: 1.4rem 1.3rem 1.5rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper-2); transition: border-color .3s var(--ease), transform .35s var(--ease-out), box-shadow .35s var(--ease); }
+.dp-point:hover { border-color: rgba(var(--spark-rgb), .55); transform: translateY(-3px); box-shadow: var(--shadow); }
+.dp-num { display: block; font: 700 .72rem/1 var(--f-mono); letter-spacing: .16em; color: var(--spark); margin-bottom: .9rem; }
+.dp-point h3 { font-family: var(--f-display); font-weight: 700; font-size: clamp(1.15rem, 1rem + .6vw, 1.4rem); letter-spacing: -.01em; line-height: 1.15; color: var(--ink); }
+.dp-point p { margin-top: .55rem; font-size: var(--step--1); line-height: 1.6; color: var(--ink-soft); }
+.dp-age { display: inline-block; margin-bottom: .55rem; font: 700 .68rem/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--on-spark); background: var(--spark); padding: .45em .75em; border-radius: 100px; }
+.dp-point .dp-quand { margin-top: .35rem; font: 600 .78rem/1.4 var(--f-mono); color: var(--spark-2); }
+
+/* --------------------------- LES CRÉNEAUX --------------------------- */
+.dp-live { margin-top: 1rem; color: var(--spark); font: 600 var(--step--1)/1.4 var(--f-mono); letter-spacing: .04em; }
+.dp-semaine { display: grid; gap: .8rem; margin-top: clamp(1.6rem, 3vw, 2.4rem); grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)); }
+.dp-jour { border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper-2); padding: 1.1rem 1.1rem 1.2rem; transition: border-color .3s, box-shadow .3s; }
+.dp-jour__nom { font: 600 var(--step--1)/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-bottom: .9rem; }
+.dp-jour ul { display: grid; gap: .8rem; }
+.dp-jour li { display: grid; gap: .15rem; }
+.dp-jour time { font: 700 clamp(1.05rem, .95rem + .5vw, 1.3rem)/1.1 var(--f-mono); color: var(--spark); letter-spacing: -.01em; }
+.dp-jour .dp-cours { font-weight: 600; color: var(--ink); line-height: 1.35; }
+.dp-jour .dp-niv { font-size: .8rem; color: var(--muted); }
+.dp-jour.is-today { border-color: var(--spark); box-shadow: 0 0 0 1px var(--spark) inset; }
+.dp-jour.is-today .dp-jour__nom { color: var(--spark); }
+.dp-jour.is-today .dp-jour__nom::after { content: " · aujourd’hui"; }
+.dp-jour li.is-past { opacity: .5; }
+.dp-jour li.is-next time::before { content: "▸ "; }
+
+/* --------------------------- QUI ENCADRE ---------------------------- */
+.dp-coach__grille { display: grid; gap: clamp(1.4rem, 3vw, 3rem); }
+@media (min-width: 900px) { .dp-coach__grille { grid-template-columns: .9fr 1.1fr; align-items: end; } }
+.dp-coach__txt { min-width: 0; border-left: 3px solid var(--spark); padding-left: clamp(1rem, 2.4vw, 1.6rem); }
+.dp-coach__txt p { color: var(--ink-soft); line-height: 1.65; }
+.dp-coach__txt p + p { margin-top: .9em; }
+.dp-coach__nom { font-family: var(--f-display); font-weight: 700; font-size: clamp(1.4rem, 1.1rem + 1.4vw, 2.1rem); color: var(--ink) !important; line-height: 1.15; }
+.dp-coach__nom .mono { font: 600 .72rem/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--spark); vertical-align: middle; }
+
+/* ----------------------------- POUR QUI ----------------------------- */
+.dp-pourqui { background: var(--paper-3); }
+.dp-cartes { display: grid; gap: .9rem; margin-top: clamp(1.8rem, 3.6vw, 2.6rem); grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
+.dp-carte { padding: 1.4rem 1.3rem 1.5rem; border-radius: var(--radius); background: var(--paper-2); border: 1px solid var(--line); transition: transform .35s var(--ease-out), box-shadow .35s var(--ease), border-color .3s; }
+.dp-carte:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: rgba(var(--spark-rgb), .5); }
+.dp-tag { display: inline-block; font: 700 .66rem/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--spark); border: 1px solid rgba(var(--spark-rgb), .4); border-radius: 100px; padding: .5em .8em; }
+.dp-carte h3 { margin-top: .9rem; font-family: var(--f-display); font-weight: 700; font-size: clamp(1.1rem, 1rem + .5vw, 1.35rem); line-height: 1.2; color: var(--ink); }
+.dp-carte p { margin-top: .5rem; font-size: var(--step--1); line-height: 1.6; color: var(--ink-soft); }
+
+/* -------------------------- LA PREMIÈRE FOIS ------------------------ */
+.dp-etapes { counter-reset: etape; display: grid; gap: 0; margin-top: clamp(1.8rem, 3.6vw, 2.6rem); max-width: 860px; }
+.dp-etapes li { counter-increment: etape; position: relative; display: grid; gap: .25rem; padding: 1.1rem 0 1.2rem 3.4rem; border-top: 1px solid var(--line); }
+.dp-etapes li:last-child { border-bottom: 1px solid var(--line); }
+.dp-etapes li::before { content: counter(etape, decimal-leading-zero); position: absolute; left: 0; top: 1.05rem; font: 700 1.5rem/1 var(--f-display); letter-spacing: -.02em; color: var(--spark); }
+.dp-etapes b { font-family: var(--f-display); font-size: var(--step-0); color: var(--ink); }
+.dp-etapes span { color: var(--ink-soft); line-height: 1.6; font-size: var(--step--1); }
+
+/* ---------------------------- LE MATÉRIEL ---------------------------
+   LA VITRINE. La photo passe avant le texte (Eddy, 13/10). Chaque article
+   est détouré (scripts/produits-images.py) et posé sur LA MÊME scène : la
+   nuit du showroom — un fond bleu nuit, un projecteur au-dessus, une flaque
+   de lumière au sol et une ombre d'appui. Le noir des gants se détache sur
+   le halo, le blanc des tibias et le translucide du protège-dents brillent ;
+   un fond clair aurait effacé les uns ou les autres.
+   Au survol (ou au toucher), l'objet se soulève et son ombre s'écrase : le
+   seul mouvement qui dit « prends-le ». Le gsap du site pose ses
+   transformations sur le <li> : on n'anime donc que ce qu'il contient. */
+.dp-materiel { border-top: 1px solid var(--line); }
+.dp-vitrine { display: grid; gap: clamp(.8rem, 1.6vw, 1.1rem); margin-top: clamp(1.8rem, 3.6vw, 2.6rem); grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); }
+@media (min-width: 900px) {
+  .dp-vitrine[data-n="3"], .dp-vitrine[data-n="6"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .dp-vitrine[data-n="4"] { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .dp-vitrine[data-n="2"] { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 760px; }
+}
+/* Un seul article : une vitrine en largeur, photo à gauche, texte à droite. */
+.dp-vitrine[data-n="1"] { grid-template-columns: 1fr; max-width: 920px; }
+@media (min-width: 700px) { .dp-vitrine[data-n="1"] .dp-prod { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; } }
+
+.dp-prod { position: relative; display: grid; grid-template-rows: auto 1fr; border: 1px solid var(--line); border-radius: calc(var(--radius) + 4px); background: var(--paper-2); padding: .55rem; transition: border-color .35s var(--ease), box-shadow .45s var(--ease); }
+.dp-prod:hover, .dp-prod:focus-within { border-color: rgba(var(--spark-rgb), .6); box-shadow: 0 30px 60px -34px rgba(16, 32, 56, .55); }
+
+.dp-prod__scene {
+  --halo: rgba(140, 187, 242, .42);
+  position: relative; aspect-ratio: 1; overflow: hidden; isolation: isolate;
+  border-radius: var(--radius);
+  background:
+    radial-gradient(58% 44% at 50% 40%, var(--halo), rgba(140, 187, 242, 0) 72%),
+    radial-gradient(46% 9% at 50% 88%, rgba(140, 187, 242, .26), rgba(140, 187, 242, 0) 100%),
+    linear-gradient(180deg, #101a2b 0%, #0b1220 62%, #0a0f1a 100%);
+}
+/* Les objets très clairs (tibias, protège-dents) : le halo baisse d'un cran
+   pour que leur blanc garde un bord. */
+.dp-prod__scene--clair { --halo: rgba(140, 187, 242, .24); }
+/* L'ombre d'appui : une ellipse sous l'objet posé, jamais sous un torse. */
+.dp-prod__scene--pose::before {
+  content: ""; position: absolute; z-index: 0; left: 20%; right: 20%; top: 84.5%; height: 6.5%;
+  border-radius: 50%; background: radial-gradient(closest-side, rgba(0, 0, 0, .78), rgba(0, 0, 0, 0));
+  transition: transform .6s var(--ease-out), opacity .6s var(--ease-out);
+}
+/* Un balayage de lumière traverse la scène au survol. */
+.dp-prod__scene::after {
+  content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background: linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, .13) 50%, transparent 62%);
+  transform: translateX(-120%); transition: transform .9s var(--ease-out);
+}
+.dp-prod__scene picture { display: contents; }
+.dp-prod__scene img { position: relative; z-index: 1; display: block; width: 100%; height: 100%; object-fit: contain; transform-origin: 50% 88%; transition: transform .6s var(--ease-out); }
+.dp-prod:hover .dp-prod__scene img, .dp-prod:focus-within .dp-prod__scene img { transform: translateY(-5%) scale(1.04); }
+.dp-prod:hover .dp-prod__scene--cadre img, .dp-prod:focus-within .dp-prod__scene--cadre img { transform: scale(1.04); }
+.dp-prod:hover .dp-prod__scene--pose::before, .dp-prod:focus-within .dp-prod__scene--pose::before { transform: scale(.72); opacity: .55; }
+.dp-prod:hover .dp-prod__scene::after, .dp-prod:focus-within .dp-prod__scene::after { transform: translateX(120%); }
+
+.dp-prod__retrait {
+  position: absolute; z-index: 3; left: .7rem; top: .7rem;
+  font: 600 .64rem/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase;
+  color: #e6eef8; background: rgba(10, 15, 26, .62); border: 1px solid rgba(195, 213, 232, .28);
+  padding: .55em .75em; border-radius: 100px; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+/* Le retrait le jour même est l'argument : il s'allume, et son point bat. */
+.dp-prod--jour .dp-prod__retrait { color: #0a0b0e; background: #f7f5f9; border-color: #f7f5f9; display: inline-flex; align-items: center; gap: .55em; }
+.dp-prod--jour .dp-prod__retrait::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #2fbf71; box-shadow: 0 0 0 0 rgba(47, 191, 113, .6); animation: dp-pouls 2.2s var(--ease-out) infinite; }
+@keyframes dp-pouls { 0% { box-shadow: 0 0 0 0 rgba(47, 191, 113, .55); } 70%, 100% { box-shadow: 0 0 0 9px rgba(47, 191, 113, 0); } }
+
+.dp-prod__txt { display: grid; gap: .4rem; align-content: start; padding: 1rem .75rem .8rem; }
+.dp-prod__famille { font: 600 .66rem/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--spark); }
+.dp-prod h3 { font-family: var(--f-display); font-weight: 700; font-size: clamp(1.08rem, 1rem + .35vw, 1.25rem); line-height: 1.2; letter-spacing: -.01em; }
+/* Toute la carte est cliquable ; le lien reste le titre (une seule cible). */
+.dp-prod h3 a { color: var(--ink); text-decoration: none; }
+.dp-prod h3 a::after { content: ""; position: absolute; inset: 0; z-index: 4; border-radius: inherit; }
+.dp-prod h3 a:focus-visible { outline: none; }
+.dp-prod h3 a:focus-visible::after { outline: 2px solid var(--spark); outline-offset: 3px; }
+.dp-prod__txt > p:not(.dp-prod__famille) { font-size: var(--step--1); line-height: 1.55; color: var(--ink-soft); }
+.dp-prod__go { margin-top: .35rem; font: 600 .74rem/1 var(--f-mono); letter-spacing: .06em; color: var(--spark); display: inline-flex; gap: .5ch; align-items: center; }
+.dp-prod__go i { font-style: normal; transition: transform .35s var(--ease-spring); }
+.dp-prod:hover .dp-prod__go i, .dp-prod:focus-within .dp-prod__go i { transform: translateX(5px); }
+
+/* Téléphone : la vitrine défile au pouce, une carte et le bord de la
+   suivante — les photos gardent leur taille au lieu de devenir des timbres. */
+@media (max-width: 699px) {
+  .dp-vitrine:not([data-n="1"]) {
+    grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 78%;
+    overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory;
+    scroll-padding-inline: 2px; padding: 2px 2px 1rem; scrollbar-width: thin;
+  }
+  .dp-vitrine:not([data-n="1"]) > li { scroll-snap-align: start; }
+}
+
+/* ------------------------------ LE PRIX -----------------------------
+   La bande noire du site (.band-dark, base.css) : ses jetons re-skinnent
+   tout seuls le titre, l'intro, les boutons. Ici : une offre mise en
+   avant — cadre de lumière qui tourne, ruban, prix qui tombe — et deux
+   offres à côté, cliquables d'un bout à l'autre. */
+.dp-tarifs { overflow: hidden; isolation: isolate; }
+.dp-tarifs .wrap { position: relative; z-index: 1; }
+.dp-tarifs__halo {
+  position: absolute; z-index: 0; width: min(900px, 120vw); aspect-ratio: 1; right: -18%; top: 50%;
+  translate: 0 -50%; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(closest-side, rgba(35, 96, 160, .55), rgba(35, 96, 160, .16) 55%, rgba(35, 96, 160, 0));
+  filter: blur(10px); animation: dp-respire 9s ease-in-out infinite alternate;
+}
+@keyframes dp-respire { from { opacity: .75; scale: .94; } to { opacity: 1; scale: 1.04; } }
+.dp-split--prix { align-items: center; }
+.dp-offres { display: grid; gap: .9rem; min-width: 0; }
+
+@property --dp-tour { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+.dp-offre {
+  position: relative; isolation: isolate; display: grid; gap: .9rem; justify-items: start;
+  padding: clamp(1.6rem, 3.4vw, 2.4rem); border-radius: calc(var(--radius) + 8px);
+  background:
+    radial-gradient(120% 90% at 100% 0%, rgba(140, 187, 242, .16), rgba(140, 187, 242, 0) 60%),
+    linear-gradient(160deg, #141c2b, #0c111b 70%);
+  border: 1px solid rgba(140, 187, 242, .28);
+  box-shadow: 0 40px 90px -40px rgba(35, 96, 160, .65), 0 0 0 1px rgba(255, 255, 255, .03) inset;
+}
+/* Le cadre de lumière : un arc clair qui fait le tour de la carte. */
+.dp-offre::before {
+  content: ""; position: absolute; inset: -1px; z-index: -1; border-radius: inherit; padding: 1.5px;
+  background: conic-gradient(from var(--dp-tour), rgba(140, 187, 242, 0) 0deg 250deg, rgba(140, 187, 242, .9) 300deg, #fff 330deg, rgba(140, 187, 242, 0) 360deg);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); mask-composite: exclude;
+  animation: dp-tour 7s linear infinite;
+}
+@keyframes dp-tour { to { --dp-tour: 360deg; } }
+.dp-offre__ruban {
+  position: relative; overflow: hidden; font: 700 .78rem/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase;
+  color: #0a0b0e; background: #f7f5f9; padding: .62em 1em; border-radius: 100px;
+}
+.dp-offre__ruban::after {
+  content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 30%, rgba(140, 187, 242, .7) 50%, transparent 70%);
+  transform: translateX(-120%); animation: dp-reflet 4.5s var(--ease-out) 1.2s infinite;
+}
+@keyframes dp-reflet { 0% { transform: translateX(-120%); } 35%, 100% { transform: translateX(120%); } }
+.dp-offre__nom { font: 700 clamp(1.3rem, 1.1rem + .9vw, 1.7rem)/1.1 var(--f-display); letter-spacing: -.01em; color: var(--ink); }
+.dp-offre__prix { display: flex; align-items: flex-start; flex-wrap: wrap; column-gap: .25ch; row-gap: .4rem; line-height: .82; }
+.dp-offre__n { font: 700 clamp(4.6rem, 3rem + 7vw, 7.6rem)/.82 var(--f-display); letter-spacing: -.055em; font-variant-numeric: tabular-nums; color: #fff; text-shadow: 0 0 46px rgba(140, 187, 242, .45); }
+.dp-offre__eur { font: 700 clamp(1.8rem, 1.3rem + 2vw, 2.8rem)/1 var(--f-display); color: var(--tint); margin-top: .18em; }
+.dp-offre__avant { position: relative; align-self: flex-end; margin: 0 0 .5em .9ch; font: 600 clamp(1.05rem, .95rem + .5vw, 1.35rem)/1 var(--f-mono); color: var(--muted); text-decoration: none; }
+/* Le trait de l'ancien prix se tire quand la carte arrive (classe posée par discipline.js). */
+.dp-offre__avant::after { content: ""; position: absolute; left: -.15em; right: -.15em; top: 52%; height: 2px; background: #e5484d; transform-origin: 0 50%; transform: rotate(-8deg); }
+.dp-offre.dp-pret .dp-offre__avant::after { transform: rotate(-8deg) scaleX(0); transition: transform .5s var(--ease-out) .9s; }
+.dp-offre.dp-pret.is-vu .dp-offre__avant::after { transform: rotate(-8deg) scaleX(1); }
+.dp-offre__unite { font: 600 .8rem/1.4 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--spark-2); }
+.dp-offre__plus { display: grid; gap: .55rem; margin-top: .2rem; }
+.dp-offre__plus li { display: flex; align-items: flex-start; gap: .7ch; color: var(--ink-soft); font-size: var(--step--1); line-height: 1.45; }
+.dp-offre__plus svg { flex: none; margin-top: .1em; color: var(--tint); }
+.dp-offre__cta { margin-top: .4rem; }
+.dp-offre__mention { font-size: .78rem; line-height: 1.45; color: var(--muted); }
+
+.dp-minis { display: grid; gap: .9rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); }
+.dp-mini {
+  position: relative; display: grid; gap: .45rem; align-content: start; height: 100%;
+  padding: 1.2rem 1.25rem 1.25rem; border-radius: calc(var(--radius) + 4px);
+  background: rgba(255, 255, 255, .035); border: 1px solid rgba(195, 213, 232, .18); color: var(--ink);
+  transition: border-color .35s var(--ease), background .35s var(--ease), transform .35s var(--ease-out);
+}
+.dp-mini:hover, .dp-mini:focus-visible { border-color: rgba(140, 187, 242, .7); background: rgba(140, 187, 242, .08); transform: translateY(-3px); }
+.dp-mini__nom { font: 600 .7rem/1.3 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.dp-mini__prix { display: flex; align-items: baseline; gap: .6ch; font: 700 clamp(2rem, 1.6rem + 1.4vw, 2.6rem)/1 var(--f-display); letter-spacing: -.035em; color: #fff; }
+.dp-mini__prix s { font: 600 .95rem/1 var(--f-mono); letter-spacing: 0; color: var(--muted); text-decoration-color: #e5484d; text-decoration-thickness: 2px; }
+.dp-mini__s { font-size: .84rem; line-height: 1.4; color: var(--ink-soft); }
+.dp-mini__go { margin-top: .3rem; font: 600 .76rem/1 var(--f-mono); letter-spacing: .05em; color: var(--tint); }
+.dp-mini__go i { font-style: normal; display: inline-block; transition: transform .35s var(--ease-spring); }
+.dp-mini:hover .dp-mini__go i, .dp-mini:focus-visible .dp-mini__go i { transform: translateX(5px); }
+
+/* ------------------------------ VENIR ------------------------------- */
+.dp-venir { background: var(--paper-3); }
+.dp-infos { display: grid; gap: 0; border-top: 1px solid var(--line); min-width: 0; }
+.dp-infos div { display: grid; grid-template-columns: minmax(0, 8.5rem) minmax(0, 1fr); gap: 1rem; padding: .95rem 0; border-bottom: 1px solid var(--line); }
+.dp-infos dt { font: 600 .72rem/1.5 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.dp-infos dd { color: var(--ink); font-weight: 550; overflow-wrap: anywhere; }
+.dp-infos a { color: var(--spark); }
+@media (max-width: 420px) { .dp-infos div { grid-template-columns: 1fr; gap: .2rem; } }
+
+/* ----------------------------- QUESTIONS ---------------------------- */
+.dp-faq__liste { margin-top: clamp(1.6rem, 3vw, 2.2rem); }
+
+/* -------------------------- LES AUTRES COURS ------------------------ */
+.dp-voisines { display: grid; gap: .8rem; margin-top: clamp(1.6rem, 3vw, 2.4rem); grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); }
+.dp-voisine { position: relative; display: grid; gap: .5rem; align-content: start; min-height: 100%; padding: 1.3rem 1.2rem 1.4rem; border-radius: var(--radius); border: 1px solid var(--line); background: var(--paper-2); transition: transform .35s var(--ease-out), border-color .3s, background .3s; }
+.dp-voisine:hover, .dp-voisine:focus-visible { transform: translateY(-3px); border-color: var(--spark); background: var(--paper-3); }
+.dp-voisine .dp-tag { justify-self: start; }
+.dp-voisine h3 { font-family: var(--f-display); font-weight: 700; font-size: 1.25rem; line-height: 1.15; color: var(--ink); padding-right: 1.6rem; }
+.dp-voisine__s { font: 600 .74rem/1.4 var(--f-mono); letter-spacing: .06em; color: var(--ink-soft); }
+.dp-voisine__go { position: absolute; top: 1.2rem; right: 1.2rem; font: 700 1.2rem/1 var(--f-mono); color: var(--spark); transition: transform .3s var(--ease-spring); }
+.dp-voisine:hover .dp-voisine__go { transform: translateX(4px); }
+
+/* ------------------------------ SOURCES ----------------------------- */
+.dp-sources { padding-block: clamp(3rem, 6vw, 5rem); border-top: 1px solid var(--line); }
+.dp-sources__liste { display: grid; gap: .45rem; margin-top: 1.2rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
+.dp-sources__liste a { display: inline-flex; align-items: center; min-height: 44px; color: var(--spark); text-decoration: underline; text-underline-offset: .22em; font-size: var(--step--1); overflow-wrap: anywhere; }
+.dp-date { margin-top: 1.2rem; font-size: .78rem; letter-spacing: .08em; color: var(--muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  .dp-point, .dp-carte, .dp-voisine, .dp-voisine__go, .dp-mini, .dp-mini__go i, .dp-prod__go i,
+  .dp-prod__scene img, .dp-prod__scene::before, .dp-prod__scene::after { transition: none; }
+  .dp-point:hover, .dp-carte:hover, .dp-voisine:hover, .dp-mini:hover { transform: none; }
+  .dp-prod:hover .dp-prod__scene img, .dp-prod:focus-within .dp-prod__scene img { transform: none; }
+  .dp-prod__scene::after { display: none; }
+  .dp-tarifs__halo, .dp-offre::before, .dp-offre__ruban::after, .dp-prod--jour .dp-prod__retrait::before { animation: none; }
+}

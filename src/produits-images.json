@@ -1,0 +1,71 @@
+{
+ "genere": "2026-10-13",
+ "produits": {
+  "bandes-2m50-mb120t": {
+   "mode": "pose",
+   "lum": 0.277,
+   "source": "https://boutique.boxingcenter.fr/img/materiel/rentree/bandes/bandes-250-01.jpg",
+   "releve": "2026-10-12"
+  },
+  "bandes-4m-mb120bt": {
+   "mode": "pose",
+   "lum": 0.276,
+   "source": "https://boutique.boxingcenter.fr/img/materiel/rentree/bandes/bandes-4m-01.jpg",
+   "releve": "2026-10-12"
+  },
+  "debardeur-entrainement-metal-boxe-training-tank": {
+   "mode": "cadre",
+   "lum": 0.525,
+   "source": "https://boutique.boxingcenter.fr/img/materiel/rentree/debardeur/debardeur-cadre-01.jpg",
+   "releve": "2026-10-12"
+  },
+  "ensemble-enfants-short-debardeur": {
+   "mode": "pose",
+   "lum": 0.305,
+   "source": "https://boutique.boxingcenter.fr/img/materiel/rentree/ensemble/ensemble-cadre.jpg",
+   "releve": "2026-10-12"
+  },
+  "gants-boxe-blade-noir-blanc": {
+   "mode": "pose",
+   "lum": 0.346,
+   "source": "https://boutique.boxingcenter.fr/img/materiel/rentree/blade/blade-nb-01.jpg",
+   "releve": "2026-10-12"
+  },
+  "gants-boxe-enfant-one": {
+   "mode": "pose",
+   "lum": 0.212,
+   "source": "https://boutique.boxingcenter.fr/img/materiel/rentree/one/one-official.jpg",
+   "releve": "2026-10-12"
+  },
+  "gants-ergo-90-mbg301k14": {
+   "mode": "pose",
+   "lum": 0.371,
+   "source": "https://boutique.boxingcenter.fr/img/materiel/rentree/ergo/ergo-01.jpg",
+   "releve": "2026-10-12"
+  },
+  "gants-sparring-mbgan010n14-16oz": {
+   "mode": "pose",
+   "lum": 0.171,
+   "source": "https://boutique.boxingcenter.fr/img/materiel/rentree/sparring/sparring-01.jpg",
+   "releve": "2026-10-12"
+  },
+  "protege-dents-adulte-mbpro458srt": {
+   "mode": "pose",
+   "lum": 0.919,
+   "source": "https://boutique.boxingcenter.fr/img/materiel/rentree/dents/dents-adulte-01.jpg",
+   "releve": "2026-10-12"
+  },
+  "protege-dents-enfants-mb459jrw": {
+   "mode": "pose",
+   "lum": 0.643,
+   "source": "https://boutique.boxingcenter.fr/img/materiel/rentree/dents/dents-enfant-01.png",
+   "releve": "2026-10-12"
+  },
+  "protege-tibias-pieds-coton-mb153wm": {
+   "mode": "pose",
+   "lum": 0.865,
+   "source": "https://boutique.boxingcenter.fr/img/materiel/rentree/tibias/tibias-blanc-01.jpg",
+   "releve": "2026-10-12"
+  }
+ }
+}

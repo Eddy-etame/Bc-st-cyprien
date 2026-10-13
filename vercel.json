@@ -106,6 +106,33 @@
           "value": "no-store"
         }
       ]
+    },
+    {
+      "source": "/llms.txt",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
+    {
+      "source": "/llms-full.txt",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
+    {
+      "source": "/ai.txt",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
     }
   ],
   "redirects": [
@@ -176,6 +203,41 @@
     {
       "source": "/tarifs",
       "destination": "/tarifs/",
+      "permanent": true
+    },
+    {
+      "source": "/mentions-legales",
+      "destination": "/mentions-legales/",
+      "permanent": true
+    },
+    {
+      "source": "/activites/boxe-anglaise",
+      "destination": "/activites/boxe-anglaise/",
+      "permanent": true
+    },
+    {
+      "source": "/activites/boxe-thai-k1",
+      "destination": "/activites/boxe-thai-k1/",
+      "permanent": true
+    },
+    {
+      "source": "/activites/lady-punch",
+      "destination": "/activites/lady-punch/",
+      "permanent": true
+    },
+    {
+      "source": "/activites/boxe-educative",
+      "destination": "/activites/boxe-educative/",
+      "permanent": true
+    },
+    {
+      "source": "/activites/boxing-camp",
+      "destination": "/activites/boxing-camp/",
+      "permanent": true
+    },
+    {
+      "source": "/activites/hyrox-cross-training",
+      "destination": "/activites/hyrox-cross-training/",
       "permanent": true
     }
   ]

@@ -31,23 +31,24 @@ import { AUTEUR_PRINCIPAL } from "../../../api/_lib/auteurs.js";
   <meta property="og:title" content="Tarifs & offres | Boxing Center Saint-Cyprien" />
   <meta property="og:description" content="Rentrée 29€ toutes les 4 semaines, saison 259€ (comptant ou 4× sans frais), classiques 44,99€/4 semaines, école et essai 10€." />
   <meta property="og:url" content="https://club-boxe-toulouse.com/tarifs/" />
-  <meta property="og:image" content="https://club-boxe-toulouse.com/assets/img/og.jpg?v=2" />
+  <meta property="og:image" content="https://club-boxe-toulouse.com/assets/img/og/pages/tarifs.jpg?v=1" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="La salle Boxing Center Saint-Cyprien — 11 rue Sainte-Lucie, Toulouse" />
+  <meta property="og:image:alt" content="L’essai à 10€, puis 29€ toutes les 4 semaines — La rangée de sacs et le ring Boxing Center au fond du plateau" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Tarifs & offres | Boxing Center Saint-Cyprien" />
   <meta name="twitter:description" content="Rentrée 29€/4 semaines, saison 259€, classiques 44,99€/4 semaines, école 295€/an et essai 10€ à Toulouse Saint-Cyprien." />
-  <meta name="twitter:image" content="https://club-boxe-toulouse.com/assets/img/og.jpg?v=2" />
+  <meta name="twitter:image" content="https://club-boxe-toulouse.com/assets/img/og/pages/tarifs.jpg?v=1" />
+  <meta name="twitter:image:alt" content="L’essai à 10€, puis 29€ toutes les 4 semaines — La rangée de sacs et le ring Boxing Center au fond du plateau" />
 
   <link rel="stylesheet" href="/assets/css/base.css?v=41" />
   <link rel="stylesheet" href="/assets/css/roulette.css?v=22" />
   <link rel="stylesheet" href="/assets/css/photos.css?v=22" />
   <link rel="stylesheet" href="/assets/css/home.css?v=39" />
-  <link rel="stylesheet" href="/assets/css/tarifs.css?v=23" />
+  <link rel="stylesheet" href="/assets/css/tarifs.css?v=24" />
 
   <!-- SEO/GEO — graphe JSON-LD unifié (organisation · salle · site · page · image ·
        fil d’Ariane). Faits réels uniquement — miroir de data.js. -->
@@ -364,7 +365,8 @@ import { AUTEUR_PRINCIPAL } from "../../../api/_lib/auteurs.js";
          ouvrait cette page ; il vendait le plus petit engagement avant que
          le visiteur ait vu ce qu’il y a à acheter. Il ferme désormais
          l’échelle, à sa place. -->
-    <section class="section tarifs-sec band-light" aria-label="Les offres de la saison">
+    <section class="section tarifs-sec band-dark" aria-label="Les offres de la saison" data-sans-cadran>
+      <div class="tarifs-sec__halo" aria-hidden="true"></div>
       <div class="wrap">
         <div data-reveal style="margin-bottom:clamp(1.6rem,4vw,2.4rem)">
           <span class="eyebrow">Les offres de la saison</span>
@@ -477,6 +479,12 @@ import { AUTEUR_PRINCIPAL } from "../../../api/_lib/auteurs.js";
       <a href="/">Accueil</a>
       <a href="/la-salle/">La salle</a>
       <a href="/activites/">Activités</a>
+      <a href="/activites/boxe-anglaise/">Cours de boxe anglaise</a>
+      <a href="/activites/boxe-thai-k1/">Cours de boxe thaï et K1</a>
+      <a href="/activites/lady-punch/">Lady Punch, boxe pour femmes</a>
+      <a href="/activites/boxe-educative/">Boxe éducative pour enfants</a>
+      <a href="/activites/boxing-camp/">Boxing Camp</a>
+      <a href="/activites/hyrox-cross-training/">Hyrox et cross-training</a>
       <a href="/coachs/">Coachs</a>
       <a href="/galerie/">Galerie</a>
       <a href="/plannings/">Planning</a>
@@ -503,7 +511,7 @@ import { AUTEUR_PRINCIPAL } from "../../../api/_lib/auteurs.js";
   <!-- Libs d’animation, auto-hébergées et regroupées (gsap + ScrollTrigger + Lenis) :
        une seule requête same-origin au lieu de trois vers un CDN tiers. -->
   <script is:inline defer src="/assets/js/vendor.min.js?v=22"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=26"></script>
-  <script is:inline type="module" src="/assets/js/tarifs.js?v=25"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=29"></script>
+  <script is:inline type="module" src="/assets/js/tarifs.js?v=28"></script>
 </body>
 </html>

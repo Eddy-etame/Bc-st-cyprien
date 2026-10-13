@@ -13,7 +13,7 @@
    bloqué ⇒ la pastille d’origine appelle la salle. Rien ne régresse.
    ===================================================================== */
 import { QUICKS, fallbackAnswer, GENERIC } from "./chatbot-kb.js?v=23";
-import { SALLE } from "./data.js?v=30";
+import { SALLE } from "./data.js?v=31";
 
 /* ---------------------------- constantes -------------------------- */
 const EMAIL_RE = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i;
@@ -320,7 +320,9 @@ export function initChatbot() {
 
   function showChips() {
     chipsEl.innerHTML =
-      QUICKS.slice(0, 5).map((q) => `<button type="button" data-q="${esc(q.q)}">${esc(q.label)}</button>`).join("") +
+      /* 13/10/2026 : une entrée sans `label` est un fait à connaître, pas une suggestion —
+         sans ce filtre, la première puce affichait « undefined » depuis le 30/08. */
+      QUICKS.filter((q) => q.label).slice(0, 5).map((q) =>`<button type="button" data-q="${esc(q.q)}">${esc(q.label)}</button>`).join("") +
       `<button type="button" class="scchat__chip--cta" data-callback>Être rappelé</button>`;
     chipsEl.hidden = false;
   }

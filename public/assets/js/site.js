@@ -4,10 +4,10 @@
    Same proven engine as the other salles, with the showroom’s restraint:
    no custom cursor, no grain — precision instead of texture.
    ===================================================================== */
-import { NAV, LINKS, SALLE, NETWORK, picture, pictureEl } from "./data.js?v=30";
+import { NAV, LINKS, SALLE, NETWORK, DISCIPLINES, picture, pictureEl } from "./data.js?v=31";
 
 import { initPlaces } from "./places.js?v=22";
-import { mountRoulette } from "./roulette.js?v=24";
+import { mountRoulette } from "./roulette.js?v=25";
 /* ------------------------- MAILLAGE DE MARQUE ---------------------- *
  * Le réseau propriétaire est un maillage VOULU : les liens sortants vers
  * boxingcenter.fr, la boutique et les salles sœurs partent en target=_blank
@@ -126,6 +126,11 @@ function mountNav() {
 /* --------------------- FOOTER — la fiche technique ----------------- */
 function mountFooter() {
   const cols = [{ h: "La salle", links: NAV.slice(1, 7) }];
+  /* LES COURS (13/10/2026) — chaque discipline qui a sa page y mène depuis
+     le pied, sur toutes les pages. La liste vient de data.js (`page`) : une
+     discipline sans page n'apparaît pas, jamais de lien mort. */
+  const cours = (DISCIPLINES || []).filter((d) => d.page).map((d) => ({ href: d.page, label: d.name }));
+  if (cours.length) cols.push({ h: "Les cours", links: cours });
   const fields = [
     { k: "Établissement", v: "Boxing Center — Saint-Cyprien", wide: true },
     { k: "Réseau", v: "5 clubs Boxing Center" },
@@ -521,7 +526,7 @@ function armChatbot() {
   const pill = document.querySelector("a.chatbot");
   if (!pill) return;
   let load = null;
-  const warm = () => (load ||= import("./chatbot.js?v=24"));
+  const warm = () => (load ||= import("./chatbot.js?v=25"));
   ["pointerenter", "focus", "touchstart"].forEach((ev) =>
     pill.addEventListener(ev, warm, { once: true, passive: true })
   );

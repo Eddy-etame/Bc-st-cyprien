@@ -4,7 +4,7 @@
    compléments → conditions → lien vers les avis Google actuels → FAQ argent. Tout depuis
    data.js (PROMOS daté, jamais de prix en dur), tous les CTA → box-plus.
    ===================================================================== */
-import { TARIFS, PROMOS, REVIEWS, LINKS, SALLE } from "./data.js?v=30";
+import { TARIFS, PROMOS, REVIEWS, LINKS, SALLE } from "./data.js?v=31";
 import { PRICING_FAQ } from "./data-tarifs.js?v=23";
 
 const $ = (s, r = document) => r.querySelector(s);
@@ -27,19 +27,56 @@ function renderEssai() {
     </div>`;
 }
 
-/* Les deux offres datées — le Duo s’écrit TOUJOURS "29€ par personne" */
+/* Les deux offres datées — le Duo s’écrit TOUJOURS "29€ par personne".
+   13/10/2026 : la carte prioritaire s’allume (tarifs.css) et son prix tombe
+   de l’ancien au nouveau quand elle arrive à l’écran. La remise est
+   CALCULÉE sur les deux prix de data.js, arrondie vers le bas. Le lecteur
+   d’écran lit le prix final (sr-only), jamais le compteur. */
+const nombre = (s) => parseFloat(String(s).replace(/[^\d,]/g, "").replace(",", "."));
+const remise = (o) => (o.was ? Math.floor(((nombre(o.was) - nombre(o.price)) / nombre(o.was)) * 100) : 0);
+
 function renderPromos() {
   const el = $("#promos");
   if (!el) return;
-  const card = (o, flag, cls) => `
+  const card = (o, flag, cls, tombe) => {
+    const m = String(o.price).match(/^(\d+)(,\d+)?/);
+    const chiffre = m ? m[1] + (m[2] || "") : o.price;
+    const compte = tombe && o.was ? ` data-compte="${nombre(o.price)}" data-depuis="${nombre(o.was)}"` : "";
+    return `
     <article class="promo ${cls}">
-      ${flag ? `<span class="promo__flag">${flag}</span>` : ""}
+      <div class="promo__tete">${flag ? `<span class="promo__flag">${flag}</span>` : ""}${remise(o) ? `<span class="promo__remise">−${remise(o)} %</span>` : ""}</div>
       <h3 class="promo__name">${o.name}</h3>
-      <div class="promo__price"><b>${o.price}</b><small>${o.unit}</small>${o.was ? `<s>${o.was}</s>` : ""}</div>
+      <div class="promo__price"><span class="sr-only">${o.price}</span><b aria-hidden="true"${compte}>${chiffre}</b><span class="promo__eur" aria-hidden="true">€</span>${o.was ? `<s><span class="sr-only">au lieu de </span>${o.was}</s>` : ""}<small>${o.unit}</small></div>
       <p class="promo__detail">${o.detail}</p>
       <a class="btn btn--primary" data-magnetic href="${o.href}"><span>${o.cta}</span></a>
     </article>`;
-  el.innerHTML = card(PROMOS.duo, "Prioritaire", "promo--duo") + card(PROMOS.saisonOffer, "", "promo--saison");
+  };
+  el.innerHTML = card(PROMOS.duo, "Prioritaire", "promo--duo", true) + card(PROMOS.saisonOffer, "", "promo--saison", false);
+  prixQuiTombe(el.querySelector(".promo--duo"));
+}
+
+/* Le prix qui tombe — même geste que sur les pages de discipline. Sans
+   IntersectionObserver ou en mouvement réduit, le prix final reste écrit. */
+function prixQuiTombe(carte) {
+  const n = carte?.querySelector("[data-compte]");
+  if (!n || !("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const fin = +n.dataset.compte, debut = +n.dataset.depuis, texteFinal = n.textContent;
+  if (!Number.isFinite(fin) || !Number.isFinite(debut)) return;
+  const ecrire = (v) => { n.textContent = v.toFixed(2).replace(".", ","); };
+  carte.classList.add("promo--pret");
+  ecrire(debut);
+  const io = new IntersectionObserver((vus) => {
+    if (!vus.some((v) => v.isIntersecting)) return;
+    io.disconnect();
+    carte.classList.add("is-vu");
+    const t0 = performance.now();
+    const pas = (t) => {
+      const k = Math.min(1, (t - t0) / 1300), e = 1 - Math.pow(1 - k, 4);
+      if (k < 1) { ecrire(debut + (fin - debut) * e); requestAnimationFrame(pas); } else n.textContent = texteFinal;
+    };
+    requestAnimationFrame(pas);
+  }, { threshold: 0.25 });
+  io.observe(carte);
 }
 
 /* Une carte tarif — même gabarit pour les classiques et les compléments. */

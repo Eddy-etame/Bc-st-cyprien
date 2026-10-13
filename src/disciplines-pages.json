@@ -1,0 +1,602 @@
+{
+  "_note": "Pages de discipline de Saint-Cyprien : /activites/<slug>/, rendues par src/pages/activites/[discipline].astro (13/10/2026). Les FAITS viennent de public/assets/js/data.js : créneaux (SCHEDULE), coachs (COACHES), niveaux, prix (PROMOS, TARIFS), adresse (SALLE). Ce fichier ne porte que le texte long, rangé par clé de discipline. Placeholders remplacés au build : {essai} {rentree} {rentreeAvant} {saison} {saisonAvant} {adulte} {etudiant} {badge} {ecole} {baby} {tel} {n} (nombre de créneaux) {N} (le même, en lettres). Garde-fous au build : toute heure écrite ici doit exister au planning, chaque coach nommé dans « coachs » doit encadrer la discipline dans COACHES, titre ≤ 60 signes, description entre 80 et 158. Une phrase de sept mots ou plus ne s’écrit qu’une fois sur le site et sur le réseau. Liens : [ancre](url).",
+  "pages": {
+    "anglaise": {
+      "slug": "boxe-anglaise",
+      "sujet": "la boxe anglaise",
+      "publie": "2026-10-13",
+      "maj": "2026-10-13",
+      "titre": "Boxe anglaise à Toulouse Saint-Cyprien | Boxing Center",
+      "description": "Boxe anglaise rive gauche, 11 rue Sainte-Lucie : {n} cours par semaine, à 12h40 et à 20h00. Discipline de Dadi, débutants admis, essai {essai}.",
+      "h1": ["Boxe anglaise", "à Saint-Cyprien."],
+      "eyebrow": "Le noble art · ring, sacs, boucliers",
+      "lead": "À Boxing Center Saint-Cyprien, la boxe anglaise se pratique {n} fois par semaine : le mercredi et le vendredi à 12h40, puis le lundi, le mercredi et le vendredi à 20h00. Dadi est le coach de la discipline, et un débutant rejoint le même cours que les confirmés, au 11 rue Sainte-Lucie.",
+      "note": "Ton premier cours se prend en séance d’essai, à {essai} : gants prêtés, aucun niveau demandé.",
+      "coachs": ["Dadi"],
+      "photo": {
+        "src": "/assets/img/sc/sacs-nb-serre.webp",
+        "alt": "En noir et blanc, une pratiquante gantée frappe un sac Metal Boxe, d’autres sacs suspendus derrière elle",
+        "pos": "50% 40%"
+      },
+      "travail": {
+        "titre": "Le jab, la garde, les jambes.",
+        "intro": "La boxe anglaise se boxe avec les poings seulement, et au-dessus de la ceinture. À Saint-Cyprien, elle se travaille au sac, aux boucliers tenus par un partenaire et sur le ring, du premier jab jusqu’au sparring encadré.",
+        "points": [
+          { "t": "La garde", "d": "Les mains couvrent le visage, le menton reste rentré, les coudes protègent les côtes : chaque enchaînement part de là et y revient." },
+          { "t": "Le jab", "d": "Le direct du bras avant mesure la distance et prépare les coups suivants. C’est le geste de base, celui qui revient à chaque séance." },
+          { "t": "L’esquive", "d": "Rotation du buste, flexion des jambes, pas en retrait : on apprend à sortir de la trajectoire plutôt qu’à tout encaisser." },
+          { "t": "Le jeu de jambes", "d": "Avancer, reculer, tourner autour de l’adversaire sans croiser les pieds. Ce sont les jambes qui décident de la distance." }
+        ],
+        "figure": {
+          "src": "/assets/img/sc/sacs-rangee.webp",
+          "alt": "Des sacs de frappe Metal Boxe suspendus au-dessus du tapis bleu, une fresque de boxeuse au mur et la bâche du ring à droite",
+          "legende": "La rangée de sacs, côté fenêtres"
+        }
+      },
+      "creneaux": {
+        "titre": "{N} rendez-vous par semaine.",
+        "intro": "Deux cours tombent à l’heure du déjeuner, de 12h40 à 13h20, et trois en soirée, de 20h00 à 21h15. Aucune réservation : tu te présentes à l’heure du cours, en tenue.",
+        "apres": "La même semaine, filtrée sur la boxe anglaise, sur [le planning de la salle](/plannings/#anglaise)."
+      },
+      "coach": {
+        "titre": "Dadi, au bord du ring.",
+        "texte": [
+          "Dadi tient la boxe anglaise de Saint-Cyprien, en plus du Lady Punch et de toute l’école des enfants.",
+          "Le club publie qui enseigne chaque discipline, pas qui tient chaque horaire. Pour un créneau précis, appelle la salle au {tel}, ou lis [ce que chaque coach enseigne](/coachs/)."
+        ]
+      },
+      "pourQui": {
+        "titre": "Du débutant au boxeur licencié.",
+        "items": [
+          { "tag": "Débutant", "t": "Tu n’as jamais boxé", "d": "Les cours de 20h00 sont affichés « débutant → confirmé » : on y entre sans aucun acquis. Préviens simplement le coach en arrivant." },
+          { "tag": "Midi", "t": "Tu boxes sur ta pause", "d": "Le mercredi et le vendredi, le cours de 12h40 dure quarante minutes et accueille tous les niveaux." },
+          { "tag": "Compétition", "t": "Tu vises le ring", "d": "L’anglaise de la salle s’annonce « loisir et compétition », et le club est affilié à la FFBoxe, la fédération de la discipline." },
+          { "tag": "Entre femmes", "t": "Tu préfères commencer sans mixité", "d": "Le Lady Punch est réservé aux femmes, le mardi et le jeudi à 18h20. [Voir le Lady Punch](/activites/lady-punch/)." }
+        ]
+      },
+      "premiere": {
+        "titre": "Ton premier cours d’anglaise.",
+        "etapes": [
+          { "t": "Réserve l’essai", "d": "La séance coûte {essai} sur la boutique du club et ouvre toutes les disciplines ; prends un soir à 20h00 ou un midi à 12h40." },
+          { "t": "Viens en tenue", "d": "Tenue de sport propre, baskets propres, une serviette. Arrive dix minutes avant le début du cours." },
+          { "t": "Dis-le en entrant", "d": "« C’est ma première fois » : avec cette phrase, le coach sait par où commencer avec toi." },
+          { "t": "Boxe à ton rythme", "d": "Échauffement, technique, puis sac, avec des gants prêtés. Personne ne te met en opposition le premier soir." }
+        ]
+      },
+      "materiel": {
+        "titre": "Le matériel du cours, à retirer à l’accueil de Saint-Cyprien",
+        "intro": "Si tu continues après l’essai, voici le matériel de boxe anglaise que la boutique du club fait venir rue Sainte-Lucie : tu commandes en ligne, tu récupères à l’accueil de la salle. Le règlement intérieur cite les bandages, les gants et le protège-dents parmi les protections que le coach peut demander selon l’exercice.",
+        "items": [
+          { "produit": "gants-boxe-blade-noir-blanc", "texte": "Une paire pour les cours de la semaine, en 10, 12 ou 14 oz." },
+          { "produit": "gants-ergo-90-mbg301k14", "texte": "Une autre paire de 14 oz, pour le sac et les boucliers." },
+          { "produit": "gants-sparring-mbgan010n14-16oz", "texte": "Plus lourds, faits pour l’opposition, le jour où le sparring encadré arrive." },
+          { "produit": "bandes-4m-mb120bt", "texte": "Elles se posent sous les gants pour tenir le poignet et couvrir les articulations." },
+          { "produit": "bandes-2m50-mb120t", "texte": "Le même bandage en version courte, à choisir selon la taille de ta main." },
+          { "produit": "protege-dents-adulte-mbpro458srt", "texte": "À glisser dans le sac dès que le travail passe en opposition." }
+        ],
+        "note": "Retrait le jour même pour les gants Blade : du lundi au vendredi de 12 h à 14 h et de 17 h à 21 h, le samedi de 15 h à 18 h. Les tailles, les fiches et les prix sont sur la boutique ; relevé du 12 octobre 2026."
+      },
+      "tarifs": {
+        "titre": "Ce que coûte l’anglaise.",
+        "texte": "L’essai coûte {essai}. Pour continuer, l’offre Rentrée revient à {rentree} par personne toutes les quatre semaines, sans engagement, au lieu de {rentreeAvant} ; la Saison coûte {saison} pour douze mois et ouvre aussi les quatre autres clubs Boxing Center. [Toutes les formules et leurs conditions](/tarifs/)."
+      },
+      "venir": {
+        "titre": "Venir au cours.",
+        "texte": "La salle est au 11 rue Sainte-Lucie, rive gauche, à 200 m de l’arrêt de tram Fer à Cheval. Pour un cours de 20h00 après le travail, la station de métro Saint-Cyprien – République se trouve à 600 m."
+      },
+      "faq": [
+        { "q": "Peut-on commencer la boxe anglaise à Saint-Cyprien sans jamais avoir boxé ?", "a": "Oui. Les cours du lundi, du mercredi et du vendredi à 20h00 vont du niveau débutant au niveau confirmé, et ceux de 12h40 sont ouverts à tous. Dis au coach que c’est ta première fois." },
+        { "q": "Combien de temps dure un cours de boxe anglaise ?", "a": "Quarante minutes à midi, de 12h40 à 13h20, et une heure et quart le soir, de 20h00 à 21h15, d’après l’affiche officielle de la saison." },
+        { "q": "Faut-il acheter des gants pour le premier cours ?", "a": "Non : pour la séance d’essai, gants et matériel sont prêtés. Si tu continues, gants, bandes et protège-dents se commandent sur la boutique du club et se retirent à l’accueil." },
+        { "q": "Y a-t-il du sparring en boxe anglaise ?", "a": "Oui, encadré, quand tu te sens prêt. Il n’est jamais imposé lors d’un premier cours." },
+        { "q": "Le club prépare-t-il à la compétition en boxe anglaise ?", "a": "L’anglaise de Saint-Cyprien est annoncée « loisir et compétition », et le club est affilié à la FFBoxe. Pour les jeunes, un créneau compétiteurs existe le mercredi et le samedi." }
+      ],
+      "autresIntro": "Le même plateau accueille cinq autres cours qui ont leur page ; l’abonnement les ouvre tous.",
+      "sourcesIntro": "Chaque horaire et chaque durée de cette page sont lus sur l’affiche officielle de la saison 2026–2027.",
+      "sourcesPlus": [
+        { "label": "FFBoxe, fédération de boxe anglaise", "url": "https://www.ffboxe.com/" },
+        { "label": "Règlement intérieur Boxing Center", "url": "https://boutique.boxingcenter.fr/reglement-interieur" },
+        { "label": "Le matériel de la boutique", "url": "https://boutique.boxingcenter.fr/materiel" }
+      ],
+      "fin": {
+        "titre": ["Ton premier jab,", "un soir à 20h00."],
+        "texte": "La séance d’essai coûte {essai} et se réserve en ligne, pour n’importe quel cours de la semaine."
+      },
+      "og": { "sur": "BOXE ANGLAISE · SAINT-CYPRIEN", "titre": "Le jab, cinq fois par semaine.", "faits": ["Avec Dadi", "12h40 et 20h00", "Tram T1 à 200 m"] }
+    },
+
+    "thai": {
+      "slug": "boxe-thai-k1",
+      "sujet": "la boxe thaï et le K1",
+      "publie": "2026-10-13",
+      "maj": "2026-10-13",
+      "titre": "Boxe thaï et K1 à Toulouse Saint-Cyprien | Boxing Center",
+      "description": "Boxe thaï, K1 et pieds-poings à Saint-Cyprien : {n} cours par semaine, du mardi midi au samedi soir. Tawee enseigne la thaï ; tous niveaux admis.",
+      "h1": ["Boxe thaï et K1", "à Saint-Cyprien."],
+      "eyebrow": "Pieds-poings · tous niveaux",
+      "lead": "Boxing Center Saint-Cyprien propose {n} cours de boxe thaï, de K1 et de pieds-poings par semaine : le mardi et le jeudi à 12h40 et à 20h00, le vendredi à 19h00, et deux heures le samedi à partir de 18h00. Tawee enseigne la thaï et le K1, et chaque créneau est ouvert à tous les niveaux.",
+      "note": "Pour l’essai à {essai}, la salle prête gants et matériel : viens avec un short qui laisse lever la jambe.",
+      "coachs": ["Tawee"],
+      "photo": {
+        "src": "/assets/img/sc/thai-sac.webp",
+        "alt": "Un pratiquant en short rouge lance un coup de pied circulaire dans le bouclier que tient son partenaire casqué, devant la rangée de sacs Metal",
+        "pos": "50% 50%"
+      },
+      "travail": {
+        "titre": "Les huit armes, et le K1 à côté.",
+        "intro": "La boxe thaï, ou muay thaï, frappe avec les poings, les pieds, les genoux et les coudes, et se boxe aussi au corps-à-corps. Le K1 garde les poings, les pieds et les genoux mais laisse les coudes de côté ; le kick boxing, lui aussi au programme de la salle, se pratique pieds et poings.",
+        "points": [
+          { "t": "Le coup de pied circulaire", "d": "Le tibia frappe, la hanche pivote : c’est le geste qui sépare les boxes pieds-poings de la boxe anglaise." },
+          { "t": "Le genou", "d": "À courte distance, le genou monte vers le corps. Il s’apprend au sac et aux boucliers avant de servir face à quelqu’un." },
+          { "t": "Le clinch", "d": "La saisie de la nuque propre à la thaï : on contrôle la tête de l’autre, puis on frappe ou on déséquilibre." },
+          { "t": "Le teep", "d": "Le coup de pied de face, jambe tendue, qui repousse l’adversaire et garde la distance quand il avance." }
+        ],
+        "figure": {
+          "src": "/assets/img/sc/thai-2.webp",
+          "alt": "Cours pieds-poings entre les sacs Metal : au premier plan, un pratiquant en protège-tibias, derrière lui deux pratiquantes en garde",
+          "legende": "Pieds-poings, entre les sacs"
+        }
+      },
+      "creneaux": {
+        "titre": "{N} créneaux, du midi au samedi soir.",
+        "intro": "Le mardi et le jeudi, la thaï passe deux fois : de 12h40 à 13h20, puis de 20h00 à 21h15. Le vendredi, le cours commence à 19h00 ; le samedi, la boxe pieds-poings occupe le tapis de 18h00 à 20h00.",
+        "apres": "Tous ces horaires, filtrés sur la thaï et le K1, sur [le planning de Saint-Cyprien](/plannings/#thai)."
+      },
+      "coach": {
+        "titre": "Tawee, pour la thaï.",
+        "texte": [
+          "Tawee est le coach de boxe thaï et de K1 de la salle. Pour un premier cours, sa règle tient en une ligne : la touche passe avant la puissance.",
+          "Qui tient chaque horaire reste une information interne au club ; le {tel} y répond. [L’équipe de Saint-Cyprien](/coachs/)."
+        ]
+      },
+      "pourQui": {
+        "titre": "Que tu débutes ou que tu combattes.",
+        "items": [
+          { "tag": "Débutant", "t": "Ton premier coup de pied", "d": "Les {n} créneaux sont affichés tous niveaux. Tu commences par la touche et la technique ; la puissance viendra plus tard." },
+          { "tag": "Anglaise", "t": "Tu as déjà les poings", "d": "Tu gardes ta boxe et tu ajoutes les jambes, sans changer d’abonnement : il couvre toutes les disciplines de la salle." },
+          { "tag": "Midi", "t": "Tu as une pause déjeuner", "d": "Le mardi et le jeudi, quarante minutes de pieds-poings à partir de 12h40, et tu repars travailler." },
+          { "tag": "Compétition", "t": "Tu veux combattre", "d": "La thaï de la salle s’annonce « loisir et compétition » ; le club est affilié à la FFKMDA, la fédération du kick boxing et du muay thaï." }
+        ]
+      },
+      "premiere": {
+        "titre": "Ta première séance de pieds-poings.",
+        "etapes": [
+          { "t": "Choisis le créneau", "d": "Un midi à 12h40 pour découvrir en quarante minutes, le vendredi à 19h00, ou le samedi pour deux heures pleines." },
+          { "t": "Réserve l’essai", "d": "{essai} sur la boutique du club, valable pour toutes les disciplines de la salle." },
+          { "t": "Prépare la tenue", "d": "Un short ample, un t-shirt propre, une serviette. Arrive dix minutes avant, le temps de te présenter." },
+          { "t": "Laisse la puissance au vestiaire", "d": "Gants et matériel prêtés, échauffement, technique, puis sac et boucliers : la touche d’abord, sans aucun sparring imposé." }
+        ]
+      },
+      "materiel": {
+        "titre": "Tibias, bandes, gants : le matériel pieds-poings à retirer rue Sainte-Lucie",
+        "intro": "En boxe thaï et en K1, le tibia frappe et bloque autant que le poing. Quand tu as décidé de rester, ces quatre articles se commandent sur la boutique du club et t’attendent à l’accueil de Saint-Cyprien sous 48 h.",
+        "items": [
+          { "produit": "protege-tibias-pieds-coton-mb153wm", "texte": "Coton élastique, mousse EVA et velcro : la paire couvre le tibia et le dessus du pied, du S au XL." },
+          { "produit": "bandes-4m-mb120bt", "texte": "Quatre mètres par main avec un passant pour le pouce, assez de tours pour verrouiller le poignet avant d’enfiler les gants." },
+          { "produit": "gants-ergo-90-mbg301k14", "texte": "Mousse injectée et serrage velcro, en 14 oz, pour enchaîner poings et pieds au sac." },
+          { "produit": "protege-dents-adulte-mbpro458srt", "texte": "Translucide, à mouler à l’eau chaude, rangé dans son boîtier au fond du sac de sport." }
+        ],
+        "note": "Chaque fiche de la boutique donne le prix du jour et les tailles encore en stock (relevé du 12/10/2026)."
+      },
+      "tarifs": {
+        "titre": "Le prix des pieds-poings.",
+        "texte": "La séance d’essai coûte {essai}. L’offre Saison, à {saison} les douze mois au lieu de {saisonAvant}, cite la boxe pieds-poings parmi ses disciplines ; l’offre Rentrée, elle, se paie {rentree} par personne et par période de quatre semaines. [Comparer les formules](/tarifs/)."
+      },
+      "venir": {
+        "titre": "Rive gauche, sans voiture.",
+        "texte": "Rue Sainte-Lucie, le tram T1 s’arrête à Fer à Cheval, à 200 m de la porte, et le métro A à Saint-Cyprien – République, à 600 m. Le samedi, le cours de 18h00 se termine à 20h00, avant la fermeture de la salle."
+      },
+      "faq": [
+        { "q": "Boxe thaï ou K1 : quelle différence ?", "a": "La boxe thaï autorise les coudes et le corps-à-corps prolongé ; le K1 se boxe avec les poings, les pieds et les genoux, sans les coudes. À Saint-Cyprien, les deux se travaillent dans les mêmes cours." },
+        { "q": "Faut-il être souple pour commencer la boxe thaï ?", "a": "Non. Les créneaux sont ouverts à tous les niveaux, on commence par la technique et la touche, et la souplesse se gagne au fil des séances." },
+        { "q": "Qui encadre la boxe thaï à Saint-Cyprien ?", "a": "Tawee, le coach de thaï et de K1 de la salle. Le planning ne dit pas qui tient chaque horaire : pour un créneau précis, appelle le {tel}." },
+        { "q": "Le cours du samedi est-il différent ?", "a": "Il s’appelle « boxe pieds-poings » sur l’affiche et dure deux heures, de 18h00 à 20h00, contre une heure et quart pour les cours de 20h00 en semaine." },
+        { "q": "Quelles protections prévoir pour la boxe thaï ?", "a": "Pour l’essai, la salle prête gants et matériel. Ensuite, le règlement intérieur cite les gants, le protège-dents et les protège-tibias parmi les protections que le coach peut demander." }
+      ],
+      "autresIntro": "Tes jambes ne sont pas les seules à travailler ici : voici les autres cours de la salle qui ont leur page.",
+      "sourcesIntro": "Les {n} horaires de pieds-poings et leurs durées viennent de l’affiche officielle du planning 2026–2027.",
+      "sourcesPlus": [
+        { "label": "FFKMDA, kick boxing et muay thaï", "url": "https://www.ffkmda.com/" },
+        { "label": "Règlement intérieur Boxing Center", "url": "https://boutique.boxingcenter.fr/reglement-interieur" }
+      ],
+      "fin": {
+        "titre": ["Lève la jambe", "un mardi à 20h00."],
+        "texte": "Essai à {essai}, gants et matériel prêtés, dans le cours pieds-poings de ton choix."
+      },
+      "og": { "sur": "BOXE THAÏ · K1 · SAINT-CYPRIEN", "titre": "Les tibias, six fois par semaine.", "faits": ["Avec Tawee", "Tous niveaux", "Samedi 18h – 20h"] }
+    },
+
+    "lady": {
+      "slug": "lady-punch",
+      "sujet": "le Lady Punch",
+      "publie": "2026-10-13",
+      "maj": "2026-10-13",
+      "titre": "Lady Punch, boxe 100 % féminine à Toulouse Saint-Cyprien",
+      "description": "Lady Punch à Boxing Center Saint-Cyprien : la boxe réservée aux femmes, mardi et jeudi de 18h20 à 19h00. Cours de Dadi, zéro prérequis, essai {essai}.",
+      "h1": ["Lady Punch", "à Saint-Cyprien."],
+      "eyebrow": "100 % féminin · zéro prérequis",
+      "lead": "Le Lady Punch est le cours de boxe réservé aux femmes de Boxing Center Saint-Cyprien : le mardi et le jeudi, de 18h20 à 19h00. Dadi enseigne ce cours qui se suit sans aucun prérequis, et beaucoup de pratiquantes y enfilent leurs premiers gants.",
+      "note": "Quarante minutes de cardio, de technique et de sac, entre femmes, rue Sainte-Lucie.",
+      "coachs": ["Dadi"],
+      "photo": {
+        "src": "/assets/img/sc/lady-sac-2.webp",
+        "alt": "Une pratiquante en legging vert frappe un sac Metal avec des gants roses et noirs, d’autres pratiquantes s’entraînent derrière elle",
+        "pos": "55% 40%"
+      },
+      "travail": {
+        "titre": "Cardio, technique, sac.",
+        "intro": "En quarante minutes, le cours enchaîne le cardio, la technique de boxe et le travail au sac. Le site du réseau Boxing Center le présente comme des séances entre femmes, sans opposition.",
+        "points": [
+          { "t": "Le souffle", "d": "L’échauffement et les enchaînements font monter le rythme dès les premières minutes : le cardio se construit en boxant." },
+          { "t": "Les coups", "d": "Garde, direct, crochet : les gestes de la boxe, appris proprement, sans personne pour te les renvoyer." },
+          { "t": "Le sac", "d": "Les sacs Metal de la salle encaissent les séries. C’est là que l’on sent, d’un mardi à l’autre, que les coups partent mieux." }
+        ],
+        "figure": {
+          "src": "/assets/img/sc/lady-duo-2.webp",
+          "alt": "Deux pratiquantes en garde, mains bandées de noir, devant un mur peint",
+          "legende": "En garde, mains bandées"
+        },
+        "figure2": {
+          "src": "/assets/img/sc/lady-duo.webp",
+          "alt": "Deux pratiquantes face à face, l’une en gants roses, l’autre aux cheveux bouclés en gants noirs",
+          "legende": "Le travail à deux"
+        }
+      },
+      "creneaux": {
+        "titre": "Deux soirs, la même heure.",
+        "intro": "Rendez-vous le mardi et le jeudi à 18h20, pour quarante minutes qui se terminent à 19h00, juste avant les cours suivants.",
+        "apres": "Le Lady Punch, et tout le reste de la semaine, sur [le planning filtrable](/plannings/#lady)."
+      },
+      "coach": {
+        "titre": "Dadi, côté Lady Punch.",
+        "texte": [
+          "C’est Dadi qui encadre le Lady Punch, en plus de la boxe anglaise et de l’école des enfants. Celles qui passent ensuite aux cours mixtes d’anglaise retrouvent donc le même coach.",
+          "Pour une question sur le cours avant de venir, la salle répond au {tel}. [Les trois coachs de Saint-Cyprien](/coachs/)."
+        ]
+      },
+      "pourQui": {
+        "titre": "Pour qui, ce créneau.",
+        "items": [
+          { "tag": "Débutante", "t": "Tu n’as jamais boxé", "d": "Le planning affiche « zéro prérequis », et nombre de pratiquantes y font leurs tout premiers pas de boxe." },
+          { "tag": "Forme", "t": "Tu cherches le cardio", "d": "Condition physique, confiance, progrès technique : c’est ce que le site du réseau Boxing Center promet aux femmes qui viennent boxer." },
+          { "tag": "Entre femmes", "t": "Tu veux t’entraîner sans regard", "d": "Pendant le cours, le tapis n’accueille que des femmes ; personne ne vient y observer ta séance." },
+          { "tag": "Et après", "t": "Tu pourrais passer en mixte", "d": "Certaines rejoignent ensuite les cours mixtes, comme la boxe anglaise ou le Boxing Camp ; d’autres restent au Lady Punch, et les deux chemins se valent." }
+        ]
+      },
+      "premiere": {
+        "titre": "Ton premier Lady Punch.",
+        "etapes": [
+          { "t": "Réserve ta séance", "d": "L’essai à {essai} se prend en ligne et vaut pour un mardi ou un jeudi à 18h20." },
+          { "t": "Arrive un peu avant", "d": "Dix minutes suffisent pour te changer et dire que c’est ta première fois." },
+          { "t": "Viens les mains libres", "d": "Les gants te sont prêtés pour l’essai ; prévois seulement une tenue de sport et une serviette." },
+          { "t": "Tape à ton rythme", "d": "Échauffement, technique, sac : chacune avance à sa vitesse, sans opposition." }
+        ]
+      },
+      "materiel": {
+        "titre": "Tes premiers gants à toi, à retirer à l’accueil",
+        "intro": "À l’essai, les gants sont prêtés. Si tu reviens le mardi et le jeudi, ces trois articles se commandent sur la boutique du club et se retirent à l’accueil de la salle ; les gants Blade, dès le jour de la commande.",
+        "items": [
+          { "produit": "gants-boxe-blade-noir-blanc", "texte": "Noir et blanc, velcro large et aération WindTec, en 10, 12 ou 14 oz." },
+          { "produit": "bandes-2m50-mb120t", "texte": "La bande courte, 2,50 m par main, à poser avant chaque passage au sac." },
+          { "produit": "gants-ergo-90-mbg301k14", "texte": "Mousse anatomique moulée à 90° et serrage velcro : une seconde paire en 14 oz, coloris kaki." }
+        ],
+        "note": "Les Blade se récupèrent en semaine entre 12 h et 14 h ou entre 17 h et 21 h, le samedi entre 15 h et 18 h ; prix et tailles sur la fiche, relevés le 12 octobre."
+      },
+      "tarifs": {
+        "titre": "Le prix du Lady Punch.",
+        "texte": "L’essai coûte {essai}. Avec l’offre Rentrée, compte {rentree} toutes les quatre semaines, sans engagement, et à deux, chacune paie {rentree}. La Saison, à {saison} les douze mois, cite le Lady Punch parmi ses disciplines. [Les formules en détail](/tarifs/)."
+      },
+      "venir": {
+        "titre": "Rue Sainte-Lucie, en sortant du travail.",
+        "texte": "Le cours de 18h20 se rejoint en tram : l’arrêt Fer à Cheval de la ligne T1 est à 200 m de la salle. Depuis le métro A, la station Saint-Cyprien – République est à 600 m."
+      },
+      "faq": [
+        { "q": "Le cours Lady Punch est-il vraiment réservé aux femmes ?", "a": "Oui : le mardi et le jeudi, de 18h20 à 19h00, le créneau est 100 % féminin." },
+        { "q": "Faut-il un niveau pour suivre le Lady Punch ?", "a": "Aucun. Le cours est affiché « zéro prérequis » et accueille celles qui n’ont jamais porté de gants." },
+        { "q": "Y a-t-il des combats pendant le Lady Punch ?", "a": "Non : le cours se pratique sans opposition. Il mélange le cardio, la technique et le travail au sac." },
+        { "q": "Lady Punch ou Boxing Lady : est-ce le même cours ?", "a": "Oui. Le planning de la salle l’appelle Lady Punch, et le site du réseau Boxing Center l’appelle Boxing Lady." },
+        { "q": "Qui encadre le Lady Punch à Saint-Cyprien ?", "a": "Dadi, qui enseigne aussi la boxe anglaise et toute l’école des enfants dans la salle." }
+      ],
+      "autresIntro": "Après quelques mardis, d’autres cours t’attendent peut-être ; tous ont leur page.",
+      "sourcesIntro": "Les jours, les horaires et le nom du cours sont relevés sur l’affiche officielle 2026–2027 et sur la page Saint-Cyprien du réseau.",
+      "sourcesPlus": [],
+      "fin": {
+        "titre": ["Un mardi à 18h20,", "entre femmes."],
+        "texte": "Ta séance d’essai coûte {essai}, gants prêtés, et se réserve en deux minutes."
+      },
+      "og": { "sur": "LADY PUNCH · 100 % FÉMININ", "titre": "Mardi et jeudi à 18h20, entre femmes.", "faits": ["Avec Dadi", "Zéro prérequis", "Tram T1 à 200 m"] }
+    },
+
+    "kids": {
+      "slug": "boxe-educative",
+      "sujet": "la boxe éducative",
+      "publie": "2026-10-13",
+      "maj": "2026-10-13",
+      "titre": "Boxe éducative enfants à Toulouse Saint-Cyprien",
+      "description": "École de boxe de Saint-Cyprien : Baby Boxe dès 3 ans le samedi, enfants 7/11 et ados 12/16 le mercredi et le samedi, compétiteurs. Avec Dadi, {ecole} l’an.",
+      "h1": ["La boxe éducative", "à Saint-Cyprien."],
+      "eyebrow": "L’école · de 3 ans aux compétiteurs",
+      "lead": "L’école de boxe de Boxing Center Saint-Cyprien accueille les enfants dès 3 ans : Baby Boxe le samedi à 14h15, boxe éducative 7/11 ans et ados 12/16 ans le mercredi et le samedi à 15h00 et 16h00, puis un créneau compétiteurs. Dadi encadre chaque palier, et en boxe éducative on touche sans frapper, comme le veut la règle fédérale.",
+      "note": "Matériel fourni aux enfants inscrits, t-shirt du club compris dans l’inscription.",
+      "coachs": ["Dadi"],
+      "photo": {
+        "src": "/assets/img/sc/appuis-tapis.webp",
+        "alt": "Un coach en t-shirt rouge Boxing Center et casquette, bras croisés, debout sur le tatami rouge devant le ring",
+        "pos": "50% 24%"
+      },
+      "travail": {
+        "titre": "Toucher, jamais frapper.",
+        "intro": "La boxe éducative est la forme de boxe que la fédération réserve aux jeunes : les coups se portent en touche, sans chercher la puissance. Les enfants y gagnent de la motricité, de la concentration et le respect du partenaire, palier après palier.",
+        "figure": {
+          "src": "/assets/img/sc/pattes-murales.webp",
+          "alt": "Une cible murale Metal Boxe numérotée 1, 3 et 5 et une tour de cibles rondes numérotées, fixées sur un mur peint",
+          "legende": "Les cibles numérotées, au mur"
+        }
+      },
+      "creneaux": {
+        "titre": "Le mercredi et le samedi.",
+        "intro": "Le mercredi après-midi et le samedi, l’école occupe le tapis jusqu’à 18h15 : le samedi commence à 14h15 avec les plus petits, chaque âge a ensuite son heure, et les compétiteurs ferment la journée.",
+        "apres": "Les créneaux de l’école sont aussi sur [le planning de la salle](/plannings/#kids), à côté des cours adultes."
+      },
+      "coach": {
+        "titre": "Un seul coach, d’un âge à l’autre.",
+        "texte": [
+          "Du Baby Boxe aux compétiteurs, c’est Dadi qui encadre l’école : un enfant qui grandit à la salle garde le même coach d’une saison à l’autre, et les parents un seul interlocuteur.",
+          "Dadi tient aussi la boxe anglaise et le Lady Punch. [Tous les coachs de la salle](/coachs/)."
+        ]
+      },
+      "pourQui": {
+        "titre": "Ce que l’école leur apporte.",
+        "items": [
+          { "tag": "Motricité", "t": "Bouger avant de boxer", "d": "Déplacements, coordination, jeu : les premiers paliers apprennent à l’enfant à maîtriser son corps." },
+          { "tag": "Concentration", "t": "Écouter, puis faire", "d": "Une consigne, un geste, une répétition : la séance demande de l’attention, et l’enfant apprend à la tenir." },
+          { "tag": "Respect", "t": "Un partenaire, pas une cible", "d": "On touche sans faire mal : c’est la règle de la boxe éducative, et le premier code que l’école transmet." },
+          { "tag": "Compétition", "t": "Pour ceux qui veulent monter sur le ring", "d": "Le créneau compétiteurs du mercredi et du samedi prépare au combat, avec le sparring et le travail de coin." }
+        ]
+      },
+      "premiere": {
+        "titre": "Le premier cours de votre enfant.",
+        "etapes": [
+          { "t": "Choisissez son créneau", "d": "Samedi 14h15 pour les 3–6 ans ; mercredi ou samedi 15h00 pour les 7–11 ans, 16h00 pour les 12–16 ans." },
+          { "t": "Réservez un essai", "d": "La séance d’essai à {essai} permet de voir le cours avant d’inscrire votre enfant pour l’année." },
+          { "t": "Une tenue de sport suffit", "d": "Jogging ou short, t-shirt, baskets propres : le matériel de boxe est fourni aux enfants de l’école." },
+          { "t": "Présentez-le au coach", "d": "Arrivez dix minutes avant le début et dites au coach que c’est sa toute première séance." }
+        ]
+      },
+      "materiel": {
+        "titre": "Le matériel de l’enfant, à retirer à l’accueil",
+        "intro": "Pendant les cours, le club fournit le matériel. Pour que ton enfant ait ses propres gants et sa tenue, la boutique du club fait venir ces trois articles à l’accueil de Saint-Cyprien, sous 48 h après la commande.",
+        "items": [
+          { "produit": "gants-boxe-enfant-one", "texte": "Ses gants à lui, en taille 4/7 ans ou 8/15 ans, mousse injectée et velcro large." },
+          { "produit": "ensemble-enfants-short-debardeur", "texte": "Le short en satin et le débardeur de la boxe anglaise, du 6/8 ans au 10/12 ans." },
+          { "produit": "protege-dents-enfants-mb459jrw", "texte": "En gel, moulé à l’eau chaude à la forme de sa bouche." }
+        ],
+        "note": "Tailles, stock et prix : sur les fiches de la boutique du club, telles que relevées le 12/10/2026."
+      },
+      "tarifs": {
+        "titre": "L’inscription à l’année.",
+        "texte": "L’école coûte {ecole} pour l’année, t-shirt du club compris, et le Baby Boxe des 3–6 ans {baby}. Une séance d’essai à {essai} permet de découvrir le cours avant de s’engager. [Inscrire mon enfant sur la boutique du club](https://boutique.boxingcenter.fr/abonnements#enfants)."
+      },
+      "venir": {
+        "titre": "L’après-midi, rive gauche.",
+        "texte": "Le samedi comme le mercredi, la salle se rejoint en tram T1 jusqu’à l’arrêt Fer à Cheval, à 200 m, ou en métro A jusqu’à Saint-Cyprien – République, à 600 m."
+      },
+      "faq": [
+        { "q": "À partir de quel âge mon enfant peut-il faire de la boxe à Saint-Cyprien ?", "a": "Dès 3 ans, avec le Baby Boxe du samedi à 14h15. Les 7–11 ans et les 12–16 ans ont ensuite leurs propres créneaux le mercredi et le samedi." },
+        { "q": "Les coups sont-ils portés en boxe éducative ?", "a": "Non, ils se portent en touche, sans puissance : c’est la règle fédérale de la boxe éducative, et le club la tient sans négociation." },
+        { "q": "Faut-il acheter du matériel pour l’école de boxe ?", "a": "Le matériel est fourni aux enfants inscrits, et le t-shirt Boxing Center est compris dans l’inscription." },
+        { "q": "Combien coûte l’école de boxe à Saint-Cyprien ?", "a": "{ecole} pour l’année, t-shirt inclus, et {baby} pour le Baby Boxe des 3–6 ans." },
+        { "q": "Qui encadre les enfants ?", "a": "Dadi, à tous les paliers : Baby Boxe, 7–11 ans, 12–16 ans et compétiteurs." }
+      ],
+      "autresIntro": "Pendant que les enfants boxent, les adultes ont leurs propres cours ; chacun a sa page.",
+      "sourcesIntro": "Les paliers, les âges et les horaires de l’école viennent de l’affiche officielle 2026–2027 ; les prix, de la boutique du club.",
+      "sourcesPlus": [
+        { "label": "FFBoxe, boxe éducative", "url": "https://www.ffboxe.com/" },
+        { "label": "Inscriptions enfants, boutique du club", "url": "https://boutique.boxingcenter.fr/abonnements#enfants" }
+      ],
+      "fin": {
+        "titre": ["Le premier cours,", "un samedi après-midi."],
+        "texte": "Une séance d’essai à {essai} suffit pour que votre enfant découvre le tapis et son coach."
+      },
+      "og": { "sur": "ÉCOLE DE BOXE · DÈS 3 ANS", "titre": "Du Baby Boxe au premier combat.", "faits": ["Avec Dadi", "Mer. et sam.", "Matériel fourni"] }
+    },
+
+    "camp": {
+      "slug": "boxing-camp",
+      "sujet": "le Boxing Camp",
+      "publie": "2026-10-13",
+      "maj": "2026-10-13",
+      "titre": "Boxing Camp à Saint-Cyprien, boxe et cardio | Boxing Center",
+      "description": "Boxing Camp à Saint-Cyprien : technique, cardio et sacs dans la même séance, {n} fois par semaine. Format de Brice, conseillé pour débuter sans acquis.",
+      "h1": ["Boxing Camp", "à Saint-Cyprien."],
+      "eyebrow": "Le format maison · tous niveaux",
+      "lead": "Le Boxing Camp de Saint-Cyprien réunit technique de boxe, cardio et travail au sac dans une seule séance, {n} fois par semaine : le lundi à 12h40 et à 18h20, le vendredi à 18h20 et le samedi à 11h00. C’est l’une des disciplines de Brice, et le cours que la salle conseille à qui n’a jamais boxé.",
+      "note": "Aucun acquis demandé : on t’apprend à te tenir, à respirer et à frapper.",
+      "coachs": ["Brice"],
+      "photo": {
+        "src": "/assets/img/sc/lady-technique.webp",
+        "alt": "Deux pratiquantes lancent un direct en même temps, gants noirs, devant une fresque peinte en gris, blanc et jaune",
+        "pos": "50% 35%"
+      },
+      "travail": {
+        "titre": "Trois blocs, une séance.",
+        "intro": "Le Boxing Camp est le format signature du réseau Boxing Center. On y apprend à se tenir, à respirer et à frapper un sac sans se faire mal au poignet, et la condition physique fait partie de la séance.",
+        "points": [
+          { "t": "La technique", "d": "La garde, les coups de base, les déplacements : de quoi boxer proprement, sans choisir encore une discipline." },
+          { "t": "Le cardio", "d": "Des séries courtes qui font monter le souffle ; chacun règle son intensité, personne ne compare." },
+          { "t": "Le sac", "d": "Les enchaînements finissent au sac, là où l’on apprend à frapper fort sans se blesser." }
+        ],
+        "figure": {
+          "src": "/assets/img/sc/kettlebells-rangee.webp",
+          "alt": "Haltères hexagonaux et kettlebells rangés au bord du tapis bleu, avec les sacs de frappe et les fresques au fond",
+          "legende": "Haltères et kettlebells, au bord du tapis"
+        }
+      },
+      "creneaux": {
+        "titre": "{N} camps par semaine.",
+        "intro": "Le lundi, deux camps : 12h40 pour la pause de midi, 18h20 à la sortie du travail. Le vendredi à 18h20 et le samedi à 11h00 complètent la semaine, chacun ouvert à tous les niveaux.",
+        "apres": "Le Boxing Camp parmi tous les cours, jour par jour, sur [le planning](/plannings/#camp)."
+      },
+      "coach": {
+        "titre": "Brice, au tempo.",
+        "texte": [
+          "Le Boxing Camp fait partie des disciplines de Brice, avec l’Hyrox et le cross-training : trois cours où la condition physique compte autant que le geste.",
+          "La salle ne publie pas qui tient chaque horaire ; pour le savoir, un appel au {tel} suffit. [Brice et les autres coachs](/coachs/)."
+        ]
+      },
+      "pourQui": {
+        "titre": "Le cours pour commencer.",
+        "items": [
+          { "tag": "Débutant", "t": "Tu n’as jamais mis de gants", "d": "C’est le point d’entrée que la salle recommande : aucun acquis demandé, et personne ne regarde le nouveau." },
+          { "tag": "Indécis", "t": "Tu hésites entre deux boxes", "d": "Le camp te fait toucher à la technique et au cardio avant de choisir entre l’anglaise et les pieds-poings." },
+          { "tag": "Samedi", "t": "Tu n’es libre que le week-end", "d": "Le camp du samedi commence à 11h00 et dure une heure, en fin de matinée." },
+          { "tag": "Midi", "t": "Tu as une pause courte", "d": "Le lundi à 12h40, le camp tient en quarante minutes, le temps d’une pause déjeuner." }
+        ]
+      },
+      "premiere": {
+        "titre": "Ton premier camp.",
+        "etapes": [
+          { "t": "Prends ta place", "d": "La séance d’essai coûte {essai}, en ligne ; le camp se fait ensuite sans réservation." },
+          { "t": "Habille-toi pour transpirer", "d": "Tenue de sport, baskets propres, serviette et de quoi boire." },
+          { "t": "Annonce-toi", "d": "Dis au coach que tu débutes ; tu avances ensuite à ton rythme, sans comparer." },
+          { "t": "Suis le tempo", "d": "Gants prêtés pour l’essai ; tu fais les séries à ta vitesse, et tu finis au sac." }
+        ]
+      },
+      "materiel": {
+        "titre": "La tenue et les gants du camp, à retirer à l’accueil",
+        "intro": "Le Boxing Camp passe du sac au cardio dans la même séance : il faut une tenue qui laisse bouger et une paire qui tient jusqu’au bout. Commande sur la boutique du club, retrait à l’accueil rue Sainte-Lucie sous 48 h.",
+        "items": [
+          { "produit": "debardeur-entrainement-metal-boxe-training-tank", "texte": "Coupe libre, pensée pour le travail au sac et à la corde, du S au XL." },
+          { "produit": "gants-ergo-90-mbg301k14", "texte": "Une paire de 14 oz en mousse injectée pour les rounds de sac du camp." },
+          { "produit": "bandes-4m-mb120bt", "texte": "Les bandes longues, posées avant l’échauffement et gardées jusqu’à la dernière série." }
+        ],
+        "note": "Prix, tailles et disponibilités se lisent sur chaque fiche de la boutique (relevé du 12 octobre 2026)."
+      },
+      "tarifs": {
+        "titre": "Combien pour le camp.",
+        "texte": "Ta séance d’essai coûte {essai}. Pour revenir chaque semaine, l’offre Rentrée fait passer l’échéance de quatre semaines de {rentreeAvant} à {rentree} par personne ; hors promotion, l’abonnement classique coûte {adulte} par échéance, {etudiant} pour un étudiant. [Toutes les formules](/tarifs/)."
+      },
+      "venir": {
+        "titre": "Un samedi matin, rue Sainte-Lucie.",
+        "texte": "Pour le camp de 11h00, le tram T1 dépose à Fer à Cheval, à 200 m de la porte ; la station de métro Saint-Cyprien – République est à 600 m, sur la ligne A."
+      },
+      "faq": [
+        { "q": "Qu’est-ce que le Boxing Camp ?", "a": "Un cours collectif qui mélange technique de boxe, cardio et travail au sac dans la même séance ; c’est le format signature des clubs Boxing Center." },
+        { "q": "Le Boxing Camp convient-il à un débutant complet ?", "a": "Oui. Il ne demande aucun acquis, et c’est le cours que la salle conseille pour commencer." },
+        { "q": "Combien de temps dure un Boxing Camp ?", "a": "Quarante minutes en semaine, de 12h40 à 13h20 ou de 18h20 à 19h00, et une heure le samedi, de 11h00 à 12h00." },
+        { "q": "Faut-il apporter des gants au Boxing Camp ?", "a": "Pas pour l’essai : la salle prête gants et matériel. Pour la suite, la boutique du club fait venir gants et bandes jusqu’à l’accueil de la salle, comme le détaille la [page boxe anglaise](/activites/boxe-anglaise/#materiel)." },
+        { "q": "Qui encadre le Boxing Camp à Saint-Cyprien ?", "a": "Le Boxing Camp est une discipline de Brice, qui enseigne aussi l’Hyrox et le cross-training. Pour savoir qui tient un horaire précis, le plus simple reste d’appeler la salle au {tel}." }
+      ],
+      "autresIntro": "Quand le camp ne suffit plus, chaque discipline de la salle a sa page.",
+      "sourcesIntro": "Les {n} horaires du camp et leurs durées sont relevés sur l’affiche officielle de la saison 2026–2027.",
+      "sourcesPlus": [],
+      "fin": {
+        "titre": ["Ton premier camp,", "samedi à 11h00."],
+        "texte": "Réserve l’essai à {essai} ; les camps suivants se font sans réservation."
+      },
+      "og": { "sur": "BOXING CAMP · SAINT-CYPRIEN", "titre": "Technique, cardio et sac, en une séance.", "faits": ["Avec Brice", "Tous niveaux", "Lun. · ven. · sam."] }
+    },
+
+    "hyrox": {
+      "slug": "hyrox-cross-training",
+      "sujet": "l’Hyrox et le cross-training",
+      "publie": "2026-10-13",
+      "maj": "2026-10-13",
+      "titre": "Hyrox et cross-training à Toulouse Saint-Cyprien",
+      "description": "Hyrox le mercredi à 18h20, cross-training le lundi et le mercredi à 19h00 à Saint-Cyprien. Discipline de Brice : charges, rameurs, circuits, zéro prérequis.",
+      "h1": ["Hyrox et cross-training", "à Saint-Cyprien."],
+      "eyebrow": "Le moteur · zéro prérequis",
+      "lead": "À Boxing Center Saint-Cyprien, l’Hyrox se travaille le mercredi de 18h20 à 19h00, et le cross-training le lundi et le mercredi de 19h00 à 20h00 ; Brice enseigne les deux. Les cours sont intenses mais sans prérequis, et la zone cross reste en accès libre du lundi au samedi.",
+      "note": "Le mercredi, l’Hyrox de 18h20 et le cross de 19h00 s’enchaînent.",
+      "coachs": ["Brice"],
+      "photo": {
+        "src": "/assets/img/sc/cross-barre.webp",
+        "alt": "Cours de cross-training : une pratiquante lève un médecine-ball au-dessus de la tête, une autre pousse deux haltères, le coach observe près du rameur",
+        "pos": "50% 40%"
+      },
+      "travail": {
+        "titre": "Force, souffle, enchaînements.",
+        "intro": "L’Hyrox est une course de fitness où huit kilomètres de course alternent avec huit ateliers d’exercices fonctionnels. Le cross-training mélange charges, gymnastique et cardio en circuits ; à Saint-Cyprien, les deux se travaillent dans la zone cross, avec son matériel dédié et son matériel olympique.",
+        "points": [
+          { "t": "Les charges", "d": "Kettlebells, haltères, barres et disques : la force se construit avec des charges libres, adaptées à chacun." },
+          { "t": "Le cardio", "d": "Rameurs, tapis de course, vélos : les machines de la salle font monter le souffle entre deux ateliers." },
+          { "t": "La gymnastique", "d": "Anneaux, gainage, poids du corps : le travail qui tient le dos et les épaules sous l’effort." },
+          { "t": "Les circuits", "d": "Plusieurs ateliers enchaînés, à répéter : le format qui prépare autant à une course Hyrox qu’à une reprise de boxe." }
+        ],
+        "figure": {
+          "src": "/assets/img/sc/anneaux.webp",
+          "alt": "Deux anneaux de gymnastique en bois suspendus par des sangles à la structure métallique de la zone cross",
+          "legende": "Les anneaux de la zone cross"
+        },
+        "figure2": {
+          "src": "/assets/img/sc/cross.webp",
+          "alt": "La salle vue depuis la zone cross-training : un rameur Concept2 au premier plan, les sacs et le ring Boxing au fond",
+          "legende": "Du rameur, on voit le ring"
+        }
+      },
+      "creneaux": {
+        "titre": "{N} séances, deux soirs.",
+        "intro": "Le lundi, le cross-training commence à 19h00. Le mercredi, l’Hyrox ouvre la soirée à 18h20 et le cross-training suit à 19h00 : tu peux enchaîner les deux.",
+        "apres": "L’Hyrox et le cross, avec le reste de la semaine, sur [le planning de la salle](/plannings/#hyrox)."
+      },
+      "coach": {
+        "titre": "Brice, côté moteur.",
+        "texte": [
+          "Brice encadre l’Hyrox et le cross-training de Saint-Cyprien, ainsi que le Boxing Camp. La zone cross, c’est son poste.",
+          "Pour savoir qui tient un horaire en particulier, la salle répond au {tel}. [Les coachs et leurs disciplines](/coachs/)."
+        ]
+      },
+      "pourQui": {
+        "titre": "Pour le souffle de tout le monde.",
+        "items": [
+          { "tag": "Boxeur", "t": "Tu boxes déjà", "d": "Le cross et l’Hyrox construisent la condition physique qui sert ensuite dans toutes les disciplines de la salle." },
+          { "tag": "Course Hyrox", "t": "Tu prépares une course", "d": "Le cours du mercredi reprend le format Hyrox, débutant ou confirmé, chacun à son rythme." },
+          { "tag": "Reprise", "t": "Tu reprends le sport", "d": "Intense, mais zéro prérequis : c’est le niveau affiché au planning, et la charge s’adapte à toi." },
+          { "tag": "Accès libre", "t": "Tu t’entraînes seul", "d": "En dehors des cours, la zone cross et la musculation restent ouvertes de 10h00 à 21h30, du lundi au samedi." }
+        ]
+      },
+      "premiere": {
+        "titre": "Ta première séance au moteur.",
+        "etapes": [
+          { "t": "Choisis ta soirée", "d": "Le cross du lundi à 19h00 pour découvrir, ou le mercredi pour l’Hyrox à 18h20 et le cross à la suite." },
+          { "t": "Réserve l’essai", "d": "{essai} sur la boutique du club, pour la discipline de ton choix." },
+          { "t": "Prévois de quoi boire", "d": "Tenue de sport, baskets propres, serviette et une gourde : la séance est intense." },
+          { "t": "Règle ta charge", "d": "Dis au coach que tu débutes : tu choisis tes poids et ton rythme, l’intensité vient avec les semaines." }
+        ]
+      },
+      "materiel": {
+        "titre": "La tenue du circuit, à retirer à l’accueil",
+        "intro": "Pour les circuits Hyrox et cross, la boutique du club propose le débardeur Training Tank : tu le commandes en ligne et tu le retires à l’accueil de Saint-Cyprien sous 48 h.",
+        "items": [
+          { "produit": "debardeur-entrainement-metal-boxe-training-tank", "texte": "Une coupe libre qui laisse les bras passer du rameur aux kettlebells, en S, M, L ou XL." }
+        ],
+        "note": "La fiche donne le prix et les tailles disponibles ; relevé fait le 12/10/2026."
+      },
+      "tarifs": {
+        "titre": "Combien pour le moteur.",
+        "texte": "L’essai coûte {essai}. L’offre Rentrée, à {rentree} par personne l’échéance de quatre semaines, donne accès à toutes les disciplines ; la Saison, à {saison} les douze mois, ouvre aussi les quatre autres clubs du réseau. [Voir les formules](/tarifs/)."
+      },
+      "venir": {
+        "titre": "Venir un lundi soir.",
+        "texte": "Pour le cross de 19h00, descends du tram T1 à Fer à Cheval : la porte est à 200 m. Côté métro A, la station Saint-Cyprien – République est à 600 m."
+      },
+      "faq": [
+        { "q": "Qu’est-ce que l’Hyrox ?", "a": "Une course de fitness qui alterne huit fois un kilomètre de course et un atelier d’exercice fonctionnel. À Saint-Cyprien, le cours Hyrox a lieu le mercredi de 18h20 à 19h00." },
+        { "q": "Cross-training et Hyrox : quelle différence ?", "a": "Le cross-training enchaîne des circuits variés de force, de gymnastique et de cardio ; l’Hyrox prépare le format précis de la course. Brice encadre les deux." },
+        { "q": "Faut-il être en forme pour commencer le cross-training ?", "a": "Non : le planning annonce des cours intenses mais sans prérequis, et chacun règle sa charge et son rythme." },
+        { "q": "Peut-on utiliser la zone cross en dehors des cours ?", "a": "Oui, en accès libre du lundi au samedi, de 10h00 à 21h30, avec la musculation et le cardio." },
+        { "q": "L’Hyrox est-il compris dans l’abonnement ?", "a": "Oui : les deux offres du moment, Rentrée ({rentree}) et Saison ({saison}), couvrent toutes les disciplines adultes de la salle." }
+      ],
+      "autresIntro": "Le souffle construit ici sert sur le ring : voici les cours de boxe de la salle.",
+      "sourcesIntro": "Les {n} horaires et leurs durées sont lus sur l’affiche officielle 2026–2027 ; la définition de l’Hyrox, sur le site de la compétition.",
+      "sourcesPlus": [
+        { "label": "HYROX, le site officiel", "url": "https://hyrox.com/" }
+      ],
+      "fin": {
+        "titre": ["Le moteur se construit", "un mercredi à 18h20."],
+        "texte": "L’essai à {essai} ouvre l’Hyrox comme le cross-training, sans prérequis."
+      },
+      "og": { "sur": "HYROX · CROSS-TRAINING", "titre": "Le moteur, deux soirs par semaine.", "faits": ["Avec Brice", "Zéro prérequis", "Accès libre 6 j/7"] }
+    }
+  }
+}

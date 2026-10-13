@@ -1,0 +1,65 @@
+{
+  "_lire": "Vignettes de partage des pages hors disciplines (13/10/2026) — une carte 1200 x 630 par page, composée par scripts/cartes-pages.py avec le même gabarit que les cartes des disciplines. Avant ce fichier, neuf pages partageaient /assets/img/og.jpg. Chaque photo ne sert qu'une carte. Tout prix ou nombre écrit dans `faits` est contrôlé contre data.js par tests/seo-static.test.mjs : si l'offre change, le test échoue tant que la carte n'est pas refaite.",
+  "pages": {
+    "accueil": {
+      "url": "/", "fichier": "src/pages/index.astro",
+      "photo": "/assets/img/sc/hero-salle.webp", "pos": 46,
+      "alt": "Le plateau Boxing Center Saint-Cyprien : la ligne de sacs, le ring bleu au centre, la cage et les tapis",
+      "og": { "sur": "CLUB DE BOXE · TOULOUSE RIVE GAUCHE", "titre": "Le club de boxe de Saint-Cyprien, six jours sur sept.", "faits": ["Tram T1 à 200 m", "Dès 3 ans", "Essai 10€"] }
+    },
+    "activites": {
+      "url": "/activites/", "fichier": "src/pages/activites/index.astro",
+      "photo": "/assets/img/sc/cross-groupe.webp", "pos": 45,
+      "alt": "Un groupe en plein circuit dans la salle",
+      "og": { "sur": "LES COURS · SAINT-CYPRIEN", "titre": "Sept disciplines, du Baby Boxe au K1.", "faits": ["29 créneaux / semaine", "Midi et soir", "Débutants admis"] }
+    },
+    "coachs": {
+      "url": "/coachs/", "fichier": "src/pages/coachs/index.astro",
+      "photo": "/assets/img/sc/coachs-header.webp", "pos": 40,
+      "alt": "Un coach en casquette et sweat Boxing Center tient le sac de frappe pendant qu’une pratiquante travaille ses coups",
+      "og": { "sur": "LES COACHS · SAINT-CYPRIEN", "titre": "Dadi, Tawee et Brice : ceux qui t’entraînent.", "faits": ["Anglaise · École", "Thaï · K1", "Hyrox · Camp"] }
+    },
+    "contact": {
+      "url": "/contact/", "fichier": "src/pages/contact/index.astro",
+      "photo": "/assets/img/sc/salle-1.webp", "pos": 50,
+      "alt": "Le plateau de la salle vu dans sa longueur",
+      "og": { "sur": "VENIR · 11 RUE SAINTE-LUCIE", "titre": "À 200 m du tram, au cœur de la rive gauche.", "faits": ["Tram T1 Fer à Cheval", "Métro A à 600 m", "Lun–sam 10h–21h30"] }
+    },
+    "galerie": {
+      "url": "/galerie/", "fichier": "src/pages/galerie/index.astro",
+      "photo": "/assets/img/sc/cours-nb.webp", "pos": 45,
+      "alt": "Un cours collectif de la salle, en noir et blanc",
+      "og": { "sur": "LA GALERIE · SAINT-CYPRIEN", "titre": "Le ring, les sacs, les cours : la salle en images.", "faits": ["Photos du club", "Cours en plein travail", "Ring et cage"] }
+    },
+    "la-salle": {
+      "url": "/la-salle/", "fichier": "src/pages/la-salle/index.astro",
+      "photo": "/assets/img/sc/plateau-large.webp", "pos": 50,
+      "alt": "Le plateau de la salle : sacs, tapis et ring",
+      "og": { "sur": "LA SALLE · TOULOUSE RIVE GAUCHE", "titre": "Un ring, une cage et une ligne de sacs.", "faits": ["Ouverte depuis 2022", "Zone cross et muscu", "Lun–sam 10h–21h30"] }
+    },
+    "mentions-legales": {
+      "url": "/mentions-legales/", "fichier": "src/pages/mentions-legales/index.astro",
+      "photo": "/assets/img/sc/charpente-contrejour.webp", "pos": 45,
+      "alt": "Un cours collectif sous la charpente de la salle, pratiquantes en garde",
+      "og": { "sur": "MENTIONS LÉGALES", "titre": "Qui édite ce site, qui l’héberge, d’où viennent les photos.", "faits": ["SAS BOXING CENTER", "Hébergeur Vercel", "Crédits photo"] }
+    },
+    "plannings": {
+      "url": "/plannings/", "fichier": "src/pages/plannings/index.astro",
+      "photo": "/assets/img/sc/sacs-alignes.webp", "pos": 45,
+      "alt": "La ligne de sacs suspendus à la charpente",
+      "og": { "sur": "PLANNING 2026–2027", "titre": "Tous les cours de la semaine, du midi au soir.", "faits": ["29 créneaux", "Du lundi au samedi", "Affiche officielle"] }
+    },
+    "tarifs": {
+      "url": "/tarifs/", "fichier": "src/pages/tarifs/index.astro",
+      "photo": "/assets/img/sc/salle-sacs-tapis.webp", "pos": 50,
+      "alt": "La rangée de sacs et le ring Boxing Center au fond du plateau",
+      "og": { "sur": "TARIFS 2026–2027", "titre": "L’essai à 10€, puis 29€ toutes les 4 semaines.", "faits": ["Sans engagement", "Saison 259€", "École 295€"] }
+    },
+    "seance-offerte": {
+      "url": "/seance-offerte/", "fichier": "src/pages/seance-offerte/index.astro",
+      "photo": "/assets/img/sc/ring-seul.webp", "pos": 50,
+      "alt": "Le ring de boxe anglaise de la salle, devant les fresques de boxeurs",
+      "og": { "sur": "SUR INVITATION · SAINT-CYPRIEN", "titre": "Ta première séance rive gauche est offerte.", "faits": ["Un coach te rappelle", "Tous niveaux", "Tram T1 à 200 m"] }
+    }
+  }
+}

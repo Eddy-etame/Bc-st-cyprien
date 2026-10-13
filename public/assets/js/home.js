@@ -5,9 +5,9 @@
    La home positionne + route : configurateur → /plannings/ · /activites/ ·
    box-plus. Tout est rendu depuis data.js (planning réel rentrée 2026).
    ===================================================================== */
-import { DISCIPLINES, COACHES, LINKS, COACH_TBD_SHORT, COACH_TBD_WHY_SHORT } from "./data.js?v=30";
+import { DISCIPLINES, COACHES, LINKS, COACH_TBD_SHORT, COACH_TBD_WHY_SHORT } from "./data.js?v=31";
 import { STATS } from "./data-home.js?v=23";
-import { SCHEDULE } from "./data.js?v=30";
+import { SCHEDULE } from "./data.js?v=31";
 
 /* Un chiffre de la bande d’accueil est DÉRIVÉ du planning : il ne peut donc
    pas diverger du poster quand le vestiaire publie une grille différente. */
@@ -72,7 +72,7 @@ function renderConfig() {
     <div class="config__cta">
       <a class="btn btn--primary" data-magnetic href="${LINKS.essai}"><span>Essayer · 10€</span></a>
       <a class="btn" data-magnetic href="/plannings/#${d.key}"><span>Voir les créneaux</span></a>
-      <a class="btn config__link" data-magnetic href="/activites/#${d.key}"><span>En détail</span></a>
+      <a class="btn config__link" data-magnetic href="${d.page || "/activites/"}"><span>En détail</span></a>
     </div>`;
   body.innerHTML = sheet(DISCIPLINES[0]);
   /* Il y avait ici un préchauffage `new Image(); im.src = d.img` pour que le

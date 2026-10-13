@@ -1,0 +1,652 @@
+---
+/* =====================================================================
+   SAINT-CYPRIEN · une page par discipline — /activites/<slug>/ (13/10/2026)
+
+   POURQUOI. Le domaine n'avait que huit adresses, et aucune ne répondait à
+   « boxe thaï Saint-Cyprien », « boxe enfant Toulouse rive gauche » ou
+   « Lady Punch Toulouse » : la page /activites/ les cite toutes, n'en
+   explique aucune. Une page par discipline, avec ses vrais créneaux, son
+   coach, son public, sa première séance et ses questions.
+
+   D'OÙ VIENT CHAQUE CHOSE
+     · les FAITS — créneaux, coachs, niveau, prix, adresse — sont lus dans
+       public/assets/js/data.js, après la surcharge du vestiaire : un prix
+       ou un créneau changé au backoffice change aussi ces pages ;
+     · le TEXTE long vit dans src/disciplines-pages.json, une entrée par
+       clé de discipline ; une discipline sans `page` dans data.js n'a pas
+       de page (le grappling : aucun encadrant nommé au planning officiel).
+
+   GARDE-FOUS — le build s'arrête plutôt que de publier faux :
+     · une heure écrite dans le texte qui n'existe pas au planning ;
+     · un coach nommé qui n'encadre plus la discipline dans COACHES ;
+     · un titre de plus de 60 signes, une description hors 80–158 ;
+     · une page déclarée dans data.js sans texte, ou l'inverse.
+
+   Qui tient QUEL créneau n'est jamais écrit : le club ne le publie pas
+   (voir coachs.js). On dit qui enseigne la discipline, pas à quelle heure.
+   ===================================================================== */
+import sharp from "sharp";
+import { existsSync } from "node:fs";
+import { AUTEUR_PRINCIPAL } from "../../../api/_lib/auteurs.js";
+import { DISCIPLINES, SCHEDULE, COACHES, SALLE, LINKS, PROMOS, TARIFS } from "../../../public/assets/js/data.js";
+import { ECOLE_LEVELS } from "../../../public/assets/js/data-activites.js";
+import TEXTES from "../../disciplines-pages.json";
+import PRODUITS from "../../produits.json";
+import PHOTOS_PRODUITS from "../../produits-images.json";
+
+export function getStaticPaths() {
+  const pages = DISCIPLINES.filter((d) => d.page);
+  for (const d of pages) {
+    const t = TEXTES.pages[d.key];
+    if (!t) throw new Error(`[disciplines] ${d.key} déclare ${d.page} dans data.js mais n’a pas de texte dans src/disciplines-pages.json`);
+    if (d.page !== `/activites/${t.slug}/`) throw new Error(`[disciplines] ${d.key} : data.js dit ${d.page}, le texte dit /activites/${t.slug}/`);
+  }
+  for (const cle of Object.keys(TEXTES.pages)) {
+    if (!pages.some((d) => d.key === cle)) throw new Error(`[disciplines] texte « ${cle} » sans discipline déclarée (champ page) dans data.js`);
+  }
+  return pages.map((d) => ({ params: { discipline: TEXTES.pages[d.key].slug }, props: { cle: d.key } }));
+}
+
+const { cle } = Astro.props;
+const BASE = "https://club-boxe-toulouse.com";
+const d = DISCIPLINES.find((x) => x.key === cle);
+const p = TEXTES.pages[cle];
+if (!p.sujet) throw new Error(`[disciplines] ${cle} : champ « sujet » manquant (il titre la FAQ et les autres cours, un H2 propre à la page)`);
+const url = `${BASE}/activites/${p.slug}/`;
+const og = `${BASE}/assets/img/og/activites/${p.slug}.jpg?v=1`;
+
+/* ------------------------------------------------------------------ */
+/* LES CRÉNEAUX — l'affiche officielle 2026–2027 donne la fin de chaque */
+/* plage ; SCHEDULE ne porte que le début. Une plage dont la fin est     */
+/* écrite dans le niveau (« jusqu’à 20h00 ») l'emporte.                  */
+/* ------------------------------------------------------------------ */
+const JOURS = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
+const JOUR_LONG = { Lun: "Lundi", Mar: "Mardi", Mer: "Mercredi", Jeu: "Jeudi", Ven: "Vendredi", Sam: "Samedi" };
+const JOUR_SCHEMA = { Lun: "Monday", Mar: "Tuesday", Mer: "Wednesday", Jeu: "Thursday", Ven: "Friday", Sam: "Saturday" };
+const FIN_AFFICHE = { "11h00": "12h00", "12h40": "13h20", "14h15": "15h00", "15h00": "16h00", "16h00": "17h00", "17h00": "18h15", "18h20": "19h00", "19h00": "20h00", "20h00": "21h15" };
+const minutes = (h) => { const m = String(h).match(/(\d{1,2})h(\d{2})/); return m ? +m[1] * 60 + +m[2] : NaN; };
+const finDe = (s) => (String(s.lvl || "").match(/jusqu.{1,3}(\d{1,2}h\d{2})/) || [])[1] || FIN_AFFICHE[s.time] || "";
+const creneauxDe = (k) => SCHEDULE.filter((s) => s.key === k)
+  .sort((a, b) => JOURS.indexOf(a.day) - JOURS.indexOf(b.day) || minutes(a.time) - minutes(b.time))
+  .map((s) => ({ ...s, fin: finDe(s), niveau: /^jusqu/i.test(s.lvl || "") ? "" : s.lvl }));
+const liste = creneauxDe(cle);
+if (!liste.length) throw new Error(`[disciplines] ${cle} : aucun créneau au planning, pas de page`);
+const n = liste.length;
+const LETTRES = ["Zéro", "Un", "Deux", "Trois", "Quatre", "Cinq", "Six", "Sept", "Huit", "Neuf", "Dix", "Onze", "Douze"];
+
+/* ------------------------------------------------------------------ */
+/* LES PRIX — jamais tapés dans le texte : lus dans PROMOS et TARIFS.    */
+/* ------------------------------------------------------------------ */
+const classique = TARIFS.find((t) => /^les classiques/i.test(t.name));
+const ecole = TARIFS.find((t) => /^école/i.test(t.name));
+const lire = (texte, rx, quoi) => { const m = String(texte || "").match(rx); if (!m) throw new Error(`[disciplines] prix introuvable dans data.js : ${quoi}`); return m[1]; };
+const PRIX = {
+  essai: PROMOS.essai.price,
+  rentree: PROMOS.duo.price,
+  rentreeAvant: PROMOS.duo.was,
+  saison: PROMOS.saisonOffer.price,
+  saisonAvant: PROMOS.saisonOffer.was,
+  adulte: classique?.price,
+  etudiant: lire(classique?.items?.join(" "), /[ée]tudiant\s+([\d,]+\s?€)/i, "abonnement étudiant"),
+  badge: lire(PROMOS.duo.detail, /badge\s+([\d,]+\s?€)/i, "badge"),
+  ecole: ecole?.price,
+  baby: lire(ecole?.feature, /Baby Boxe\s+([\d,]+\s?€)/i, "Baby Boxe"),
+};
+for (const [k, v] of Object.entries(PRIX)) if (!v) throw new Error(`[disciplines] prix manquant : ${k}`);
+
+const VALEURS = { ...PRIX, tel: SALLE.phone, n: String(n), N: LETTRES[n] || String(n) };
+const remplir = (t) => String(t ?? "").replace(/\{(\w+)\}/g, (m, k) => {
+  if (!(k in VALEURS)) throw new Error(`[disciplines] ${cle} : variable inconnue ${m}`);
+  return VALEURS[k];
+});
+
+/* Typographie française : espace insécable devant : ; ? ! » et après « */
+const fine = (s) => s.replace(/ ([:;?!»])/g, " $1").replace(/« /g, "« ");
+const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+/** Texte du JSON → HTML : échappé, liens [ancre](url), typographie. */
+const html = (t) => fine(esc(remplir(t))).replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_m, a, u) => {
+  if (!/^(\/(?!\/)|https:\/\/|tel:)/.test(u)) throw new Error(`[disciplines] lien refusé : ${u}`);
+  return `<a href="${u}">${a}</a>`;
+});
+/** Texte du JSON → texte brut (balisage, attributs) : liens réduits à leur ancre. */
+const brut = (t) => fine(remplir(t)).replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
+
+/* ------------------------------------------------------------------ */
+/* GARDE-FOU DES HEURES — une heure du texte doit exister au planning.  */
+/* Le chapô, la description et l'intro des créneaux doivent citer les   */
+/* heures de CETTE discipline ; le reste, n'importe quelle heure réelle  */
+/* de la salle (planning, ouverture).                                    */
+/* ------------------------------------------------------------------ */
+const heuresDe = (l) => new Set(l.flatMap((s) => [s.time, s.fin]).filter(Boolean));
+const heuresDiscipline = heuresDe(liste);
+const heuresSalle = new Set([...DISCIPLINES.flatMap((x) => [...heuresDe(creneauxDe(x.key))]), ...(SALLE.hours.match(/\d{1,2}h\d{2}/g) || [])]);
+const verifierHeures = (texte, permises, ou) => {
+  for (const h of remplir(texte).match(/\b\d{1,2}h\d{2}\b/g) || []) {
+    if (!permises.has(h)) throw new Error(`[disciplines] ${cle} · ${ou} : « ${h} » n’existe pas au planning de la discipline. Le planning a changé ? Corrige src/disciplines-pages.json.`);
+  }
+};
+verifierHeures(p.lead, heuresDiscipline, "chapô");
+verifierHeures(p.description, heuresDiscipline, "description");
+verifierHeures(p.creneaux.intro, heuresDiscipline, "créneaux");
+verifierHeures(JSON.stringify(p), heuresSalle, "texte");
+
+/* GARDE-FOU DES COACHS — le texte nomme un coach : il doit encadrer la
+   discipline dans COACHES (que le vestiaire peut modifier). */
+const coachs = (p.coachs || []).map((nom) => {
+  const c = COACHES.find((x) => x.name === nom);
+  if (!c || !(c.keys || []).includes(cle)) throw new Error(`[disciplines] ${cle} : « ${nom} » n’encadre pas cette discipline dans COACHES. Mets le texte à jour.`);
+  return c;
+});
+
+/* GARDE-FOU DES MÉTADONNÉES */
+const titre = remplir(p.titre);
+const description = remplir(p.description);
+if (titre.length > 60) throw new Error(`[disciplines] ${cle} : titre de ${titre.length} signes (60 au plus)`);
+if (description.length < 80 || description.length > 158) throw new Error(`[disciplines] ${cle} : description de ${description.length} signes (80 à 158)`);
+
+/* Les photos : leurs vraies dimensions, lues sur le fichier. */
+const dims = async (src) => { const m = await sharp(`public${src}`).metadata(); return { w: m.width, h: m.height }; };
+const hero = { ...p.photo, ...(await dims(p.photo.src)) };
+const figures = await Promise.all([p.travail.figure, p.travail.figure2].filter(Boolean).map(async (f) => ({ ...f, ...(await dims(f.src)) })));
+
+/* Les autres disciplines qui ont leur page — résumé COURT, calculé :
+   une phrase écrite ici se répéterait sur cinq pages. */
+const coachDe = (k) => COACHES.filter((c) => (c.keys || []).includes(k)).map((c) => c.name).join(" · ");
+const voisines = DISCIPLINES.filter((x) => x.page && x.key !== cle && TEXTES.pages[x.key])
+  .map((x) => ({ href: x.page, nom: x.name, tag: x.tag, n: creneauxDe(x.key).length, coach: coachDe(x.key) }));
+
+/* ------------------------------------------------------------------ */
+/* LE PRIX — une offre mise en avant, deux à côté. Côté adulte, c'est   */
+/* l'offre que TARIFS marque `highlight` (la Rentrée) ; côté enfants,    */
+/* l'école à l'année. La remise est CALCULÉE sur les deux prix de        */
+/* data.js, arrondie vers le bas : jamais un pourcentage plus beau que   */
+/* le vrai. Le badge de la Rentrée est dit sous le bouton, pas caché.    */
+/* ------------------------------------------------------------------ */
+const nombre = (s) => parseFloat(String(s).replace(/[^\d,]/g, "").replace(",", "."));
+const remise = (avant, apres) => Math.floor(((nombre(avant) - nombre(apres)) / nombre(avant)) * 100);
+const vedette = TARIFS.find((t) => t.highlight);
+if (cle !== "kids" && (!vedette || vedette.price !== PRIX.rentree)) throw new Error("[disciplines] l’offre mise en avant dans TARIFS n’est plus la Rentrée : revoir le bloc prix");
+const OFFRES = cle === "kids"
+  ? {
+      phare: { nom: "École de boxe, l’année", prix: PRIX.ecole, unite: "l’année · t-shirt du club inclus", ruban: "Inscriptions ouvertes",
+        plus: ["Enfants 7/11 ans et ados 12/16 ans", "Matériel fourni pendant les cours", "Compétiteurs encadrés par Dadi"],
+        cta: "Inscrire mon enfant", href: LINKS.enfants, mention: "Inscription et règlement sur la boutique du club." },
+      minis: [
+        { nom: "Baby Boxe, l’année", prix: PRIX.baby, s: "De 3 à 6 ans, le samedi", cta: "Inscrire au Baby Boxe", href: LINKS.enfants },
+        { nom: "Séance d’essai", prix: PRIX.essai, s: "Pour découvrir le cours", cta: "Réserver l’essai", href: LINKS.essai },
+      ],
+    }
+  : {
+      phare: { nom: PROMOS.duo.name, prix: PRIX.rentree, avant: PRIX.rentreeAvant, unite: "par personne · toutes les 4 semaines", ruban: `−${remise(PRIX.rentreeAvant, PRIX.rentree)} %`,
+        plus: ["Cours illimités, toutes les disciplines", "Sans engagement", `À deux : ${PRIX.rentree} chacun`],
+        cta: `Je profite de l’offre · ${PRIX.rentree}`, href: LINKS.rentree, mention: `Badge d’accès ${PRIX.badge}, facturé 72 h après le début.` },
+      minis: [
+        { nom: "Séance d’essai", prix: PRIX.essai, s: "Toutes disciplines, gants prêtés", cta: "Réserver l’essai", href: LINKS.essai },
+        { nom: "Saison, 12 mois", prix: PRIX.saison, avant: PRIX.saisonAvant, s: "5 clubs · comptant ou 4× sans frais", cta: "Voir la Saison", href: LINKS.saison },
+      ],
+    };
+/** « 29€ » → { n: "29", d: "" } ; « 44,99€ » → { n: "44", d: ",99" } : le chiffre, ses centimes, l'euro à part. */
+const chiffre = (s) => { const m = String(s).match(/^(\d+)(,\d+)?/); return { n: m[1], d: m[2] || "" }; };
+const enMots = (s) => String(s).replace("€", " euros");
+
+/* ------------------------------------------------------------------ */
+/* LE MATÉRIEL — chaque carte lit sa fiche dans src/produits.json et sa  */
+/* photo détourée dans produits-images.json. Une fiche inconnue ou sans  */
+/* photo arrête le build : jamais une carte vide ou une image cassée.    */
+/* ------------------------------------------------------------------ */
+/* Le chemin d'une photo produit. Construit ici plutôt qu'écrit en dur : le
+   filet de scripts/build-avif.mjs lit les « .avif » littéraux des pages, et
+   l'existence de chaque fichier est de toute façon vérifiée juste dessous. */
+const photoProduit = (slug, taille, ext) => `/assets/img/sc/produits/${slug}-${taille}.${ext}`;
+const materiel = (p.materiel?.items || []).map((x) => {
+  const f = PRODUITS.produits[x.produit];
+  if (!f) throw new Error(`[disciplines] ${cle} : produit inconnu « ${x.produit} » — ajoute sa fiche dans src/produits.json`);
+  const ph = PHOTOS_PRODUITS.produits[x.produit];
+  if (!ph || ![360, 720].every((t) => existsSync(`public${photoProduit(x.produit, t, "webp")}`))) throw new Error(`[disciplines] ${cle} : pas de photo pour ${x.produit} — lance python scripts/produits-images.py`);
+  /* L'AVIF n'est servi que là où scripts/build-avif.mjs l'a MESURÉ plus léger
+     (il efface les perdants) : les deux tailles doivent exister. */
+  const avif = [360, 720].every((t) => existsSync(`public${photoProduit(x.produit, t, "avif")}`));
+  return { ...f, slug: x.produit, texte: x.texte, mode: ph.mode, clair: ph.lum > 0.8, jour: f.retrait === "jour", avif };
+});
+const tailleCarte = materiel.length === 1 ? "(min-width: 900px) 460px, 86vw" : "(min-width: 1100px) 340px, (min-width: 700px) 44vw, 78vw";
+for (const x of materiel) x.sizes = tailleCarte;
+
+const niveau = d.niveau;
+const coachNoms = coachs.map((c) => c.name).join(" · ");
+const faq = p.faq.map((f) => ({ q: brut(f.q), aHtml: html(f.a), aTexte: brut(f.a) }));
+const datePublie = new Date(p.publie + "T12:00:00Z").toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric", timeZone: "Europe/Paris" });
+const ancre = (k) => `/plannings/#${k}`;
+
+const SOURCES = [
+  { label: "Affiche du planning 2026–2027", url: "/plannings/" },
+  { label: "Les coachs de Saint-Cyprien", url: "/coachs/" },
+  { label: "Page Saint-Cyprien de boxingcenter.fr", url: "https://boxingcenter.fr/salle-de-sport-toulouse/boxing-center-salle-de-toulouse-saint-cyprien/" },
+  { label: "Offres et abonnements du club", url: LINKS.abos },
+  { label: "OpenStreetMap, distances du 08/10/2026", url: "https://www.openstreetmap.org/?mlat=43.592848&mlon=1.433022#map=17/43.592848/1.433022" },
+  ...(p.sourcesPlus || []),
+];
+
+/* ------------------------------------------------------------------ */
+/* LES DONNÉES STRUCTURÉES — ce que la page montre, rien de plus.       */
+/* Aucun Product ni Offer : le matériel renvoie à la boutique du club.   */
+/* ------------------------------------------------------------------ */
+const ld = {
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "WebSite", "@id": `${BASE}/#website`, url: `${BASE}/`, name: "Boxing Center Saint-Cyprien", inLanguage: "fr-FR", publisher: { "@id": `${BASE}/#salle` } },
+    {
+      "@type": "WebPage", "@id": `${url}#webpage`, url, name: titre, description, inLanguage: "fr-FR",
+      isPartOf: { "@id": `${BASE}/#website` }, about: { "@id": `${url}#service` }, breadcrumb: { "@id": `${url}#breadcrumb` },
+      primaryImageOfPage: { "@id": `${url}#primaryimage` }, datePublished: p.publie, dateModified: p.maj,
+    },
+    { "@type": "ImageObject", "@id": `${url}#primaryimage`, url: `${BASE}${hero.src}`, contentUrl: `${BASE}${hero.src}`, width: hero.w, height: hero.h, caption: hero.alt, inLanguage: "fr-FR" },
+    { "@type": "BreadcrumbList", "@id": `${url}#breadcrumb`, itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Accueil", item: `${BASE}/` },
+      { "@type": "ListItem", position: 2, name: "Activités", item: `${BASE}/activites/` },
+      { "@type": "ListItem", position: 3, name: d.name, item: url },
+    ] },
+    {
+      "@type": "Service", "@id": `${url}#service`, name: `${d.name} à Toulouse Saint-Cyprien`, serviceType: d.name, description,
+      url, image: `${BASE}${hero.src}`, provider: { "@id": `${BASE}/#salle` },
+      areaServed: [{ "@type": "Place", name: "Saint-Cyprien, Toulouse" }, { "@type": "City", name: "Toulouse" }],
+      hoursAvailable: liste.map((s) => ({ "@type": "OpeningHoursSpecification", dayOfWeek: `https://schema.org/${JOUR_SCHEMA[s.day]}`, opens: s.time.replace("h", ":"), ...(s.fin ? { closes: s.fin.replace("h", ":") } : {}), description: s.name })),
+    },
+    { "@type": "FAQPage", "@id": `${url}#faq`, mainEntity: faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.aTexte } })) },
+  ],
+};
+const ldJson = JSON.stringify(ld).replace(/</g, "\\u003c");
+---
+<!doctype html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{titre}</title>
+  <meta name="description" content={description} />
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/space-grotesk-latin.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin />
+  <link rel="preload" as="image" href={hero.src} fetchpriority="high" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="author" content={AUTEUR_PRINCIPAL.nom} />
+  <meta name="geo.region" content="FR-31" />
+  <meta name="geo.placename" content="Toulouse — Saint-Cyprien" />
+  <link rel="canonical" href={url} />
+  <meta name="theme-color" content="#0b0d14" />
+  <link rel="icon" href="/favicon-16.png?i=3" type="image/png" sizes="16x16" />
+  <link rel="icon" href="/favicon.png?i=3" type="image/png" sizes="32x32" />
+  <link rel="icon" href="/favicon-48.png?i=3" type="image/png" sizes="48x48" />
+  <link rel="icon" href="/favicon-96.png?i=3" type="image/png" sizes="96x96" />
+  <link rel="shortcut icon" href="/favicon.png?i=3" />
+  <link rel="icon" href="/favicon-192.png?i=3" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?i=3" sizes="180x180" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <!-- Open Graph : une vignette composée pour CETTE page (scripts/cartes-disciplines.py) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Boxing Center Saint-Cyprien" />
+  <meta property="og:title" content={titre} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={url} />
+  <meta property="og:image" content={og} />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content={`${d.name} à Boxing Center Saint-Cyprien — ${hero.alt}`} />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={titre} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={og} />
+
+  <link rel="stylesheet" href="/assets/css/base.css?v=41" />
+  <link rel="stylesheet" href="/assets/css/roulette.css?v=22" />
+  <link rel="stylesheet" href="/assets/css/photos.css?v=22" />
+  <link rel="stylesheet" href="/assets/css/discipline.css?v=3" />
+
+  <script is:inline type="application/ld+json" set:html={ldJson}></script>
+
+  <script is:inline>document.documentElement.classList.add('fx');</script>
+</head>
+
+<body data-page="discipline" data-discipline={cle}>
+  <a class="sr-only" href="#main">Aller au contenu</a>
+  <div id="nav"></div>
+  <div id="drawer"></div>
+
+  <main id="main">
+
+    <!-- ========================= EN-TÊTE ========================== -->
+    <header class="phero dp-hero" aria-labelledby="t-h1">
+      <img class="phero__bg" src={hero.src} width={hero.w} height={hero.h} alt={hero.alt} style={`object-position:${hero.pos || "50% 45%"}`} loading="eager" fetchpriority="high" decoding="async" />
+      <div class="phero__spot" aria-hidden="true"></div>
+      <div class="wrap">
+        <nav class="dp-ariane" aria-label="Fil d’Ariane"><a href="/">Accueil</a><span aria-hidden="true">/</span><a href="/activites/">Activités</a><span aria-hidden="true">/</span><span aria-current="page">{d.name}</span></nav>
+        <p class="eyebrow" data-reveal>{p.eyebrow}</p>
+        <h1 class="display" id="t-h1"><span class="reveal-mask"><span>{p.h1[0]}</span></span><span class="reveal-mask"><span class="tint">{p.h1[1]}</span></span></h1>
+        <p class="lead dp-lead" data-reveal set:html={html(p.lead)}></p>
+        <ul class="dp-puces" data-reveal aria-label="L’essentiel">
+          <li>{niveau}</li>
+          <li>Coach · {coachNoms}</li>
+          <li>{n} créneaux / semaine</li>
+          <li>Tram T1 · Fer à Cheval</li>
+        </ul>
+        <div class="dp-actions" data-reveal>
+          <a class="btn btn--primary" data-magnetic href={LINKS.essai}><span>Réserver l’essai · {PRIX.essai}</span></a>
+          <a class="btn dp-btn-clair" data-magnetic href={ancre(cle)}><span>Voir sur le planning</span></a>
+        </div>
+        <p class="phero__note" data-reveal set:html={html(p.note)}></p>
+      </div>
+    </header>
+
+    <!-- ===================== CE QUE TU TRAVAILLES ===================== -->
+    <section class="section dp-travail" aria-labelledby="t-travail">
+      <div class="wrap dp-split">
+        <div class="dp-split__txt">
+          <p class="eyebrow" data-reveal>Ce que tu travailles</p>
+          <h2 class="display dp-h2" id="t-travail"><span class="reveal-mask"><span>{p.travail.titre}</span></span></h2>
+          <p class="dp-intro" data-reveal set:html={html(p.travail.intro)}></p>
+        </div>
+        {figures[0] && (
+          <figure class="dp-fig">
+            <div class="ph ph--3x2 ph--reveal"><img src={figures[0].src} width={figures[0].w} height={figures[0].h} alt={figures[0].alt} loading="lazy" decoding="async" /></div>
+            <figcaption>{figures[0].legende}</figcaption>
+          </figure>
+        )}
+      </div>
+      <div class="wrap">
+        {cle === "kids" ? (
+          <ol class="dp-points dp-points--ecole" data-reveal-group>
+            {ECOLE_LEVELS.map((l, i) => (
+              <li class="dp-point">
+                <span class="dp-num">{String(i + 1).padStart(2, "0")}</span>
+                <span class="dp-age">{l.age}</span>
+                <h3>{l.name}</h3>
+                <p class="dp-quand">{l.jours}</p>
+                <p>{l.d}</p>
+              </li>
+            ))}
+          </ol>
+        ) : (
+          <ol class="dp-points" data-reveal-group>
+            {p.travail.points.map((pt, i) => (
+              <li class="dp-point">
+                <span class="dp-num">{String(i + 1).padStart(2, "0")}</span>
+                <h3>{pt.t}</h3>
+                <p set:html={html(pt.d)}></p>
+              </li>
+            ))}
+          </ol>
+        )}
+        {figures[1] && (
+          <figure class="dp-fig dp-fig--large">
+            <div class="ph ph--21x9 ph--reveal"><img src={figures[1].src} width={figures[1].w} height={figures[1].h} alt={figures[1].alt} loading="lazy" decoding="async" /></div>
+            <figcaption>{figures[1].legende}</figcaption>
+          </figure>
+        )}
+      </div>
+    </section>
+
+    <!-- ========================= LES CRÉNEAUX ========================= -->
+    <section class="section band-blue dp-creneaux" id="creneaux" aria-labelledby="t-creneaux">
+      <div class="wrap">
+        <p class="eyebrow" data-reveal>Les créneaux</p>
+        <h2 class="display dp-h2" id="t-creneaux"><span class="reveal-mask"><span>{remplir(p.creneaux.titre)}</span></span></h2>
+        <p class="dp-intro" data-reveal set:html={html(p.creneaux.intro)}></p>
+        <p class="dp-live mono" id="dp-live" aria-live="polite" hidden></p>
+        <ol class="dp-semaine" data-reveal-group>
+          {JOURS.filter((j) => liste.some((s) => s.day === j)).map((j) => (
+            <li class="dp-jour" data-jour={JOURS.indexOf(j)}>
+              <h3 class="dp-jour__nom">{JOUR_LONG[j]}</h3>
+              <ul>
+                {liste.filter((s) => s.day === j).map((s) => (
+                  <li data-start={s.time}>
+                    <time>{s.time}{s.fin ? ` – ${s.fin}` : ""}</time>
+                    <p class="dp-cours">{s.name}</p>
+                    {s.niveau && <p class="dp-niv">{s.niveau}</p>}
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ol>
+        <p class="dp-plus" data-reveal set:html={html(p.creneaux.apres)}></p>
+      </div>
+    </section>
+
+    <!-- ========================= QUI ENCADRE ========================== -->
+    <section class="section dp-coach" aria-labelledby="t-coach">
+      <div class="wrap dp-coach__grille">
+        <div>
+          <p class="eyebrow" data-reveal>Qui encadre</p>
+          <h2 class="display dp-h2" id="t-coach"><span class="reveal-mask"><span>{p.coach.titre}</span></span></h2>
+        </div>
+        <div class="dp-coach__txt" data-reveal>
+          <p class="dp-coach__nom"><span class="mono">Coach</span> {coachNoms} <span class="mono">· {coachs.map((c) => c.role).join(" · ")}</span></p>
+          {p.coach.texte.map((t) => <p set:html={html(t)}></p>)}
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================== POUR QUI =========================== -->
+    <section class="section dp-pourqui" aria-labelledby="t-pourqui">
+      <div class="wrap">
+        <p class="eyebrow" data-reveal>Pour qui</p>
+        <h2 class="display dp-h2" id="t-pourqui"><span class="reveal-mask"><span>{p.pourQui.titre}</span></span></h2>
+        <div class="dp-cartes" data-reveal-group>
+          {p.pourQui.items.map((x) => (
+            <article class="dp-carte">
+              <span class="dp-tag">{x.tag}</span>
+              <h3>{x.t}</h3>
+              <p set:html={html(x.d)}></p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== LA PREMIÈRE SÉANCE ======================= -->
+    <section class="section dp-premiere" aria-labelledby="t-premiere">
+      <div class="wrap">
+        <p class="eyebrow" data-reveal>Ta première fois</p>
+        <h2 class="display dp-h2" id="t-premiere"><span class="reveal-mask"><span>{p.premiere.titre}</span></span></h2>
+        <ol class="dp-etapes" data-reveal-group>
+          {p.premiere.etapes.map((x) => (
+            <li><b>{x.t}</b><span set:html={html(x.d)}></span></li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    {materiel.length > 0 && (
+      <!-- ====== LE MATÉRIEL — la vitrine de la boutique du club ======
+           La photo d'abord : chaque article détouré, posé sur la même scène.
+           Aucun prix, aucun balisage Product : le prix et le stock vivent
+           sur la fiche de la boutique, où mène chaque carte. -->
+      <section class="section dp-materiel" id="materiel" aria-labelledby="t-materiel">
+        <div class="wrap">
+          <p class="eyebrow" data-reveal>Le matériel</p>
+          <h2 class="display dp-h2 dp-h2--long" id="t-materiel"><span class="reveal-mask"><span>{p.materiel.titre}</span></span></h2>
+          <p class="dp-intro" data-reveal set:html={html(p.materiel.intro)}></p>
+          <ul class="dp-vitrine" data-n={materiel.length} data-reveal-group>
+            {materiel.map((x) => (
+              <li class={`dp-prod${x.jour ? " dp-prod--jour" : ""}`}>
+                <div class={`dp-prod__scene dp-prod__scene--${x.mode}${x.clair ? " dp-prod__scene--clair" : ""}`}>
+                  <picture>
+                    {x.avif && <source type="image/avif" srcset={`${photoProduit(x.slug, 360, "avif")} 360w, ${photoProduit(x.slug, 720, "avif")} 720w`} sizes={x.sizes} />}
+                    <img src={photoProduit(x.slug, 360, "webp")} srcset={`${photoProduit(x.slug, 360, "webp")} 360w, ${photoProduit(x.slug, 720, "webp")} 720w`} sizes={x.sizes} width="720" height="720" alt={x.alt} loading="lazy" decoding="async" />
+                  </picture>
+                  <span class="dp-prod__retrait mono">{x.jour ? "Retrait le jour même" : "À l’accueil sous 48 h"}</span>
+                </div>
+                <div class="dp-prod__txt">
+                  <p class="dp-prod__famille mono">{x.famille}</p>
+                  <h3><a href={x.url}>{x.nom}</a></h3>
+                  <p set:html={html(x.texte)}></p>
+                  <span class="dp-prod__go mono" aria-hidden="true">Voir la fiche <i>→</i></span>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <p class="dp-plus dp-plus--note" data-reveal set:html={html(p.materiel.note)}></p>
+        </div>
+      </section>
+    )}
+
+    <!-- ============================ LE PRIX ===========================
+         Sur la bande noire, le registre du « coup de poing » (base.css) :
+         une offre mise en avant, son prix qui tombe de l'ancien au nouveau
+         quand la carte entre à l'écran, et deux offres à côté. Au repos
+         (sans JavaScript, ou mouvement réduit), le prix final est écrit. -->
+    <section class="section band-dark dp-tarifs" id="prix" aria-labelledby="t-tarifs" data-sans-cadran>
+      <div class="dp-tarifs__halo" aria-hidden="true"></div>
+      <div class="wrap dp-split dp-split--prix">
+        <div class="dp-split__txt">
+          <p class="eyebrow" data-reveal>Le prix</p>
+          <h2 class="display dp-h2" id="t-tarifs"><span class="reveal-mask"><span>{p.tarifs.titre}</span></span></h2>
+          <p class="dp-intro" data-reveal set:html={html(p.tarifs.texte)}></p>
+        </div>
+        <div class="dp-offres">
+          <article class="dp-offre" data-reveal aria-labelledby="t-offre">
+            <p class="dp-offre__ruban mono">{OFFRES.phare.ruban}</p>
+            <h3 class="dp-offre__nom" id="t-offre">{OFFRES.phare.nom}</h3>
+            <p class="dp-offre__prix" aria-label={`${enMots(OFFRES.phare.prix)}${OFFRES.phare.avant ? ` au lieu de ${enMots(OFFRES.phare.avant)}` : ""}`}>
+              <span class="dp-offre__n" aria-hidden="true" data-compte={nombre(OFFRES.phare.prix)} data-depuis={OFFRES.phare.avant ? nombre(OFFRES.phare.avant) : 0}>{chiffre(OFFRES.phare.prix).n}{chiffre(OFFRES.phare.prix).d}</span><span class="dp-offre__eur" aria-hidden="true">€</span>
+              {OFFRES.phare.avant && <s class="dp-offre__avant" aria-hidden="true">{OFFRES.phare.avant}</s>}
+            </p>
+            <p class="dp-offre__unite">{OFFRES.phare.unite}</p>
+            <ul class="dp-offre__plus">
+              {OFFRES.phare.plus.map((t) => (<li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M4 10.5l3.6 3.6L16 5.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg><span>{t}</span></li>))}
+            </ul>
+            <a class="btn btn--primary dp-offre__cta" data-magnetic href={OFFRES.phare.href}><span>{OFFRES.phare.cta}</span></a>
+            <p class="dp-offre__mention">{OFFRES.phare.mention}</p>
+          </article>
+          <ul class="dp-minis" data-reveal-group>
+            {OFFRES.minis.map((m) => (
+              <li>
+                <a class="dp-mini" href={m.href}>
+                  <span class="dp-mini__nom mono">{m.nom}</span>
+                  <span class="dp-mini__prix">{m.prix}{m.avant && <s><span class="sr-only">au lieu de </span>{m.avant}</s>}</span>
+                  <span class="dp-mini__s">{m.s}</span>
+                  <span class="dp-mini__go">{m.cta} <i aria-hidden="true">→</i></span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ VENIR ============================= -->
+    <section class="section dp-venir" aria-labelledby="t-venir">
+      <div class="wrap dp-split">
+        <div class="dp-split__txt">
+          <p class="eyebrow" data-reveal>Venir</p>
+          <h2 class="display dp-h2" id="t-venir"><span class="reveal-mask"><span>{p.venir.titre}</span></span></h2>
+          <p class="dp-intro" data-reveal set:html={html(p.venir.texte)}></p>
+          <p class="dp-plus" data-reveal><a href="/contact/">Plan et accès</a></p>
+        </div>
+        <dl class="dp-infos" data-reveal>
+          <div><dt>Adresse</dt><dd>{SALLE.address.full}</dd></div>
+          <div><dt>Tram T1</dt><dd>Fer à Cheval, 200 m</dd></div>
+          <div><dt>Métro A</dt><dd>Saint-Cyprien – République, 600 m</dd></div>
+          <div><dt>Ouverture</dt><dd>{SALLE.hours}</dd></div>
+          <div><dt>Téléphone</dt><dd><a href={`tel:${SALLE.phoneHref}`}>{SALLE.phone}</a></dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ========================== QUESTIONS =========================== -->
+    <section class="section dp-faq" aria-labelledby="t-faq">
+      <div class="wrap">
+        <p class="eyebrow" data-reveal>Questions</p>
+        <h2 class="display dp-h2" id="t-faq"><span class="reveal-mask"><span>{`Tes questions sur ${p.sujet}.`}</span></span></h2>
+        <div class="faq dp-faq__liste">
+          {faq.map((f) => (<details><summary>{f.q}</summary><div class="faq__a" set:html={f.aHtml}></div></details>))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== LES AUTRES DISCIPLINES ==================== -->
+    <section class="section band-blue dp-autres" aria-labelledby="t-autres">
+      <div class="wrap">
+        <p class="eyebrow" data-reveal>Les autres cours</p>
+        <h2 class="display dp-h2" id="t-autres"><span class="reveal-mask"><span>{`Après ${p.sujet}, les autres cours.`}</span></span></h2>
+        <p class="dp-intro" data-reveal set:html={html(p.autresIntro)}></p>
+        <ul class="dp-voisines" data-reveal-group>
+          {voisines.map((v) => (
+            <li><a class="dp-voisine" href={v.href}><span class="dp-tag">{v.tag}</span><h3>{v.nom}</h3><p class="dp-voisine__s">{v.n} créneaux · {v.coach}</p><span class="dp-voisine__go" aria-hidden="true">→</span></a></li>
+          ))}
+        </ul>
+        <p class="dp-plus" data-reveal><a href="/activites/">Toutes les activités</a></p>
+      </div>
+    </section>
+
+    <!-- ============================ SOURCES =========================== -->
+    <section class="section dp-sources" aria-labelledby="t-sources">
+      <div class="wrap">
+        <p class="eyebrow" data-reveal>Sources</p>
+        <h2 class="display dp-h2 dp-h2--petit" id="t-sources">Les sources de cette page.</h2>
+        <p class="dp-intro" set:html={html(p.sourcesIntro)}></p>
+        <ul class="dp-sources__liste">
+          {SOURCES.map((s) => (<li><a href={s.url}>{s.label}</a></li>))}
+        </ul>
+        <p class="dp-date mono">Publié le <time datetime={p.publie}>{datePublie}</time></p>
+      </div>
+    </section>
+
+    <!-- ========================= LE GONG ========================== -->
+    <section class="gong" aria-labelledby="t-fin">
+      <span class="gong__mark" aria-hidden="true"><b>Boxing Center</b><i>Saint-Cyprien</i></span>
+      <div class="gong__inner">
+        <p class="eyebrow" style="justify-content:center" data-reveal>11 rue Sainte-Lucie</p>
+        <h2 class="display" id="t-fin" style="font-size:clamp(2rem,5vw,3.6rem)"><span class="reveal-mask"><span>{p.fin.titre[0]}</span></span><span class="reveal-mask"><span class="tint">{p.fin.titre[1]}</span></span></h2>
+        <p class="lead" data-reveal set:html={html(p.fin.texte)}></p>
+        <div class="gong__cta" data-reveal>
+          <a class="btn btn--primary" data-magnetic href={LINKS.essai}><span>Réserver l’essai · {PRIX.essai}</span></a>
+          <a class="btn" data-magnetic href={LINKS.rentree}><span>L’offre Rentrée · {PRIX.rentree}</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer"><!-- Repli HTML visible : site.js le remplace par le pied complet.
+       Sans JavaScript, visiteurs et robots reçoivent les mêmes liens réseau. -->
+    <nav class="maillage" aria-label="Le réseau Boxing Center">
+      <a href="/">Accueil</a>
+      <a href="/la-salle/">La salle</a>
+      <a href="/activites/">Activités</a>
+      <a href="/activites/boxe-anglaise/">Cours de boxe anglaise</a>
+      <a href="/activites/boxe-thai-k1/">Cours de boxe thaï et K1</a>
+      <a href="/activites/lady-punch/">Lady Punch, boxe pour femmes</a>
+      <a href="/activites/boxe-educative/">Boxe éducative pour enfants</a>
+      <a href="/activites/boxing-camp/">Boxing Camp</a>
+      <a href="/activites/hyrox-cross-training/">Hyrox et cross-training</a>
+      <a href="/coachs/">Coachs</a>
+      <a href="/galerie/">Galerie</a>
+      <a href="/plannings/">Planning</a>
+      <a href="/tarifs/">Tarifs</a>
+      <a href="/contact/">Contact</a>
+      <a href="https://boxingcenter.fr/">Boxing Center — le groupe</a>
+      <a href="https://boutique.boxingcenter.fr/">La boutique Boxing Center</a>
+      <a href="https://boxe-toulouse.com/">Boxing Center Minimes</a>
+      <a href="https://boxing-center-portet.fr/">Boxing Center Portet-sur-Garonne</a>
+      <a href="https://clubmma.fr/">Boxing Center États-Unis</a>
+      <a href="https://mmatoulouse.com/">Boxing Center Ramonville</a>
+      <a href="https://www.instagram.com/boxingcentertoulouse/">Instagram Boxing Center</a>
+      <a href="https://www.facebook.com/BoxingCenterToulouse/">Facebook Boxing Center</a>
+      <a href="/mentions-legales/">Mentions légales</a>
+    </nav>
+  </div>
+
+  <!-- chatbot — pointe vers du réel (tél de la salle) -->
+  <a class="chatbot" href="tel:+33562244682" aria-label="Une question ? Appelle la salle Boxing Center Saint-Cyprien">
+    <span class="chatbot__icon" aria-hidden="true"><svg width="36" height="36" viewBox="0 0 24 24" fill="none"><mask id="bc-m-st-cyprien" maskUnits="userSpaceOnUse"><rect width="24" height="24" fill="#fff"/><path d="M7.4 9.7 11.0 9.9 11.0 11.7 7.4 11.4Z" fill="#000"/><path d="M16.6 9.7 13.0 9.9 13.0 11.7 16.6 11.4Z" fill="#000"/><rect x="10.1" y="14.8" width="3.8" height="1.4" rx=".65" fill="#000"/></mask><path d="M3.6 8.4H2.1v4.2h1.5ZM20.4 8.4h1.5v4.2h-1.5Z" fill="currentColor"/><path d="M4.4 12.9a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z" fill="currentColor"/><path d="M19.6 12.9a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z" fill="currentColor"/><path d="M12 1.2C7 1.2 3.6 4.3 3.6 8.6v6c0 1.9 1 3.3 2.7 4.1l.9 3.1a.55.55 0 0 1 .8.63l3.6-2.2c.13.01.27.02.4.02 4.6 0 8.4-2.3 8.4-5.9v-6c0-4.3-3.4-7.4-8.4-7.4Z" fill="currentColor" mask="url(#bc-m-st-cyprien)"/></svg></span>
+    <span class="chatbot__label">Une question&nbsp;? Appelle la salle</span>
+  </a>
+
+  <!-- Libs d’animation, auto-hébergées et regroupées (gsap + ScrollTrigger + Lenis). -->
+  <script is:inline defer src="/assets/js/vendor.min.js?v=22"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=29"></script>
+  <script is:inline type="module" src="/assets/js/discipline.js?v=3"></script>
+</body>
+</html>

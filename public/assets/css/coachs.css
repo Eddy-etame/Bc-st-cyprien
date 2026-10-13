@@ -139,3 +139,22 @@
 /* Le coach est dans la moitie DROITE du cliche d'en-tete, le titre occupe
    la gauche : on decale le cadrage pour qu'aucun des deux ne soit rogne. */
 body[data-page="coachs"] .phero__bg { object-position: 62% 38%; }
+
+
+/* ------------- CE QUE CHACUN T'APPREND (13/10/2026) ---------------
+   Une carte par coach : son nom, ses disciplines, sa phrase pour un
+   premier cours, et les liens vers les pages de ses cours. Même grammaire
+   que le reste du site — panneau clair, filet, soulèvement au survol. */
+.coach-cours { border-top: 1px solid var(--line); }
+.coach-cours__titre { margin-top: 1rem; font-size: clamp(2rem, 1.3rem + 3.2vw, 3.8rem); }
+.coach-cours__lead { margin-top: 1.1rem; max-width: 64ch; color: var(--ink-soft); line-height: 1.65; }
+.coach-cours__grille { display: grid; gap: .9rem; margin-top: clamp(1.8rem, 3.6vw, 2.6rem); grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
+.coach-cours__carte { padding: 1.5rem 1.4rem 1.4rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper-2); display: grid; gap: .6rem; align-content: start; transition: transform .35s var(--ease-out), box-shadow .35s var(--ease), border-color .3s; }
+.coach-cours__carte:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: rgba(var(--spark-rgb), .5); }
+.coach-cours__carte h3 { font-family: var(--f-display); font-weight: 700; font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem); letter-spacing: -.02em; color: var(--ink); }
+.coach-cours__role { font: 600 .72rem/1.4 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--spark); }
+.coach-cours__note { color: var(--ink-soft); line-height: 1.6; font-size: var(--step--1); }
+.coach-cours__liens { display: grid; gap: .1rem; margin-top: .3rem; border-top: 1px solid var(--line); padding-top: .6rem; }
+.coach-cours__liens a { display: inline-flex; align-items: center; gap: .5ch; min-height: 44px; color: var(--spark); font-weight: 600; font-size: var(--step--1); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .22em; }
+.coach-cours__liens a:hover { text-decoration-thickness: 2px; }
+@media (prefers-reduced-motion: reduce) { .coach-cours__carte { transition: none; } .coach-cours__carte:hover { transform: none; } }

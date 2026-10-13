@@ -1,0 +1,83 @@
+{
+  "_lire": "Le matériel de la boutique du club (box-plus) qui se retire à l'accueil de Saint-Cyprien — relevé du 12/10/2026 sur les fiches. Une entrée par fiche : nom affiché, lien, ce que montre la photo (alt), délai de retrait. Les photos détourées viennent de scripts/produits-images.py ; une fiche sans photo ici arrête le build. Aucun prix : il vit sur la fiche.",
+  "releve": "2026-10-12",
+  "produits": {
+    "gants-boxe-blade-noir-blanc": {
+      "nom": "Gants de boxe Blade, noir et blanc",
+      "famille": "Gants",
+      "url": "https://boutique.boxingcenter.fr/materiel/produit/gants-boxe-blade-noir-blanc",
+      "alt": "Paire de gants de boxe Metal Boxe Blade, noirs à manchette blanche",
+      "retrait": "jour"
+    },
+    "gants-ergo-90-mbg301k14": {
+      "nom": "Gants ERGO 90, 14 oz",
+      "famille": "Gants",
+      "url": "https://boutique.boxingcenter.fr/materiel/produit/gants-ergo-90-mbg301k14",
+      "alt": "Gants de boxe Metal Boxe ERGO 90 en 14 oz, tels que les montre la fiche de la boutique",
+      "retrait": "48h"
+    },
+    "gants-sparring-mbgan010n14-16oz": {
+      "nom": "Gants Sparring, 16 oz",
+      "famille": "Gants",
+      "url": "https://boutique.boxingcenter.fr/materiel/produit/gants-sparring-mbgan010n14-16oz",
+      "alt": "Paire de gants de sparring Metal Boxe 16 oz, noirs à manchette rouge",
+      "retrait": "48h"
+    },
+    "bandes-4m-mb120bt": {
+      "nom": "Bandes tricolores, 4 m",
+      "famille": "Bandes",
+      "url": "https://boutique.boxingcenter.fr/materiel/produit/bandes-4m-mb120bt",
+      "alt": "Paire de bandes de boxe Metal Boxe rouge, blanc et bleu de 4 mètres, roulées",
+      "retrait": "48h"
+    },
+    "bandes-2m50-mb120t": {
+      "nom": "Bandes tricolores, 2,50 m",
+      "famille": "Bandes",
+      "url": "https://boutique.boxingcenter.fr/materiel/produit/bandes-2m50-mb120t",
+      "alt": "Paire de bandes de boxe Metal Boxe rouge, blanc et bleu de 2,50 mètres, roulées",
+      "retrait": "48h"
+    },
+    "protege-dents-adulte-mbpro458srt": {
+      "nom": "Protège-dents adulte",
+      "famille": "Protection",
+      "url": "https://boutique.boxingcenter.fr/materiel/produit/protege-dents-adulte-mbpro458srt",
+      "alt": "Protège-dents adulte Metal Boxe translucide",
+      "retrait": "48h"
+    },
+    "gants-boxe-enfant-one": {
+      "nom": "Gants de boxe enfant ONE",
+      "famille": "Gants",
+      "url": "https://boutique.boxingcenter.fr/materiel/produit/gants-boxe-enfant-one",
+      "alt": "Paire de gants de boxe enfant Metal Boxe ONE, noirs",
+      "retrait": "48h"
+    },
+    "ensemble-enfants-short-debardeur": {
+      "nom": "Ensemble enfant, short et débardeur",
+      "famille": "Tenue",
+      "url": "https://boutique.boxingcenter.fr/materiel/produit/ensemble-enfants-short-debardeur",
+      "alt": "Ensemble de boxe enfant Metal Boxe sur mannequin : débardeur et short noirs à bandes rouges et blanches",
+      "retrait": "48h"
+    },
+    "debardeur-entrainement-metal-boxe-training-tank": {
+      "nom": "Débardeur Training Tank",
+      "famille": "Tenue",
+      "url": "https://boutique.boxingcenter.fr/materiel/produit/debardeur-entrainement-metal-boxe-training-tank",
+      "alt": "Boxeur en garde portant le débardeur d’entraînement Metal Boxe Training Tank, beige",
+      "retrait": "48h"
+    },
+    "protege-dents-enfants-mb459jrw": {
+      "nom": "Protège-dents enfant",
+      "famille": "Protection",
+      "url": "https://boutique.boxingcenter.fr/materiel/produit/protege-dents-enfants-mb459jrw",
+      "alt": "Protège-dents enfant Metal Boxe, bleu et blanc",
+      "retrait": "48h"
+    },
+    "protege-tibias-pieds-coton-mb153wm": {
+      "nom": "Protège-tibias et pieds, coton",
+      "famille": "Protection",
+      "url": "https://boutique.boxingcenter.fr/materiel/produit/protege-tibias-pieds-coton-mb153wm",
+      "alt": "Paire de protège-tibias et pieds Metal Boxe en coton blanc",
+      "retrait": "48h"
+    }
+  }
+}

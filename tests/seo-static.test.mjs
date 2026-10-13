@@ -1,7 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
+import { pathToFileURL } from "node:url";
 
 const root = process.cwd();
 const routes = ["", "la-salle", "activites", "coachs", "galerie", "plannings", "tarifs", "contact"];
@@ -80,11 +81,25 @@ test("aucune note Google (ordre d’Eddy du 08/10/2026) — ni affichée, ni bal
   assert.doesNotMatch(joined, /aggregateRating|ratingValue|\b[1-5],[0-9] ?\/ ?5\b|\b\d+ avis\b|2026-08-06/i);
 });
 
-test("le sitemap contient huit URL et des images locales uniques qui existent", () => {
+test("le sitemap porte exactement les pages indexables du site, et des images locales uniques qui existent", () => {
   const xml = readFileSync(join(root, "dist", "sitemap.xml"), "utf8");
-  const pages = [...xml.matchAll(/<url>\s*<loc>/g)];
+  const locs = [...xml.matchAll(/<url>\s*<loc>https:\/\/club-boxe-toulouse\.com(\/[^<]*)<\/loc>/g)].map((m) => m[1]);
   const images = [...xml.matchAll(/<image:loc>https:\/\/club-boxe-toulouse\.com(\/[^<]+)<\/image:loc>/g)].map((m) => m[1]);
-  assert.equal(pages.length, 8);
+  /* 13/10/2026 : le site a grandi (pages de discipline, mentions légales). Plus de compte en dur :
+     chaque page de dist qui se laisse indexer est au plan, et le plan ne contient rien d'autre. */
+  const indexables = [];
+  const parcours = (dir, base) => {
+    for (const nom of readdirSync(dir, { withFileTypes: true })) {
+      if (nom.isDirectory()) parcours(join(dir, nom.name), `${base}${nom.name}/`);
+      else if (nom.name === "index.html") {
+        const html = readFileSync(join(dir, nom.name), "utf8");
+        if (!/<meta name="robots" content="[^"]*noindex/i.test(html)) indexables.push(base);
+      }
+    }
+  };
+  parcours(join(root, "dist"), "/");
+  assert.deepEqual([...locs].sort(), indexables.sort(), "le plan du site et les pages indexables ne coïncident pas");
+  assert.ok(locs.length >= 8);
   assert.ok(images.length >= 20);
   assert.equal(new Set(images).size, images.length, "le sitemap répète encore des images entre pages");
   for (const image of images) {
@@ -98,3 +113,37 @@ test("robots.txt autorise précisément MCP tout en gardant les autres API priv�
   assert.ok((robots.match(/^Disallow: \/api\/$/gm) || []).length >= 3);
 });
 
+
+test("chaque page indexable a SA vignette de partage, qui existe, et aucune n’est partagée", async () => {
+  /* Règle d'Eddy : jamais deux vignettes identiques. Les pages de discipline
+     ont leur carte (cartes-disciplines.py), les autres la leur (cartes-pages.py). */
+  const pages = readdirSync(join(root, "dist", "activites"), { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => `activites/${d.name}`);
+  const vues = new Map();
+  for (const route of [...routes, "mentions-legales", ...pages]) {
+    const html = htmlFor(route);
+    if (/<meta name="robots" content="noindex/i.test(html)) continue;
+    const og = (html.match(/<meta property="og:image" content="([^"]+)"/) || [])[1];
+    assert.ok(og, `/${route}/ n’a pas de og:image`);
+    assert.equal((html.match(/<meta name="twitter:image" content="([^"]+)"/) || [])[1], og, `/${route}/ : twitter:image ≠ og:image`);
+    assert.ok(/<meta property="og:image:alt" content="[^"]{20,}"/.test(html), `/${route}/ : og:image:alt manquant`);
+    const fichier = og.replace("https://club-boxe-toulouse.com", "").replace(/\?.*$/, "");
+    assert.ok(existsSync(join(root, "public", fichier)), `/${route}/ : ${fichier} n’existe pas`);
+    assert.ok(!vues.has(fichier), `/${route}/ et /${vues.get(fichier)}/ partagent ${fichier}`);
+    vues.set(fichier, route);
+  }
+});
+
+test("les prix et les nombres écrits sur les vignettes sont ceux de data.js", async () => {
+  /* Une vignette est une image : si l'offre change, rien ne la met à jour.
+     Le test échoue tant qu'elle n'est pas refaite (python scripts/cartes-pages.py). */
+  const { PROMOS, TARIFS, SCHEDULE } = await import(pathToFileURL(join(root, "public", "assets", "js", "data.js")).href);
+  const prix = new Set(JSON.stringify({ PROMOS, TARIFS }).match(/\d+(?:,\d+)?€/g));
+  const cartes = JSON.parse(readFileSync(join(root, "src", "cartes-pages.json"), "utf8")).pages;
+  const disciplines = JSON.parse(readFileSync(join(root, "src", "disciplines-pages.json"), "utf8")).pages;
+  const textes = [...Object.values(cartes), ...Object.values(disciplines)].flatMap((c) => [c.og.titre, ...c.og.faits]);
+  for (const t of textes) {
+    for (const p of t.match(/\d+(?:,\d+)?€/g) || []) assert.ok(prix.has(p), `vignette « ${t} » : ${p} n’est plus un prix de data.js`);
+    const n = t.match(/^(\d+) créneaux/);
+    if (n) assert.equal(+n[1], SCHEDULE.length, `vignette « ${t} » : le planning compte ${SCHEDULE.length} créneaux`);
+  }
+});

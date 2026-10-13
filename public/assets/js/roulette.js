@@ -19,7 +19,7 @@
    regarde ne doit pas faire tourner un GPU. Et en `prefers-reduced-motion`
    il n’y a plus de tour du tout — l’offre est échangée, point.
    ===================================================================== */
-import { ROULETTE } from "./data.js?v=30";
+import { ROULETTE } from "./data.js?v=31";
 
 const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -183,12 +183,19 @@ export function mountRoulette() {
       { threshold: 0, rootMargin: "-48% 0px 0px 0px" }).observe(hero);
     if (foot) new IntersectionObserver(([e]) => { atFoot = e.isIntersecting; sync(); },
       { threshold: 0, rootMargin: "0px 0px -12% 0px" }).observe(foot);
-    if (ancres.length) {
+    /* Même règle pour une section qui affiche déjà l'offre à sa façon
+       (`data-sans-cadran` : le bloc prix des pages de discipline). Les
+       zones visibles sont comptées une à une : avec plusieurs zones, un
+       lot d'entrées ne contient que celles qui ont changé. */
+    const zones = [...ancres, ...document.querySelectorAll("[data-sans-cadran]")];
+    if (zones.length) {
+      const vues = new Set();
       const io = new IntersectionObserver((es) => {
-        surInline = es.some((e) => e.isIntersecting);
+        es.forEach((e) => (e.isIntersecting ? vues.add(e.target) : vues.delete(e.target)));
+        surInline = vues.size > 0;
         sync();
       }, { threshold: 0 });
-      ancres.forEach((a) => io.observe(a));
+      zones.forEach((a) => io.observe(a));
     }
     sync();
   } else {

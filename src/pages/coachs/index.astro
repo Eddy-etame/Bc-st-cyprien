@@ -1,5 +1,23 @@
 ---
 import { AUTEUR_PRINCIPAL } from "../../../api/_lib/auteurs.js";
+import { COACHES, DISCIPLINES } from "../../../public/assets/js/data.js";
+/* CE QUE CHACUN T’APPREND (13/10/2026) — la page ne disait que des noms et
+   des rôles : 154 mots en ligne. On ajoute, en HTML lu par tous les robots,
+   la note de chaque coach (data.js, jamais affichée jusqu’ici) et le lien vers
+   la page de chacune de ses disciplines. Toujours QUOI, jamais QUAND. */
+const LETTRES = ["zéro", "une", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf", "dix"];
+const PAGE_LIBELLE = {
+  anglaise: "La boxe anglaise : horaires et niveaux",
+  lady: "Le Lady Punch, cours entre femmes",
+  kids: "L’école de boxe, de 3 à 16 ans",
+  thai: "La boxe thaï et le K1",
+  hyrox: "L’Hyrox et le cross-training",
+  camp: "Le Boxing Camp, pour débuter",
+};
+const coursDe = (c) => (c.keys || []).map((k) => DISCIPLINES.find((d) => d.key === k)).filter((d) => d && d.page);
+const couvertes = new Set(COACHES.flatMap((c) => c.keys || [])).size;
+const nCoachs = LETTRES[COACHES.length] || String(COACHES.length);
+const phraseCouverture = `${nCoachs.charAt(0).toUpperCase()}${nCoachs.slice(1)} coachs encadrent ${LETTRES[couvertes] || couvertes} des ${LETTRES[DISCIPLINES.length] || DISCIPLINES.length} disciplines du planning. Sous chaque nom, ses mots pour un premier cours et le lien vers la page de chacun de ses cours : créneaux, public, première séance.`;
 ---
 <!doctype html>
 <html lang="fr" data-theme="dark">
@@ -31,17 +49,18 @@ import { AUTEUR_PRINCIPAL } from "../../../api/_lib/auteurs.js";
   <meta property="og:title" content="Les coachs | Boxing Center Saint-Cyprien" />
   <meta property="og:description" content="Dadi : anglaise, Lady Punch, école. Tawee au pieds-poings, Brice au moteur. Rive gauche, Toulouse." />
   <meta property="og:url" content="https://club-boxe-toulouse.com/coachs/" />
-  <meta property="og:image" content="https://club-boxe-toulouse.com/assets/img/og.jpg?v=2" />
+  <meta property="og:image" content="https://club-boxe-toulouse.com/assets/img/og/pages/coachs.jpg?v=1" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="La salle Boxing Center Saint-Cyprien — 11 rue Sainte-Lucie, Toulouse" />
+  <meta property="og:image:alt" content="Dadi, Tawee et Brice : ceux qui t’entraînent — Un coach en casquette et sweat Boxing Center tient le sac de frappe pendant qu’une pratiquante travaille ses coups" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Les coachs | Boxing Center Saint-Cyprien" />
   <meta name="twitter:description" content="Dadi : anglaise, Lady Punch, école. Tawee au pieds-poings, Brice au moteur. Rive gauche, Toulouse." />
-  <meta name="twitter:image" content="https://club-boxe-toulouse.com/assets/img/og.jpg?v=2" />
+  <meta name="twitter:image" content="https://club-boxe-toulouse.com/assets/img/og/pages/coachs.jpg?v=1" />
+  <meta name="twitter:image:alt" content="Dadi, Tawee et Brice : ceux qui t’entraînent — Un coach en casquette et sweat Boxing Center tient le sac de frappe pendant qu’une pratiquante travaille ses coups" />
 
   <!-- Les cartes coachs sont injectées par coachs.js dans un #roster vide :
        leurs photos échappent au preload scanner. On précharge la première. -->
@@ -51,7 +70,7 @@ import { AUTEUR_PRINCIPAL } from "../../../api/_lib/auteurs.js";
   <link rel="stylesheet" href="/assets/css/roulette.css?v=22" />
   <link rel="stylesheet" href="/assets/css/photos.css?v=22" />
   <link rel="stylesheet" href="/assets/css/home.css?v=39" />
-  <link rel="stylesheet" href="/assets/css/coachs.css?v=26" />
+  <link rel="stylesheet" href="/assets/css/coachs.css?v=28" />
 
   <!-- SEO/GEO — graphe JSON-LD unifié (organisation · salle · site · page · image ·
        fil d’Ariane · coachs). Faits réels uniquement — miroir de data.js. -->
@@ -429,6 +448,30 @@ import { AUTEUR_PRINCIPAL } from "../../../api/_lib/auteurs.js";
       </div>
     </section>
 
+    <!-- ================== CE QUE CHACUN T’APPREND ===================
+         Cuit dans le HTML : visible sans JavaScript, lu par tous les robots. -->
+    <section class="section coach-cours" aria-labelledby="t-coach-cours">
+      <div class="wrap">
+        <span class="eyebrow" data-reveal>Leurs cours</span>
+        <h2 class="display coach-cours__titre" id="t-coach-cours"><span class="reveal-mask"><span>Ce que chacun</span></span><span class="reveal-mask"><span class="tint">t’apprend.</span></span></h2>
+        <p class="coach-cours__lead" data-reveal>{phraseCouverture}</p>
+        <div class="coach-cours__grille" data-reveal-group>
+          {COACHES.map((c) => (
+            <article class="coach-cours__carte">
+              <h3>{c.name}</h3>
+              <p class="coach-cours__role">{c.role}</p>
+              {c.note && <p class="coach-cours__note">{c.note}</p>}
+              {coursDe(c).length > 0 && (
+                <ul class="coach-cours__liens">
+                  {coursDe(c).map((d) => (<li><a href={d.page}>{PAGE_LIBELLE[d.key] || d.name} <span aria-hidden="true">→</span></a></li>))}
+                </ul>
+              )}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <!-- ============== LE CADRAN DES OFFRES (roulette.js) =============
          Posé ici : l’encadrement a convaincu, on donne le prix. Le module remplit `[data-roulette]` ; sans
          JavaScript, il n'y a rien — donc rien de cassé. -->
@@ -459,6 +502,12 @@ import { AUTEUR_PRINCIPAL } from "../../../api/_lib/auteurs.js";
       <a href="/">Accueil</a>
       <a href="/la-salle/">La salle</a>
       <a href="/activites/">Activités</a>
+      <a href="/activites/boxe-anglaise/">Cours de boxe anglaise</a>
+      <a href="/activites/boxe-thai-k1/">Cours de boxe thaï et K1</a>
+      <a href="/activites/lady-punch/">Lady Punch, boxe pour femmes</a>
+      <a href="/activites/boxe-educative/">Boxe éducative pour enfants</a>
+      <a href="/activites/boxing-camp/">Boxing Camp</a>
+      <a href="/activites/hyrox-cross-training/">Hyrox et cross-training</a>
       <a href="/coachs/">Coachs</a>
       <a href="/galerie/">Galerie</a>
       <a href="/plannings/">Planning</a>
@@ -485,7 +534,7 @@ import { AUTEUR_PRINCIPAL } from "../../../api/_lib/auteurs.js";
   <!-- Libs d’animation, auto-hébergées et regroupées (gsap + ScrollTrigger + Lenis) :
        une seule requête same-origin au lieu de trois vers un CDN tiers. -->
   <script is:inline defer src="/assets/js/vendor.min.js?v=22"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=26"></script>
-  <script is:inline type="module" src="/assets/js/coachs.js?v=27"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=29"></script>
+  <script is:inline type="module" src="/assets/js/coachs.js?v=28"></script>
 </body>
 </html>
