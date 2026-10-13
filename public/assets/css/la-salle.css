@@ -13,6 +13,9 @@
 .ecrin__prose { display: grid; gap: 1.1rem; }
 .ecrin__prose p { color: var(--ink-soft); font-size: var(--step-0); line-height: 1.7; max-width: 60ch; }
 .ecrin__prose strong { color: var(--spark); font-weight: 600; }
+/* Un lien dans le fil du texte : souligné fin, discret, mais reconnaissable comme un lien. */
+.ecrin__prose a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-decoration-color: rgba(var(--ink-rgb), .3); text-underline-offset: .22em; transition: text-decoration-color .25s; }
+.ecrin__prose a:hover, .ecrin__prose a:focus-visible { text-decoration-color: currentColor; }
 
 /* ====================== LA VISITE — postes ====================== */
 .visite-sec__title { margin-top: 1rem; font-size: clamp(1.9rem,1rem+2.6vw,3.2rem); }
