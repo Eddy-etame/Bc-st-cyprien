@@ -44,10 +44,10 @@ import { AUTEUR_PRINCIPAL } from "../../../api/_lib/auteurs.js";
   <meta name="twitter:image" content="https://club-boxe-toulouse.com/assets/img/og/pages/galerie.jpg?v=1" />
   <meta name="twitter:image:alt" content="Le ring, les sacs, les cours : la salle en images — Un cours collectif de la salle, en noir et blanc" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=41" />
-  <link rel="stylesheet" href="/assets/css/roulette.css?v=22" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=42" />
+  <link rel="stylesheet" href="/assets/css/roulette.css?v=23" />
   <link rel="stylesheet" href="/assets/css/photos.css?v=23" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=39" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=40" />
   <link rel="stylesheet" href="/assets/css/galerie.css?v=22" />
 
   <!-- SEO/GEO — graphe JSON-LD unifié (organisation · salle · site · page · image ·
@@ -209,35 +209,19 @@ import { AUTEUR_PRINCIPAL } from "../../../api/_lib/auteurs.js";
           "itemListElement": [
             {
               "@type": "Offer",
-              "name": "Offre Rentrée",
-              "price": "29",
-              "priceCurrency": "EUR",
-              "description": "29€ par personne et par échéance de 4 semaines, sans engagement ; conditions complètes sur la boutique, dont badge à 34,99€.",
-              "url": "https://boutique.boxingcenter.fr/offre/29"
-            },
-            {
-              "@type": "Offer",
-              "name": "Offre Saison",
-              "price": "259",
-              "priceCurrency": "EUR",
-              "description": "259€ les 12 mois au lieu de 400€, comptant ou en 4× sans frais ; accès libre aux 5 clubs.",
-              "url": "https://boutique.boxingcenter.fr/offre/259"
-            },
-            {
-              "@type": "Offer",
-              "name": "Abonnement adulte, échéance de 4 semaines",
-              "price": "44.99",
-              "priceCurrency": "EUR",
-              "description": "44,99€ par échéance de 4 semaines. Badge d’accès 34,99€ en sus selon les CGV, sauf condition contraire à la souscription.",
-              "url": "https://boutique.boxingcenter.fr/abonnements#prelevement"
-            },
-            {
-              "@type": "Offer",
-              "name": "Abonnement étudiant, échéance de 4 semaines",
+              "name": "Abonnement étudiant sans engagement, échéance de 4 semaines",
               "price": "36.99",
               "priceCurrency": "EUR",
-              "description": "36,99€ par échéance de 4 semaines pour les étudiants. Badge d’accès 34,99€ en sus selon les CGV, sauf condition contraire à la souscription.",
-              "url": "https://boutique.boxingcenter.fr/abonnements#prelevement"
+              "description": "Carte étudiante requise. Cours illimités et accès aux 5 salles ; badge d’accès 34,99 € en plus, prélevé après l’inscription.",
+              "url": "https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines"
+            },
+            {
+              "@type": "Offer",
+              "name": "Abonnement adulte sans engagement, échéance de 4 semaines",
+              "price": "44.99",
+              "priceCurrency": "EUR",
+              "description": "Renouvelable, sans engagement. Cours illimités et accès aux 5 salles ; badge d’accès 34,99 € en plus, prélevé après l’inscription.",
+              "url": "https://boutique.boxingcenter.fr/inscription?product=44-99-4-semaines"
             },
             {
               "@type": "Offer",
@@ -508,7 +492,7 @@ import { AUTEUR_PRINCIPAL } from "../../../api/_lib/auteurs.js";
         <h2 class="display" style="font-size:clamp(2rem,5vw,3.6rem)"><span class="reveal-mask"><span>Viens l’entendre</span></span><span class="reveal-mask"><span class="tint">en vrai.</span></span></h2>
         <p class="lead" data-reveal>Le bruit des sacs ne tient pas dans une image. Dix euros pour l’entendre pour de vrai.</p>
         <div class="gong__cta" data-reveal>
-          <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/offre/29"><span>Voir l’offre Rentrée — 29€</span></a><a class="btn btn--ghost" data-magnetic href="https://boutique.boxingcenter.fr/seance-essai?utm_source=site&utm_medium=cta&utm_campaign=st-cyprien"><span>Essayer une séance · 10€</span></a>
+          <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines"><span>Étudiant · 36,99€</span></a><a class="btn" data-magnetic href="https://boutique.boxingcenter.fr/inscription?product=44-99-4-semaines"><span>Adulte · 44,99€</span></a><a class="btn btn--ghost" data-magnetic href="https://boutique.boxingcenter.fr/seance-essai?utm_source=site&utm_medium=cta&utm_campaign=st-cyprien"><span>Essayer une séance · 10€</span></a>
           <a class="btn" data-magnetic href="/la-salle/"><span>Visiter la salle</span></a>
         </div>
       </div>
@@ -554,7 +538,7 @@ import { AUTEUR_PRINCIPAL } from "../../../api/_lib/auteurs.js";
   <!-- Libs d’animation, auto-hébergées et regroupées (gsap + ScrollTrigger + Lenis) :
        une seule requête same-origin au lieu de trois vers un CDN tiers. -->
   <script is:inline defer src="/assets/js/vendor.min.js?v=22"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=30"></script>
-  <script is:inline type="module" src="/assets/js/galerie.js?v=25"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=31"></script>
+  <script is:inline type="module" src="/assets/js/galerie.js?v=26"></script>
 </body>
 </html>

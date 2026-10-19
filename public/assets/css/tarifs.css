@@ -25,7 +25,10 @@
 @keyframes tf-respire { from { opacity: .7; scale: .94; } to { opacity: 1; scale: 1.05; } }
 
 .promos { display: grid; gap: .9rem; grid-template-columns: 1fr; align-items: stretch; }
-@media (min-width: 760px){ .promos { grid-template-columns: 1.25fr 1fr; } }
+/* Deux cartes de même poids : l'étudiant à gauche, l'adulte à droite. */
+@media (min-width: 760px){ .promos { grid-template-columns: 1fr 1fr; } }
+/* Ce qui vaut pour les deux abonnements, dit une seule fois dessous. */
+.promos__note { grid-column: 1 / -1; margin-top: .3rem; font: 500 .8rem/1.55 var(--f-mono); letter-spacing: .02em; color: var(--muted); }
 .promo {
   position: relative; isolation: isolate; display: flex; flex-direction: column; gap: .9rem;
   padding: clamp(1.7rem,3vw,2.4rem); border-radius: calc(var(--radius) + 8px);

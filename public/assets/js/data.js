@@ -157,18 +157,16 @@ export const SALLE = {
 
 /* Conversion — tout l’essai pointe vers box-plus (liens vérifiés 2026-07-12) */
 export const LINKS = {
-  /* Le bouton permanent de l'en-tête vend l'OFFRE, pas l'essai (ordre
-     d'Eddy, 21/08) : le clic toujours visible doit porter le produit qui
-     fait entrer, pas le moins cher. La destination est celle qu'il a
-     donnée telle quelle — /offre/29, sans UTM, comme les autres liens
-     d'offre déjà en place sur le site. */
-  rentree: "https://boutique.boxingcenter.fr/offre/29",
-  saison: "https://boutique.boxingcenter.fr/offre/259",
+  /* Les deux inscriptions directes, relevées sur /api/products de la
+     boutique le 19/10/2026 : chaque bouton ouvre le formulaire de SA
+     formule, sans détour par la liste. Sans UTM, comme les autres liens
+     d'abonnement du site. */
+  etudiant: "https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines",
+  adulte: "https://boutique.boxingcenter.fr/inscription?product=44-99-4-semaines",
   essai: "https://boutique.boxingcenter.fr/seance-essai",          // CTA principal de CHAQUE page (10€)
   abos: "https://boutique.boxingcenter.fr/abonnements",
-  promos: "https://boutique.boxingcenter.fr/offres-speciales", // Rentrée / Saison
-  prelevement: "https://boutique.boxingcenter.fr/abonnements#prelevement", // les classiques au mois
-  comptant: "https://boutique.boxingcenter.fr/abonnements",
+  prelevement: "https://boutique.boxingcenter.fr/abonnements#prelevement", // les formules sans engagement
+  comptant: "https://boutique.boxingcenter.fr/abonnements#comptant",       // 3, 6 ou 12 mois réglés d'avance
   enfants: "https://boutique.boxingcenter.fr/abonnements#enfants",
   coachings: "https://boutique.boxingcenter.fr/coachings",
   materiel: "https://boutique.boxingcenter.fr/materiel",
@@ -394,9 +392,11 @@ export const COACHES = [
 ];
 
 /* ------------------------------------------------------------------ *
- *  LES OFFRES — bloc daté (source : posters officiels + OFFRES_RENTREE_2026).
- *  Jamais en dur dans les pages ; toujours via PROMOS + SEASON. RÈGLE :
- *  l’offre s’écrit TOUJOURS "29€ par personne et toutes les 4 semaines".
+ *  LES OFFRES MISES EN AVANT (boutique, /api/products, 19/10/2026).
+ *  Jamais en dur dans les pages ; toujours via PROMOS. ORDRE : l’étudiant
+ *  d’abord, l’adulte ensuite — partout où deux offres sont montrées.
+ *  Ce sont des PRIX, pas des remises : aucun `was`, aucun prix barré.
+ *  L’étudiant s’écrit TOUJOURS avec « carte étudiante requise ».
  * ------------------------------------------------------------------ */
 export const PROMOS = {
   saison: SEASON,
@@ -408,29 +408,30 @@ export const PROMOS = {
     cta: "Réserver mon essai",
     href: LINKS.essai,
   },
-  duo: {
-    name: "Offre Rentrée",
-    price: "29€",
-    unit: "par personne",
-    was: "44,99€",
-    detail: "Toutes les 4 semaines, cours illimités, sans engagement. Encore mieux à deux — 29€ chacun. Première échéance par carte, IBAN pour la suite, coordonnées d’un proche requises ; badge 34,99€ facturé après 72 h.",
-    cta: "Je profite de l’offre — 29€",
-    href: LINKS.rentree,
+  etudiant: {
+    name: "Étudiant",
+    price: "36,99€",
+    unit: "toutes les 4 semaines",
+    carte: "carte étudiante requise",
+    detail: "Tarif sur justificatif, sans engagement. Cours à volonté et salle ouverte de 10h à 21h30, dans les 5 clubs du réseau.",
+    cta: "Je m’inscris en étudiant",
+    href: LINKS.etudiant,
   },
-  saisonOffer: {
-    name: "Offre Saison",
-    price: "259€",
-    unit: "les 12 mois",
-    was: "400€",
-    detail: "Boxe anglaise, MMA, boxe pieds-poings, Lady Punch, Boxing Fitness. Payable comptant ou en 4× sans frais, accès libre aux 5 clubs du réseau pendant 12 mois.",
-    cta: "Je prends ma saison",
-    href: LINKS.saison,
+  adulte: {
+    name: "Adulte",
+    price: "44,99€",
+    unit: "toutes les 4 semaines",
+    detail: "Reconduit de lui-même toutes les 4 semaines, arrêtable quand tu veux. Tous les cours, et les cinq salles de 10h à 21h30.",
+    cta: "Je m’inscris",
+    href: LINKS.adulte,
   },
+  /* Ce qui vaut pour les deux, dit une fois sous les cartes. */
+  modalites: "Carte bancaire pour ouvrir, prélèvement ensuite. Badge d’accès 34,99€ : il tombe quelques jours après ton inscription.",
 };
 
 
 /* ------------------------------------------------------------------ *
- *  LE CADRAN DES OFFRES — ce qui tourne dans la roulette promo.
+ *  LE CADRAN DES OFFRES — ce qui tourne dans le cadran des abonnements.
  *
  *  Une liste À PART, et c’est voulu : TARIFS est la grille complète (on la
  *  LIT, posément, sur /tarifs/) ; le cadran est une VITRINE — les DEUX
@@ -439,78 +440,66 @@ export const PROMOS = {
  *  personne ne suit, soit une grille amputée. Le staff change un prix
  *  ici, le cadran suit sur les 10 pages.
  *
- *  Deux publics, deux cases : celui qui teste quatre semaines et celui
- *  qui prend l’année. Ajouter une troisième case (l’école, l’essai) se
- *  fait en ajoutant un bloc — le module en accepte n’importe quel nombre.
+ *  Deux publics, deux cases, dans CET ordre : l’étudiant, puis l’adulte.
+ *  Ajouter une troisième case (l’école, l’essai) se fait en ajoutant un
+ *  bloc — le module en accepte n’importe quel nombre.
  *
- *  `was` / `cut` sont FACULTATIFS et n’existent que si la remise est
- *  réelle (la saison : 259€ au lieu de 400€, c’est le poster officiel).
- *  Sans eux, le cadran affiche le détail de l’offre — jamais un faux prix
- *  barré : la règle du site est de n’inventer ni prix ni promesse.
+ *  Pas de `was`, pas de `cut` : ce sont les prix de tous les jours, et le
+ *  module n’affiche plus de prix barré du tout. La règle du site est de
+ *  n’inventer ni prix ni promesse.
  * ------------------------------------------------------------------ */
 export const ROULETTE = [
   {
-    key: "rentree",
-    price: "29€",
-    name: "L’offre Rentrée",
-    /* La règle du bloc PROMOS s’applique ici aussi : prix par personne
-       et périodicité de quatre semaines toujours explicites. */
-    detail: "par personne · toutes les 4 semaines · illimité",
-    was: "44,99€",
-    /* 29 au lieu de 44,99 : −35,5 %, arrondi vers le bas. L'ancien « -34% »
-       avait été calculé sur 44 €, pas sur 44,99 € (corrigé le 13/10/2026). */
-    cut: "-35%",
-    href: LINKS.rentree,
-    cta: "Je profite de l’offre",
+    key: "etudiant",
+    price: "36,99€",
+    name: "L’abonnement Étudiant",
+    detail: "carte étudiante requise · toutes les 4 semaines · sans engagement",
+    href: LINKS.etudiant,
+    cta: "Je m’inscris en étudiant",
   },
   {
-    key: "saison",
-    price: "259€",
-    name: "La saison complète",
-    detail: "les 12 mois · comptant ou 4× sans frais",
-    was: "400€",
-    cut: "-35%",
-    href: LINKS.saison,
-    cta: "Je prends ma saison",
+    key: "adulte",
+    price: "44,99€",
+    name: "L’abonnement Adulte",
+    detail: "toutes les 4 semaines · cours illimités · les 5 salles",
+    href: LINKS.adulte,
+    cta: "Je m’inscris",
   },
 ];
 
 export const TARIFS = [
+  /* L’ÉCHELLE, dans l’ordre de vente : étudiant, adulte, comptant, école,
+     essai. Les deux premières lignes sont les cartes du haut de /tarifs/ ;
+     `highlight` marque celle que les pages de discipline mettent en avant. */
   {
-    name: "Offre Rentrée",
-    price: "29€",
-    was: "44,99€",
-    period: "par personne · toutes les 4 semaines",
-    feature: "Cours illimités, toutes disciplines — encore mieux à deux",
-    items: ["29€ par personne toutes les 4 semaines (au lieu de 44,99€)", "Toutes les disciplines · sans engagement", "1re échéance par carte, puis IBAN · coordonnées d’un proche requises · badge 34,99€ facturé 72 h après le début"],
-    cta: "Je profite de l’offre — 29€",
-    href: LINKS.rentree,
-    highlight: true,
-  },
-  {
-    name: SEASON_LABEL,
-    price: "259€",
-    was: "400€",
-    period: "les 12 mois",
-    feature: "Accès libre aux 5 clubs · payable en 4× — moins de 5€ par semaine",
-    items: ["Toutes les disciplines adultes", "Comptant, ou 4× 64,75€ sans frais", "Accès libre aux 5 salles du réseau pendant 12 mois"],
-    cta: "Je prends ma saison",
-    href: LINKS.saison,
+    name: "Étudiant",
+    price: "36,99€",
+    period: "les 4 semaines · carte étudiante requise",
+    feature: "Sans engagement, sur justificatif étudiant",
+    items: ["Carte étudiante requise", "Cours illimités, accès libre de 10h à 21h30", "Les 5 salles du réseau Boxing Center"],
+    cta: "Je m’inscris en étudiant",
+    href: LINKS.etudiant,
     highlight: false,
   },
-  /* LES CLASSIQUES — le barreau manquant de l’échelle. Entre la promo de
-     rentrée et l’école, il y a le tarif de tous les jours : celui qu’on paie
-     quand la promo est passée. Il s’écrit SANS prix barré (ce n’est pas une
-     offre, c’est le prix), et il part vers l’ancre #prelevement de la
-     boutique — c’est là que la formule au mois se règle. */
   {
-    name: "Les classiques",
+    name: "Adulte",
     price: "44,99€",
-    period: "/ 4 semaines · adulte",
-    feature: "Le tarif de tous les jours — étudiant 36,99€",
-    items: ["Adulte 44,99€ / 4 semaines", "Étudiant 36,99€ / 4 semaines", "Accès aux 5 salles, toutes les disciplines · badge d’accès 34,99€ en sus"],
-    cta: "Voir les formules au mois",
-    href: LINKS.prelevement,
+    period: "/ 4 semaines",
+    feature: "Reconduit par périodes de 4 semaines, sans engagement",
+    items: ["Cours illimités, toutes les disciplines adultes", "Accès libre de 10h à 21h30", "Les 5 salles du réseau Boxing Center"],
+    cta: "Je m’inscris",
+    href: LINKS.adulte,
+    highlight: true,
+  },
+  /* LE COMPTANT — trois durées réglées d’avance, à leur prix normal. */
+  {
+    name: "Comptant",
+    price: "150€",
+    period: "/ 3 mois",
+    feature: "Tout réglé d’avance — 6 mois 250€, 12 mois 400€",
+    items: ["3 mois : 150€", "6 mois : 250€", "12 mois : 400€"],
+    cta: "Voir les formules comptant",
+    href: LINKS.comptant,
     highlight: false,
   },
   {
@@ -570,7 +559,7 @@ export const FAQ = [
   { q: "Je n’ai jamais boxé, je peux venir ?", a: "Oui. La plupart des créneaux sont ouverts à tous les niveaux : commence par le Boxing Camp — technique, cardio, sacs, à ton rythme. Personne ne te regarde débuter." },
   { q: "Quelles disciplines peut-on pratiquer ?", a: "Boxe anglaise, boxe thaï / K1, grappling, Hyrox, cross-training, Lady Punch, boxing camp et toute l’école enfants du Baby Boxe (3/6 ans) aux compétiteurs." },
   { q: "Y a-t-il des cours pour les enfants ?", a: "Oui, dès 3 ans : Baby Boxe le samedi, boxe éducative 7/11 ans et ados 12/16 ans le mercredi et le samedi, et un créneau compétiteurs encadré par Dadi." },
-  { q: "Faut-il un abonnement pour commencer ?", a: "Non. La séance d’essai à 10€ donne accès à toutes les disciplines, matériel prêté. Tu t’abonnes ensuite si tu veux continuer — sans engagement avec l’offre Rentrée à 29€ par personne toutes les 4 semaines, ou à la saison, 259€ les 12 mois." },
+  { q: "Faut-il un abonnement pour commencer ?", a: "Non. La séance d’essai à 10€ donne accès à toutes les disciplines, matériel prêté. Ensuite, pour continuer, tu choisis ton abonnement sans engagement : 36,99€ les 4 semaines au tarif étudiant (carte étudiante requise) ou 44,99€ au tarif adulte." },
   { q: "Quels sont les horaires ?", a: "Du lundi au samedi, de 10h00 à 21h30. Le dernier cours se termine à 21h15 selon les jours. Fermé le dimanche." },
 ];
 
@@ -646,7 +635,7 @@ export const SEMAINE = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"].map((d) => ({
    séance, débutant, disciplines, enfants, abonnement, horaires). */
 export const HOME_FAQ = [
   { q: "Peut-on s’entraîner dans les autres Boxing Center avec un abonnement de Saint-Cyprien ?",
-    a: "Oui, avec la Saison : 259€ les 12 mois au lieu de 400€, comptant ou en 4× sans frais, et l’accès libre aux 5 clubs du réseau — Saint-Cyprien, les Minimes, États-Unis, Ramonville et Portet-sur-Garonne." },
+    a: "Oui. Ton abonnement de Saint-Cyprien vaut aussi aux Minimes, à États-Unis, à Ramonville et à Portet-sur-Garonne, que tu le paies 36,99€ (tarif étudiant, carte étudiante requise) ou 44,99€ (tarif adulte) par période de 4 semaines." },
   { q: "Faut-il réserver son cours ?",
     a: "Non. Les cours collectifs se font sans réservation : tu viens à l’heure du créneau, en tenue, et tu montes sur le tapis." },
   { q: "Peut-on venir s’entraîner en dehors des cours ?",

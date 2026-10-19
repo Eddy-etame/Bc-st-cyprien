@@ -16,7 +16,7 @@ export const QUICKS = [
        PAS DE `label` : ce n'est pas une question qu'on suggère, c'est un
        fait que le bot doit connaître. */
     q: "Il y a la clim ?",
-    a: "Non — aucune de nos salles n’est climatisée, ni chauffée. Elles sont en revanche correctement isolées. On te dit les choses comme elles sont : tu viens en tenue légère l’été, tu t’échauffes moins longtemps l’hiver. [boutons: premiere, offre]",
+    a: "Non — aucune de nos salles n’est climatisée, ni chauffée. Elles sont en revanche correctement isolées. On te dit les choses comme elles sont : tu viens en tenue légère l’été, tu t’échauffes moins longtemps l’hiver. [boutons: premiere, adulte]",
   },
   {
     label: "La séance d’essai",
@@ -26,7 +26,7 @@ export const QUICKS = [
   {
     label: "Les tarifs",
     q: "Quels sont les tarifs ?",
-    a: "L’offre Rentrée : 29€ par personne toutes les 4 semaines, avec première échéance carte, IBAN pour la suite, coordonnées d’un proche requises et badge à 34,99€ facturé après 72 h. La Saison : 259€ les 12 mois au lieu de 400€, comptant ou en 4× sans frais, accès aux 5 clubs. Hors promo : 44,99€ adulte / 36,99€ étudiant toutes les 4 semaines, avec badge 34,99€ en sus sauf condition contraire à la souscription. École : 295€ l’année, baby 250€. [boutons: offre, saison, tarifs]",
+    a: "L’abonnement se paie toutes les 4 semaines, sans engagement : 36,99€ pour un étudiant, carte étudiante requise, ou 44,99€ pour un adulte — cours illimités, 5 salles. La carte paie la première période, l’IBAN les suivantes ; prévois aussi 34,99€ de badge, débités peu après l’inscription. Au comptant : 150€ (3 mois), 250€ (6 mois), 400€ (12 mois). École : 295€ l’année, baby 250€. [boutons: etudiant, adulte, tarifs]",
   },
   {
     label: "Les horaires",
@@ -66,7 +66,7 @@ const RULES = [
      de l'accès. La question la plus précise passe en premier. */
   [/clim|climatis|air.?conditionn|ventil|il fait (chaud|froid)|temp[ée]rature|canicule|chauff/i, 0],
   [/essai|d[ée]couvr|tester|essayer|premi[èe]re s[ée]ance|1re/i, 1],
-  [/tarif|prix|co[ûu]te|combien|abonn|duo|saison|mensuel|annuel|offre|promo|formule|rentr[ée]e|29|259|payer|paiement/i, 2],
+  [/tarif|prix|co[ûu]te|combien|abonn|[ée]tudiant|comptant|mensuel|annuel|offre|promo|formule|payer|paiement/i, 2],
   [/horaire|ouvert|ferm|heure|dimanche|samedi|lundi|semaine|week.?end|midi|soir|matin|tard|t[ôo]t/i, 3],
   /* « \b » compte en ASCII : après le « ù » de « où » il n’y a PAS de frontière
      de mot, et « Où se trouve la salle ? » retombait sur la phrase générique

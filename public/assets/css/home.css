@@ -191,6 +191,21 @@
 .essai__cta { display: flex; flex-direction: column; gap: .7rem; }
 @media (max-width: 520px){ .essai__cta { flex-direction: row; flex-wrap: wrap; } }
 
+/* ============ LE BLOC PRIX DE L'ACCUEIL — deux abonnements ============
+   L'étudiant puis l'adulte, chacun sa tuile et son bouton. Le chiffre
+   entier en grand, « €99 » en petit et collé : l'œil lit 36 et 44, le
+   montant exact est dans le texte lu par les lecteurs d'écran. */
+@media (min-width: 860px){ .essai--abos { grid-template-columns: 1.1fr 1fr; align-items: center; } }
+.abos { display: grid; gap: .8rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)); list-style: none; margin: 0; padding: 0; }
+.abo { display: flex; flex-direction: column; align-items: flex-start; gap: .55rem; padding: clamp(1rem, 2.4vw, 1.35rem); border: 1px solid var(--line); border-radius: var(--radius); background: rgba(var(--spark-rgb), .04); }
+.abo:first-child { border-color: rgba(var(--spark-rgb), .45); }
+.abo__qui { font: 600 .7rem/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--spark); }
+.abo__prix { display: flex; align-items: flex-start; line-height: .82; color: var(--ink); }
+.abo__prix b { font: 700 clamp(3.2rem, 2.4rem + 3vw, 4.4rem)/.82 var(--f-display); letter-spacing: -.045em; font-variant-numeric: tabular-nums; }
+.abo__prix i { font: 700 clamp(1.1rem, .9rem + .8vw, 1.5rem)/1 var(--f-display); font-style: normal; margin: .1em 0 0 .08em; color: var(--ink-soft); }
+.abo__s { font: 500 .74rem/1.4 var(--f-mono); letter-spacing: .04em; color: var(--muted); }
+.abo .btn { margin-top: .35rem; }
+
 /* ==================== QUARTIER / ACCÈS =========================== */
 /* le quartier revient au clair : le noir doit rester rare (hero + gong),
    sinon il ne cogne plus */

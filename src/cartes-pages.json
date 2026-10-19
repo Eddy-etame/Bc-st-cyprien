@@ -53,7 +53,7 @@
       "url": "/tarifs/", "fichier": "src/pages/tarifs/index.astro",
       "photo": "/assets/img/sc/salle-sacs-tapis.webp", "pos": 50,
       "alt": "La rangée de sacs et le ring Boxing Center au fond du plateau",
-      "og": { "sur": "TARIFS 2026–2027", "titre": "L’essai à 10€, puis 29€ toutes les 4 semaines.", "faits": ["Sans engagement", "Saison 259€", "École 295€"] }
+      "og": { "sur": "TARIFS 2026–2027", "titre": "Étudiant 36,99€, adulte 44,99€, sans engagement.", "faits": ["Toutes les 4 semaines", "Comptant dès 150€", "École 295€"] }
     },
     "seance-offerte": {
       "url": "/seance-offerte/", "fichier": "src/pages/seance-offerte/index.astro",

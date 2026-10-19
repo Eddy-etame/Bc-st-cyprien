@@ -214,12 +214,15 @@ const infos = [
 /* ------------------------------------------------------------------ */
 /* /tarifs — offres, tarifs permanents, essai et avis.                 */
 /* ------------------------------------------------------------------ */
+/* Les deux abonnements sans engagement, l'étudiant puis l'adulte : des
+   prix de tous les jours, jamais de prix barré. */
 const promoCard = (o) => `<article><h3>${e(o.name)}</h3><p><b>${e(o.price)}</b> ${e(
   o.unit
-)}</p>${o.was ? `<p>Au lieu de ${e(o.was)}</p>` : ""}<p>${e(o.detail)}</p><a href="${href(o.href)}">${e(
+)}${o.carte ? ` · ${e(o.carte)}` : ""}</p><p>${e(o.detail)}</p><a href="${href(o.href)}">${e(
   o.cta
 )}</a></article>`;
-const promos = promoCard(PROMOS.duo) + promoCard(PROMOS.saisonOffer);
+const promos = promoCard(PROMOS.etudiant) + promoCard(PROMOS.adulte) +
+  (PROMOS.modalites ? `<p class="promos__note">${e(PROMOS.modalites)}</p>` : "");
 
 const carteTarif = (t) => `<article><h3>${e(t.name)}</h3>${
   t.price ? `<p><b>${e(t.price)}</b> ${e(t.period)}</p>` : ""
@@ -227,8 +230,8 @@ const carteTarif = (t) => `<article><h3>${e(t.name)}</h3>${
   t.href
 )}">${e(t.cta)}</a></article>`;
 
-const classique = TARIFS.find((t) => t.name.toLowerCase().startsWith("les classiques"));
-if (!classique) throw new Error("[pages] tarif critique « Les classiques » introuvable");
+const classique = TARIFS.find((t) => t.name.toLowerCase().startsWith("comptant"));
+if (!classique) throw new Error("[pages] tarif critique « Comptant » introuvable");
 const classiques = carteTarif(classique);
 const école = TARIFS.find((t) => t.name.startsWith("École"));
 const more =
@@ -282,8 +285,8 @@ const FOURNEES = [
   ["la-salle", "code", code, VALUES.length + " valeurs"],
   ["la-salle", "lineage", lineage, NETWORK.length + 1 + " salles"],
   ["la-salle", "infos", infos, "informations pratiques"],
-  ["tarifs", "promos", promos, "offres promotionnelles"],
-  ["tarifs", "classiques", classiques, "tarif permanent"],
+  ["tarifs", "promos", promos, "abonnements etudiant et adulte"],
+  ["tarifs", "classiques", classiques, "formules comptant"],
   ["tarifs", "more", more, "ecole, coaching et materiel"],
   ["tarifs", "essai", essai, "seance d'essai"],
   ["tarifs", "reviews", reviews, "source des avis actuels"],

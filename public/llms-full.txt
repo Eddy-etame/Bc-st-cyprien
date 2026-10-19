@@ -160,14 +160,14 @@ Conseils pratiques : arriver 10 minutes avant, en tenue de sport, et dire que c�
 
 ## Tarifs (https://club-boxe-toulouse.com/tarifs/)
 
-- Offre Rentrée : 29 € par personne et par échéance de 4 semaines (au lieu de 44,99 €) — cours illimités, sans engagement. Première échéance par carte puis IBAN ; coordonnées d’un proche requises pour débloquer la promotion, même sans inscription de cette personne ; badge facturé 34,99 € 72 h après le début. Source : https://boutique.boxingcenter.fr/offre/29
-- Offre Saison : 259 € comptant pour 12 mois (au lieu de 400 €) — accès aux disciplines du réseau, dont le MMA uniquement dans les salles qui le programment ; comptant ou en 4× sans frais (4 × 64,75 €, plusieurs options de paiement en 4×) ; accès libre aux 5 clubs. Source : https://boutique.boxingcenter.fr/offre/259
-- Abonnement classique, hors promotion : 44,99 € adulte et 36,99 € étudiant, par échéance de 4 semaines. Les CGV annoncent un badge d’accès de 34,99 € en sus des abonnements sans engagement, sauf condition contraire affichée à la souscription : https://boutique.boxingcenter.fr/abonnements#prelevement · https://boutique.boxingcenter.fr/cgv
+- Abonnement étudiant sans engagement — 36,99 € par période de 4 semaines (carte étudiante requise, tarif sur justificatif) : cours à volonté, salle ouverte en accès libre de 10 h à 21 h 30, valable dans les 5 clubs Boxing Center. Inscription directe : https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines
+- Abonnement adulte sans engagement — 44,99 € par période de 4 semaines, reconduit automatiquement, avec les mêmes droits. Inscription directe : https://boutique.boxingcenter.fr/inscription?product=44-99-4-semaines
+- Règlement : on ouvre l’abonnement par carte bancaire, l’IBAN prend le relais à chaque période suivante ; le badge d’accès, 34,99 €, se paie à part quelques jours après l’inscription. Formules sans engagement : https://boutique.boxingcenter.fr/abonnements#prelevement · comptant : 3 mois = 150 €, 6 mois = 250 €, 12 mois = 400 € : https://boutique.boxingcenter.fr/abonnements#comptant · https://boutique.boxingcenter.fr/cgv
 - École & Baby Boxe : 295 €/an t-shirt du club inclus, Baby Boxe 250 €/an — 3/6, 7/11, ados 12/16, matériel fourni, compétiteurs encadrés par Dadi.
 - École : 295 €/an t-shirt du club inclus, Baby Boxe 250 €/an.
 - Coaching privé : sur rendez-vous, avec un coach de la salle (détail sur https://boutique.boxingcenter.fr/coachings).
-- Séance d’essai : 10 € la séance, toutes disciplines, gants et matériel prêtés, sans engagement. Elle est présentée EN DERNIER : l’ordre de vente sur tout le site est rentrée 29 €, saison 259 €, classique 44,99 €/36,99 € par 4 semaines, école 295 € (baby 250 €), essai 10 €.
-- L’inscription, les prélèvements et le détail des formules se finalisent sur box-plus : https://boutique.boxingcenter.fr/offre/259
+- Séance d’essai : 10 € la séance, toutes disciplines, gants et matériel prêtés, sans engagement. Elle est présentée EN DERNIER : l’ordre de vente sur tout le site est étudiant 36,99 €, adulte 44,99 € (par 4 semaines), comptant, école 295 € (baby 250 €), essai 10 €.
+- L’inscription, les prélèvements et le détail des formules se finalisent sur la boutique du réseau : https://boutique.boxingcenter.fr/abonnements#prelevement
 - Avis Google : quatre avis réels cités mot pour mot (Ronan L., Kayon M., Omar T., Alyssia P.), sans note ni compteur, avec un lien vers la fiche Google Maps.
 
 ## Contact (https://club-boxe-toulouse.com/contact/)
@@ -182,5 +182,5 @@ Conseils pratiques : arriver 10 minutes avant, en tenue de sport, et dire que c�
   - Peut-on venir sans avoir jamais boxé ? Oui — la plupart des créneaux sont tous niveaux ; le Boxing Camp est le meilleur point d’entrée.
   - Quelles disciplines ? Boxe anglaise, boxe thaï/K1, grappling, Hyrox, cross-training, Lady Punch, boxing camp et l’école enfants du Baby Boxe (3/6 ans) aux compétiteurs.
   - Des cours pour enfants ? Oui, dès 3 ans : Baby Boxe le samedi, éducative 7/11 et ados 12/16 le mercredi et le samedi, un créneau compétiteurs encadré par Dadi.
-  - Faut-il un abonnement pour commencer ? Non — la séance d’essai à 10 € suffit, toutes disciplines, matériel prêté ; l’abonnement vient ensuite, sans engagement (offre Rentrée 29 € par personne toutes les 4 semaines) ou à la saison (259 € les 12 mois).
+  - Faut-il un abonnement pour commencer ? Non — la séance d’essai à 10 € suffit, toutes disciplines, matériel prêté ; l’abonnement vient après, sans engagement, au tarif étudiant de 36,99 € par 4 semaines (carte étudiante requise) ou au tarif adulte de 44,99 €.
   - Quels horaires ? Lundi–samedi 10h00–21h30 ; dernier cours terminé à 21h15 selon les jours ; fermé le dimanche.

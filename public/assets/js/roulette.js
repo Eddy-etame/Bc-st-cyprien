@@ -1,12 +1,12 @@
 /* =====================================================================
-   SAINT-CYPRIEN · LE CADRAN DES OFFRES — la roulette promo.
+   SAINT-CYPRIEN · LE CADRAN DES OFFRES — les deux abonnements.
    ---------------------------------------------------------------------
    PRINCIPE. Une roulette qui n’a qu’une case n’est pas une roulette,
    c’est une affiche. Celle-ci tourne entre TOUTES les offres du cadran
    (voir ROULETTE dans data.js) et, à chaque arrêt, tout suit la case
    gagnante : le prix au centre, le nom, le détail — et SURTOUT la
-   destination du lien. Un visiteur qui clique pendant que « la saison »
-   est affichée doit arriver sur la saison, jamais sur la rentrée.
+   destination du lien. Un visiteur qui clique pendant que l’adulte est
+   affiché doit arriver sur l’inscription adulte, jamais sur l’étudiante.
 
    DEUX FORMES, UN SEUL CODE :
    · flottante  — pastille fixe, rappel permanent sur toute la page ;
@@ -19,7 +19,7 @@
    regarde ne doit pas faire tourner un GPU. Et en `prefers-reduced-motion`
    il n’y a plus de tour du tout — l’offre est échangée, point.
    ===================================================================== */
-import { ROULETTE } from "./data.js?v=31";
+import { ROULETTE } from "./data.js?v=32";
 
 const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -38,24 +38,29 @@ function offers() {
       price: String(o.price),
       name: String(o.name),
       detail: String(o.detail || ""),
-      was: o.was ? String(o.was) : "",
-      cut: o.cut ? String(o.cut) : "",
       href: String(o.href || "#"),
       cta: String(o.cta || "Voir l’offre"),
     }));
 }
 
+/* LE GROS CHIFFRE. « 36,99€ » s’écrit 36 en grand et « €99 » en petit,
+   collé : l’œil lit 36, le prix reste exact. Le doublon .sr-only du lien
+   donne, lui, le montant entier. */
+function priceHTML(p) {
+  const m = String(p).match(/^(\d+)(?:,(\d+))?/);
+  if (!m) return esc(p);
+  return `<b class="rdial__int">${esc(m[1])}</b><i class="rdial__cents">€${esc(m[2] || "")}</i>`;
+}
+const priceSpoken = (p) => String(p).replace(/\s*€$/, " €");
+
 /* LE RUBAN. Il porte les faits de TOUTES les offres : même arrêté sur
-   l’une, le cadran dit qu’il en existe d’autres. Une remise n’y est
-   écrite que si elle est réelle (`was`) — jamais un faux prix barré. */
+   l’une, le cadran dit qu’il en existe d’autres. Prix et détail, rien
+   d’autre : ce sont des prix de tous les jours, pas des remises. */
 function tickerHTML(list) {
-  const strip = list.flatMap((o) => {
-    const items = [{ t: o.price, d: o.name.replace(/^L[’']/, "").replace(/^La /, "") }];
-    items.push(o.was
-      ? { t: o.cut || "Promo", d: `au lieu de ${o.was}` }
-      : { t: "·", d: o.detail || "toutes disciplines" });
-    return items;
-  });
+  const strip = list.flatMap((o) => [
+    { t: o.price, d: o.name.replace(/^L[’']/, "").replace(/^La /, "") },
+    { t: "·", d: o.detail || "toutes disciplines" },
+  ]);
   /* la piste est écrite DEUX FOIS : la boucle du marquee translate de
      -50%, elle doit donc retomber sur une copie identique. */
   const once = strip.map((s) => `<span><b>${esc(s.t)}</b>${esc(s.d)}</span>`).join("");
@@ -69,24 +74,24 @@ function build(list, inline) {
      accessible sert à quelque chose. Sur la forme intégrée (<div>), un
      aria-label serait purement décoratif — les lecteurs d’écran
      l’ignorent sur un conteneur générique. Le lien s’y décrit seul. */
-  if (!inline) el.setAttribute("aria-label", "Les offres du moment");
+  if (!inline) el.setAttribute("aria-label", "Les abonnements sans engagement");
   const first = list[0];
   el.innerHTML = `
     <a class="rdial__link" href="${esc(first.href)}">
-      <span class="rdial__flag">Offre à saisir</span>
+      <span class="rdial__flag">Sans engagement</span>
       <span class="rdial__stage" aria-hidden="true">
         <span class="rdial__bezel"></span>
         <span class="rdial__ticks"></span>
         <span class="rdial__beam"></span>
         <span class="rdial__index"></span>
-        <span class="rdial__core"><b class="rdial__price">${esc(first.price)}</b></span>
+        <span class="rdial__core"><span class="rdial__price">${priceHTML(first.price)}</span></span>
       </span>
       <span class="rdial__copy">
         <!-- Le prix est peint dans le cadran, qui est aria-hidden (c’est
              de la chromerie décorative). Sans ce doublon, le nom
              accessible du lien annoncerait l’offre SANS son prix — le
              seul chiffre qui compte. .sr-only vient de base.css. -->
-        <span class="sr-only rdial__sr">${esc(first.price)}</span>
+        <span class="sr-only rdial__sr">${esc(priceSpoken(first.price))}</span>
         <b class="rdial__name">${esc(first.name)}</b>
         <span class="rdial__detail">${esc(first.detail)}</span>
         <span class="rdial__go">${esc(first.cta)} <i aria-hidden="true">→</i></span>
@@ -108,8 +113,8 @@ function arm(el, list) {
 
   const land = (n) => {
     const o = list[n];
-    price.textContent = o.price;
-    priceSr.textContent = o.price;
+    price.innerHTML = priceHTML(o.price);
+    priceSr.textContent = priceSpoken(o.price);
     name.textContent = o.name;
     detail.textContent = o.detail;
     go.firstChild.nodeValue = o.cta + " ";

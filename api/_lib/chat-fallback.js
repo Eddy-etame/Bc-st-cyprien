@@ -18,12 +18,12 @@ const normalise = (value) =>
    (« Dans l’ordre où on les propose… », « RÈGLE : ne jamais… ») : recopiés
    tels quels, ils montraient des consignes internes aux visiteurs (vu en
    production le 09/10/2026). Le repli parle donc avec ses propres phrases. */
-const OFFRES = "L’offre Rentrée : 29€ par personne toutes les 4 semaines au lieu de 44,99€, cours illimités, sans engagement. La Saison : 259€ les 12 mois au lieu de 400€, comptant ou en 4× sans frais, avec l’accès aux 5 clubs du réseau. Et la séance d’essai à 10€, toutes disciplines.";
+const OFFRES = "Ici l’abonnement tourne par périodes de 4 semaines, sans engagement : l’étudiant paie 36,99€ (carte étudiante requise), l’adulte 44,99€, cours illimités et 5 clubs dans les deux cas. Envie de tout régler d’un coup ? 150€ pour 3 mois, 250€ pour 6, 400€ pour un an. La séance d’essai, elle, reste à 10€.";
 const COACHS = "Trois coachs encadrent Saint-Cyprien : Dadi pour la boxe anglaise, le Lady Punch et l’école enfants, Tawee pour la boxe thaï et le K1, Brice pour l’Hyrox, le cross-training et le Boxing Camp.";
 const EN = /\b(the|you|your|do|does|have|is|are|how|what|when|where|much|price|classes?|beginners?|hello|hi|open)\b/;
 
 function englishReply(q, f) {
-  if (/price|cost|much|membership|offer|pay/.test(q)) return "The back-to-school offer is €29 per person every 4 weeks (instead of €44.99), unlimited classes, no commitment. The Season is €259 for 12 months (instead of €400), paid at once or in 4 interest-free instalments, with access to all 5 clubs. A trial session costs €10. [boutons: offre:See the €29 offer, saison:See the season]";
+  if (/price|cost|much|membership|offer|pay/.test(q)) return "No-commitment membership, billed every 4 weeks: €36.99 for students (student card required) or €44.99 for adults, with unlimited classes and access to all 5 clubs. Prefer to pay upfront? €150 for 3 months, €250 for 6, €400 for 12. A trial session costs €10. [boutons: etudiant:Student — €36.99, adulte:Adult — €44.99]";
   if (/open|hour|time|when|sunday|saturday/.test(q)) return "We are open Monday to Saturday, 10:00 – 21:30, closed on Sunday. [boutons: planning:See the schedule]";
   if (/where|address|tram|metro|parking|get there/.test(q)) return `${f.adresse} — tram T1, Fer à Cheval stop, 200 m away; metro line A, Saint-Cyprien – République, 600 m away. [boutons: contact:Find us]`;
   if (/beginner|first|trial|start|never/.test(q)) return "Yes — most classes are open to all levels. Come 10 minutes early in sportswear and tell the coach it is your first time: gloves and gear are lent on site, and the trial session costs €10. [boutons: essai:Book a trial, planning:See the schedule]";
@@ -44,8 +44,8 @@ export function localChatReply(message) {
   if (/adresse|ou se trouve|c.?est ou|\bou est\b|\bou etes\b|acces|tram|metro|parking|venir|itineraire|rue/.test(q)) {
     return `${f.adresse}. ${f.acces} [boutons: contact, salle]`;
   }
-  if (/tarif|prix|combien|abonn|offre|promo|29|259|paiement|payer/.test(q)) {
-    return `${OFFRES} [boutons: offre, saison, tarifs]`;
+  if (/tarif|prix|combien|abonn|offre|promo|etudiant|comptant|paiement|payer/.test(q)) {
+    return `${OFFRES} [boutons: etudiant, adulte, tarifs]`;
   }
   if (/essai|tester|essayer|premiere seance|debuter|debutant|commencer/.test(q)) {
     return `${f.premiere} [boutons: essai, planning, contact]`;

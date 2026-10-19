@@ -54,10 +54,10 @@ const FAQ_LD = JSON.stringify({
   <!-- LCP: la photo du héros -->
   <link rel="preload" as="image" href="/assets/img/sc/hero-salle.webp" fetchpriority="high" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=41" />
-  <link rel="stylesheet" href="/assets/css/roulette.css?v=22" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=42" />
+  <link rel="stylesheet" href="/assets/css/roulette.css?v=23" />
   <link rel="stylesheet" href="/assets/css/photos.css?v=23" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=39" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=40" />
 
   <!-- SEO/GEO — graphe JSON-LD unifié (organisation · salle · site · page · image). Faits réels uniquement — miroir de data.js. -->
   <script is:inline type="application/ld+json">
@@ -217,35 +217,19 @@ const FAQ_LD = JSON.stringify({
           "itemListElement": [
             {
               "@type": "Offer",
-              "name": "Offre Rentrée",
-              "price": "29",
-              "priceCurrency": "EUR",
-              "description": "29€ par personne et par échéance de 4 semaines, sans engagement ; conditions complètes sur la boutique, dont badge à 34,99€.",
-              "url": "https://boutique.boxingcenter.fr/offre/29"
-            },
-            {
-              "@type": "Offer",
-              "name": "Offre Saison",
-              "price": "259",
-              "priceCurrency": "EUR",
-              "description": "259€ les 12 mois au lieu de 400€, comptant ou en 4× sans frais ; accès libre aux 5 clubs.",
-              "url": "https://boutique.boxingcenter.fr/offre/259"
-            },
-            {
-              "@type": "Offer",
-              "name": "Abonnement adulte, échéance de 4 semaines",
-              "price": "44.99",
-              "priceCurrency": "EUR",
-              "description": "44,99€ par échéance de 4 semaines. Badge d’accès 34,99€ en sus selon les CGV, sauf condition contraire à la souscription.",
-              "url": "https://boutique.boxingcenter.fr/abonnements#prelevement"
-            },
-            {
-              "@type": "Offer",
-              "name": "Abonnement étudiant, échéance de 4 semaines",
+              "name": "Abonnement étudiant sans engagement, échéance de 4 semaines",
               "price": "36.99",
               "priceCurrency": "EUR",
-              "description": "36,99€ par échéance de 4 semaines pour les étudiants. Badge d’accès 34,99€ en sus selon les CGV, sauf condition contraire à la souscription.",
-              "url": "https://boutique.boxingcenter.fr/abonnements#prelevement"
+              "description": "Carte étudiante requise. Cours illimités et accès aux 5 salles ; badge d’accès 34,99 € en plus, prélevé après l’inscription.",
+              "url": "https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines"
+            },
+            {
+              "@type": "Offer",
+              "name": "Abonnement adulte sans engagement, échéance de 4 semaines",
+              "price": "44.99",
+              "priceCurrency": "EUR",
+              "description": "Renouvelable, sans engagement. Cours illimités et accès aux 5 salles ; badge d’accès 34,99 € en plus, prélevé après l’inscription.",
+              "url": "https://boutique.boxingcenter.fr/inscription?product=44-99-4-semaines"
             },
             {
               "@type": "Offer",
@@ -372,7 +356,7 @@ const FAQ_LD = JSON.stringify({
         <p class="hero__sub" data-reveal>Boxe anglaise, K1, Muay Thaï, cross-training et préparation physique.<br />Un club ouvert 6 j/7, pour tous les niveaux.</p>
 
         <div class="hero__cta" data-reveal>
-          <a class="btn btn--primary" href="https://boutique.boxingcenter.fr/offre/29"><span>Voir l’offre Rentrée — 29€</span></a>
+          <a class="btn btn--primary" href="#abonnement"><span>Voir les abonnements</span></a>
           <a class="btn" href="/activites/"><span>Découvrir les cours</span></a>
         </div>
       </div>
@@ -474,23 +458,32 @@ const FAQ_LD = JSON.stringify({
       </div>
     </section>
 
-    <section class="section essai-sec" aria-label="La séance d’essai">
+    <!-- ================= LE BLOC PRIX — deux abonnements ===============
+         L’étudiant d’abord, l’adulte ensuite. L’entier en grand, « €99 » en
+         petit : l’œil lit 36 et 44, le lecteur d’écran lit le montant exact. -->
+    <section class="section essai-sec" id="abonnement" aria-label="Les abonnements sans engagement">
       <div class="wrap">
-        <div class="essai" data-reveal>
+        <div class="essai essai--abos" data-reveal>
           <div class="essai__spot" aria-hidden="true"></div>
           <div class="essai__body">
-            <span class="eyebrow">L’offre de rentrée</span>
-            <h2 class="display essai__title"><span class="reveal-mask"><span>29€ toutes les quatre semaines,</span></span><span class="reveal-mask"><span class="tint">sans engagement.</span></span></h2>
-            <p class="lead essai__lead">Cours illimités, toutes disciplines de la salle, sans engagement — au lieu de <s class="was">44,99€</s>. Tu viens avec ton binôme si tu veux : chacun sa place, chacun ses gants.</p>
-            <!-- Le compteur de places : vide et masqué à la livraison, il ne
-                 s'ouvre que si la boutique a donné le nombre RÉEL de places
-                 encore libres. Rien n'est écrit en dur ici. -->
-            <p class="places" data-places hidden></p>
+            <span class="eyebrow">Sans engagement</span>
+            <h2 class="display essai__title"><span class="reveal-mask"><span>Toutes les quatre semaines,</span></span><span class="reveal-mask"><span class="tint">et tu arrêtes quand tu veux.</span></span></h2>
+            <p class="lead essai__lead">Les cours à volonté, la salle ouverte de 10h à 21h30, et les quatre autres clubs du réseau avec. Tu paies la première période par carte, on prélève ensuite ; le badge, 34,99€, est débité quelques jours après.</p>
           </div>
-          <div class="essai__cta">
-            <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/offre/29"><span>Voir l’offre Rentrée — 29€</span></a>
-            <a class="btn" data-magnetic href="tel:+33562244682"><span>05 62 24 46 82</span></a>
-          </div>
+          <ul class="essai__cta abos">
+            <li class="abo">
+              <span class="abo__qui">Étudiant</span>
+              <span class="abo__prix"><span class="sr-only">36,99 € toutes les 4 semaines</span><b aria-hidden="true">36</b><i aria-hidden="true">€99</i></span>
+              <span class="abo__s">carte étudiante requise · par 4 semaines</span>
+              <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines"><span>Je m’inscris en étudiant</span></a>
+            </li>
+            <li class="abo">
+              <span class="abo__qui">Adulte</span>
+              <span class="abo__prix"><span class="sr-only">44,99 € toutes les 4 semaines</span><b aria-hidden="true">44</b><i aria-hidden="true">€99</i></span>
+              <span class="abo__s">par 4 semaines · renouvelable</span>
+              <a class="btn" data-magnetic href="https://boutique.boxingcenter.fr/inscription?product=44-99-4-semaines"><span>Je m’inscris</span></a>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
@@ -547,7 +540,7 @@ const FAQ_LD = JSON.stringify({
       <div class="wrap">
         <span class="eyebrow" data-reveal>Le réseau</span>
         <h2 id="t-reseau" class="display" style="margin-top:1rem;font-size:clamp(2.2rem,5vw,4.2rem)"><span class="reveal-mask"><span>Un abonnement,</span></span><span class="reveal-mask"><span class="tint">cinq clubs.</span></span></h2>
-        <p class="lead" data-reveal style="max-width:60ch">Avec la Saison — 259€ les 12 mois au lieu de 400€ —, tu t’entraînes aussi dans les quatre autres Boxing Center de Toulouse.</p>
+        <p class="lead" data-reveal style="max-width:60ch">Étudiant ou adulte, ton abonnement sans engagement t’ouvre aussi les portes des quatre autres Boxing Center de Toulouse.</p>
         <div class="soeurs">
           {NETWORK.map((n) => (<a class="soeur" href={n.url}><span class="soeur__tag mono">{n.tag}</span><b>Boxing Center {n.name}</b><span>{n.feat}</span></a>))}
         </div>
@@ -619,7 +612,7 @@ const FAQ_LD = JSON.stringify({
   <!-- Libs d’animation, auto-hébergées et regroupées (gsap + ScrollTrigger + Lenis) :
        une seule requête same-origin au lieu de trois vers un CDN tiers. -->
   <script is:inline defer src="/assets/js/vendor.min.js?v=22"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=30"></script>
-  <script is:inline type="module" src="/assets/js/home.js?v=28"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=31"></script>
+  <script is:inline type="module" src="/assets/js/home.js?v=29"></script>
 </body>
 </html>

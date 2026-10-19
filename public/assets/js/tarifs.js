@@ -1,11 +1,11 @@
 /* =====================================================================
    SAINT-CYPRIEN · tarifs.js — simple, sans détour.
-   Essai en tête → offres de la saison (Duo prioritaire · Saison) → école &
-   compléments → conditions → lien vers les avis Google actuels → FAQ argent. Tout depuis
-   data.js (PROMOS daté, jamais de prix en dur), tous les CTA → box-plus.
+   Les deux abonnements sans engagement (étudiant, puis adulte) → comptant →
+   école & compléments → essai → conditions → avis Google actuels → FAQ
+   argent. Tout depuis data.js (jamais de prix en dur), tous les CTA → boutique.
    ===================================================================== */
-import { TARIFS, PROMOS, REVIEWS, LINKS, SALLE } from "./data.js?v=31";
-import { PRICING_FAQ } from "./data-tarifs.js?v=23";
+import { TARIFS, PROMOS, REVIEWS, LINKS, SALLE } from "./data.js?v=32";
+import { PRICING_FAQ } from "./data-tarifs.js?v=24";
 
 const $ = (s, r = document) => r.querySelector(s);
 
@@ -27,56 +27,34 @@ function renderEssai() {
     </div>`;
 }
 
-/* Les deux offres datées — le Duo s’écrit TOUJOURS "29€ par personne".
-   13/10/2026 : la carte prioritaire s’allume (tarifs.css) et son prix tombe
-   de l’ancien au nouveau quand elle arrive à l’écran. La remise est
-   CALCULÉE sur les deux prix de data.js, arrondie vers le bas. Le lecteur
-   d’écran lit le prix final (sr-only), jamais le compteur. */
-const nombre = (s) => parseFloat(String(s).replace(/[^\d,]/g, "").replace(",", "."));
-const remise = (o) => (o.was ? Math.floor(((nombre(o.was) - nombre(o.price)) / nombre(o.was)) * 100) : 0);
+/* Les deux abonnements, l’étudiant d’abord. Le gros chiffre est l’entier
+   (36, 44), les centimes suivent en petit, collés à l’euro : l’œil lit le
+   nombre, le prix reste exact. Le lecteur d’écran lit « 36,99 € » (sr-only),
+   jamais les morceaux. Aucun prix barré : ce sont les prix de tous les jours. */
+const morceaux = (p) => {
+  const m = String(p).match(/^(\d+)(?:,(\d+))?/);
+  return m ? { n: m[1], c: m[2] || "" } : { n: String(p), c: "" };
+};
+const lu = (p) => String(p).replace(/\s*€$/, " €");
 
 function renderPromos() {
   const el = $("#promos");
   if (!el) return;
-  const card = (o, flag, cls, tombe) => {
-    const m = String(o.price).match(/^(\d+)(,\d+)?/);
-    const chiffre = m ? m[1] + (m[2] || "") : o.price;
-    const compte = tombe && o.was ? ` data-compte="${nombre(o.price)}" data-depuis="${nombre(o.was)}"` : "";
+  const card = (o, flag) => {
+    const { n, c } = morceaux(o.price);
+    const unite = [o.unit, o.carte].filter(Boolean).join(" · ");
     return `
-    <article class="promo ${cls}">
-      <div class="promo__tete">${flag ? `<span class="promo__flag">${flag}</span>` : ""}${remise(o) ? `<span class="promo__remise">−${remise(o)} %</span>` : ""}</div>
+    <article class="promo promo--duo">
+      <div class="promo__tete"><span class="promo__flag">${flag}</span></div>
       <h3 class="promo__name">${o.name}</h3>
-      <div class="promo__price"><span class="sr-only">${o.price}</span><b aria-hidden="true"${compte}>${chiffre}</b><span class="promo__eur" aria-hidden="true">€</span>${o.was ? `<s><span class="sr-only">au lieu de </span>${o.was}</s>` : ""}<small>${o.unit}</small></div>
+      <div class="promo__price"><span class="sr-only">${lu(o.price)}${o.carte ? `, ${o.carte}` : ""}</span><b aria-hidden="true">${n}</b><span class="promo__eur" aria-hidden="true">€${c}</span><small>${unite}</small></div>
       <p class="promo__detail">${o.detail}</p>
       <a class="btn btn--primary" data-magnetic href="${o.href}"><span>${o.cta}</span></a>
     </article>`;
   };
-  el.innerHTML = card(PROMOS.duo, "Prioritaire", "promo--duo", true) + card(PROMOS.saisonOffer, "", "promo--saison", false);
-  prixQuiTombe(el.querySelector(".promo--duo"));
-}
-
-/* Le prix qui tombe — même geste que sur les pages de discipline. Sans
-   IntersectionObserver ou en mouvement réduit, le prix final reste écrit. */
-function prixQuiTombe(carte) {
-  const n = carte?.querySelector("[data-compte]");
-  if (!n || !("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  const fin = +n.dataset.compte, debut = +n.dataset.depuis, texteFinal = n.textContent;
-  if (!Number.isFinite(fin) || !Number.isFinite(debut)) return;
-  const ecrire = (v) => { n.textContent = v.toFixed(2).replace(".", ","); };
-  carte.classList.add("promo--pret");
-  ecrire(debut);
-  const io = new IntersectionObserver((vus) => {
-    if (!vus.some((v) => v.isIntersecting)) return;
-    io.disconnect();
-    carte.classList.add("is-vu");
-    const t0 = performance.now();
-    const pas = (t) => {
-      const k = Math.min(1, (t - t0) / 1300), e = 1 - Math.pow(1 - k, 4);
-      if (k < 1) { ecrire(debut + (fin - debut) * e); requestAnimationFrame(pas); } else n.textContent = texteFinal;
-    };
-    requestAnimationFrame(pas);
-  }, { threshold: 0.25 });
-  io.observe(carte);
+  el.innerHTML = card(PROMOS.etudiant, "Sur justificatif")
+    + card(PROMOS.adulte, "Sans engagement")
+    + (PROMOS.modalites ? `<p class="promos__note">${PROMOS.modalites}</p>` : "");
 }
 
 /* Une carte tarif — même gabarit pour les classiques et les compléments. */
@@ -88,13 +66,13 @@ const carteTarif = (t) => `<article class="tarif">
       <a class="btn ${t.price ? "btn--primary" : ""}" data-magnetic href="${t.href}"><span>${t.cta}</span></a>
     </article>`;
 
-/* Les classiques — le barreau entre la promo et l’école. Aucun prix barré :
-   ce n’est pas une offre, c’est le tarif. Si le vestiaire supprime la ligne,
-   la section disparaît proprement au lieu d’afficher une grille vide. */
+/* Le comptant — 3, 6 ou 12 mois réglés d’un coup, à leur prix normal. Si le
+   vestiaire supprime la ligne, la section disparaît proprement plutôt que
+   d’afficher une grille vide. */
 function renderClassiques() {
   const el = $("#classiques");
   if (!el) return;
-  const c = TARIFS.find((x) => x.name.toLowerCase().startsWith("les classiques"));
+  const c = TARIFS.find((x) => x.name.toLowerCase().startsWith("comptant"));
   if (!c) { el.closest("section")?.remove(); return; }
   el.innerHTML = carteTarif(c);
 }
@@ -133,7 +111,7 @@ function renderReviews() {
     </div>`;
 }
 
-/* FAQ argent — désamorce les malentendus prix (Duo "par personne", etc.) */
+/* FAQ argent — échéances, badge, comptant : les questions qu’on pose au comptoir */
 function renderFaq() {
   const el = $("#faq");
   if (!el) return;

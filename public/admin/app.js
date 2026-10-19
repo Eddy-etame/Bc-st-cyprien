@@ -78,7 +78,7 @@ const SCHEMA = {
     intro: "Les cartes de la page Tarifs. Le prix que tu écris ici est celui que le visiteur lit — et celui que l'assistant annonce. Vérifie-le deux fois.",
     item: [
       { k: "name", label: "Nom de l'offre" },
-      { k: "price", label: "Prix", hint: "Écris-le comme il doit s'afficher, ex. 259€" },
+      { k: "price", label: "Prix", hint: "Écris-le comme il doit s'afficher, ex. 44,99€" },
       { k: "period", label: "Période", hint: "Ex. les 12 mois, la séance, / an" },
       { k: "feature", label: "Ligne de mise en avant" },
       { k: "cta", label: "Texte du bouton" },

@@ -10,11 +10,11 @@
 
 /* FAQ argent — servie sur /tarifs/. Désamorce les malentendus prix. */
 export const PRICING_FAQ = [
-  { q: "Quelles sont les conditions de l’offre Rentrée à 29€ ?", a: "Le prix est de 29€ par personne et par échéance de 4 semaines, sans engagement. La première échéance est payée par carte, puis un IBAN est demandé pour les prélèvements. Les coordonnées d’un proche sont requises pour débloquer la promotion, même si cette personne ne s’inscrit pas. Le badge est facturé 34,99€ 72 heures après le début." },
-  { q: "Comment payer la saison à 259€ ?", a: "Comptant, ou en 4× sans frais — 4 × 64,75€. La boutique propose plusieurs options de paiement en 4× ; tu choisis la tienne au moment de payer." },
-  { q: "Le badge est-il compris dans les abonnements classiques ?", a: "Les CGV de la boutique annoncent un badge d’accès de 34,99€ en plus des abonnements sans engagement avec prélèvement toutes les 4 semaines, sauf condition contraire indiquée au moment de la souscription." },
+  { q: "Quels abonnements sans engagement propose la salle ?", a: "Deux, réglés toutes les 4 semaines : le tarif étudiant à 36,99€ (carte étudiante requise) et le tarif adulte à 44,99€. Avec l’un comme avec l’autre, les cours sont illimités, la salle t’est ouverte de 10h à 21h30 et les 5 clubs aussi ; tu arrêtes quand tu veux." },
+  { q: "Comment se paie la première échéance ?", a: "Par carte bancaire, au moment de t’inscrire sur la boutique. Les échéances d’après passent en prélèvement, d’où l’IBAN demandé. Compte aussi le badge d’accès : 34,99€, débités quelques jours plus tard." },
+  { q: "Peut-on tout régler d’avance ?", a: "Oui : 150€ couvrent 3 mois, 250€ six mois, 400€ une année entière, payés d’un seul coup sur la boutique." },
   { q: "Le t-shirt, c’est pour qui ?", a: "Pour chaque enfant inscrit à l’école : le t-shirt Boxing Center est inclus dans l’inscription (295€ l’année, baby 250€)." },
-  { q: "Je peux m’entraîner dans les autres salles ?", a: "Oui. La saison donne accès libre aux 5 clubs du réseau : Portet, Minimes, États-Unis, Saint-Cyprien et Ramonville." },
+  { q: "Je peux m’entraîner dans les autres salles ?", a: "Oui. Au tarif étudiant comme au tarif adulte, l’abonnement sans engagement t’ouvre aussi Portet, les Minimes, États-Unis et Ramonville." },
 ];
 
 /* ------------------------------------------------------------------ *

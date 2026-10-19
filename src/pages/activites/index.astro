@@ -44,11 +44,11 @@ import { AUTEUR_PRINCIPAL } from "../../../api/_lib/auteurs.js";
   <meta name="twitter:image" content="https://club-boxe-toulouse.com/assets/img/og/pages/activites.jpg?v=1" />
   <meta name="twitter:image:alt" content="Sept disciplines, du Baby Boxe au K1 — Un groupe en plein circuit dans la salle" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=41" />
-  <link rel="stylesheet" href="/assets/css/roulette.css?v=22" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=42" />
+  <link rel="stylesheet" href="/assets/css/roulette.css?v=23" />
   <link rel="stylesheet" href="/assets/css/photos.css?v=23" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=39" />
-  <link rel="stylesheet" href="/assets/css/activites.css?v=26" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=40" />
+  <link rel="stylesheet" href="/assets/css/activites.css?v=27" />
 
   <!-- SEO/GEO — graphe JSON-LD unifié (organisation · salle · site · page · image ·
        fil d’Ariane · disciplines). Faits réels uniquement — miroir de data.js. -->
@@ -209,35 +209,19 @@ import { AUTEUR_PRINCIPAL } from "../../../api/_lib/auteurs.js";
           "itemListElement": [
             {
               "@type": "Offer",
-              "name": "Offre Rentrée",
-              "price": "29",
-              "priceCurrency": "EUR",
-              "description": "29€ par personne et par échéance de 4 semaines, sans engagement ; conditions complètes sur la boutique, dont badge à 34,99€.",
-              "url": "https://boutique.boxingcenter.fr/offre/29"
-            },
-            {
-              "@type": "Offer",
-              "name": "Offre Saison",
-              "price": "259",
-              "priceCurrency": "EUR",
-              "description": "259€ les 12 mois au lieu de 400€, comptant ou en 4× sans frais ; accès libre aux 5 clubs.",
-              "url": "https://boutique.boxingcenter.fr/offre/259"
-            },
-            {
-              "@type": "Offer",
-              "name": "Abonnement adulte, échéance de 4 semaines",
-              "price": "44.99",
-              "priceCurrency": "EUR",
-              "description": "44,99€ par échéance de 4 semaines. Badge d’accès 34,99€ en sus selon les CGV, sauf condition contraire à la souscription.",
-              "url": "https://boutique.boxingcenter.fr/abonnements#prelevement"
-            },
-            {
-              "@type": "Offer",
-              "name": "Abonnement étudiant, échéance de 4 semaines",
+              "name": "Abonnement étudiant sans engagement, échéance de 4 semaines",
               "price": "36.99",
               "priceCurrency": "EUR",
-              "description": "36,99€ par échéance de 4 semaines pour les étudiants. Badge d’accès 34,99€ en sus selon les CGV, sauf condition contraire à la souscription.",
-              "url": "https://boutique.boxingcenter.fr/abonnements#prelevement"
+              "description": "Carte étudiante requise. Cours illimités et accès aux 5 salles ; badge d’accès 34,99 € en plus, prélevé après l’inscription.",
+              "url": "https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines"
+            },
+            {
+              "@type": "Offer",
+              "name": "Abonnement adulte sans engagement, échéance de 4 semaines",
+              "price": "44.99",
+              "priceCurrency": "EUR",
+              "description": "Renouvelable, sans engagement. Cours illimités et accès aux 5 salles ; badge d’accès 34,99 € en plus, prélevé après l’inscription.",
+              "url": "https://boutique.boxingcenter.fr/inscription?product=44-99-4-semaines"
             },
             {
               "@type": "Offer",
@@ -635,8 +619,8 @@ import { AUTEUR_PRINCIPAL } from "../../../api/_lib/auteurs.js";
     <section class="offres" aria-label="Les offres">
       <span class="gong__mark offres__mark" aria-hidden="true"><b>Boxing Center</b><i>Saint-Cyprien</i></span>
       <div class="wrap offres__grid">
-        <article class="offre offre--phare" data-act data-dir="n">          <span class="offre__flag">Offre à saisir</span>          <div class="offre__head">            <span class="offre__disc"><b>29€</b><i>par personne</i></span>            <div>              <h3 class="offre__n">L’offre Rentrée</h3>              <p class="offre__s">29€ toutes les 4 semaines</p>            </div>          </div>          <ul class="offre__l">            <li><svg class="offre__c" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.4" stroke="currentColor" stroke-width="1.5"/><path d="m8.4 12.2 2.5 2.5 4.7-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Première échéance par carte, puis IBAN</span></li>            <li><svg class="offre__c" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.4" stroke="currentColor" stroke-width="1.5"/><path d="m8.4 12.2 2.5 2.5 4.7-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Coordonnées d’un proche requises</span></li>            <li><svg class="offre__c" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.4" stroke="currentColor" stroke-width="1.5"/><path d="m8.4 12.2 2.5 2.5 4.7-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Badge 34,99€ facturé après 72 h · sans engagement</span></li>          </ul>          <a class="btn btn--primary offre__cta" href="https://boutique.boxingcenter.fr/offre/29"><span>Voir les conditions de l’offre</span></a>        </article>
-        <article class="offre" data-act data-dir="n">          <div class="offre__head">            <span class="offre__disc"><b>259€</b><i>les 12 mois</i></span>            <div>              <h3 class="offre__n">La saison complète</h3>              <p class="offre__s">au lieu de 400€</p>            </div>          </div>          <ul class="offre__l">            <li><svg class="offre__c" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.4" stroke="currentColor" stroke-width="1.5"/><path d="m8.4 12.2 2.5 2.5 4.7-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Toutes les disciplines adultes, 12 mois</span></li>            <li><svg class="offre__c" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.4" stroke="currentColor" stroke-width="1.5"/><path d="m8.4 12.2 2.5 2.5 4.7-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Accès libre aux 5 clubs</span></li>            <li><svg class="offre__c" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.4" stroke="currentColor" stroke-width="1.5"/><path d="m8.4 12.2 2.5 2.5 4.7-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Comptant ou 4× sans frais — moins de 5€ par semaine</span></li>          </ul>          <a class="btn  offre__cta" href="https://boutique.boxingcenter.fr/offre/259"><span>Voir les conditions de la saison</span></a>        </article>
+        <article class="offre offre--phare" data-act data-dir="n">          <span class="offre__flag">Carte étudiante requise</span>          <div class="offre__head">            <span class="offre__disc"><span class="sr-only">36,99 € toutes les 4 semaines</span><b aria-hidden="true">36<small>€99</small></b><i aria-hidden="true">4 semaines</i></span>            <div>              <h3 class="offre__n">L’abonnement Étudiant</h3>              <p class="offre__s">36,99€ toutes les 4 semaines, sur justificatif</p>            </div>          </div>          <ul class="offre__l">            <li><svg class="offre__c" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.4" stroke="currentColor" stroke-width="1.5"/><path d="m8.4 12.2 2.5 2.5 4.7-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Cours illimités, toutes les disciplines adultes</span></li>            <li><svg class="offre__c" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.4" stroke="currentColor" stroke-width="1.5"/><path d="m8.4 12.2 2.5 2.5 4.7-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Accès libre de 10h à 21h30 dans les 5 salles</span></li>            <li><svg class="offre__c" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.4" stroke="currentColor" stroke-width="1.5"/><path d="m8.4 12.2 2.5 2.5 4.7-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Sans engagement · badge d’accès 34,99€</span></li>          </ul>          <a class="btn btn--primary offre__cta" href="https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines"><span>Je m’inscris en étudiant</span></a>        </article>
+        <article class="offre" data-act data-dir="n">          <span class="offre__flag">Sans engagement</span>          <div class="offre__head">            <span class="offre__disc"><span class="sr-only">44,99 € toutes les 4 semaines</span><b aria-hidden="true">44<small>€99</small></b><i aria-hidden="true">4 semaines</i></span>            <div>              <h3 class="offre__n">L’abonnement Adulte</h3>              <p class="offre__s">44,99€ toutes les 4 semaines, renouvelable</p>            </div>          </div>          <ul class="offre__l">            <li><svg class="offre__c" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.4" stroke="currentColor" stroke-width="1.5"/><path d="m8.4 12.2 2.5 2.5 4.7-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Cours illimités, de l’anglaise au grappling</span></li>            <li><svg class="offre__c" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.4" stroke="currentColor" stroke-width="1.5"/><path d="m8.4 12.2 2.5 2.5 4.7-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Les 5 clubs du réseau, de 10h à 21h30</span></li>            <li><svg class="offre__c" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.4" stroke="currentColor" stroke-width="1.5"/><path d="m8.4 12.2 2.5 2.5 4.7-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>1re échéance par carte, puis prélèvement</span></li>          </ul>          <a class="btn  offre__cta" href="https://boutique.boxingcenter.fr/inscription?product=44-99-4-semaines"><span>Je m’inscris</span></a>        </article>
       </div>
 
       <ul class="rassure" data-act data-dir="n">
@@ -699,7 +683,7 @@ import { AUTEUR_PRINCIPAL } from "../../../api/_lib/auteurs.js";
   <!-- Libs d’animation, auto-hébergées et regroupées (gsap + ScrollTrigger + Lenis) :
        une seule requête same-origin au lieu de trois vers un CDN tiers. -->
   <script is:inline defer src="/assets/js/vendor.min.js?v=22"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=30"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=31"></script>
   <script is:inline type="module" src="/assets/js/activites.js?v=25"></script>
 </body>
 </html>

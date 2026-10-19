@@ -8,7 +8,7 @@
     "dev": "astro dev",
     "prebuild": "node scripts/apply-content.mjs && node scripts/faq-ld.mjs && node scripts/build-avif.mjs",
     "build": "astro build",
-    "postbuild": "node scripts/cuire-galerie.mjs && node scripts/cuire-pages.mjs && node scripts/garde-auteurs.mjs && node scripts/build-sitemap.mjs",
+    "postbuild": "node scripts/cuire-galerie.mjs && node scripts/cuire-pages.mjs && node scripts/garde-auteurs.mjs && node scripts/garde-offres.mjs && node scripts/build-sitemap.mjs",
     "preview": "astro preview",
     "test": "node --test tests/*.test.mjs",
     "test:chat": "node --test tests/chat-api.test.mjs",

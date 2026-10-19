@@ -1,5 +1,5 @@
 /* =====================================================================
-   SAINT-CYPRIEN · LE CADRAN DES OFFRES  (roulette promo)
+   SAINT-CYPRIEN · LE CADRAN DES OFFRES  (les deux abonnements)
    ---------------------------------------------------------------------
    Le PRINCIPE est celui d’une roulette : ça tourne, ça s’arrête sur une
    offre, et TOUT suit la case gagnante — le prix, le titre, le détail et
@@ -167,6 +167,8 @@
               0 10px 26px -14px #000;
 }
 .rdial__price {
+  display: inline-flex;
+  align-items: flex-start;
   font-family: var(--f-display);
   font-weight: 700;
   font-size: var(--rdial-price);
@@ -177,6 +179,17 @@
           background-clip: text;
   color: transparent;
   transition: opacity .2s var(--ease), transform .38s var(--ease-spring);
+}
+
+/* L’entier en grand, « €99 » en petit et collé, calé en haut : on lit 36
+   ou 44, le montant reste exact. Le chrome du noyau passe aux deux. */
+.rdial__int { font-weight: inherit; }
+.rdial__cents {
+  font-style: normal;
+  font-size: .46em;
+  line-height: 1;
+  margin: .12em 0 0 .06em;
+  letter-spacing: 0;
 }
 
 /* ------------------------------------------------------------------ *

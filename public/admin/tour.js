@@ -204,7 +204,7 @@ const FLOWS = {
       b: "Clique sur « + Ajouter un tarif » pour créer une carte, puis remplis le nom et le prix.",
       hint: "Clique sur le bouton", advanceOn: { ev: "click", sel: "#pane .btn" } },
     { sel: "#pane .card", t: "Écris le prix tel quel",
-      b: "Le prix s'affiche exactement comme tu l'écris : mets « 259€ », pas « 259 ». Et vérifie-le deux fois — c'est aussi ce que l'assistant annoncera aux visiteurs.",
+      b: "Le prix s'affiche exactement comme tu l'écris : mets « 44,99€ », pas « 44,99 ». Et vérifie-le deux fois — c'est aussi ce que l'assistant annoncera aux visiteurs.",
       hint: "Remplis le prix", advanceOn: { ev: "input", sel: "#pane input" } },
     { sel: "#publish", t: "Publie",
       b: "« Publier » et c'est en ligne dans la minute. « Annuler tout » si tu préfères repartir de zéro." },

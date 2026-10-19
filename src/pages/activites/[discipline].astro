@@ -77,18 +77,15 @@ const LETTRES = ["Zéro", "Un", "Deux", "Trois", "Quatre", "Cinq", "Six", "Sept"
 /* ------------------------------------------------------------------ */
 /* LES PRIX — jamais tapés dans le texte : lus dans PROMOS et TARIFS.    */
 /* ------------------------------------------------------------------ */
-const classique = TARIFS.find((t) => /^les classiques/i.test(t.name));
+const comptant = TARIFS.find((t) => /^comptant/i.test(t.name));
 const ecole = TARIFS.find((t) => /^école/i.test(t.name));
 const lire = (texte, rx, quoi) => { const m = String(texte || "").match(rx); if (!m) throw new Error(`[disciplines] prix introuvable dans data.js : ${quoi}`); return m[1]; };
 const PRIX = {
   essai: PROMOS.essai.price,
-  rentree: PROMOS.duo.price,
-  rentreeAvant: PROMOS.duo.was,
-  saison: PROMOS.saisonOffer.price,
-  saisonAvant: PROMOS.saisonOffer.was,
-  adulte: classique?.price,
-  etudiant: lire(classique?.items?.join(" "), /[ée]tudiant\s+([\d,]+\s?€)/i, "abonnement étudiant"),
-  badge: lire(PROMOS.duo.detail, /badge\s+([\d,]+\s?€)/i, "badge"),
+  etudiant: PROMOS.etudiant.price,
+  adulte: PROMOS.adulte.price,
+  comptant: comptant?.price,
+  badge: lire(PROMOS.modalites, /badge d.acc[èe]s\s+([\d,]+\s?€)/i, "badge"),
   ecole: ecole?.price,
   baby: lire(ecole?.feature, /Baby Boxe\s+([\d,]+\s?€)/i, "Baby Boxe"),
 };
@@ -156,16 +153,16 @@ const voisines = DISCIPLINES.filter((x) => x.page && x.key !== cle && TEXTES.pag
   .map((x) => ({ href: x.page, nom: x.name, tag: x.tag, n: creneauxDe(x.key).length, coach: coachDe(x.key) }));
 
 /* ------------------------------------------------------------------ */
-/* LE PRIX — une offre mise en avant, deux à côté. Côté adulte, c'est   */
-/* l'offre que TARIFS marque `highlight` (la Rentrée) ; côté enfants,    */
-/* l'école à l'année. La remise est CALCULÉE sur les deux prix de        */
-/* data.js, arrondie vers le bas : jamais un pourcentage plus beau que   */
-/* le vrai. Le badge de la Rentrée est dit sous le bouton, pas caché.    */
+/* LE PRIX — un bloc mis en avant, deux offres à côté. Côté adulte, le   */
+/* bloc porte l'abonnement sans engagement en DEUX prix, l'étudiant puis */
+/* l'adulte ; côté enfants, l'école à l'année. Aucun prix barré, aucune  */
+/* remise : ce sont les prix de tous les jours. Le badge est dit sous    */
+/* les boutons, pas caché.                                               */
 /* ------------------------------------------------------------------ */
 const nombre = (s) => parseFloat(String(s).replace(/[^\d,]/g, "").replace(",", "."));
-const remise = (avant, apres) => Math.floor(((nombre(avant) - nombre(apres)) / nombre(avant)) * 100);
-const vedette = TARIFS.find((t) => t.highlight);
-if (cle !== "kids" && (!vedette || vedette.price !== PRIX.rentree)) throw new Error("[disciplines] l’offre mise en avant dans TARIFS n’est plus la Rentrée : revoir le bloc prix");
+/* Garde-fou de cohérence : la grille TARIFS doit ouvrir sur l'étudiant
+   puis l'adulte, aux prix de PROMOS — sinon le bloc prix mentirait. */
+if (TARIFS[0]?.price !== PRIX.etudiant || TARIFS[1]?.price !== PRIX.adulte) throw new Error("[disciplines] TARIFS ne s’ouvre plus sur l’étudiant puis l’adulte aux prix de PROMOS : revoir le bloc prix");
 const OFFRES = cle === "kids"
   ? {
       phare: { nom: "École de boxe, l’année", prix: PRIX.ecole, unite: "l’année · t-shirt du club inclus", ruban: "Inscriptions ouvertes",
@@ -177,15 +174,19 @@ const OFFRES = cle === "kids"
       ],
     }
   : {
-      phare: { nom: PROMOS.duo.name, prix: PRIX.rentree, avant: PRIX.rentreeAvant, unite: "par personne · toutes les 4 semaines", ruban: `−${remise(PRIX.rentreeAvant, PRIX.rentree)} %`,
-        plus: ["Cours illimités, toutes les disciplines", "Sans engagement", `À deux : ${PRIX.rentree} chacun`],
-        cta: `Je profite de l’offre · ${PRIX.rentree}`, href: LINKS.rentree, mention: `Badge d’accès ${PRIX.badge}, facturé 72 h après le début.` },
+      phare: { nom: "L’abonnement sans engagement", unite: "toutes les 4 semaines · les 5 salles du réseau", ruban: "Sans engagement",
+        plus: ["Cours illimités, toutes les disciplines adultes", "Accès libre de 10h à 21h30", "Tu arrêtes quand tu veux"],
+        mention: `Première échéance par carte, prélèvement ensuite ; badge d’accès ${PRIX.badge} quelques jours après l’inscription.` },
+      duo: [
+        { qui: "Étudiant", prix: PRIX.etudiant, s: "carte étudiante requise", cta: "Je m’inscris en étudiant", href: LINKS.etudiant, cls: "btn--primary" },
+        { qui: "Adulte", prix: PRIX.adulte, s: "renouvelable", cta: "Je m’inscris", href: LINKS.adulte, cls: "" },
+      ],
       minis: [
         { nom: "Séance d’essai", prix: PRIX.essai, s: "Toutes disciplines, gants prêtés", cta: "Réserver l’essai", href: LINKS.essai },
-        { nom: "Saison, 12 mois", prix: PRIX.saison, avant: PRIX.saisonAvant, s: "5 clubs · comptant ou 4× sans frais", cta: "Voir la Saison", href: LINKS.saison },
+        { nom: "Comptant, 3 mois", prix: PRIX.comptant, s: "Ou 6 mois 250€, 12 mois 400€", cta: "Voir le comptant", href: LINKS.comptant },
       ],
     };
-/** « 29€ » → { n: "29", d: "" } ; « 44,99€ » → { n: "44", d: ",99" } : le chiffre, ses centimes, l'euro à part. */
+/** « 295€ » → { n: "295", d: "" } ; « 44,99€ » → { n: "44", d: ",99" } : le chiffre, ses centimes, l'euro à part. */
 const chiffre = (s) => { const m = String(s).match(/^(\d+)(,\d+)?/); return { n: m[1], d: m[2] || "" }; };
 
 /* ------------------------------------------------------------------ */
@@ -298,10 +299,10 @@ const ldJson = JSON.stringify(ld).replace(/</g, "\\u003c");
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={og} />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=41" />
-  <link rel="stylesheet" href="/assets/css/roulette.css?v=22" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=42" />
+  <link rel="stylesheet" href="/assets/css/roulette.css?v=23" />
   <link rel="stylesheet" href="/assets/css/photos.css?v=23" />
-  <link rel="stylesheet" href="/assets/css/discipline.css?v=3" />
+  <link rel="stylesheet" href="/assets/css/discipline.css?v=4" />
 
   <script is:inline type="application/ld+json" set:html={ldJson}></script>
 
@@ -493,9 +494,9 @@ const ldJson = JSON.stringify(ld).replace(/</g, "\\u003c");
 
     <!-- ============================ LE PRIX ===========================
          Sur la bande noire, le registre du « coup de poing » (base.css) :
-         une offre mise en avant, son prix qui tombe de l'ancien au nouveau
-         quand la carte entre à l'écran, et deux offres à côté. Au repos
-         (sans JavaScript, ou mouvement réduit), le prix final est écrit. -->
+         un bloc mis en avant — l'abonnement en deux prix, l'étudiant puis
+         l'adulte (36 et 44 en grand, « €99 » en petit) ; l'école côté
+         enfants — et deux offres à côté. Le prix final est toujours écrit. -->
     <section class="section band-dark dp-tarifs" id="prix" aria-labelledby="t-tarifs" data-sans-cadran>
       <div class="dp-tarifs__halo" aria-hidden="true"></div>
       <div class="wrap dp-split dp-split--prix">
@@ -508,16 +509,31 @@ const ldJson = JSON.stringify(ld).replace(/</g, "\\u003c");
           <article class="dp-offre" data-reveal aria-labelledby="t-offre">
             <p class="dp-offre__ruban mono">{OFFRES.phare.ruban}</p>
             <h3 class="dp-offre__nom" id="t-offre">{OFFRES.phare.nom}</h3>
-            <p class="dp-offre__prix">
-              <span class="sr-only">{`${OFFRES.phare.prix}${OFFRES.phare.avant ? ` au lieu de ${OFFRES.phare.avant}` : ""}`}</span>
-              <span class="dp-offre__n" aria-hidden="true" data-compte={nombre(OFFRES.phare.prix)} data-depuis={OFFRES.phare.avant ? nombre(OFFRES.phare.avant) : 0}>{chiffre(OFFRES.phare.prix).n}{chiffre(OFFRES.phare.prix).d}</span><span class="dp-offre__eur" aria-hidden="true">€</span>
-              {OFFRES.phare.avant && <s class="dp-offre__avant" aria-hidden="true">{OFFRES.phare.avant}</s>}
-            </p>
+            {OFFRES.duo ? (
+              <div class="dp-duo">
+                {OFFRES.duo.map((o) => (
+                  <div class="dp-duo__o">
+                    <p class="dp-duo__qui mono">{o.qui}</p>
+                    <p class="dp-offre__prix">
+                      <span class="sr-only">{`${o.prix.replace(/€$/, " €")} toutes les 4 semaines`}</span>
+                      <span class="dp-offre__n dp-duo__n" aria-hidden="true">{chiffre(o.prix).n}</span><span class="dp-offre__eur dp-duo__eur" aria-hidden="true">{`€${chiffre(o.prix).d.replace(",", "")}`}</span>
+                    </p>
+                    <p class="dp-duo__s">{o.s}</p>
+                    <a class={`btn ${o.cls} dp-offre__cta`} data-magnetic href={o.href}><span>{o.cta}</span></a>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p class="dp-offre__prix">
+                <span class="sr-only">{OFFRES.phare.prix}</span>
+                <span class="dp-offre__n" aria-hidden="true" data-compte={nombre(OFFRES.phare.prix)} data-depuis="0">{chiffre(OFFRES.phare.prix).n}{chiffre(OFFRES.phare.prix).d}</span><span class="dp-offre__eur" aria-hidden="true">€</span>
+              </p>
+            )}
             <p class="dp-offre__unite">{OFFRES.phare.unite}</p>
             <ul class="dp-offre__plus">
               {OFFRES.phare.plus.map((t) => (<li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M4 10.5l3.6 3.6L16 5.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg><span>{t}</span></li>))}
             </ul>
-            <a class="btn btn--primary dp-offre__cta" data-magnetic href={OFFRES.phare.href}><span>{OFFRES.phare.cta}</span></a>
+            {OFFRES.phare.href && <a class="btn btn--primary dp-offre__cta" data-magnetic href={OFFRES.phare.href}><span>{OFFRES.phare.cta}</span></a>}
             <p class="dp-offre__mention">{OFFRES.phare.mention}</p>
           </article>
           <ul class="dp-minis" data-reveal-group>
@@ -525,7 +541,7 @@ const ldJson = JSON.stringify(ld).replace(/</g, "\\u003c");
               <li>
                 <a class="dp-mini" href={m.href}>
                   <span class="dp-mini__nom mono">{m.nom}</span>
-                  <span class="dp-mini__prix">{m.prix}{m.avant && <s><span class="sr-only">au lieu de </span>{m.avant}</s>}</span>
+                  <span class="dp-mini__prix">{m.prix}</span>
                   <span class="dp-mini__s">{m.s}</span>
                   <span class="dp-mini__go">{m.cta} <i aria-hidden="true">→</i></span>
                 </a>
@@ -603,7 +619,9 @@ const ldJson = JSON.stringify(ld).replace(/</g, "\\u003c");
         <p class="lead" data-reveal set:html={html(p.fin.texte)}></p>
         <div class="gong__cta" data-reveal>
           <a class="btn btn--primary" data-magnetic href={LINKS.essai}><span>Réserver l’essai · {PRIX.essai}</span></a>
-          <a class="btn" data-magnetic href={LINKS.rentree}><span>L’offre Rentrée · {PRIX.rentree}</span></a>
+          {cle === "kids"
+            ? <a class="btn" data-magnetic href={LINKS.enfants}><span>Inscrire mon enfant · {PRIX.ecole}</span></a>
+            : <><a class="btn" data-magnetic href={LINKS.etudiant}><span>Étudiant · {PRIX.etudiant}</span></a><a class="btn" data-magnetic href={LINKS.adulte}><span>Adulte · {PRIX.adulte}</span></a></>}
         </div>
       </div>
     </section>
@@ -646,7 +664,7 @@ const ldJson = JSON.stringify(ld).replace(/</g, "\\u003c");
 
   <!-- Libs d’animation, auto-hébergées et regroupées (gsap + ScrollTrigger + Lenis). -->
   <script is:inline defer src="/assets/js/vendor.min.js?v=22"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=30"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=31"></script>
   <script is:inline type="module" src="/assets/js/discipline.js?v=3"></script>
 </body>
 </html>

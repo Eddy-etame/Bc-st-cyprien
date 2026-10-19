@@ -252,6 +252,16 @@ body[data-page="discipline"] .phero h1 { font-size: clamp(2.2rem, 1.6rem + 4vw, 
 .dp-offre__cta { margin-top: .4rem; }
 .dp-offre__mention { font-size: .78rem; line-height: 1.45; color: var(--muted); }
 
+/* L'abonnement en deux colonnes, l'étudiant puis l'adulte : l'entier en
+   grand, « €99 » en petit et collé. */
+.dp-duo { display: grid; gap: 1.2rem 1.6rem; width: 100%; grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr)); }
+.dp-duo__o { display: grid; gap: .55rem; justify-items: start; align-content: start; }
+.dp-duo__qui { font: 700 .72rem/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--spark-2); }
+.dp-duo__n { font-size: clamp(3.6rem, 2.6rem + 4vw, 5.4rem); }
+.dp-duo__eur { font-size: clamp(1.2rem, 1rem + 1vw, 1.7rem); }
+.dp-duo__s { font-size: .8rem; line-height: 1.4; color: var(--muted); }
+.dp-duo .dp-offre__cta { margin-top: .2rem; }
+
 .dp-minis { display: grid; gap: .9rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); }
 .dp-mini {
   position: relative; display: grid; gap: .45rem; align-content: start; height: 100%;

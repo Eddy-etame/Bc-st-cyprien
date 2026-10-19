@@ -19,7 +19,7 @@ Le détail factuel page par page est dans [llms-full.txt](https://club-boxe-toul
 - [Coachs](https://club-boxe-toulouse.com/coachs/): l’encadrement — Dadi (anglaise, Lady Punch, école), Tawee (thaï/K1), Brice (Hyrox, cross, camp) ; pour chacun, sa photo, sa discipline et le planning de cette discipline. Qui encadre quel créneau n’est pas publié.
 - [Galerie](https://club-boxe-toulouse.com/galerie/): 15 photos réelles en 7 zones — le plateau, l’anglaise, le pieds-poings, le sol, le moteur, Lady Punch et l’école —, consultables en grand.
 - [Planning](https://club-boxe-toulouse.com/plannings/): 29 cours par semaine sur 6 jours (13 en journée, 16 dès 18h, 7 disciplines) ; la grille hebdomadaire filtrable (jour, discipline) et le poster officiel de la saison qui fait foi.
-- [Tarifs](https://club-boxe-toulouse.com/tarifs/): offre Rentrée 29 € par personne, offre Saison 259 € les 12 mois, abonnement classique 44,99 € adulte / 36,99 € étudiant par échéance de 4 semaines, école 295 €/an t-shirt inclus (baby 250 €), essai 10 € en dernier et conditions en clair. La note et le volume d’avis ne sont pas recopiés : consulter la fiche Google liée pour leur état actuel.
+- [Tarifs](https://club-boxe-toulouse.com/tarifs/): abonnement sans engagement par échéance de 4 semaines — étudiant 36,99 € (carte étudiante requise), adulte 44,99 € —, comptant 3, 6 ou 12 mois (150, 250, 400 €), école 295 €/an t-shirt inclus (baby 250 €), essai 10 € en dernier et conditions en clair. La note et le volume d’avis ne sont pas recopiés : consulter la fiche Google liée pour leur état actuel.
 - [Contact](https://club-boxe-toulouse.com/contact/): adresse, horaires, téléphone, carte, accès tram et questions fréquentes.
 
 ## L’assistant du site
@@ -37,20 +37,20 @@ Une pastille en bas à droite de chaque page ouvre un assistant conversationnel.
 - Horaires d’ouverture : lundi–samedi 10h00–21h30 ; dimanche fermé. Le dernier cours se termine à 21h15 selon les jours.
 - Équipement : sacs de frappe, espace tatamis et ring ; musculation, cardio et cross-training en accès libre. Le site officiel du réseau ne publie pas de surface en m² pour Saint-Cyprien.
 - Fédérations : FFBoxe, FFKMDA, FMMAF
-- Réseau : 5 clubs — Portet, Minimes, États-Unis, Saint-Cyprien, Ramonville (accès libre aux 5 clubs avec l’offre Saison)
+- Réseau : 5 clubs — Portet, Minimes, États-Unis, Saint-Cyprien, Ramonville (tous accessibles aux abonnés sans engagement, au tarif étudiant comme adulte)
 - Sites du réseau : site mère https://boxingcenter.fr/ · Portet https://boxing-center-portet.fr/ · Minimes https://boxe-toulouse.com/ · États-Unis https://clubmma.fr/ · Saint-Cyprien https://club-boxe-toulouse.com/ · Ramonville https://mmatoulouse.com/ · TMBC https://toulouse-minimes-boxing-club.fr/ · boutique https://boutique.boxingcenter.fr/
 - Chaque salle du réseau a sa propre page d’accueil et ses propres horaires : ne jamais reporter un créneau, un coach, une surface ou un tarif d’une salle sur une autre. Ce document ne décrit QUE Saint-Cyprien.
 - Le backoffice /admin/ et les fonctions /api/ ne sont pas indexables. Exception : /api/mcp reste volontairement non indexable, mais les agents MCP peuvent l’appeler explicitement; sa carte descriptive est /.well-known/mcp.json.
 - Disciplines : boxe anglaise ; boxe thaï/K1 ; grappling ; Hyrox & cross-training ; Lady Punch 100 % féminin ; boxe éducative & Baby Boxe dès 3 ans — Baby 3/6, éducative 7/11, ados 12/16, compétiteurs ; boxing camp
 - Coachs : Dadi (anglaise, Lady Punch, école), Tawee (thaï/K1), Brice (Hyrox, cross, Boxing Camp). QUI ENCADRE QUEL CRÉNEAU N’EST PAS PUBLIÉ : c’est interne au club. Ne jamais attribuer un coach à un jour ou à une heure, ni le déduire — cela se demande au 05 62 24 46 82.
 - Séance d’essai : 10 €, toutes disciplines, gants et matériel prêtés, sans engagement — réservation https://boutique.boxingcenter.fr/seance-essai
-- Offre Rentrée : 29 € par personne et par échéance de 4 semaines — cours illimités, sans engagement (au lieu de 44,99 €). Première échéance par carte puis IBAN ; coordonnées d’un proche requises pour débloquer la promotion ; badge facturé 34,99 € 72 h après le début. Source et souscription : https://boutique.boxingcenter.fr/offre/29
-- Offre Saison : 259 € les 12 mois au lieu de 400 €, comptant ou en 4× sans frais (4 × 64,75 €, plusieurs options de paiement en 4×) ; accès libre aux 5 clubs. Source : https://boutique.boxingcenter.fr/offre/259
+- Tarif étudiant (sans engagement) : 36,99 € la période de 4 semaines, sur présentation de la carte — carte étudiante requise ; les cours sont illimités et la salle reste en libre accès entre 10 h et 21 h 30, ici et dans les 4 autres clubs. S’inscrire : https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines
+- Tarif adulte (sans engagement) : 44,99 € la période de 4 semaines, reconduite tant qu’on ne l’arrête pas ; mêmes droits d’accès. S’inscrire : https://boutique.boxingcenter.fr/inscription?product=44-99-4-semaines
 - École & Baby Boxe : 295 €/an t-shirt inclus (baby 250 €)
 - École : 295 €/an t-shirt du club inclus, Baby Boxe 250 €/an
-- Inscriptions et promotions : https://boutique.boxingcenter.fr/offre/259
+- Paiement : carte bancaire à l’ouverture de l’abonnement, IBAN ensuite pour chaque nouvelle période ; badge d’accès 34,99 € en supplément, débité quelques jours après la souscription. Toutes les formules sans engagement : https://boutique.boxingcenter.fr/abonnements#prelevement
 - Grappling : créneau actif (mardi & jeudi 19h–20h) SANS encadrant nommé — le poster officiel n’en porte pas, le site n’en invente pas. Ne pas attribuer ce cours à un coach.
-- Abonnement classique, hors promotion : 44,99 € adulte et 36,99 € étudiant par échéance de 4 semaines. Les CGV annoncent un badge d’accès de 34,99 € en sus des abonnements sans engagement, sauf condition contraire affichée à la souscription. https://boutique.boxingcenter.fr/abonnements#prelevement · https://boutique.boxingcenter.fr/cgv
-- Ordre de présentation des offres sur tout le site : rentrée 29 €, saison 259 €, classique 44,99 €/36,99 € par 4 semaines, école 295 € (baby 250 €), essai 10 € en dernier.
+- Comptant, payé en une seule fois : 3 mois pour 150 €, 6 mois pour 250 €, un an pour 400 €. https://boutique.boxingcenter.fr/abonnements#comptant · https://boutique.boxingcenter.fr/cgv
+- Ordre de présentation des offres sur tout le site : étudiant 36,99 €, adulte 44,99 € (par 4 semaines), comptant, école 295 € (baby 250 €), essai 10 € en dernier.
 - Avis Google : avis réels d’adhérents cités mot pour mot sur la page Tarifs, avec un lien vers la fiche Google Maps de la salle.
 - Réseaux : https://www.instagram.com/boxingcentertoulouse/ · https://www.facebook.com/BoxingCenterToulouse/ · https://boxingcenter.fr/

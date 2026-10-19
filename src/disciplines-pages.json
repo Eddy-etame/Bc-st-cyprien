@@ -1,5 +1,5 @@
 {
-  "_note": "Pages de discipline de Saint-Cyprien : /activites/<slug>/, rendues par src/pages/activites/[discipline].astro (13/10/2026). Les FAITS viennent de public/assets/js/data.js : créneaux (SCHEDULE), coachs (COACHES), niveaux, prix (PROMOS, TARIFS), adresse (SALLE). Ce fichier ne porte que le texte long, rangé par clé de discipline. Placeholders remplacés au build : {essai} {rentree} {rentreeAvant} {saison} {saisonAvant} {adulte} {etudiant} {badge} {ecole} {baby} {tel} {n} (nombre de créneaux) {N} (le même, en lettres). Garde-fous au build : toute heure écrite ici doit exister au planning, chaque coach nommé dans « coachs » doit encadrer la discipline dans COACHES, titre ≤ 60 signes, description entre 80 et 158. Une phrase de sept mots ou plus ne s’écrit qu’une fois sur le site et sur le réseau. Liens : [ancre](url).",
+  "_note": "Pages de discipline de Saint-Cyprien : /activites/<slug>/, rendues par src/pages/activites/[discipline].astro (13/10/2026). Les FAITS viennent de public/assets/js/data.js : créneaux (SCHEDULE), coachs (COACHES), niveaux, prix (PROMOS, TARIFS), adresse (SALLE). Ce fichier ne porte que le texte long, rangé par clé de discipline. Placeholders remplacés au build : {essai} {etudiant} {adulte} {comptant} {badge} {ecole} {baby} {tel} {n} (nombre de créneaux) {N} (le même, en lettres). Garde-fous au build : toute heure écrite ici doit exister au planning, chaque coach nommé dans « coachs » doit encadrer la discipline dans COACHES, titre ≤ 60 signes, description entre 80 et 158. Une phrase de sept mots ou plus ne s’écrit qu’une fois sur le site et sur le réseau. Liens : [ancre](url).",
   "pages": {
     "anglaise": {
       "slug": "boxe-anglaise",
@@ -78,7 +78,7 @@
       },
       "tarifs": {
         "titre": "Ce que coûte l’anglaise.",
-        "texte": "L’essai coûte {essai}. Pour continuer, l’offre Rentrée revient à {rentree} par personne toutes les quatre semaines, sans engagement, au lieu de {rentreeAvant} ; la Saison coûte {saison} pour douze mois et ouvre aussi les quatre autres clubs Boxing Center. [Toutes les formules et leurs conditions](/tarifs/)."
+        "texte": "L’essai coûte {essai}. Ensuite, l’abonnement sans engagement se règle toutes les quatre semaines : {etudiant} en étudiant, carte étudiante requise, {adulte} en adulte — et il donne accès aux cinq clubs Boxing Center. [Toutes les formules et leurs conditions](/tarifs/)."
       },
       "venir": {
         "titre": "Venir au cours.",
@@ -180,7 +180,7 @@
       },
       "tarifs": {
         "titre": "Le prix des pieds-poings.",
-        "texte": "La séance d’essai coûte {essai}. L’offre Saison, à {saison} les douze mois au lieu de {saisonAvant}, cite la boxe pieds-poings parmi ses disciplines ; l’offre Rentrée, elle, se paie {rentree} par personne et par période de quatre semaines. [Comparer les formules](/tarifs/)."
+        "texte": "La séance d’essai coûte {essai}. Pour enchaîner les reprises, l’abonnement sans engagement revient à {etudiant} la période de quatre semaines côté étudiants (carte étudiante requise) et à {adulte} pour les adultes. [Comparer les formules](/tarifs/)."
       },
       "venir": {
         "titre": "Rive gauche, sans voiture.",
@@ -284,7 +284,7 @@
       },
       "tarifs": {
         "titre": "Le prix du Lady Punch.",
-        "texte": "L’essai coûte {essai}. Avec l’offre Rentrée, compte {rentree} toutes les quatre semaines, sans engagement, et à deux, chacune paie {rentree}. La Saison, à {saison} les douze mois, cite le Lady Punch parmi ses disciplines. [Les formules en détail](/tarifs/)."
+        "texte": "L’essai coûte {essai}. Pour revenir le mardi et le jeudi, l’abonnement sans engagement demande {etudiant} toutes les quatre semaines à une étudiante, carte étudiante requise, et {adulte} sinon ; le Lady Punch y est compris, comme tous les autres cours. [Les formules en détail](/tarifs/)."
       },
       "venir": {
         "titre": "Rue Sainte-Lucie, en sortant du travail.",
@@ -474,7 +474,7 @@
       },
       "tarifs": {
         "titre": "Combien pour le camp.",
-        "texte": "Ta séance d’essai coûte {essai}. Pour revenir chaque semaine, l’offre Rentrée fait passer l’échéance de quatre semaines de {rentreeAvant} à {rentree} par personne ; hors promotion, l’abonnement classique coûte {adulte} par échéance, {etudiant} pour un étudiant. [Toutes les formules](/tarifs/)."
+        "texte": "Ta séance d’essai coûte {essai}. Pour revenir chaque semaine, l’abonnement court par périodes de quatre semaines, sans engagement : {etudiant} côté étudiant, carte étudiante requise, et {adulte} au tarif adulte. [Toutes les formules](/tarifs/)."
       },
       "venir": {
         "titre": "Un samedi matin, rue Sainte-Lucie.",
@@ -574,7 +574,7 @@
       },
       "tarifs": {
         "titre": "Combien pour le moteur.",
-        "texte": "L’essai coûte {essai}. L’offre Rentrée, à {rentree} par personne l’échéance de quatre semaines, donne accès à toutes les disciplines ; la Saison, à {saison} les douze mois, ouvre aussi les quatre autres clubs du réseau. [Voir les formules](/tarifs/)."
+        "texte": "L’essai coûte {essai}. Pour faire tourner le moteur toute l’année, l’abonnement sans engagement s’échelonne par quatre semaines : {etudiant} pour les étudiants (carte étudiante requise) ou {adulte} pour les adultes, avec les cinq salles du réseau. [Voir les formules](/tarifs/)."
       },
       "venir": {
         "titre": "Venir un lundi soir.",
@@ -585,7 +585,7 @@
         { "q": "Cross-training et Hyrox : quelle différence ?", "a": "Le cross-training enchaîne des circuits variés de force, de gymnastique et de cardio ; l’Hyrox prépare le format précis de la course. Brice encadre les deux." },
         { "q": "Faut-il être en forme pour commencer le cross-training ?", "a": "Non : le planning annonce des cours intenses mais sans prérequis, et chacun règle sa charge et son rythme." },
         { "q": "Peut-on utiliser la zone cross en dehors des cours ?", "a": "Oui, en accès libre du lundi au samedi, de 10h00 à 21h30, avec la musculation et le cardio." },
-        { "q": "L’Hyrox est-il compris dans l’abonnement ?", "a": "Oui : les deux offres du moment, Rentrée ({rentree}) et Saison ({saison}), couvrent toutes les disciplines adultes de la salle." }
+        { "q": "L’Hyrox est-il compris dans l’abonnement ?", "a": "Oui. L’abonnement sans engagement, {etudiant} en étudiant (carte étudiante requise) ou {adulte} en adulte, couvre l’Hyrox, le cross-training et toutes les autres disciplines adultes de la salle." }
       ],
       "autresIntro": "Le souffle construit ici sert sur le ring : voici les cours de boxe de la salle.",
       "sourcesIntro": "Les {n} horaires et leurs durées sont lus sur l’affiche officielle 2026–2027 ; la définition de l’Hyrox, sur le site de la compétition.",

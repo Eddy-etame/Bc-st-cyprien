@@ -4,10 +4,9 @@
    Same proven engine as the other salles, with the showroom’s restraint:
    no custom cursor, no grain — precision instead of texture.
    ===================================================================== */
-import { NAV, LINKS, SALLE, NETWORK, DISCIPLINES, picture, pictureEl } from "./data.js?v=31";
+import { NAV, LINKS, SALLE, NETWORK, DISCIPLINES, picture, pictureEl } from "./data.js?v=32";
 
-import { initPlaces } from "./places.js?v=22";
-import { mountRoulette } from "./roulette.js?v=25";
+import { mountRoulette } from "./roulette.js?v=26";
 /* ------------------------- MAILLAGE DE MARQUE ---------------------- *
  * Le réseau propriétaire est un maillage VOULU : les liens sortants vers
  * boxingcenter.fr, la boutique et les salles sœurs partent en target=_blank
@@ -51,7 +50,7 @@ function mountNav() {
           ${ext(LINKS.groupe, "Le réseau", "Boxing Center — le site du groupe")}
           ${ext(LINKS.boutique, "Boutique", "La boutique Boxing Center")}
         </div>
-        <a class="btn btn--primary nav__cta" data-magnetic href="${LINKS.rentree}"><span>Ma place · 29€</span></a>
+        <a class="btn btn--primary nav__cta" data-magnetic href="${LINKS.prelevement}"><span>Je m’abonne</span></a>
         <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </nav>`;
@@ -526,7 +525,7 @@ function armChatbot() {
   const pill = document.querySelector("a.chatbot");
   if (!pill) return;
   let load = null;
-  const warm = () => (load ||= import("./chatbot.js?v=25"));
+  const warm = () => (load ||= import("./chatbot.js?v=26"));
   ["pointerenter", "focus", "touchstart"].forEach((ev) =>
     pill.addEventListener(ev, warm, { once: true, passive: true })
   );
@@ -671,10 +670,6 @@ revealPhotos();
 syncPhone();
 watchPhone();
 armChatbot();
-
-/* « Plus que N places » : le nombre vient des ventes reelles de la
-   boutique. Sans reponse, aucun compteur ne s'affiche — voir places.js. */
-void initPlaces();
 presentationAssistant();
 
 export const BC = window.BC;

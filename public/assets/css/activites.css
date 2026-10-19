@@ -543,6 +543,14 @@
   letter-spacing: -.02em;
   color: var(--ink);
 }
+/* « 36 » en grand, « €99 » en petit et collé, calé en haut du chiffre. */
+.offre__disc b small {
+  font-size: .42em;
+  vertical-align: top;
+  margin-left: .04em;
+  letter-spacing: 0;
+  color: var(--tint, var(--ink));
+}
 .offre__disc i {
   font-style: normal;
   font: 500 .58rem/1.2 var(--f-mono);

@@ -12,8 +12,8 @@
    Ce module la REMPLACE par un bouton qui ouvre le panneau. Script mort ou
    bloqué ⇒ la pastille d’origine appelle la salle. Rien ne régresse.
    ===================================================================== */
-import { QUICKS, fallbackAnswer, GENERIC } from "./chatbot-kb.js?v=23";
-import { SALLE } from "./data.js?v=31";
+import { QUICKS, fallbackAnswer, GENERIC } from "./chatbot-kb.js?v=24";
+import { SALLE } from "./data.js?v=32";
 
 /* ---------------------------- constantes -------------------------- */
 const EMAIL_RE = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i;
@@ -125,8 +125,9 @@ function tracke(href) {
 /* La pensée Portet émulée : clés fermées → vrais boutons sous les messages.
    Les href restent NUS ici — c’est la clé de comparaison de parseReply. */
 const ACTIONS = {
-  offre:       { label: "Je prends ma place — 29€", href: "https://boutique.boxingcenter.fr/offre/29" },
-  saison:      { label: "Je réserve ma saison · 259€", href: "https://boutique.boxingcenter.fr/offre/259" },
+  etudiant:    { label: "Étudiant · 36,99€ / 4 sem.", href: "https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines" },
+  adulte:      { label: "Adulte · 44,99€ / 4 sem.", href: "https://boutique.boxingcenter.fr/inscription?product=44-99-4-semaines" },
+  comptant:    { label: "Payer comptant · dès 150€", href: "https://boutique.boxingcenter.fr/abonnements#comptant" },
   essai:       { label: "Je viens essayer · 10€", href: "https://boutique.boxingcenter.fr/seance-essai" },
   enfants:     { label: "J’inscris mon enfant", href: "https://boutique.boxingcenter.fr/abonnements#enfants" },
   abonnements: { label: "Voir les abonnements", href: "https://boutique.boxingcenter.fr/abonnements" },
@@ -503,7 +504,7 @@ export function initChatbot() {
          message sur les disciplines n'a jamais été affiché à personne.
          Les deux sont fondus ici en un seul. */
       const ACCUEILS = {
-        "/tarifs/": ["Bonjour \u{1F44B} Tu es sur les tarifs.", "La rentrée à 29€ par personne est la formule la plus prise. Je t’aide à choisir ?"],
+        "/tarifs/": ["Bonjour \u{1F44B} Tu es sur les tarifs.", "Sans engagement : 36,99€ en étudiant, 44,99€ en adulte, toutes les 4 semaines. Je t’aide à choisir ?"],
         "/activites/": ["Bonjour \u{1F44B} Tu regardes les disciplines.", "Sept, de l’anglaise au grappling, gants prêtés et aucun niveau demandé. Dis-moi ton objectif, je t’oriente."],
         "/plannings/": ["Bonjour \u{1F44B} Tu cherches un créneau.", "Ouvert du lundi au samedi, 10h–21h30. Donne-moi tes dispos, je te dis lequel prendre."],
         "/coachs/": ["Bonjour \u{1F44B} Tu regardes l’équipe.", "Trois coachs : Dadi, Tawee et Brice. Une question sur l’un d’eux ?"],
@@ -514,13 +515,12 @@ export function initChatbot() {
       const _page = location.pathname.replace(/index\.html$/, "");
       const [_b, _s] = ACCUEILS[_page] || ["Bonjour \u{1F44B} Je suis l’assistant de Boxing Center Saint-Cyprien.", "Les cours, les créneaux, les tarifs — dis-moi ce que tu cherches."];
       await botSay(_b, 450);
-      /* LE 29 EUR SEUL A L'ACCUEIL. Le bouton « Je viens essayer · 10€ »
-           était posé ici, dans le deuxième message : l'essai était offert
-           avant même que l'offre ait été proposée. Le réseau vend le 29 €
-           d'abord ; le 10 € reste dans la grille tarifs et ne sort qu'après
-           un refus — c'est le prompt serveur qui choisit ce moment-là, pas
-           l'accueil. */
-        await botSay(_s, 620, resolveActions(["offre", "saison"]));
+      /* LES DEUX ABONNEMENTS SEULS A L'ACCUEIL, l'étudiant puis l'adulte.
+           Le bouton « Je viens essayer · 10€ » était posé ici : l'essai
+           était offert avant même que l'abonnement ait été proposé. Le
+           10 € reste dans la grille tarifs et ne sort qu'après un refus —
+           c'est le prompt serveur qui choisit ce moment-là, pas l'accueil. */
+        await botSay(_s, 620, resolveActions(["etudiant", "adulte"]));
       /* Le prenom en TROISIEME bulle, apres deux messages qui ont deja
          rendu service. `expectName` etait armee sans que la question soit
          posee : un mot unique etait lu comme un prenom alors que personne

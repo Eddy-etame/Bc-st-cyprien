@@ -7,7 +7,7 @@ import { AUTEUR_PRINCIPAL } from "../../../api/_lib/auteurs.js";
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tarifs boxe à Saint-Cyprien : essai et abonnements</title>
-  <meta name="description" content="Tarifs du club de boxe à Toulouse Saint-Cyprien : essai 10 €, offre 29 €, saison 259 €, abonnement adulte ou étudiant et école dès 3 ans." />
+  <meta name="description" content="Tarifs du club de boxe à Toulouse Saint-Cyprien : étudiant 36,99 €, adulte 44,99 € les 4 semaines sans engagement, comptant, école dès 3 ans, essai 10 €." />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/space-grotesk-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -29,26 +29,26 @@ import { AUTEUR_PRINCIPAL } from "../../../api/_lib/auteurs.js";
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Boxing Center Saint-Cyprien" />
   <meta property="og:title" content="Tarifs & offres | Boxing Center Saint-Cyprien" />
-  <meta property="og:description" content="Rentrée 29€ toutes les 4 semaines, saison 259€ (comptant ou 4× sans frais), classiques 44,99€/4 semaines, école et essai 10€." />
+  <meta property="og:description" content="Sans engagement : 36,99€ en étudiant, 44,99€ en adulte, toutes les 4 semaines. Comptant dès 150€ les 3 mois, école et essai 10€." />
   <meta property="og:url" content="https://club-boxe-toulouse.com/tarifs/" />
-  <meta property="og:image" content="https://club-boxe-toulouse.com/assets/img/og/pages/tarifs.jpg?v=1" />
+  <meta property="og:image" content="https://club-boxe-toulouse.com/assets/img/og/pages/tarifs.jpg?v=2" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="L’essai à 10€, puis 29€ toutes les 4 semaines — La rangée de sacs et le ring Boxing Center au fond du plateau" />
+  <meta property="og:image:alt" content="Étudiant 36,99€, adulte 44,99€, sans engagement — La rangée de sacs et le ring Boxing Center au fond du plateau" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Tarifs & offres | Boxing Center Saint-Cyprien" />
-  <meta name="twitter:description" content="Rentrée 29€/4 semaines, saison 259€, classiques 44,99€/4 semaines, école 295€/an et essai 10€ à Toulouse Saint-Cyprien." />
-  <meta name="twitter:image" content="https://club-boxe-toulouse.com/assets/img/og/pages/tarifs.jpg?v=1" />
-  <meta name="twitter:image:alt" content="L’essai à 10€, puis 29€ toutes les 4 semaines — La rangée de sacs et le ring Boxing Center au fond du plateau" />
+  <meta name="twitter:description" content="Étudiant 36,99€, adulte 44,99€ par 4 semaines, comptant 3, 6 ou 12 mois, école 295€/an et essai 10€ à Toulouse Saint-Cyprien." />
+  <meta name="twitter:image" content="https://club-boxe-toulouse.com/assets/img/og/pages/tarifs.jpg?v=2" />
+  <meta name="twitter:image:alt" content="Étudiant 36,99€, adulte 44,99€, sans engagement — La rangée de sacs et le ring Boxing Center au fond du plateau" />
 
-  <link rel="stylesheet" href="/assets/css/base.css?v=41" />
-  <link rel="stylesheet" href="/assets/css/roulette.css?v=22" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=42" />
+  <link rel="stylesheet" href="/assets/css/roulette.css?v=23" />
   <link rel="stylesheet" href="/assets/css/photos.css?v=23" />
-  <link rel="stylesheet" href="/assets/css/home.css?v=39" />
-  <link rel="stylesheet" href="/assets/css/tarifs.css?v=24" />
+  <link rel="stylesheet" href="/assets/css/home.css?v=40" />
+  <link rel="stylesheet" href="/assets/css/tarifs.css?v=25" />
 
   <!-- SEO/GEO — graphe JSON-LD unifié (organisation · salle · site · page · image ·
        fil d’Ariane). Faits réels uniquement — miroir de data.js. -->
@@ -209,35 +209,43 @@ import { AUTEUR_PRINCIPAL } from "../../../api/_lib/auteurs.js";
           "itemListElement": [
             {
               "@type": "Offer",
-              "name": "Offre Rentrée",
-              "price": "29",
-              "priceCurrency": "EUR",
-              "description": "29€ par personne et par échéance de 4 semaines, cours illimités, sans engagement. Première échéance par carte puis IBAN, coordonnées d’un proche requises, badge facturé 34,99€ après 72 h.",
-              "url": "https://boutique.boxingcenter.fr/offre/29"
-            },
-            {
-              "@type": "Offer",
-              "name": "Offre Saison",
-              "price": "259",
-              "priceCurrency": "EUR",
-              "description": "259€ les 12 mois au lieu de 400€, comptant ou en 4× sans frais ; accès libre aux 5 clubs.",
-              "url": "https://boutique.boxingcenter.fr/offre/259"
-            },
-            {
-              "@type": "Offer",
-              "name": "Abonnement adulte, échéance de 4 semaines",
-              "price": "44.99",
-              "priceCurrency": "EUR",
-              "description": "44,99€ par échéance de 4 semaines. Badge d’accès 34,99€ en sus selon les CGV, sauf condition contraire à la souscription.",
-              "url": "https://boutique.boxingcenter.fr/abonnements#prelevement"
-            },
-            {
-              "@type": "Offer",
-              "name": "Abonnement étudiant, échéance de 4 semaines",
+              "name": "Abonnement étudiant sans engagement, échéance de 4 semaines",
               "price": "36.99",
               "priceCurrency": "EUR",
-              "description": "36,99€ par échéance de 4 semaines pour les étudiants. Badge d’accès 34,99€ en sus selon les CGV, sauf condition contraire à la souscription.",
-              "url": "https://boutique.boxingcenter.fr/abonnements#prelevement"
+              "description": "Carte étudiante requise ; réglé par périodes de 4 semaines, sans engagement. Cours à volonté et libre accès entre 10 h et 21 h 30 dans les 5 clubs ; badge 34,99 € en plus.",
+              "url": "https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines"
+            },
+            {
+              "@type": "Offer",
+              "name": "Abonnement adulte sans engagement, échéance de 4 semaines",
+              "price": "44.99",
+              "priceCurrency": "EUR",
+              "description": "Tarif adulte reconduit de période en période (4 semaines), sans engagement. Cours à volonté et libre accès entre 10 h et 21 h 30 dans les 5 clubs ; badge 34,99 € en plus.",
+              "url": "https://boutique.boxingcenter.fr/inscription?product=44-99-4-semaines"
+            },
+            {
+              "@type": "Offer",
+              "name": "Comptant 3 mois",
+              "price": "150",
+              "priceCurrency": "EUR",
+              "description": "Trois mois réglés en une fois.",
+              "url": "https://boutique.boxingcenter.fr/abonnements#comptant"
+            },
+            {
+              "@type": "Offer",
+              "name": "Comptant 6 mois",
+              "price": "250",
+              "priceCurrency": "EUR",
+              "description": "Six mois réglés en une fois.",
+              "url": "https://boutique.boxingcenter.fr/abonnements#comptant"
+            },
+            {
+              "@type": "Offer",
+              "name": "Comptant 12 mois",
+              "price": "400",
+              "priceCurrency": "EUR",
+              "description": "Douze mois réglés en une fois.",
+              "url": "https://boutique.boxingcenter.fr/abonnements#comptant"
             },
             {
               "@type": "Offer",
@@ -291,7 +299,7 @@ import { AUTEUR_PRINCIPAL } from "../../../api/_lib/auteurs.js";
         "@id": "https://club-boxe-toulouse.com/tarifs/#webpage",
         "url": "https://club-boxe-toulouse.com/tarifs/",
         "name": "Tarifs & offres — Boxing Center Saint-Cyprien, Toulouse (essai 10€)",
-        "description": "Les tarifs de Boxing Center Saint-Cyprien, rive gauche : offre Rentrée 29€ par personne toutes les 4 semaines, saison à 259€ comptant ou en 4× sans frais, école 295€/an (baby 250€), essai 10€.",
+        "description": "Les tarifs de Boxing Center Saint-Cyprien, rive gauche : abonnement sans engagement à 36,99€ pour un étudiant (carte étudiante requise) ou 44,99€ pour un adulte toutes les 4 semaines, comptant 3, 6 ou 12 mois, école 295€/an (baby 250€), essai 10€.",
         "isPartOf": {
           "@id": "https://club-boxe-toulouse.com/#website"
         },
@@ -303,7 +311,7 @@ import { AUTEUR_PRINCIPAL } from "../../../api/_lib/auteurs.js";
           "@id": "https://club-boxe-toulouse.com/tarifs/#primaryimage"
         },
         "datePublished": "2026-07-17",
-        "dateModified": "2026-10-08"
+        "dateModified": "2026-10-19"
       },
       {
         "@type": "ImageObject",
@@ -359,30 +367,28 @@ import { AUTEUR_PRINCIPAL } from "../../../api/_lib/auteurs.js";
       </div>
     </header>
 
-    <!-- ================== LES OFFRES (Rentrée · Saison) ===========
-         L’ORDRE DE VENTE, ET RIEN D’AUTRE : rentrée 29€ → saison 259€ →
-         les classiques au mois → l’école → l’essai EN DERNIER. L’essai
-         ouvrait cette page ; il vendait le plus petit engagement avant que
-         le visiteur ait vu ce qu’il y a à acheter. Il ferme désormais
-         l’échelle, à sa place. -->
-    <section class="section tarifs-sec band-dark" aria-label="Les offres de la saison" data-sans-cadran>
+    <!-- ============ LES DEUX ABONNEMENTS (Étudiant · Adulte) =========
+         L’ORDRE DE VENTE, ET RIEN D’AUTRE : étudiant → adulte → comptant →
+         l’école → l’essai EN DERNIER. L’essai ferme l’échelle, à sa place :
+         il ne vend pas le plus petit engagement avant le reste. -->
+    <section class="section tarifs-sec band-dark" aria-label="Les abonnements sans engagement" data-sans-cadran>
       <div class="tarifs-sec__halo" aria-hidden="true"></div>
       <div class="wrap">
         <div data-reveal style="margin-bottom:clamp(1.6rem,4vw,2.4rem)">
-          <span class="eyebrow">Les offres de la saison</span>
-          <h2 class="display" style="margin-top:1rem;font-size:clamp(1.9rem,4.4vw,3rem)"><span class="reveal-mask"><span>Les différentes</span></span><span class="reveal-mask"><span class="tint">offres.</span></span></h2>
+          <span class="eyebrow">Sans engagement</span>
+          <h2 class="display" style="margin-top:1rem;font-size:clamp(1.9rem,4.4vw,3rem)"><span class="reveal-mask"><span>Étudiant ou adulte,</span></span><span class="reveal-mask"><span class="tint">toutes les quatre semaines.</span></span></h2>
         </div>
         <div class="promos" id="promos" data-reveal-group></div>
       </div>
     </section>
 
-    <!-- ==================== LES CLASSIQUES ======================== -->
-    <section class="section" style="padding-top:0" aria-label="L’abonnement classique">
+    <!-- ===================== LE COMPTANT ========================== -->
+    <section class="section" style="padding-top:0" aria-label="Les formules comptant">
       <div class="wrap">
         <div data-reveal style="margin-bottom:clamp(1.6rem,4vw,2.4rem)">
-          <span class="eyebrow">Quand la promo est passée</span>
-          <h2 class="display" style="margin-top:1rem;font-size:clamp(1.9rem,4.4vw,3rem)">Le tarif de tous les jours.</h2>
-          <p class="lead" style="margin-top:.9rem;max-width:56ch">Pas de prix barré ici, parce que ce n’en est pas un : c’est le prix. Celui qu’on paie en janvier comme en septembre — et c’est lui qu’on barre plus haut, sur l’offre de rentrée.</p>
+          <span class="eyebrow">Payer d’avance</span>
+          <h2 class="display" style="margin-top:1rem;font-size:clamp(1.9rem,4.4vw,3rem)">Ou tout régler en une fois.</h2>
+          <p class="lead" style="margin-top:.9rem;max-width:56ch">Trois durées au comptant — 3, 6 ou 12 mois — payées d’un coup sur la boutique, et plus aucun prélèvement à suivre derrière.</p>
         </div>
         <div class="tarifs" id="classiques" data-reveal-group></div>
       </div>
@@ -419,9 +425,9 @@ import { AUTEUR_PRINCIPAL } from "../../../api/_lib/auteurs.js";
         </div>
         <ul class="cond" data-reveal>
           <li>La séance d’essai coûte 10€, toutes disciplines, gants et matériel prêtés, sans engagement.</li>
-          <li>L’offre Rentrée coûte <strong>29€ par personne et toutes les 4 semaines</strong>, sans engagement. Première échéance par carte puis IBAN ; coordonnées d’un proche requises pour débloquer la promotion ; badge facturé 34,99€ 72 h après le début.</li>
-          <li>La saison coûte <strong>259€ comptant</strong>. Elle se règle comptant ou en 4× sans frais (64,75€) — plusieurs options de paiement en 4× sur la boutique — et ouvre l’accès aux 5 clubs.</li>
-          <li>Hors promotion, l’abonnement se règle par échéances de 4 semaines : <strong>44,99€ adulte</strong>, <strong>36,99€ étudiant</strong>. Les CGV annoncent un <strong>badge d’accès à 34,99€ en sus</strong> des abonnements sans engagement, sauf condition contraire affichée à la souscription.</li>
+          <li>L’abonnement sans engagement se paie par échéances de 4 semaines : <strong>36,99€ étudiant</strong>, carte étudiante requise, et <strong>44,99€ adulte</strong>. Cours illimités, accès libre de 10h à 21h30 et entrée dans les 5 salles du réseau.</li>
+          <li>Ta carte bancaire règle la toute première période ; les suivantes passent par ton IBAN. Prévois en plus <strong>34,99€ pour le badge d’accès</strong>, débités peu après ton inscription.</li>
+          <li>Au comptant, sans prélèvement : <strong>150€</strong> les 3 mois, <strong>250€</strong> les 6 mois, <strong>400€</strong> les 12 mois.</li>
           <li>Le t-shirt Boxing Center est inclus dans chaque inscription enfant à l’école (295€/an, baby 250€).</li>
           <li>L’inscription, les prélèvements et le détail des formules se finalisent sur box-plus.</li>
         </ul>
@@ -465,8 +471,8 @@ import { AUTEUR_PRINCIPAL } from "../../../api/_lib/auteurs.js";
         <h2 class="display" style="font-size:clamp(2rem,5vw,3.6rem)"><span class="reveal-mask"><span>Dix euros.</span></span><span class="reveal-mask"><span class="tint">Puis tu décides.</span></span></h2>
         <p class="lead" data-reveal>Toutes disciplines, sans engagement. Dix euros pour te faire une idée, pas un centime de plus.</p>
         <div class="gong__cta" data-reveal>
-          <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/offre/29"><span>Voir l’offre Rentrée — 29€</span></a><a class="btn btn--ghost" data-magnetic href="https://boutique.boxingcenter.fr/seance-essai?utm_source=site&utm_medium=cta&utm_campaign=st-cyprien"><span>Essayer une séance · 10€</span></a>
-          <a class="btn" data-magnetic href="https://boutique.boxingcenter.fr/offre/29"><span>Voir les offres</span></a>
+          <a class="btn btn--primary" data-magnetic href="https://boutique.boxingcenter.fr/inscription?product=etudiants-4-semaines"><span>Étudiant · 36,99€</span></a><a class="btn" data-magnetic href="https://boutique.boxingcenter.fr/inscription?product=44-99-4-semaines"><span>Adulte · 44,99€</span></a>
+          <a class="btn btn--ghost" data-magnetic href="https://boutique.boxingcenter.fr/seance-essai?utm_source=site&utm_medium=cta&utm_campaign=st-cyprien"><span>Essayer une séance · 10€</span></a>
         </div>
       </div>
     </section>
@@ -511,7 +517,7 @@ import { AUTEUR_PRINCIPAL } from "../../../api/_lib/auteurs.js";
   <!-- Libs d’animation, auto-hébergées et regroupées (gsap + ScrollTrigger + Lenis) :
        une seule requête same-origin au lieu de trois vers un CDN tiers. -->
   <script is:inline defer src="/assets/js/vendor.min.js?v=22"></script>
-  <script is:inline type="module" src="/assets/js/site.js?v=30"></script>
-  <script is:inline type="module" src="/assets/js/tarifs.js?v=28"></script>
+  <script is:inline type="module" src="/assets/js/site.js?v=31"></script>
+  <script is:inline type="module" src="/assets/js/tarifs.js?v=29"></script>
 </body>
 </html>
